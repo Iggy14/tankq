@@ -1,0 +1,58 @@
+{
+  "nav": {
+    "home": "Home",
+    "products": "Products",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "common": {
+    "companyName": "TankQ",
+    "tagline": "High-quality water tanks for homes and industry",
+    "ctaButton": "Request a quote",
+    "switchLanguage": "Change language",
+    "allRightsReserved": "All rights reserved"
+  },
+  "home": {
+    "metaTitle": "TankQ - FRP water and wastewater tanks for Thai industry",
+    "metaDescription": "TankQ engineers, manufactures and installs FRP water storage, wastewater and custom-built tanks for factories across Thailand.",
+    "heroEyebrow": "FRP Water Solution",
+    "heroTitle": "Tank-Q",
+    "heroSubtitle": "For more than 15 years we have engineered fiberglass (FRP) tanks for Thai industry - matching the right resin and laminate schedule to each application instead of selling one standard product. Over 500 factories across 50 industries trust us for water storage, wastewater treatment and custom-built tanks, and every single one leaves the workshop hydrostatically tested.",
+    "products": {
+      "title": "Our Products",
+      "subtitle": "FRP Tanks for Every Industrial Application",
+      "viewDetail": "View detail",
+      "viewAll": "View All Products"
+    },
+    "whyUs": {
+      "title": "Why TANK-Q?",
+      "subtitle": "4 Reasons Leading Plants Choose Us",
+      "engineeredTitle": "Engineered to spec",
+      "engineeredDescription": "Not off-the-shelf — our engineers calculate the resin, wall thickness and structure for your specific chemical and pressure.",
+      "warrantyTitle": "15-year warranty",
+      "warrantyDescription": "High-quality FRP tanks outlast PE/HDPE many times over. Backed by a 15-year structural warranty with PM service.",
+      "deliveryTitle": "Fast, on-time delivery",
+      "deliveryDescription": "Made in Thailand and delivered in 2–6 weeks depending on size. No waiting on imports.",
+      "serviceTitle": "Complete after-sales service",
+      "serviceDescription": "Inspection, repair, FRP lining, on-site survey and annual PM contracts for full lifecycle care."
+    }
+  },
+  "products": {
+    "metaTitle": "Products",
+    "metaDescription": "Browse the full range of TankQ water tanks.",
+    "title": "Our products",
+    "subtitle": "Placeholder copy — the water tank listing will go here."
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "Get to know TankQ, water tank specialists.",
+    "title": "About TankQ",
+    "subtitle": "Placeholder copy — tell the company story here."
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Get in touch with the TankQ team for advice and quotes.",
+    "title": "Contact us",
+    "subtitle": "Placeholder copy — add address, phone number and a contact form here."
+  }
+}
