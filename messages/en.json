@@ -85,5 +85,16 @@
     "metaDescription": "Get in touch with the TankQ team for advice and quotes.",
     "title": "Contact us",
     "subtitle": "Placeholder copy — add address, phone number and a contact form here."
+  },
+  "footer": {
+    "ctaTitle": "Ready to spec your next",
+    "ctaTitleAccent": "FRP tank?",
+    "ctaSubtitle": "Placeholder copy — a short pitch and a link to the quote form will go here.",
+    "tankImageAlt": "TankQ FRP water tank",
+    "columns": {
+      "products": "Products",
+      "company": "Company",
+      "support": "Support"
+    }
   }
 }
