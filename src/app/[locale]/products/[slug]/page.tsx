@@ -62,16 +62,17 @@ export default async function ProductDetailPage({
   return (
     <>
       <Breadcrumbs
+        wide
         items={[
           { label: tNav("products"), href: "/products" },
           { label: product.title[activeLocale] },
         ]}
       />
 
-      <article className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6 sm:py-16">
+      <article className="mx-auto w-full max-w-[88rem] flex-1 px-4 py-12 sm:px-6 sm:py-16">
         <FadeInUpGroup className="flex flex-col items-center gap-6 text-center">
           <FadeInUp>
-            <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-balance text-primary sm:text-4xl">
               {product.title[activeLocale]}
             </h1>
           </FadeInUp>

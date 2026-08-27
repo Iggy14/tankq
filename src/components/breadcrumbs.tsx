@@ -11,6 +11,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Link } from "@/i18n/navigation";
+import { cn } from "@/lib/utils";
 
 /** One step of the trail. The last one is the current page and carries no href. */
 export type Crumb = {
@@ -21,6 +22,12 @@ export type Crumb = {
 type BreadcrumbsProps = {
   /** Everything after "Home", which this component prepends itself. */
   items: Crumb[];
+  /**
+   * Aligns the trail to the wider `88rem` container instead of the `6xl` most
+   * pages use. Pass it on a page whose content runs wide, or the trail sits
+   * indented from the heading beneath it.
+   */
+  wide?: boolean;
 };
 
 /**
@@ -31,12 +38,17 @@ type BreadcrumbsProps = {
  * Any item with an `href` renders as a link and the final one as plain text
  * marked `aria-current="page"`, which is what the shadcn recipe expects.
  */
-export function Breadcrumbs({ items }: BreadcrumbsProps) {
+export function Breadcrumbs({ items, wide = false }: BreadcrumbsProps) {
   const t = useTranslations();
 
   return (
     <div className="w-full border-b border-border bg-muted/40">
-      <div className="mx-auto w-full max-w-6xl px-4 py-3 sm:px-6">
+      <div
+        className={cn(
+          "mx-auto w-full px-4 py-3 sm:px-6",
+          wide ? "max-w-[88rem]" : "max-w-6xl",
+        )}
+      >
         <Breadcrumb aria-label={t("common.breadcrumb")}>
           <BreadcrumbList>
             <BreadcrumbItem>

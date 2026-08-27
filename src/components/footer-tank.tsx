@@ -52,7 +52,7 @@ export function FooterTank({ alt }: FooterTankProps) {
   };
 
   return (
-    <div className="absolute -top-35 right-0 w-[35rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-67 lg:right-0 lg:w-[43rem] xl:w-[56rem]">
+    <div className="absolute -top-37 right-0 w-[22rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-39 lg:right-10 lg:w-[22rem] xl:w-[22.5rem]">
       {/* The reveal lives on its own element so the hover transform below never
           fights it for the same `transform` property. */}
       <motion.div

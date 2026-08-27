@@ -31,14 +31,14 @@ export default async function ProductsPage({
 
   return (
     <>
-      <Breadcrumbs items={[{ label: tNav("products") }]} />
+      <Breadcrumbs wide items={[{ label: tNav("products") }]} />
 
-      <section className="mx-auto w-full max-w-6xl flex-1 px-4 py-16 sm:px-6">
-        <FadeInUp className="flex flex-col gap-4">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+      <section className="mx-auto w-full max-w-[88rem] flex-1 px-4 py-16 sm:px-6">
+        <FadeInUp className="flex flex-col items-center text-center">
+          <h1 className="text-4xl leading-[0.95] font-black tracking-tight text-primary uppercase sm:text-5xl md:text-6xl lg:text-7xl">
             {t("title")}
           </h1>
-          <p className="max-w-2xl text-pretty text-muted-foreground">
+          <p className="mt-6 max-w-md text-pretty text-sm text-muted-foreground sm:text-base">
             {t("subtitle")}
           </p>
         </FadeInUp>

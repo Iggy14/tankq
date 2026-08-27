@@ -29,4 +29,58 @@ export interface SpecTableSection {
   rows: Localized[][];
 }
 
-export type ProductSection = SpecTableSection;
+/**
+ * A list of short, scannable selling points — compliance, options, services —
+ * each rendered beside a check icon.
+ *
+ * Items are single lines of copy, not paragraphs; keep them to a phrase so the
+ * list stays a glance-and-go summary rather than a wall of prose.
+ */
+export interface CheckListSection {
+  type: "checkList";
+  title: Localized;
+  items: Localized[];
+}
+
+/**
+ * A heading and a single body paragraph — the plain prose block for anything
+ * that is simply told rather than tabulated or listed.
+ *
+ * One paragraph by design: a block that needs several is really several
+ * sections, and stacking them keeps the spacing between blocks consistent.
+ */
+export interface ParagraphSection {
+  type: "paragraph";
+  title: Localized;
+  body: Localized;
+}
+
+/**
+ * One picture in an <ImageGridSection>.
+ *
+ * `alt` is localized and required — the drawings and photos in a grid carry
+ * information (a capacity, a fitting), so an empty alt would drop it.
+ */
+export interface ImageGridItem {
+  src: string;
+  alt: Localized;
+}
+
+/**
+ * A grid of pictures under a heading — standard designs, site photographs,
+ * fitting options.
+ *
+ * Images are shown whole rather than cropped to fill, so a set that mixes
+ * aspect ratios still reads; give the set a consistent shape where you can.
+ */
+export interface ImageGridSection {
+  type: "imageGrid";
+  title: Localized;
+  images: ImageGridItem[];
+}
+
+export type ProductSection =
+  | SpecTableSection
+  | CheckListSection
+  | ParagraphSection
+  | ImageGridSection;

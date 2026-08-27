@@ -89,6 +89,35 @@ export const products: Product[] = [
     order: 2,
     sections: [
       {
+        type: "checkList",
+        title: {
+          th: "คุณสมบัติเด่นและมาตรฐานคุณภาพ",
+          en: "Key Features & Quality Assurance",
+        },
+        items: [
+          {
+            th: "ได้มาตรฐาน NSF-61 / FDA สำหรับน้ำบริโภคที่สัมผัสอาหาร",
+            en: "NSF-61 / FDA compliant for food contact water",
+          },
+          {
+            th: "กำหนดตำแหน่งท่อออกด้านบนหรือด้านล่างได้ตามสเปกของลูกค้า",
+            en: "Top/Bottom outlet per customer spec",
+          },
+          {
+            th: "อุปกรณ์ครบชุด: ฝาแมนโฮล บันได ช่องระบายอากาศ และเกจวัดระดับน้ำ",
+            en: "Full accessories: manhole, ladder, vent, level gauge",
+          },
+          {
+            th: "ทดสอบแรงดันน้ำ (Hydrostatic Test) ทุกใบก่อนส่งมอบ",
+            en: "Hydrostatic tested before delivery",
+          },
+          {
+            th: "มีทีมงานติดตั้งและทดสอบระบบพร้อมให้บริการ",
+            en: "Installation and commissioning team available",
+          },
+        ],
+      },
+      {
         type: "specTable",
         title: {
           th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
@@ -112,6 +141,96 @@ export const products: Product[] = [
           [{ th: "50,000", en: "50,000" }, { th: "3,500", en: "3,500" }, { th: "5,500", en: "5,500" }, { th: "16", en: "16" }, { th: "1,600", en: "1,600" }],
           [{ th: "100,000", en: "100,000" }, { th: "4,500", en: "4,500" }, { th: "6,500", en: "6,500" }, { th: "20", en: "20" }, { th: "3,200", en: "3,200" }],
         ],
+      },
+      {
+        type: "imageGrid",
+        title: {
+          th: "แบบมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
+          en: "Standard Tank Designs",
+        },
+        images: [
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/1.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 8 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 8 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/2.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 10 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 10 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/3.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 15 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 15 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/4.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 20 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 20 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/5.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 25 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 25 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/6.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 30 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 30 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/7.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 35 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 35 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/8.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 40 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 40 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/9.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 45 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 45 m³ FRP vertical water tank",
+            },
+          },
+          {
+            src: "/images/products/frp-vertical-water-tank/standard-designs/10.webp",
+            alt: {
+              th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 50 ลูกบาศก์เมตร",
+              en: "Dimension drawing of the 50 m³ FRP vertical water tank",
+            },
+          },
+        ],
+      },
+      {
+        type: "paragraph",
+        title: {
+          th: "สั่งผลิตตามแบบที่ต้องการ",
+          en: "Built to Your Own Design",
+        },
+        body: {
+          th: "สามารถผลิตและออกแบบรูปทรงของถังเก็บน้ำและถังบำบัดน้ำเสียไฟเบอร์กลาสได้ตามต้องการ เช่น ทรงกระบอกตั้ง",
+          en: "We can design and manufacture FRP water storage tanks and wastewater treatment tanks in the shape you need — the vertical cylindrical form among them.",
+        },
       },
     ],
   },

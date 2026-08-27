@@ -111,6 +111,9 @@ only then add `"use client"`. Reach for a shadcn primitive before hand-rolling
 | `type` | Renders | Used by |
 | --- | --- | --- |
 | `specTable` | A size/spec table: navy header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways on narrow screens | `frp-vertical-water-tank` |
+| `checkList` | A list of short selling points, each beside a lucide `Check` in a tinted teal disc; two columns from `sm` up | `frp-vertical-water-tank` |
+| `paragraph` | A heading over one centred paragraph of prose, capped at a readable measure | `frp-vertical-water-tank` |
+| `imageGrid` | A grid of pictures, three across on desktop down to one on a phone. Unframed, filling square tiles (`object-cover`), so only the gap separates them — supply square-ish artwork trimmed of its own margin. Localized `alt` required | `frp-vertical-water-tank` |
 
 ### If a product truly needs a one-off layout
 
@@ -125,6 +128,11 @@ composes with the others in whatever order the data says.
 - `src/components/ui/section.tsx` — a full-bleed band that owns the ground
   (`light` / `navy`) and vertical rhythm only. Inner width stays the page's job:
   wrap contents in `mx-auto w-full max-w-6xl`.
+- Two page widths are in use. `max-w-6xl` is the default for a text page;
+  `max-w-[88rem]` is the wide one, used by the hero, the stats strip, the
+  footer and both products pages. A page on the wide track must also pass
+  `wide` to `<Breadcrumbs>`, or the trail sits indented from the heading below
+  it.
 - `FadeInUp` / `FadeInUpGroup` (`src/components/fade-in-up.tsx`) — scroll-in
   reveals. Nest `FadeInUp` inside a `FadeInUpGroup` to cascade; the group takes
   the layout classes (grid, flex, gap) and the children inherit its trigger.

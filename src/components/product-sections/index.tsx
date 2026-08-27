@@ -2,6 +2,9 @@ import { FadeInUp } from "@/components/fade-in-up";
 import type { AppLocale } from "@/i18n/routing";
 import type { ProductSection } from "@/lib/product-sections";
 
+import { CheckListSection } from "./check-list-section";
+import { ImageGridSection } from "./image-grid-section";
+import { ParagraphSection } from "./paragraph-section";
 import { SpecTableSection } from "./spec-table-section";
 
 type ProductSectionsProps = {
@@ -27,6 +30,39 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
         return (
           <FadeInUp key={headingId}>
             <SpecTableSection
+              section={section}
+              locale={locale}
+              headingId={headingId}
+            />
+          </FadeInUp>
+        );
+
+      case "checkList":
+        return (
+          <FadeInUp key={headingId}>
+            <CheckListSection
+              section={section}
+              locale={locale}
+              headingId={headingId}
+            />
+          </FadeInUp>
+        );
+
+      case "paragraph":
+        return (
+          <FadeInUp key={headingId}>
+            <ParagraphSection
+              section={section}
+              locale={locale}
+              headingId={headingId}
+            />
+          </FadeInUp>
+        );
+
+      case "imageGrid":
+        return (
+          <FadeInUp key={headingId}>
+            <ImageGridSection
               section={section}
               locale={locale}
               headingId={headingId}

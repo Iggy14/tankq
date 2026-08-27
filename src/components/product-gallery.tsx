@@ -48,7 +48,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           width={1280}
           height={960}
           priority
-          sizes="(min-width: 1024px) 44rem, 100vw"
+          sizes="(min-width: 1024px) 56rem, 100vw"
           className="aspect-4/3 w-full object-cover"
         />
       </div>
