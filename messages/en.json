@@ -15,7 +15,8 @@
     "ctaButton": "Request a quote",
     "switchLanguage": "Change language",
     "openMenu": "Open menu",
-    "allRightsReserved": "All rights reserved"
+    "allRightsReserved": "All rights reserved",
+    "breadcrumb": "Breadcrumb"
   },
   "home": {
     "metaTitle": "TankQ - FRP water and wastewater tanks for Thai industry",
@@ -28,7 +29,6 @@
     "products": {
       "title": "Our Products",
       "subtitle": "FRP Tanks for Every Industrial Application",
-      "viewDetail": "View detail",
       "viewAll": "View All Products"
     },
     "whyUs": {
@@ -47,8 +47,14 @@
   "products": {
     "metaTitle": "Products",
     "metaDescription": "Browse the full range of TankQ water tanks.",
-    "title": "Our products",
-    "subtitle": "Placeholder copy — the water tank listing will go here."
+    "title": "Our Products",
+    "subtitle": "FRP tanks for every industrial application — engineered to spec, built in Thailand, and backed for the long term.",
+    "viewDetail": "View detail",
+    "backToProducts": "Back to products",
+    "relatedTitle": "Other products",
+    "gallery": {
+      "viewImage": "View image {number}"
+    }
   },
   "about": {
     "metaTitle": "About",

@@ -184,3 +184,18 @@ export function getProductBySlug(slug: string): Product | undefined {
 export function getFeaturedProducts(): Product[] {
   return products.filter((product) => product.featured);
 }
+
+/** The full catalogue in listing order. */
+export function getAllProducts(): Product[] {
+  return [...products].sort((a, b) => a.order - b.order);
+}
+
+/**
+ * Everything except `slug`, capped at `limit` — the "you may also need"
+ * strip at the foot of a detail page.
+ */
+export function getRelatedProducts(slug: string, limit = 3): Product[] {
+  return getAllProducts()
+    .filter((product) => product.slug !== slug)
+    .slice(0, limit);
+}

@@ -13,3 +13,4 @@
 - If a task involves logic that could break (forms, data fetching, utils), write or update a basic test if a test setup exists.
 - Do not install new dependencies without checking if an existing one already covers the need.
 - Ask before making structural changes (routing, folder layout, config files) that affect the whole project.
+- When you deliberately leave something out of a task — a follow-up you flagged, work blocked on a decision or missing config, a shortcut taken knowingly — record it in `docs/TODO.md` before finishing. Write each entry so a session with no memory of this conversation can act on it: what is missing, why it was skipped, the concrete steps to do it, and the files involved. Delete the entry when the work ships. Do not log routine ideas or things already visible in the code — only work that was actually deferred.

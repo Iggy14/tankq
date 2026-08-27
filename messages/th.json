@@ -15,7 +15,8 @@
     "ctaButton": "ขอใบเสนอราคา",
     "switchLanguage": "เปลี่ยนภาษา",
     "openMenu": "เปิดเมนู",
-    "allRightsReserved": "สงวนลิขสิทธิ์"
+    "allRightsReserved": "สงวนลิขสิทธิ์",
+    "breadcrumb": "เส้นทางนำทาง"
   },
   "home": {
     "metaTitle": "TankQ - ถัง FRP เก็บน้ำและบำบัดน้ำเสียสำหรับโรงงานอุตสาหกรรม",
@@ -28,7 +29,6 @@
     "products": {
       "title": "สินค้าของเรา",
       "subtitle": "ถัง FRP สำหรับทุกงานอุตสาหกรรม",
-      "viewDetail": "ดูรายละเอียด",
       "viewAll": "ดูสินค้าทั้งหมด"
     },
     "whyUs": {
@@ -48,7 +48,13 @@
     "metaTitle": "สินค้า",
     "metaDescription": "ดูรายการถังเก็บน้ำทุกรุ่นของ TankQ",
     "title": "สินค้าของเรา",
-    "subtitle": "เนื้อหาตัวอย่าง — รายการถังเก็บน้ำจะแสดงที่นี่"
+    "subtitle": "ถัง FRP สำหรับทุกงานอุตสาหกรรม ออกแบบตามสเปก ผลิตในประเทศไทย พร้อมการดูแลระยะยาว",
+    "viewDetail": "ดูรายละเอียด",
+    "backToProducts": "กลับไปหน้าสินค้า",
+    "relatedTitle": "สินค้าอื่น ๆ",
+    "gallery": {
+      "viewImage": "ดูรูปที่ {number}"
+    }
   },
   "about": {
     "metaTitle": "เกี่ยวกับเรา",
