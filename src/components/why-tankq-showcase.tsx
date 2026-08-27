@@ -1,11 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { DraftingCompass, ShieldCheck, Truck, Wrench } from "lucide-react";
-import { motion, useReducedMotion } from "motion/react";
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
-import type { LucideIcon } from "lucide-react";
 
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import {
@@ -15,78 +10,23 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-
-/**
- * The four selling points, in display order. Each entry names its icon, the
- * `home.whyUs.*` key prefix its copy lives under, and the photo the showcase
- * panel pairs it with — so adding a reason means adding one row here plus the
- * matching `<key>Title` / `<key>Description` strings in `messages/{en,th}.json`.
- *
- * The panel steps through `image` in exactly this order, so row N of this list
- * is card N and photo N.
- */
-const reasons = [
-  { key: "engineered", Icon: DraftingCompass, image: "/why/engineered.jpg" },
-  { key: "warranty", Icon: ShieldCheck, image: "/why/warranty.jpg" },
-  { key: "delivery", Icon: Truck, image: "/why/delivery.jpg" },
-  { key: "service", Icon: Wrench, image: "/why/service.jpg" },
-] as const satisfies readonly {
-  key: string;
-  Icon: LucideIcon;
-  image: string;
-}[];
-
-/** How long each photo holds before the next one fades in. */
-const SLIDE_INTERVAL_MS = 4000;
-/** Length of the unattended crossfade, in seconds (Motion works in seconds). */
-const AUTO_CROSSFADE_SECONDS = 0.9;
-/** Length of a hover-driven crossfade — short enough to read as an instant swap. */
-const HOVER_CROSSFADE_SECONDS = 0.25;
+import {
+  reasons,
+  useWhyTankQSlideshow,
+  WhyTankQSlides,
+} from "@/components/why-tankq-slideshow";
 
 /**
  * The cards and their paired photo panel. Left column on desktop, stacked with
  * the panel underneath on phones.
  *
- * One index drives both halves: the panel cycles it on a timer, and hovering a
- * card takes it over — the timer stops and the photo holds. Letting go restarts
- * the timer from the card that was hovered rather than snapping back, so the
- * loop simply carries on from wherever the visitor left it.
+ * One index drives both halves — and the section backdrop besides. It lives in
+ * `WhyTankQSlideshowProvider`; this component only reads it and hands hover
+ * back to it.
  */
 export function WhyTankQShowcase() {
   const t = useTranslations("home.whyUs");
-  const prefersReducedMotion = useReducedMotion();
-
-  const [current, setCurrent] = useState(0);
-  // The layer sitting under the incoming one during a crossfade; -1 before the
-  // first change, when there is nothing to fade away from.
-  const [previous, setPrevious] = useState(-1);
-  // True while a card is hovered — stops the timer and shortens the crossfade.
-  const [paused, setPaused] = useState(false);
-
-  useEffect(() => {
-    // Respect the OS "reduce motion" setting: hold, and let hover do the work.
-    if (paused || prefersReducedMotion) return;
-
-    const timer = setInterval(() => {
-      setCurrent((index) => {
-        setPrevious(index);
-        return (index + 1) % reasons.length;
-      });
-    }, SLIDE_INTERVAL_MS);
-
-    return () => clearInterval(timer);
-  }, [paused, prefersReducedMotion]);
-
-  function show(next: number) {
-    setCurrent((index) => {
-      if (index !== next) setPrevious(index);
-      return next;
-    });
-  }
-
-  const crossfadeSeconds = paused
-    ? HOVER_CROSSFADE_SECONDS
-    : AUTO_CROSSFADE_SECONDS;
+  const { current, show, setPaused } = useWhyTankQSlideshow();
 
   return (
     <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
@@ -134,37 +74,7 @@ export function WhyTankQShowcase() {
         aria-hidden
         className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-muted ring-1 ring-foreground/10 lg:aspect-auto lg:h-full"
       >
-        {reasons.map(({ key, image }, index) => {
-          const isCurrent = index === current;
-          const isPrevious = index === previous;
-
-          return (
-            <motion.div
-              key={key}
-              className="absolute inset-0"
-              // No mount animation: the first photo should already be there.
-              initial={false}
-              animate={{ opacity: isCurrent || isPrevious ? 1 : 0 }}
-              // Only the incoming layer fades, over the outgoing one held at
-              // full opacity underneath. Fading both at once would let the
-              // panel background show through at the midpoint and flash.
-              transition={
-                isCurrent && !prefersReducedMotion
-                  ? { duration: crossfadeSeconds, ease: "easeInOut" }
-                  : { duration: 0 }
-              }
-              style={{ zIndex: isCurrent ? 2 : isPrevious ? 1 : 0 }}
-            >
-              <Image
-                src={image}
-                alt=""
-                fill
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover"
-              />
-            </motion.div>
-          );
-        })}
+        <WhyTankQSlides sizes="(max-width: 1024px) 100vw, 50vw" />
 
         {/* Names the photo's card, numbered to match its position in the grid,
             over a scrim that keeps the caption legible on every image. */}
