@@ -15,18 +15,26 @@ type HeroSlideshowProps = {
   /** Public-folder paths, shown in order and looped. */
   images: readonly string[];
   className?: string;
+  /** Applied to every <Image>. For `object-position`, which part of the photo
+   *  survives the crop — the panel's own shape stays the caller's business. */
+  imageClassName?: string;
 };
 
 /**
- * Full-bleed background slideshow: every image is stacked in the same box and
- * only the incoming one animates (0 -> 1) on top of the outgoing one, which is
- * held at full opacity underneath. Cross-fading both layers at once would let
- * the container show through at the midpoint and dim the whole section.
+ * An in-flow photo panel that loops through its images: every one is stacked in
+ * the same box and only the incoming one animates (0 -> 1) on top of the
+ * outgoing one, which is held at full opacity underneath. Cross-fading both
+ * layers at once would let the panel background show through at the midpoint
+ * and flash.
+ *
+ * It owns the stack and the crossfade only — size and shape come from the
+ * caller's `className`, so it can be a half-width hero panel here and something
+ * else elsewhere.
  *
  * The images are decorative — the hero copy carries the meaning — so they are
  * hidden from assistive tech with empty alt text.
  */
-export function HeroSlideshow({ images, className }: HeroSlideshowProps) {
+export function HeroSlideshow({ images, className, imageClassName }: HeroSlideshowProps) {
   const prefersReducedMotion = useReducedMotion();
   const [current, setCurrent] = useState(0);
   const [previous, setPrevious] = useState(-1);
@@ -46,7 +54,7 @@ export function HeroSlideshow({ images, className }: HeroSlideshowProps) {
   }, [images.length, prefersReducedMotion]);
 
   return (
-    <div className={cn("absolute inset-0 -z-10 overflow-hidden bg-neutral-900", className)}>
+    <div aria-hidden className={cn("relative overflow-hidden bg-muted", className)}>
       {images.map((src, index) => {
         const isCurrent = index === current;
         const isPrevious = index === previous;
@@ -54,7 +62,6 @@ export function HeroSlideshow({ images, className }: HeroSlideshowProps) {
         return (
           <motion.div
             key={src}
-            aria-hidden
             className="absolute inset-0"
             // No mount animation: the first slide should already be there.
             initial={false}
@@ -76,15 +83,11 @@ export function HeroSlideshow({ images, className }: HeroSlideshowProps) {
               // The first slide is the LCP element; the rest are in-viewport
               // siblings the browser fetches on its own.
               preload={index === 0}
-              className="object-cover"
+              className={cn("object-cover", imageClassName)}
             />
           </motion.div>
         );
       })}
-
-      {/* Darkens the photography so the hero copy keeps AA contrast on every
-          slide, with a heavier wash at the top where the header sits. */}
-      <div className="absolute inset-0 z-10 bg-linear-to-b from-black/70 via-black/55 to-black/70" />
     </div>
   );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { NavLink } from "@/components/nav-link";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
@@ -33,15 +34,9 @@ export function Header() {
 
         <nav className="hidden items-center gap-1 sm:flex">
           {navItems.map((item) => (
-            <Link
-              key={item.key}
-              href={item.href}
-              // Styled with the shadcn button recipe rather than <Button render={...}>,
-              // which would pull this Server Component across the client boundary.
-              className={buttonVariants({ variant: "ghost", size: "sm" })}
-            >
+            <NavLink key={item.key} href={item.href}>
               {t(`nav.${item.key}`)}
-            </Link>
+            </NavLink>
           ))}
         </nav>
 

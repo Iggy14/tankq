@@ -23,6 +23,11 @@
   --color-chart-3: var(--chart-3);
   --color-chart-2: var(--chart-2);
   --color-chart-1: var(--chart-1);
+  --color-brand: var(--brand);
+  --color-navy: var(--navy);
+  --color-navy-foreground: var(--navy-foreground);
+  --color-teal: var(--teal);
+  --color-teal-foreground: var(--teal-foreground);
   --color-ring: var(--ring);
   --color-input: var(--input);
   --color-border: var(--border);
@@ -48,73 +53,100 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* Blue palette: water and trust, but kept to accents so the page still reads
+   clean and engineered. Neutrals carry a faint navy cast rather than being
+   truly grey, which is what makes the blue feel deliberate instead of dropped
+   on top of a stock theme. */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: oklch(1 0 0); /* #FFFFFF */
+  --foreground: oklch(0.2 0.03 250); /* #0B1723 */
+  --card: oklch(1 0 0); /* #FFFFFF */
+  --card-foreground: oklch(0.2 0.03 250); /* #0B1723 */
+  --popover: oklch(1 0 0); /* #FFFFFF */
+  --popover-foreground: oklch(0.2 0.03 250); /* #0B1723 */
+  /* A shade deeper than the logo cyan: this one has to carry link text, and
+     the logo colour only manages 3.1:1 on white. */
+  --primary: oklch(0.55 0.16 238); /* #007AC3 */
+  --primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  /* Stays a light surface — the hero's button leans on `variant="secondary"`
+     to sit legibly on photography. Navy lives in `--navy` instead. */
+  --secondary: oklch(0.968 0.008 240); /* #F0F5F9 */
+  --secondary-foreground: oklch(0.3 0.075 250); /* #092F52 */
+  --muted: oklch(0.968 0.008 240); /* #F0F5F9 */
+  --muted-foreground: oklch(0.52 0.02 245); /* #606A74 */
+  --accent: oklch(0.955 0.018 220); /* #E4F3F9 */
+  --accent-foreground: oklch(0.3 0.075 250); /* #092F52 */
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  --border: oklch(0.915 0.012 240); /* #DCE4EA */
+  --input: oklch(0.915 0.012 240); /* #DCE4EA */
+  --ring: oklch(0.55 0.16 238); /* #007AC3 */
+  /* The bright cyan-blue of the logo's "Q" mark, reserved for brand accents
+     like the header's active-tab underline. */
+  --brand: oklch(0.65 0.148 234); /* #009CDB */
+  /* The solid, industrial end of the palette: headers, footers, and any band
+     that needs to feel structural rather than decorative. */
+  --navy: oklch(0.3 0.075 250); /* #092F52 */
+  --navy-foreground: oklch(1 0 0); /* #FFFFFF */
+  /* Tertiary accent for icons and hover highlights. Too light for body text on
+     white — use `--teal-foreground` when it has to be read. */
+  --teal: oklch(0.7 0.11 205); /* #2CB2BF */
+  --teal-foreground: oklch(0.6 0.105 205); /* #00929E */
+  --chart-1: oklch(0.55 0.16 238); /* #007AC3 */
+  --chart-2: oklch(0.68 0.12 220); /* #17A9CB */
+  --chart-3: oklch(0.7 0.11 205); /* #2CB2BF */
+  --chart-4: oklch(0.42 0.1 245); /* #0B517F */
+  --chart-5: oklch(0.3 0.075 250); /* #092F52 */
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: oklch(0.975 0.006 240); /* #F3F7FA */
+  --sidebar-foreground: oklch(0.2 0.03 250); /* #0B1723 */
+  --sidebar-primary: oklch(0.55 0.16 238); /* #007AC3 */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #FFFFFF */
+  --sidebar-accent: oklch(0.955 0.018 220); /* #E4F3F9 */
+  --sidebar-accent-foreground: oklch(0.3 0.075 250); /* #092F52 */
+  --sidebar-border: oklch(0.915 0.012 240); /* #DCE4EA */
+  --sidebar-ring: oklch(0.55 0.16 238); /* #007AC3 */
 }
 
+/* Nothing toggles this class yet — kept in sync so a theme switcher can be
+   dropped in without a second palette pass. */
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: oklch(0.17 0.02 250); /* #091018 */
+  --foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
+  --card: oklch(0.22 0.025 250); /* #121C26 */
+  --card-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
+  --popover: oklch(0.22 0.025 250); /* #121C26 */
+  --popover-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
+  --primary: oklch(0.65 0.15 238); /* #009ADF */
+  --primary-foreground: oklch(0.24 0.065 250); /* #02203C */
+  --secondary: oklch(0.26 0.03 250); /* #192532 */
+  --secondary-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
+  --muted: oklch(0.26 0.03 250); /* #192532 */
+  --muted-foreground: oklch(0.72 0.025 240); /* #97A7B3 */
+  --accent: oklch(0.28 0.045 235); /* #0F2C3C */
+  --accent-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
   --destructive: oklch(0.704 0.191 22.216);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --ring: oklch(0.6 0.13 238); /* #0E89C4 */
+  /* Lifted on dark backgrounds so the accent keeps its contrast. */
+  --brand: oklch(0.74 0.135 234); /* #33BDF5 */
+  --navy: oklch(0.24 0.065 250); /* #02203C */
+  --navy-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
+  --teal: oklch(0.76 0.1 205); /* #57C3CF */
+  --teal-foreground: oklch(0.76 0.1 205); /* #57C3CF */
+  --chart-1: oklch(0.65 0.15 238); /* #009ADF */
+  --chart-2: oklch(0.72 0.115 220); /* #3EB6D6 */
+  --chart-3: oklch(0.76 0.1 205); /* #57C3CF */
+  --chart-4: oklch(0.52 0.12 245); /* #1C6BA0 */
+  --chart-5: oklch(0.4 0.09 248); /* #0C4C7A */
+  --sidebar: oklch(0.22 0.025 250); /* #121C26 */
+  --sidebar-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
+  --sidebar-primary: oklch(0.65 0.15 238); /* #009ADF */
+  --sidebar-primary-foreground: oklch(0.24 0.065 250); /* #02203C */
+  --sidebar-accent: oklch(0.28 0.045 235); /* #0F2C3C */
+  --sidebar-accent-foreground: oklch(0.96 0.005 240); /* #EFF2F5 */
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: oklch(0.6 0.13 238); /* #0E89C4 */
 }
 
 @layer base {
