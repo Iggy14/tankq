@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Mail, MessageCircle, QrCode } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
@@ -15,11 +15,6 @@ const companyLinks = [
   { href: "/about", key: "about" },
   { href: "/projects", key: "projects" },
   { href: "/blog", key: "blog" },
-] as const;
-
-const supportLinks = [
-  { href: "/", key: "home" },
-  { href: "/contact", key: "contact" },
 ] as const;
 
 type FooterLinkColumnProps = {
@@ -76,6 +71,20 @@ export function Footer() {
               {t("common.ctaButton")}
               <ArrowRight aria-hidden />
             </Button>
+
+            {/* Line QR placeholder: swap the icon tile for the real QR image
+                once it's ready — sizing/spacing are already tuned for it. */}
+            <div className="flex items-center gap-4 pt-2">
+              <div className="flex size-28 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-lg">
+                <QrCode aria-hidden className="size-full text-navy" strokeWidth={1} />
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-semibold text-navy-foreground">
+                  {t("footer.lineQrTitle")}
+                </p>
+                <p className="text-sm text-navy-foreground/70">{t("footer.contactLine")}</p>
+              </div>
+            </div>
           </div>
 
           <div className="relative hidden h-[22rem] md:block">
@@ -86,24 +95,42 @@ export function Footer() {
             {/* Deliberately oversized relative to its `h-[22rem]` placeholder
                 box: the excess is what pushes it past the band's top edge and
                 off the right edge, so it reads as breaking out of the section
-                rather than sitting inside it. */}
-            <div className="absolute -top-56 right-0 w-[22rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-64 lg:right-0 lg:w-[27rem] xl:w-[30rem]">
+                rather than sitting inside it. Only the bottom quarter blurs
+                (two stacked copies — the top one blurred, masked to just that
+                quarter) with a slow fade-out, so the tank stays sharp for most
+                of its height and only softens right at the end, blending into
+                the fade atop the black section below. */}
+            <div className="absolute -top-64 right-0 w-[30rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-72 lg:right-0 lg:w-[36rem] xl:w-[42rem]">
               <Image
                 src="/footer/tank.png"
                 alt={t("footer.tankImageAlt")}
                 width={640}
                 height={800}
-                className="h-auto w-full"
+                className="h-auto w-full [mask-image:linear-gradient(to_bottom,black_0%,black_76%,transparent_96%)]"
+              />
+              <Image
+                aria-hidden
+                src="/footer/tank.png"
+                alt=""
+                width={640}
+                height={800}
+                className="absolute inset-0 h-auto w-full blur-md [mask-image:linear-gradient(to_bottom,transparent_74%,black_85%,black_92%,transparent_100%)]"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Lower footer: a shade darker than the band above so the two read as
-          one dark-navy mass with a visible seam, not two unrelated blocks. */}
-      <div className="bg-foreground text-background">
-        <div className="mx-auto w-full max-w-[88rem] px-4 py-14 sm:px-6">
+      {/* Lower footer: a shade darker than the band above. The top edge fades
+          from the CTA band's navy into this section's own darker background
+          (gradient overlay behind the z-10 content) so the seam dissolves
+          instead of showing as a hard line. */}
+      <div className="relative bg-foreground text-background">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-0 h-28 bg-gradient-to-b from-navy to-transparent sm:h-36"
+        />
+        <div className="relative z-10 mx-auto w-full max-w-[88rem] px-4 py-14 sm:px-6">
           <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
             <div className="max-w-xs space-y-4">
               <div className="inline-block rounded-lg bg-white px-3 py-2">
@@ -115,12 +142,32 @@ export function Footer() {
                   className="h-7 w-auto"
                 />
               </div>
-              <p className="text-sm text-background/70">{t("common.tagline")}</p>
+              <p className="text-sm text-background/70">{t("footer.tagline")}</p>
             </div>
 
             <FooterLinkColumn title={t("footer.columns.products")} items={productLinks} />
             <FooterLinkColumn title={t("footer.columns.company")} items={companyLinks} />
-            <FooterLinkColumn title={t("footer.columns.support")} items={supportLinks} />
+
+            <div className="space-y-3">
+              <p className="text-sm font-semibold text-background">
+                {t("footer.columns.contact")}
+              </p>
+              <ul className="space-y-2">
+                <li className="flex items-center gap-2 text-sm text-background/70">
+                  <MessageCircle aria-hidden className="size-4 shrink-0" />
+                  {t("footer.contactLine")}
+                </li>
+                <li>
+                  <a
+                    href={`mailto:${t("footer.contactEmail")}`}
+                    className="flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
+                  >
+                    <Mail aria-hidden className="size-4 shrink-0" />
+                    {t("footer.contactEmail")}
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 

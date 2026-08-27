@@ -89,12 +89,16 @@
   "footer": {
     "ctaTitle": "พร้อมสั่งผลิตถัง FRP",
     "ctaTitleAccent": "รุ่นถัดไปหรือยัง?",
-    "ctaSubtitle": "เนื้อหาตัวอย่าง — ข้อความชวนติดต่อและลิงก์ขอใบเสนอราคาจะแสดงที่นี่",
+    "ctaSubtitle": "บอกขนาด ปริมาตร ชนิดของเหลว และแรงดัน — วิศวกรเสนอราคาให้ภายใน 24 ชั่วโมง",
     "tankImageAlt": "ถังเก็บน้ำ FRP ของ TankQ",
+    "tagline": "ผู้เชี่ยวชาญถังไฟเบอร์กลาส FRP",
+    "contactLine": "Line: @tankq",
+    "contactEmail": "tankqsolution@gmail.com",
+    "lineQrTitle": "สแกนเพื่อแอดไลน์",
     "columns": {
       "products": "สินค้า",
       "company": "บริษัท",
-      "support": "ช่วยเหลือ"
+      "contact": "ติดต่อ"
     }
   }
 }

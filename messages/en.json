@@ -89,12 +89,16 @@
   "footer": {
     "ctaTitle": "Ready to spec your next",
     "ctaTitleAccent": "FRP tank?",
-    "ctaSubtitle": "Placeholder copy — a short pitch and a link to the quote form will go here.",
+    "ctaSubtitle": "Tell us size, volume, water type, and pressure — engineer quotes within 24 hours.",
     "tankImageAlt": "TankQ FRP water tank",
+    "tagline": "FRP fiberglass tank specialist.",
+    "contactLine": "Line: @tankq",
+    "contactEmail": "tankqsolution@gmail.com",
+    "lineQrTitle": "Scan to chat on LINE",
     "columns": {
       "products": "Products",
       "company": "Company",
-      "support": "Support"
+      "contact": "Contact"
     }
   }
 }
