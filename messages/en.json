@@ -31,6 +31,18 @@
       "subtitle": "FRP Tanks for Every Industrial Application",
       "viewAll": "View All Products"
     },
+    "stats": {
+      "experienceValue": "15+",
+      "experienceLabel": "Years Experience",
+      "projectsValue": "500+",
+      "projectsLabel": "Industrial Projects",
+      "industriesValue": "50+",
+      "industriesLabel": "Industries Served",
+      "warrantyValue": "15",
+      "warrantyLabel": "Years Warranty",
+      "supportValue": "Full Support",
+      "supportLabel": "Design to After-sales"
+    },
     "whyUs": {
       "title": "Why TANK-Q?",
       "subtitle": "4 Reasons Leading Plants Choose Us",
@@ -59,8 +71,20 @@
   "about": {
     "metaTitle": "About",
     "metaDescription": "Get to know TankQ, water tank specialists.",
-    "title": "About TankQ",
-    "subtitle": "Placeholder copy — tell the company story here."
+    "heroLine1": "ABOUT",
+    "heroLine2": "TANK Q",
+    "heroLine2Accent": "SOLUTION",
+    "heroSubtitle": "15 years of FRP tank expertise for Thai industry",
+    "lineupAlt": "TankQ FRP water tank product lineup",
+    "story": {
+      "titleLine1": "About Our",
+      "titleLine2": "Story",
+      "valuesButton": "Our Values",
+      "paragraph1": "Tank Q Solution was founded on the belief that customers deserve more than just a \"cheap tank\" — they deserve the \"right tank\" for their specific application.",
+      "paragraph2": "We started as engineers with real factory experience, knowing what wrong resin or improper lamination costs. We promised ourselves never to let that happen to our customers.",
+      "paragraph3": "Today, we deliver FRP tanks to 500+ factories nationwide across 50+ industries, maintaining the same quality on every unit.",
+      "imageAlt": "TankQ FRP tank delivered and installed at a factory site"
+    }
   },
   "projects": {
     "metaTitle": "Projects",

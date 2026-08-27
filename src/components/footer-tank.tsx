@@ -52,7 +52,7 @@ export function FooterTank({ alt }: FooterTankProps) {
   };
 
   return (
-    <div className="absolute -top-20 right-0 w-[21rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-40 lg:right-0 lg:w-[25rem] xl:w-[29rem]">
+    <div className="absolute -top-35 right-0 w-[35rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-67 lg:right-0 lg:w-[43rem] xl:w-[56rem]">
       {/* The reveal lives on its own element so the hover transform below never
           fights it for the same `transform` property. */}
       <motion.div
@@ -66,7 +66,7 @@ export function FooterTank({ alt }: FooterTankProps) {
           className="block origin-bottom transition-transform duration-500 ease-out hover:scale-[1.06] focus-visible:scale-[1.06] focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-brand motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:focus-visible:scale-100"
         >
           <Image
-            src="/footer/tank.png"
+            src="/footer/TQ.png"
             alt={alt}
             width={640}
             height={800}

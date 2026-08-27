@@ -65,5 +65,5 @@ and neither needs clearing.
 | `public/brand/` | `src/components/header.tsx`, `src/components/footer.tsx` |
 | `public/hero/` | `src/components/hero.tsx` |
 | `public/why/` | `src/components/why-tankq-slideshow.tsx` |
-| `public/footer/` | `src/components/footer-tank.tsx` |
+| `public/footer/` | `src/components/footer-tank.tsx` (currently `TQ.png`) |
 | `public/images/products/` | `src/lib/products.ts` |

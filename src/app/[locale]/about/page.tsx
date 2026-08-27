@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { OurStory } from "@/components/our-story";
 
 export async function generateMetadata({
   params,
@@ -26,12 +28,35 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
     <>
       <Breadcrumbs items={[{ label: tNav("about") }]} />
 
-      <section className="mx-auto w-full max-w-6xl flex-1 px-4 py-16 sm:px-6">
-        <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-          {t("title")}
+      <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center px-4 pt-12 pb-16 text-center sm:px-6 sm:pt-16 sm:pb-20">
+        <h1 className="text-4xl leading-[0.95] font-black tracking-tight text-primary uppercase sm:text-5xl md:text-6xl lg:text-7xl">
+          <span className="block">{t("heroLine1")}</span>
+          <span className="block">
+            {t("heroLine2")}{" "}
+            {/* Outlined instead of filled, matching the reference's ghost
+                "TEAM" treatment — stroke reads off `--primary` directly so
+                it stays legible even though `color` itself is transparent. */}
+            <span className="text-transparent [-webkit-text-stroke:1.5px_var(--primary)] sm:[-webkit-text-stroke:2px_var(--primary)]">
+              {t("heroLine2Accent")}
+            </span>
+          </span>
         </h1>
-        <p className="mt-4 max-w-xl text-muted-foreground">{t("subtitle")}</p>
+        <p className="mt-6 max-w-md text-sm text-muted-foreground sm:text-base">
+          {t("heroSubtitle")}
+        </p>
       </section>
+
+      <section className="mx-auto w-full max-w-6xl px-4 pb-20 sm:px-6 sm:pb-24">
+        <Image
+          src="/about/tank-lineup.png"
+          alt={t("lineupAlt")}
+          width={3292}
+          height={1796}
+          className="mx-auto h-auto w-full max-w-3xl"
+        />
+      </section>
+
+      <OurStory />
     </>
   );
 }

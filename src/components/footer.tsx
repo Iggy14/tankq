@@ -54,8 +54,11 @@ export function Footer() {
     <footer>
       {/* CTA band: the tank photo is tilted and pinned to `-top-*`, so it
           breaches the band's own top edge into the page above — nothing here
-          may set `overflow-hidden` or that breach gets clipped. */}
-      <section className="relative bg-navy text-navy-foreground">
+          may set `overflow-hidden` (or `overflow-y-hidden`) or that breach
+          gets clipped. `overflow-x-clip` is fine (and necessary): the tank is
+          wide enough at large breakpoints to push past the viewport's right
+          edge and force a page-wide horizontal scrollbar without it. */}
+      <section className="relative overflow-x-clip bg-navy text-navy-foreground">
         <div className="relative mx-auto grid w-full max-w-[88rem] gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:items-center md:py-24">
           <div className="relative z-10 max-w-lg space-y-5">
             <h2 className="text-3xl leading-[1.15] font-semibold tracking-tight text-balance sm:text-4xl">
