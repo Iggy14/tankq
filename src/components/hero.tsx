@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { MoveDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
@@ -96,26 +96,26 @@ export function Hero() {
               from `scroll-behavior` in globals.css. */}
             <Button
               size="lg"
+              variant={'outline'}
               nativeButton={false}
               role="link"
               render={<a href={`#${FEATURED_PRODUCTS_ID}`} />}
+                            className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
+
             >
               {t("home.heroCta")}
-              <ArrowRight aria-hidden />
+              <MoveDown aria-hidden />
             </Button>
 
             <Button
-              variant="outline"
               size="lg"
               nativeButton={false}
               role="link"
               render={<Link href="/contact" />}
               // The theme's light/dark tokens have no "on top of the navy band"
               // surface, so the glass treatment is spelled out here.
-              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
             >
               {t("common.ctaButton")}
-              <ArrowRight aria-hidden />
             </Button>
           </FadeInUp>
         </FadeInUpGroup>
