@@ -2,6 +2,7 @@ import { ArrowRight, Mail, MessageCircle, QrCode } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+import { FooterTank } from "@/components/footer-tank";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
@@ -61,7 +62,9 @@ export function Footer() {
               {t("footer.ctaTitle")}{" "}
               <span className="text-brand">{t("footer.ctaTitleAccent")}</span>
             </h2>
-            <p className="max-w-md text-navy-foreground/80">{t("footer.ctaSubtitle")}</p>
+            <p className="max-w-md text-navy-foreground/80">
+              {t("footer.ctaSubtitle")}
+            </p>
             <Button
               size="lg"
               nativeButton={false}
@@ -76,13 +79,19 @@ export function Footer() {
                 once it's ready — sizing/spacing are already tuned for it. */}
             <div className="flex items-center gap-4 pt-2">
               <div className="flex size-28 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-lg">
-                <QrCode aria-hidden className="size-full text-navy" strokeWidth={1} />
+                <QrCode
+                  aria-hidden
+                  className="size-full text-navy"
+                  strokeWidth={1}
+                />
               </div>
               <div className="space-y-1">
                 <p className="text-sm font-semibold text-navy-foreground">
                   {t("footer.lineQrTitle")}
                 </p>
-                <p className="text-sm text-navy-foreground/70">{t("footer.contactLine")}</p>
+                <p className="text-sm text-navy-foreground/70">
+                  {t("footer.contactLine")}
+                </p>
               </div>
             </div>
           </div>
@@ -92,31 +101,7 @@ export function Footer() {
               aria-hidden
               className="absolute top-1/2 right-12 h-72 w-72 -translate-y-1/2 rounded-full bg-brand/25 blur-3xl"
             />
-            {/* Deliberately oversized relative to its `h-[22rem]` placeholder
-                box: the excess is what pushes it past the band's top edge and
-                off the right edge, so it reads as breaking out of the section
-                rather than sitting inside it. Only the bottom quarter blurs
-                (two stacked copies — the top one blurred, masked to just that
-                quarter) with a slow fade-out, so the tank stays sharp for most
-                of its height and only softens right at the end, blending into
-                the fade atop the black section below. */}
-            <div className="absolute -top-64 right-0 w-[30rem] rotate-[13deg] drop-shadow-2xl sm:-right-6 lg:-top-72 lg:right-0 lg:w-[36rem] xl:w-[42rem]">
-              <Image
-                src="/footer/tank.png"
-                alt={t("footer.tankImageAlt")}
-                width={640}
-                height={800}
-                className="h-auto w-full [mask-image:linear-gradient(to_bottom,black_0%,black_76%,transparent_96%)]"
-              />
-              <Image
-                aria-hidden
-                src="/footer/tank.png"
-                alt=""
-                width={640}
-                height={800}
-                className="absolute inset-0 h-auto w-full blur-md [mask-image:linear-gradient(to_bottom,transparent_74%,black_85%,black_92%,transparent_100%)]"
-              />
-            </div>
+            <FooterTank alt={t("footer.tankImageAlt")} />
           </div>
         </div>
       </section>
@@ -127,9 +112,9 @@ export function Footer() {
           instead of showing as a hard line. */}
       <div className="relative bg-foreground text-background">
         <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-0 z-0 h-28 bg-gradient-to-b from-navy to-transparent sm:h-36"
-        />
+  aria-hidden
+  className="pointer-events-none absolute inset-x-0 z-0 bg-linear-to-t from-foreground from-10% to-transparent sm:-top-15 sm:h-15"
+/>
         <div className="relative z-10 mx-auto w-full max-w-[88rem] px-4 py-14 sm:px-6">
           <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
             <div className="max-w-xs space-y-4">
@@ -142,11 +127,19 @@ export function Footer() {
                   className="h-7 w-auto"
                 />
               </div>
-              <p className="text-sm text-background/70">{t("footer.tagline")}</p>
+              <p className="text-sm text-background/70">
+                {t("footer.tagline")}
+              </p>
             </div>
 
-            <FooterLinkColumn title={t("footer.columns.products")} items={productLinks} />
-            <FooterLinkColumn title={t("footer.columns.company")} items={companyLinks} />
+            <FooterLinkColumn
+              title={t("footer.columns.products")}
+              items={productLinks}
+            />
+            <FooterLinkColumn
+              title={t("footer.columns.company")}
+              items={companyLinks}
+            />
 
             <div className="space-y-3">
               <p className="text-sm font-semibold text-background">
