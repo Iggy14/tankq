@@ -2,15 +2,19 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { MobileNav } from "@/components/mobile-nav";
 import { NavLink } from "@/components/nav-link";
 import { buttonVariants } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
 const navItems = [
   { href: "/", key: "home" },
-  { href: "/products", key: "products" },
   { href: "/about", key: "about" },
-  { href: "/contact", key: "contact" },
+  { href: "/products", key: "products" },
+  { href: "/projects", key: "projects" },
+  { href: "/quality", key: "quality" },
+  { href: "/service", key: "service" },
+  { href: "/blog", key: "blog" },
 ] as const;
 
 export function Header() {
@@ -20,7 +24,7 @@ export function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur">
       {/* Equal-width outer columns (1fr each) keep the auto-width nav centred on
           the header itself, not just between the brand and the actions. */}
-      <div className="mx-auto grid h-16 w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-6">
+      <div className="mx-auto grid h-16 w-full max-w-6xl grid-cols-[1fr_auto_1fr] items-center gap-4 px-4 sm:px-5 lg:px-6">
         <Link href="/" className="justify-self-start">
           <Image
             src="/brand/tankq-logo.png"
@@ -32,7 +36,7 @@ export function Header() {
           />
         </Link>
 
-        <nav className="hidden items-center gap-1 sm:flex">
+        <nav className="hidden items-center gap-0.5 lg:flex">
           {navItems.map((item) => (
             <NavLink key={item.key} href={item.href}>
               {t(`nav.${item.key}`)}
@@ -42,9 +46,13 @@ export function Header() {
 
         <div className="flex items-center gap-2 justify-self-end">
           <LanguageSwitcher />
+          <MobileNav
+            items={navItems.map((item) => ({ href: item.href, label: t(`nav.${item.key}`) }))}
+            menuLabel={t("common.openMenu")}
+          />
           <Link
             href="/contact"
-            className={buttonVariants({ size: "sm", className: "hidden sm:inline-flex" })}
+            className={buttonVariants({ size: "sm", className: "hidden lg:inline-flex" })}
           >
             {t("common.ctaButton")}
           </Link>

@@ -11,10 +11,16 @@ type NavLinkProps = {
   children: ReactNode;
 };
 
+// Shared with MobileNav so the desktop nav and the dropdown menu agree on
+// which item is "active". next-intl's usePathname strips the locale prefix,
+// so /th/products -> /products.
+export function isNavLinkActive(href: string, pathname: string) {
+  return href === "/" ? pathname === "/" : pathname.startsWith(href);
+}
+
 export function NavLink({ href, children }: NavLinkProps) {
-  // next-intl's usePathname strips the locale prefix, so /th/products -> /products.
   const pathname = usePathname();
-  const isActive = href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = isNavLinkActive(href, pathname);
 
   return (
     <Link
@@ -24,11 +30,11 @@ export function NavLink({ href, children }: NavLinkProps) {
       // which would pull the header across the client boundary.
       className={cn(
         buttonVariants({ variant: "ghost", size: "sm" }),
-        "relative",
+        "relative px-2",
         isActive &&
           // -bottom-[18px] = (h-16 header - h-7 button) / 2, so the bar lands on
           // the header's bottom border and reads as a tab indicator.
-          "text-brand hover:text-brand after:absolute after:inset-x-2.5 after:-bottom-[18px] after:h-0.5 after:rounded-full after:bg-brand after:content-['']",
+          "text-brand hover:text-brand after:absolute after:inset-x-2 after:-bottom-[18px] after:h-0.5 after:rounded-full after:bg-brand after:content-['']",
       )}
     >
       {children}

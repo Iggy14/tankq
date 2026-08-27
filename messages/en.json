@@ -1,8 +1,12 @@
 {
   "nav": {
     "home": "Home",
-    "products": "Products",
     "about": "About",
+    "products": "Products",
+    "projects": "Projects",
+    "quality": "Quality",
+    "service": "Service",
+    "blog": "Blog",
     "contact": "Contact"
   },
   "common": {
@@ -10,6 +14,7 @@
     "tagline": "High-quality water tanks for homes and industry",
     "ctaButton": "Request a quote",
     "switchLanguage": "Change language",
+    "openMenu": "Open menu",
     "allRightsReserved": "All rights reserved"
   },
   "home": {
@@ -50,6 +55,30 @@
     "metaDescription": "Get to know TankQ, water tank specialists.",
     "title": "About TankQ",
     "subtitle": "Placeholder copy — tell the company story here."
+  },
+  "projects": {
+    "metaTitle": "Projects",
+    "metaDescription": "See TankQ tank installations completed for Thai industry.",
+    "title": "Projects",
+    "subtitle": "Placeholder copy — case studies and completed installations will go here."
+  },
+  "quality": {
+    "metaTitle": "Quality",
+    "metaDescription": "TankQ's quality standards, materials and testing process.",
+    "title": "Quality",
+    "subtitle": "Placeholder copy — quality standards and certifications will go here."
+  },
+  "service": {
+    "metaTitle": "Service",
+    "metaDescription": "After-sales service, inspection and maintenance from TankQ.",
+    "title": "Service",
+    "subtitle": "Placeholder copy — inspection, repair and PM service details will go here."
+  },
+  "blog": {
+    "metaTitle": "Blog",
+    "metaDescription": "News, guides and updates from the TankQ team.",
+    "title": "Blog",
+    "subtitle": "Placeholder copy — articles and updates will go here."
   },
   "contact": {
     "metaTitle": "Contact",
