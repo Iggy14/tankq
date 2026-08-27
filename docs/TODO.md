@@ -36,3 +36,28 @@ than none.
 
 **Related:** `metadataBase` also fixes the currently-relative Open Graph and
 canonical URLs, so it is worth doing as one change rather than two.
+
+## Mission & Values section on the about page
+
+**Status:** not started. Added 2026-08-27 alongside the "Our Story" section.
+
+`src/components/our-story.tsx` renders an "Our Values" button
+(`about.story.valuesButton`) that links to `#mission-values` — it expects a
+section further down `src/app/[locale]/about/page.tsx` exporting/using that
+same id. That section does not exist yet, so the button currently scrolls to
+nowhere.
+
+**Why it was skipped:** out of scope for the "Our Story" section request; the
+button's destination content (mission statement + company values) was not
+provided.
+
+**What to do:**
+
+1. Build a "Mission & Values" section and add it to the about page below
+   `<OurStory />`.
+2. Give its `<section>` `id={MISSION_VALUES_ID}` (import the constant exported
+   from `our-story.tsx`) and `scroll-mt-16`, matching the pattern in
+   `src/components/featured-products.tsx` (`FEATURED_PRODUCTS_ID` +
+   `scroll-mt-16`) so the jump clears the sticky header.
+3. Add copy under a new `about.mission` (or similar) namespace in both
+   `messages/en.json` and `messages/th.json`.
