@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { ProductCard } from "@/components/product-card";
 import { ProductGallery } from "@/components/product-gallery";
+import { ProductSections } from "@/components/product-sections";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
@@ -68,24 +69,21 @@ export default async function ProductDetailPage({
       />
 
       <article className="mx-auto w-full max-w-6xl flex-1 px-4 py-12 sm:px-6 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+        <FadeInUpGroup className="flex flex-col items-center gap-6 text-center">
           <FadeInUp>
-            <ProductGallery
-              images={product.images}
-              alt={product.title[activeLocale]}
-            />
-          </FadeInUp>
-
-          <FadeInUp className="flex flex-col gap-6 lg:pt-4">
             <h1 className="text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
               {product.title[activeLocale]}
             </h1>
+          </FadeInUp>
 
-            <p className="text-base leading-relaxed text-pretty text-muted-foreground">
+          <FadeInUp>
+            <p className="max-w-3xl text-base leading-relaxed text-pretty text-muted-foreground">
               {product.description[activeLocale]}
             </p>
+          </FadeInUp>
 
-            <div className="mt-2 flex flex-wrap items-center gap-3">
+          <FadeInUp>
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
               <Button
                 size="lg"
                 nativeButton={false}
@@ -105,7 +103,20 @@ export default async function ProductDetailPage({
               </Button>
             </div>
           </FadeInUp>
-        </div>
+        </FadeInUpGroup>
+
+        <FadeInUp className="mt-12 sm:mt-16">
+          <ProductGallery
+            images={product.images}
+            alt={product.title[activeLocale]}
+          />
+        </FadeInUp>
+
+        {product.sections && product.sections.length > 0 && (
+          <FadeInUpGroup className="mt-20 flex flex-col gap-20">
+            <ProductSections sections={product.sections} locale={activeLocale} />
+          </FadeInUpGroup>
+        )}
 
         {related.length > 0 && (
           <section className="mt-20 border-t border-border pt-12">

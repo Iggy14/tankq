@@ -13,8 +13,10 @@ type ProductGalleryProps = {
 };
 
 /**
- * Cover image plus a thumbnail rail. Client-side because picking a frame is
- * local state; the images themselves are still statically optimised.
+ * The expanded frame on the left with the thumbnail rail beside it on the
+ * right; below wide screens the rail drops underneath as a four-across strip.
+ * Client-side because picking a frame is local state; the images themselves
+ * are still statically optimised.
  *
  * With a single image the rail is dropped and this renders as a plain figure.
  */
@@ -24,10 +26,21 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
 
   // Guards against a data entry with an empty `images` array.
   const active = images[activeIndex] ?? images[0];
+  const hasRail = images.length > 1;
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="overflow-hidden rounded-xl bg-muted ring-1 ring-foreground/10">
+    <div
+      className={cn(
+        "grid gap-4",
+        hasRail && "lg:grid-cols-3 lg:items-start lg:gap-6",
+      )}
+    >
+      <div
+        className={cn(
+          "overflow-hidden rounded-xl bg-muted ring-1 ring-foreground/10",
+          hasRail && "lg:col-span-2",
+        )}
+      >
         <Image
           key={active}
           src={active}
@@ -35,13 +48,13 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           width={1280}
           height={960}
           priority
-          sizes="(min-width: 1024px) 36rem, 100vw"
+          sizes="(min-width: 1024px) 44rem, 100vw"
           className="aspect-4/3 w-full object-cover"
         />
       </div>
 
-      {images.length > 1 && (
-        <ul className="grid grid-cols-4 gap-3 sm:grid-cols-6">
+      {hasRail && (
+        <ul className="grid grid-cols-4 gap-3 sm:grid-cols-6 lg:grid-cols-3">
           {images.map((image, index) => (
             <li key={image}>
               <button

@@ -1,4 +1,8 @@
-import type { AppLocale } from "@/i18n/routing";
+import type { Localized } from "./localized";
+import type { ProductSection } from "./product-sections";
+
+// Re-exported so callers can keep reaching for it alongside `Product`.
+export type { Localized };
 
 /**
  * Product catalog data.
@@ -7,12 +11,9 @@ import type { AppLocale } from "@/i18n/routing";
  * as `product.title[locale]`, not through next-intl. The message files stay
  * reserved for static UI chrome.
  *
- * The FRP horizontal and vertical tanks carry the real catalogue copy;
- * products 3..8 are still placeholder text derived from the source image filenames.
+ * The FRP tanks and the PE tank carry the real catalogue copy; products 4..8
+ * are still placeholder text derived from the source image filenames.
  */
-
-/** A value that exists once per supported locale. */
-export type Localized<T = string> = Record<AppLocale, T>;
 
 export interface Product {
   /** Stable identifier, safe to use as a React key or in future data sources. */
@@ -27,6 +28,11 @@ export interface Product {
   featured: boolean;
   /** Manual sort order for the listing page. */
   order: number;
+  /**
+   * Optional content blocks rendered below the gallery on the detail page —
+   * a size table, a datasheet download, a chart. Order is the array order.
+   */
+  sections?: ProductSection[];
 }
 
 export const products: Product[] = [
@@ -81,19 +87,50 @@ export const products: Product[] = [
     ],
     featured: true,
     order: 2,
+    sections: [
+      {
+        type: "specTable",
+        title: {
+          th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
+          en: "Standard FRP Water Tank Sizes",
+        },
+        columns: [
+          { th: "ความจุ (ลิตร)", en: "Capacity (L)" },
+          { th: "เส้นผ่านศูนย์กลาง (มม.)", en: "Diameter (mm)" },
+          { th: "ความสูง (มม.)", en: "Height (mm)" },
+          { th: "ความหนาผนัง", en: "Wall Thickness" },
+          { th: "น้ำหนัก (กก.)", en: "Weight (kg)" },
+        ],
+        rows: [
+          [{ th: "500", en: "500" }, { th: "800", en: "800" }, { th: "1,050", en: "1,050" }, { th: "5", en: "5" }, { th: "42", en: "42" }],
+          [{ th: "1,000", en: "1,000" }, { th: "1,000", en: "1,000" }, { th: "1,350", en: "1,350" }, { th: "6", en: "6" }, { th: "68", en: "68" }],
+          [{ th: "2,000", en: "2,000" }, { th: "1,200", en: "1,200" }, { th: "1,850", en: "1,850" }, { th: "6", en: "6" }, { th: "105", en: "105" }],
+          [{ th: "3,000", en: "3,000" }, { th: "1,400", en: "1,400" }, { th: "2,000", en: "2,000" }, { th: "7", en: "7" }, { th: "145", en: "145" }],
+          [{ th: "5,000", en: "5,000" }, { th: "1,600", en: "1,600" }, { th: "2,600", en: "2,600" }, { th: "8", en: "8" }, { th: "210", en: "210" }],
+          [{ th: "10,000", en: "10,000" }, { th: "2,000", en: "2,000" }, { th: "3,300", en: "3,300" }, { th: "10", en: "10" }, { th: "390", en: "390" }],
+          [{ th: "20,000", en: "20,000" }, { th: "2,500", en: "2,500" }, { th: "4,200", en: "4,200" }, { th: "12", en: "12" }, { th: "680", en: "680" }],
+          [{ th: "50,000", en: "50,000" }, { th: "3,500", en: "3,500" }, { th: "5,500", en: "5,500" }, { th: "16", en: "16" }, { th: "1,600", en: "1,600" }],
+          [{ th: "100,000", en: "100,000" }, { th: "4,500", en: "4,500" }, { th: "6,500", en: "6,500" }, { th: "20", en: "20" }, { th: "3,200", en: "3,200" }],
+        ],
+      },
+    ],
   },
   {
-    id: "product-3",
-    slug: "product-3",
+    id: "pe-water-tank",
+    slug: "pe-water-tank",
     title: {
-      th: "สินค้า 3",
-      en: "Product 3",
+      th: "ถังเก็บน้ำ PE บนดิน/ใต้ดิน",
+      en: "PE On Ground & Underground Water Tank",
     },
     description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 3 เหมาะกับพื้นที่ติดตั้งที่มีข้อจำกัดเรื่องขนาด เนื้อหาจริง ขนาดถัง และมาตรฐานรับรองจะมาแทนข้อความนี้",
-      en: "Placeholder description for Product 3. A practical storage solution suited to sites where space is limited. Real product copy, dimensions, and certifications will replace this text.",
+      th: "ถังเก็บน้ำ PE คือตัวเลือกที่ตอบโจทย์ทุกความต้องการ ด้วยนวัตกรรมการผลิตที่ทันสมัย ทำให้ถังน้ำของเรามีความแข็งแรงทนทานและปลอดภัยสำหรับทุกการใช้งาน ตัวถังผลิตจากวัสดุ Polyethylene (PE) คุณภาพสูง ซึ่งเป็นพลาสติกเกรดดีเยี่ยม ไร้สารอันตราย Food Grade 100% จึงมั่นใจได้ว่าน้ำที่เก็บไว้จะสะอาด ปลอดภัย ไร้กลิ่น และไม่ส่งผลกระทบต่อสุขภาพ",
+      en: "The PE water tank answers every requirement. Modern manufacturing technology makes our tanks strong, durable, and safe for every application. The body is produced from high-quality Polyethylene (PE), an excellent-grade plastic that is free of hazardous substances and 100% Food Grade — so you can be confident the water stored inside stays clean, safe, and odour-free, with no impact on your health.",
     },
-    images: ["/images/products/product-3/1.webp"],
+    images: [
+      "/images/products/pe-water-tank/1.webp",
+      "/images/products/pe-water-tank/2.webp",
+      "/images/products/pe-water-tank/3.webp",
+    ],
     featured: true,
     order: 3,
   },
