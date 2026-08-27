@@ -7,8 +7,8 @@ import type { AppLocale } from "@/i18n/routing";
  * as `product.title[locale]`, not through next-intl. The message files stay
  * reserved for static UI chrome.
  *
- * Titles are derived from the source image filenames (product1..product8) and
- * every string here is placeholder copy awaiting the real product details.
+ * The FRP horizontal and vertical tanks carry the real catalogue copy;
+ * products 3..8 are still placeholder text derived from the source image filenames.
  */
 
 /** A value that exists once per supported locale. */
@@ -17,7 +17,7 @@ export type Localized<T = string> = Record<AppLocale, T>;
 export interface Product {
   /** Stable identifier, safe to use as a React key or in future data sources. */
   id: string;
-  /** URL-friendly segment, e.g. `/products/product-1`. */
+  /** URL-friendly segment, e.g. `/products/frp-horizontal-water-tank`. */
   slug: string;
   title: Localized;
   description: Localized;
@@ -31,40 +31,53 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: "product-1",
-    slug: "product-1",
+    id: "frp-horizontal-water-tank",
+    slug: "frp-horizontal-water-tank",
     title: {
-      th: "สินค้า 1",
-      en: "Product 1",
+      th: "ถังเก็บน้ำไฟเบอร์กลาสทรงนอน",
+      en: "FRP Horizontal Water Tank",
     },
     description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 1 ถังรุ่นนี้ออกแบบมาเพื่อการเก็บน้ำใช้ในบ้านพักอาศัยและงานเชิงพาณิชย์ขนาดเล็ก รายละเอียดวัสดุและสเปกจริงจะระบุเพิ่มเติมภายหลัง",
-      en: "Placeholder description for Product 1. This tank is built for reliable everyday water storage in residential and light commercial settings. Final specifications and materials will be confirmed before launch.",
+      th: "ผลิตด้วยเรซินไอโซทาลิกหรือเรซินเกรดอาหาร เหมาะสำหรับน้ำดิบ น้ำดับเพลิง ระบบ RO และน้ำในกระบวนการผลิต ไม่เป็นสนิม ไม่รั่วซึม อายุการใช้งานมากกว่า 25 ปี",
+      en: "Made with Isophthalic or Food Grade Resin. Suitable for raw water, fire water, RO, and process water. Corrosion-free, leak-proof, 25+ year service life.",
     },
     images: [
-      "/images/products/product-1/1.webp",
-      "/images/products/product-1/2.webp",
-      "/images/products/product-1/3.webp",
+      "/images/products/frp-horizontal-water-tank/1.webp",
+      "/images/products/frp-horizontal-water-tank/2.webp",
+      "/images/products/frp-horizontal-water-tank/3.webp",
+      "/images/products/frp-horizontal-water-tank/4.webp",
+      "/images/products/frp-horizontal-water-tank/5.webp",
+      "/images/products/frp-horizontal-water-tank/6.webp",
     ],
     featured: true,
     order: 1,
   },
   {
-    id: "product-2",
-    slug: "product-2",
+    id: "frp-vertical-water-tank",
+    slug: "frp-vertical-water-tank",
     title: {
-      th: "สินค้า 2",
-      en: "Product 2",
+      th: "ถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง",
+      en: "FRP Vertical Water Tank",
     },
     description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 2 ตัวถังผลิตให้ทนต่อการใช้งานต่อเนื่อง พร้อมผิวชั้นในที่ปลอดภัยสำหรับน้ำอุปโภคบริโภค ขนาดความจุและอุปกรณ์ประกอบยังอยู่ระหว่างการสรุป",
-      en: "Placeholder description for Product 2. Designed to hold up under continuous use with a durable outer shell and a food-safe inner lining. Capacity options and fittings are still to be finalised.",
+      th: "ผลิตด้วยเรซินไอโซทาลิกหรือเรซินเกรดอาหาร เหมาะสำหรับน้ำดิบ น้ำดับเพลิง ระบบ RO และน้ำในกระบวนการผลิต ไม่เป็นสนิม ไม่รั่วซึม อายุการใช้งานมากกว่า 25 ปี",
+      en: "Made with Isophthalic or Food Grade Resin. Suitable for raw water, fire water, RO, and process water. Corrosion-free, leak-proof, 25+ year service life.",
     },
     images: [
-      "/images/products/product-2/1.webp",
-      "/images/products/product-2/2.webp",
-      "/images/products/product-2/3.webp",
-      "/images/products/product-2/4.webp",
+      "/images/products/frp-vertical-water-tank/1.webp",
+      "/images/products/frp-vertical-water-tank/2.webp",
+      "/images/products/frp-vertical-water-tank/3.webp",
+      "/images/products/frp-vertical-water-tank/4.webp",
+      "/images/products/frp-vertical-water-tank/5.webp",
+      "/images/products/frp-vertical-water-tank/6.webp",
+      "/images/products/frp-vertical-water-tank/7.webp",
+      "/images/products/frp-vertical-water-tank/8.webp",
+      "/images/products/frp-vertical-water-tank/9.webp",
+      "/images/products/frp-vertical-water-tank/10.webp",
+      "/images/products/frp-vertical-water-tank/11.webp",
+      "/images/products/frp-vertical-water-tank/12.webp",
+      "/images/products/frp-vertical-water-tank/13.webp",
+      "/images/products/frp-vertical-water-tank/14.webp",
     ],
     featured: true,
     order: 2,

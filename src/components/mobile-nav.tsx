@@ -39,7 +39,7 @@ export function MobileNav({ items, menuLabel, ctaHref, ctaLabel }: MobileNavProp
           </Button>
         }
       />
-      <DropdownMenuContent align="end" className="min-w-48">
+      <DropdownMenuContent align="end" className="min-w-48 lg:hidden">
         {items.map((item) => (
           <DropdownMenuItem
             key={item.href}
