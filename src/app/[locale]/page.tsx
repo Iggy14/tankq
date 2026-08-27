@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { FeaturedProducts } from "@/components/featured-products";
 import { Hero } from "@/components/hero";
+import { SocialLinks } from "@/components/social-links";
 import { StatsStrip } from "@/components/stats-strip";
 import { WhyTankQ } from "@/components/why-tankq";
 
@@ -32,6 +33,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <WhyTankQ />
 
       <FeaturedProducts />
+
+      <SocialLinks />
     </>
   );
 }

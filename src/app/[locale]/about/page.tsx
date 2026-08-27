@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
 
 export async function generateMetadata({
@@ -57,6 +58,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       </section>
 
       <OurStory />
+      <OurMission />
     </>
   );
 }

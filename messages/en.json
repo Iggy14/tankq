@@ -54,6 +54,11 @@
       "deliveryDescription": "Made in Thailand and delivered in 2–6 weeks depending on size. No waiting on imports.",
       "serviceTitle": "Complete after-sales service",
       "serviceDescription": "Inspection, repair, FRP lining, on-site survey and annual PM contracts for full lifecycle care."
+    },
+    "socials": {
+      "line": "Follow TankQ on LINE",
+      "facebook": "Follow TankQ on Facebook",
+      "instagram": "Follow TankQ on Instagram"
     }
   },
   "products": {
@@ -84,6 +89,36 @@
       "paragraph2": "We started as engineers with real factory experience, knowing what wrong resin or improper lamination costs. We promised ourselves never to let that happen to our customers.",
       "paragraph3": "Today, we deliver FRP tanks to 500+ factories nationwide across 50+ industries, maintaining the same quality on every unit.",
       "imageAlt": "TankQ FRP tank delivered and installed at a factory site"
+    },
+    "mission": {
+      "title": "Our Mission",
+      "imageAlt": "TankQ FRP tanks lined up at a factory site",
+      "items": {
+        "mission": {
+          "heading": "Mission",
+          "text": "Design and manufacture FRP tanks optimally suited to each customer's actual application — not just standard products."
+        },
+        "vision": {
+          "heading": "Vision",
+          "text": "To be Thailand's #1 FRP tank specialist — the first choice when top industrial plants demand maximum confidence."
+        },
+        "engineering": {
+          "heading": "Engineering First",
+          "text": "Every order starts with engineer spec analysis. No production until we're certain it's right."
+        },
+        "qc": {
+          "heading": "Uncompromising QC",
+          "text": "Every tank passes Hydrostatic Test and full QC Checklist. No steps are ever skipped."
+        },
+        "partners": {
+          "heading": "Customers Are Partners",
+          "text": "We don't just sell tanks — we co-design systems, provide after-sales, and plan long-term together."
+        },
+        "sustainability": {
+          "heading": "Sustainable & Responsible",
+          "text": "We don't just sell tanks — we co-design systems, provide after-sales, and plan long-term together."
+        }
+      }
     }
   },
   "projects": {
