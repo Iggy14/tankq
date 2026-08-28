@@ -11,28 +11,49 @@ const OFFSET_PX = 16;
 const DURATION_SECONDS = 0.45;
 /** Gap between consecutive items inside a <FadeInUpGroup>. */
 const STAGGER_SECONDS = 0.08;
-/** Fast out, gentle settle — no overshoot, so it reads as calm rather than bouncy. */
+/** Fast out, gentle settle - no overshoot, so it reads as calm rather than bouncy. */
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 /**
- * Fraction of the element that must be on screen before it plays. Small enough
- * that tall sections start as soon as their top edge clears the fold.
+ * Trigger line: the entrance plays as soon as any part of the element crosses
+ * 64px above the bottom of the viewport.
+ *
+ * Deliberately an inset rather than a "fraction of the element" threshold.
+ * IntersectionObserver caps the reported ratio at viewport height / element
+ * height, so a fractional threshold is physically unreachable for anything
+ * taller than a few screens: the products grid at one column, or a long detail
+ * page section, would never fire and would sit at opacity 0 forever on narrow
+ * viewports. An inset is independent of how tall the element is.
  */
-const DEFAULT_AMOUNT = 0.2;
+const VIEWPORT_MARGIN = "0px 0px -64px 0px";
+/** Any sliver of the element counts, for the reason above. */
+const DEFAULT_AMOUNT = "some" as const;
+
+type ViewportAmount = number | "some" | "all";
 
 /**
  * True inside a <FadeInUpGroup>. Items read it to skip their own viewport
- * trigger and inherit the group's instead — Motion propagates variant names
+ * trigger and inherit the group's instead - Motion propagates variant names
  * down to any child that declares matching variants and no animation props.
  */
 const GroupContext = createContext(false);
+
+/**
+ * Shared viewport config. `once` so nothing re-hides after it has been seen.
+ */
+function viewportOptions(amount: ViewportAmount) {
+  return { once: true, amount, margin: VIEWPORT_MARGIN } as const;
+}
 
 type FadeInUpProps = {
   children: ReactNode;
   className?: string;
   /** Seconds to wait after the trigger. Ignored inside a group, which staggers instead. */
   delay?: number;
-  /** Visibility threshold, 0–1. Ignored inside a group. */
-  amount?: number;
+  /**
+   * How much of the element must be in view. Prefer the default; a numeric
+   * fraction cannot be reached by elements taller than a few viewports.
+   */
+  amount?: ViewportAmount;
 };
 
 /**
@@ -43,6 +64,10 @@ type FadeInUpProps = {
  * Wrap a single block, or nest several inside <FadeInUpGroup> to have them
  * cascade. Under the OS "reduce motion" setting the slide is dropped and only
  * the fade remains.
+ *
+ * The hidden start state is server-rendered as an inline opacity: 0, so the
+ * <noscript> rule in the locale layout clears it for browsers that never run
+ * the script.
  */
 export function FadeInUp({
   children,
@@ -68,6 +93,7 @@ export function FadeInUp({
 
   return (
     <motion.div
+      data-fade-in-up
       className={cn(className)}
       variants={variants}
       // Inside a group these are omitted so the parent drives the sequence.
@@ -76,7 +102,7 @@ export function FadeInUp({
         : {
             initial: "hidden",
             whileInView: "visible",
-            viewport: { once: true, amount },
+            viewport: viewportOptions(amount),
           })}
     >
       {children}
@@ -89,8 +115,8 @@ type FadeInUpGroupProps = {
   className?: string;
   /** Seconds to wait before the first child starts. */
   delay?: number;
-  /** Visibility threshold, 0–1, for the group as a whole. */
-  amount?: number;
+  /** See <FadeInUp>. Groups wrap whole grids, so the default matters most here. */
+  amount?: ViewportAmount;
 };
 
 /**
@@ -118,7 +144,7 @@ export function FadeInUpGroup({
         variants={variants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount }}
+        viewport={viewportOptions(amount)}
       >
         {children}
       </motion.div>

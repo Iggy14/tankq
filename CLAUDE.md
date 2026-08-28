@@ -9,6 +9,7 @@
 - Use Tailwind CSS for styling — avoid inline styles or separate CSS files unless necessary.
 - All static UI text (nav, buttons, labels, page chrome) must go through next-intl translations (`th.json` / `en.json`) — no hardcoded strings in components.
 - Dynamic content (product titles, descriptions, etc.) stores both `th` and `en` versions inline in the data itself, not in the translation files — e.g. `title: { th: "...", en: "..." }` in `src/lib/products.ts`. Read it as `product.title[locale]`.
+- Never use long dashes (em dash — or en dash –) in any content you write for the site: translation files (`messages/*.json`), data files, page copy, or UI strings. Use a normal hyphen `-` instead, in both Thai and English.
 - Keep components small and single-purpose. Split large components into smaller ones.
 - After completing a task, run `npm run build` (and `npm run lint`) to confirm no errors before considering the task done.
 - If a task involves logic that could break (forms, data fetching, utils), write or update a basic test if a test setup exists.

@@ -14,6 +14,12 @@ pnpm dev
 bun dev
 ```
 
+For dev build:
+```bash
+npm run build
+npm run start -- -H 0.0.0.0
+```
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
