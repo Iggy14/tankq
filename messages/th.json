@@ -153,8 +153,8 @@
   "service": {
     "metaTitle": "บริการ",
     "metaDescription": "บริการหลังการขาย ตรวจสอบ และบำรุงรักษาจาก TankQ",
-    "title": "บริการ",
-    "subtitle": "เนื้อหาตัวอย่าง - รายละเอียดการตรวจสอบ ซ่อมแซม และ PM Service จะแสดงที่นี่"
+    "title": "บริการหลังการขาย FRP",
+    "subtitle": "ดูแลถัง FRP ครบวงจร - ตรวจสอบ ซ่อมแซม เคลือบผิว และอัปเกรด"
   },
   "blog": {
     "metaTitle": "บทความ",
@@ -192,6 +192,7 @@
     "companyAddress": "111/176 หมู่ที่ 9 ตำบลบางพูด อำเภอปากเกร็ด จ.นนทบุรี 111200",
     "contactLine": "Line: @tankq",
     "contactEmail": "tankqsolution@gmail.com",
+    "contactPhone": "025833615",
     "lineQrTitle": "สแกนเพื่อแอดไลน์",
     "columns": {
       "products": "สินค้า",

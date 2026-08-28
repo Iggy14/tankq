@@ -153,8 +153,8 @@
   "service": {
     "metaTitle": "Service",
     "metaDescription": "After-sales service, inspection and maintenance from TankQ.",
-    "title": "Service",
-    "subtitle": "Placeholder copy - inspection, repair and PM service details will go here."
+    "title": "FRP After-Sales Services",
+    "subtitle": "Full lifecycle FRP tank care - inspection, repair, coating, and upgrades"
   },
   "blog": {
     "metaTitle": "Blog",
@@ -192,6 +192,7 @@
     "companyAddress": "111/176 Moo 9, Bang Phut, Pak Kret, Nonthaburi 111200",
     "contactLine": "Line: @tankq",
     "contactEmail": "tankqsolution@gmail.com",
+    "contactPhone": "025833615",
     "lineQrTitle": "Scan to chat on LINE",
     "columns": {
       "products": "Products",
