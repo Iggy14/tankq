@@ -66,8 +66,8 @@ export const products: Product[] = [
       en: "FRP Vertical Water Tank",
     },
     description: {
-      th: "ผลิตด้วยเรซินไอโซทาลิกหรือเรซินเกรดอาหาร เหมาะสำหรับน้ำดิบ น้ำดับเพลิง ระบบ RO และน้ำในกระบวนการผลิต ไม่เป็นสนิม ไม่รั่วซึม อายุการใช้งานมากกว่า 25 ปี",
-      en: "Made with Isophthalic or Food Grade Resin. Suitable for raw water, fire water, RO, and process water. Corrosion-free, leak-proof, 25+ year service life.",
+      th: "ถังเก็บน้ำไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยแก้วเสริมแรงที่มีความใส่ใจเป็นพิเศษ และทุก ๆ ขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง แข็งแรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
+      en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
     },
     images: [
       "/images/products/frp-vertical-water-tank/1.webp",
@@ -91,29 +91,29 @@ export const products: Product[] = [
       {
         type: "checkList",
         title: {
-          th: "คุณสมบัติเด่นและมาตรฐานคุณภาพ",
-          en: "Key Features & Quality Assurance",
+          th: "คุณสมบัติและมาตรฐานคุณภาพ",
+          en: "Features and Quality Standards",
         },
         items: [
           {
-            th: "ได้มาตรฐาน NSF-61 / FDA สำหรับน้ำบริโภคที่สัมผัสอาหาร",
-            en: "NSF-61 / FDA compliant for food contact water",
+            th: "ผลิตจากเรซิ่นชนิดพิเศษ ผสมใยแก้ว มีความแข็งแรง",
+            en: "Made from a special grade of resin blended with glass fibre for high strength",
           },
           {
-            th: "กำหนดตำแหน่งท่อออกด้านบนหรือด้านล่างได้ตามสเปกของลูกค้า",
-            en: "Top/Bottom outlet per customer spec",
+            th: "โครงสร้างแข็งแรง ป้องกันรอยรั่วซึมหรือรอยร้าว",
+            en: "Strong structure that guards against leaks and cracking",
           },
           {
-            th: "อุปกรณ์ครบชุด: ฝาแมนโฮล บันได ช่องระบายอากาศ และเกจวัดระดับน้ำ",
-            en: "Full accessories: manhole, ladder, vent, level gauge",
+            th: "ไม่ย่อยสลาย ไม่ผุกร่อน ทนทุกสภาวะสิ่งแวดล้อม",
+            en: "Does not degrade or corrode, and stands up to every environment",
           },
           {
-            th: "ทดสอบแรงดันน้ำ (Hydrostatic Test) ทุกใบก่อนส่งมอบ",
-            en: "Hydrostatic tested before delivery",
+            th: "ประกอบและติดตั้งง่าย รวดเร็ว ประหยัดค่าใช้จ่าย",
+            en: "Quick and easy to assemble and install, which keeps costs down",
           },
           {
-            th: "มีทีมงานติดตั้งและทดสอบระบบพร้อมให้บริการ",
-            en: "Installation and commissioning team available",
+            th: "ทนต่อแสงแดดกลางแจ้งและป้องกันรังสียูวี (UV)",
+            en: "Withstands outdoor sunlight and protects against UV radiation",
           },
         ],
       },
@@ -220,17 +220,6 @@ export const products: Product[] = [
             },
           },
         ],
-      },
-      {
-        type: "paragraph",
-        title: {
-          th: "สั่งผลิตตามแบบที่ต้องการ",
-          en: "Built to Your Own Design",
-        },
-        body: {
-          th: "สามารถผลิตและออกแบบรูปทรงของถังเก็บน้ำและถังบำบัดน้ำเสียไฟเบอร์กลาสได้ตามต้องการ เช่น ทรงกระบอกตั้ง",
-          en: "We can design and manufacture FRP water storage tanks and wastewater treatment tanks in the shape you need — the vertical cylindrical form among them.",
-        },
       },
     ],
   },

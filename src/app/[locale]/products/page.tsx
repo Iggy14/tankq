@@ -38,7 +38,7 @@ export default async function ProductsPage({
           <h1 className="text-4xl leading-[0.95] font-black tracking-tight text-primary uppercase sm:text-5xl md:text-6xl lg:text-7xl">
             {t("title")}
           </h1>
-          <p className="mt-6 max-w-md text-pretty text-sm text-muted-foreground sm:text-base">
+          <p className="mt-6 max-w-3xl whitespace-pre-line text-pretty text-sm text-muted-foreground sm:text-base">
             {t("subtitle")}
           </p>
         </FadeInUp>
