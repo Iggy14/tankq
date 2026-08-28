@@ -22,7 +22,7 @@ export function WhyTankQ() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
           <FadeInUp className="flex flex-col items-center gap-3">
 
-            <h1 className="max-w-lg text-4xl leading-[1.1] font-semibold tracking-tight text-balance sm:text-5xl xl:text-6xl">
+            <h1 className="max-w-lg text-4xl leading-[1.1] font-semibold tracking-tight text-balance text-primary sm:text-5xl xl:text-6xl">
               {t("title")}
             </h1>
 

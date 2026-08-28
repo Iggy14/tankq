@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { FeaturedProducts } from "@/components/featured-products";
 import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
 
@@ -70,6 +71,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
 
       <OurStory />
       <OurMission />
+      <FeaturedProducts />
     </>
   );
 }

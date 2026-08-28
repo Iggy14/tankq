@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactHero } from "@/components/contact-hero";
+import { ContactPrepare } from "@/components/contact-prepare";
 
 export async function generateMetadata({
   params,
@@ -27,9 +28,10 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
     <>
       <Breadcrumbs items={[{ label: tNav("contact") }]} />
       <ContactHero />
-      <p className="px-4 py-10 text-center text-lg font-medium text-navy sm:py-12">
+      <p className="px-4 pt-10 pb-8 text-center text-lg font-medium text-navy sm:pt-12 sm:pb-10">
         {t("engineerReply")}
       </p>
+      <ContactPrepare />
     </>
   );
 }

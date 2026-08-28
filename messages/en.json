@@ -130,8 +130,25 @@
   "quality": {
     "metaTitle": "Quality",
     "metaDescription": "TankQ's quality standards, materials and testing process.",
-    "title": "Quality",
-    "subtitle": "Placeholder copy - quality standards and certifications will go here."
+    "title": "Production Standards & QC Process",
+    "subtitle": "Every tank inspected before delivery - Hydrostatic Test | Barcol Hardness | Visual QC | QC Certificate",
+    "processTitle": "TankQ FRP Production Process",
+    "processStep1Title": "Spec Analysis & Resin Selection",
+    "processStep1Description": "Engineer reviews chemical, temperature, pressure. Selects appropriate resin and laminate schedule.",
+    "processStep2Title": "Mold Preparation & Gel Coat",
+    "processStep2Description": "Clean mold, apply first Gel Coat layer evenly, color per customer spec.",
+    "processStep3Title": "Layer-by-Layer Lamination",
+    "processStep3Description": "Apply Chopped Strand Mat and Woven Roving alternating layers per laminate schedule.",
+    "processStep4Title": "Thickness & Hardness Check",
+    "processStep4Description": "Measure thickness at all positions. Barcol Hardness ≥40 to confirm complete cure.",
+    "processStep5Title": "Hydrostatic Test",
+    "processStep5Description": "Fill with water and test at 1.25× design pressure for minimum 1 hour with zero leaks.",
+    "processStep6Title": "Visual QC & Finishing",
+    "processStep6Description": "Visual inspection inside and out, polish top coat, clean, apply marking before packing.",
+    "processStep7Title": "Issue QC Certificate",
+    "processStep7Description": "Prepare QC Certificate with all test results, As-built Drawing, and Material Certificate.",
+    "processStep8Title": "Packing & Delivery",
+    "processStep8Description": "Pack with shock protection, ship by special transport with installation and commissioning team (optional)."
   },
   "service": {
     "metaTitle": "Service",
@@ -152,7 +169,17 @@
     "heroImageAlt": "TankQ FRP tanks at the factory",
     "title": "FRP Fiberglass Tank Specialist for Industrial Plants",
     "subtitle": "Placeholder copy - add address, phone number and a contact form here.",
-    "engineerReply": "Engineer replies within 24 hours - send specs, drawings, or MSDS directly"
+    "engineerReply": "Engineer replies within 24 hours - send specs, drawings, or MSDS directly",
+    "prepareQrAlt": "LINE QR code - scan to chat with TankQ",
+    "prepareQrCaption": "Scan to chat on LINE",
+    "prepareTitle": "Information to Prepare",
+    "prepare": {
+      "chemical": "Chemical / liquid type to store",
+      "capacity": "Required capacity (liters / m³)",
+      "temperature": "Chemical temperature and pressure",
+      "location": "Installation location (indoor / outdoor)",
+      "drawing": "Drawing or Spec Sheet (if available)"
+    }
   },
   "footer": {
     "ctaTitle": "Ready to spec your next",
