@@ -89,7 +89,7 @@ export function OurStory() {
       >
         <div className="relative h-[280px] w-full sm:h-[360px] lg:h-[480px]">
           <Image
-            src="/about/LINE_ALBUM_รูปงานถังTANKQ_260827_4.jpg"
+            src="/about/story.jpg"
             alt={t("imageAlt")}
             fill
             className="object-cover object-center"

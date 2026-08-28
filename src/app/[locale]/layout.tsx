@@ -63,6 +63,12 @@ export default async function LocaleLayout({
       className={`${anuphan.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        {/* The scroll reveals are server-rendered at opacity: 0 and only
+            cleared once Motion hydrates. If the script never runs the page
+            would look empty, so drop the hidden start state outright. */}
+        <noscript>
+          <style>{`[data-fade-in-up]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         {/* Without props the provider inherits locale + messages from the
             request config, making them available to client components. */}
         <NextIntlClientProvider>

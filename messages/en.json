@@ -47,11 +47,11 @@
       "title": "Why TANK-Q?",
       "subtitle": "4 Reasons Leading Plants Choose Us",
       "engineeredTitle": "Engineered to spec",
-      "engineeredDescription": "Not off-the-shelf — our engineers calculate the resin, wall thickness and structure for your specific chemical and pressure.",
+      "engineeredDescription": "Not off-the-shelf - our engineers calculate the resin, wall thickness and structure for your specific chemical and pressure.",
       "warrantyTitle": "15-year warranty",
       "warrantyDescription": "High-quality FRP tanks outlast PE/HDPE many times over. Backed by a 15-year structural warranty with PM service.",
       "deliveryTitle": "Fast, on-time delivery",
-      "deliveryDescription": "Made in Thailand and delivered in 2–6 weeks depending on size. No waiting on imports.",
+      "deliveryDescription": "Made in Thailand and delivered in 2-6 weeks depending on size. No waiting on imports.",
       "serviceTitle": "Complete after-sales service",
       "serviceDescription": "Inspection, repair, FRP lining, on-site survey and annual PM contracts for full lifecycle care."
     },
@@ -65,7 +65,7 @@
     "metaTitle": "Products",
     "metaDescription": "Browse the full range of TankQ water tanks.",
     "title": "Our Products",
-    "subtitle": "FRP tanks for every industrial application — engineered to spec, built in Thailand, and backed for the long term.",
+    "subtitle": "FRP tanks for every industrial application - engineered to spec, built in Thailand, and backed for the long term.",
     "viewDetail": "View detail",
     "backToProducts": "Back to products",
     "relatedTitle": "Other products",
@@ -85,7 +85,7 @@
       "titleLine1": "About Our",
       "titleLine2": "Story",
       "valuesButton": "Our Values",
-      "paragraph1": "Tank Q Solution was founded on the belief that customers deserve more than just a \"cheap tank\" — they deserve the \"right tank\" for their specific application.",
+      "paragraph1": "Tank Q Solution was founded on the belief that customers deserve more than just a \"cheap tank\" - they deserve the \"right tank\" for their specific application.",
       "paragraph2": "We started as engineers with real factory experience, knowing what wrong resin or improper lamination costs. We promised ourselves never to let that happen to our customers.",
       "paragraph3": "Today, we deliver FRP tanks to 500+ factories nationwide across 50+ industries, maintaining the same quality on every unit.",
       "imageAlt": "TankQ FRP tank delivered and installed at a factory site"
@@ -96,11 +96,11 @@
       "items": {
         "mission": {
           "heading": "Mission",
-          "text": "Design and manufacture FRP tanks optimally suited to each customer's actual application — not just standard products."
+          "text": "Design and manufacture FRP tanks optimally suited to each customer's actual application - not just standard products."
         },
         "vision": {
           "heading": "Vision",
-          "text": "To be Thailand's #1 FRP tank specialist — the first choice when top industrial plants demand maximum confidence."
+          "text": "To be Thailand's #1 FRP tank specialist - the first choice when top industrial plants demand maximum confidence."
         },
         "engineering": {
           "heading": "Engineering First",
@@ -112,11 +112,11 @@
         },
         "partners": {
           "heading": "Customers Are Partners",
-          "text": "We don't just sell tanks — we co-design systems, provide after-sales, and plan long-term together."
+          "text": "We don't just sell tanks - we co-design systems, provide after-sales, and plan long-term together."
         },
         "sustainability": {
           "heading": "Sustainable & Responsible",
-          "text": "We don't just sell tanks — we co-design systems, provide after-sales, and plan long-term together."
+          "text": "We don't just sell tanks - we co-design systems, provide after-sales, and plan long-term together."
         }
       }
     }
@@ -125,36 +125,36 @@
     "metaTitle": "Projects",
     "metaDescription": "See TankQ tank installations completed for Thai industry.",
     "title": "Projects",
-    "subtitle": "Placeholder copy — case studies and completed installations will go here."
+    "subtitle": "Placeholder copy - case studies and completed installations will go here."
   },
   "quality": {
     "metaTitle": "Quality",
     "metaDescription": "TankQ's quality standards, materials and testing process.",
     "title": "Quality",
-    "subtitle": "Placeholder copy — quality standards and certifications will go here."
+    "subtitle": "Placeholder copy - quality standards and certifications will go here."
   },
   "service": {
     "metaTitle": "Service",
     "metaDescription": "After-sales service, inspection and maintenance from TankQ.",
     "title": "Service",
-    "subtitle": "Placeholder copy — inspection, repair and PM service details will go here."
+    "subtitle": "Placeholder copy - inspection, repair and PM service details will go here."
   },
   "blog": {
     "metaTitle": "Blog",
     "metaDescription": "News, guides and updates from the TankQ team.",
     "title": "Blog",
-    "subtitle": "Placeholder copy — articles and updates will go here."
+    "subtitle": "Placeholder copy - articles and updates will go here."
   },
   "contact": {
     "metaTitle": "Contact",
     "metaDescription": "Get in touch with the TankQ team for advice and quotes.",
     "title": "Contact us",
-    "subtitle": "Placeholder copy — add address, phone number and a contact form here."
+    "subtitle": "Placeholder copy - add address, phone number and a contact form here."
   },
   "footer": {
     "ctaTitle": "Ready to spec your next",
     "ctaTitleAccent": "FRP tank?",
-    "ctaSubtitle": "Tell us size, volume, water type, and pressure — engineer quotes within 24 hours.",
+    "ctaSubtitle": "Tell us size, volume, water type, and pressure - engineer quotes within 24 hours.",
     "tankImageAlt": "TankQ FRP water tank",
     "tagline": "FRP fiberglass tank specialist.",
     "contactLine": "Line: @tankq",
