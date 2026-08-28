@@ -45,34 +45,27 @@ export function OurStory() {
   const tStats = useTranslations("home.stats");
 
   return (
-    <section className="w-full py-16 sm:py-20">
-      <div className="grid grid-cols-1 gap-10 pl-4 sm:pl-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)] lg:gap-16 lg:pl-[max(1.5rem,calc((100vw-72rem)/2))]">
-        <FadeInUp className="flex flex-col items-start gap-6 pr-4 sm:pr-6 lg:pr-12">
-          <h2 className="text-4xl leading-[1.05] font-bold tracking-tight text-balance sm:text-5xl lg:text-6xl">
-            <span className="block">{t("titleLine1")}</span>
-            <span className="block">{t("titleLine2")}</span>
-          </h2>
-
-          <Button
-            variant="outline"
-            size="lg"
-            className="rounded-full border-primary px-5 text-primary hover:bg-primary/10 hover:text-primary"
-            nativeButton={false}
-            role="link"
-            render={<a href={`#${MISSION_VALUES_ID}`} />}
-          >
-            {t("valuesButton")}
-          </Button>
-        </FadeInUp>
-
+    <section className="w-full pt-4 pb-16 sm:pt-6 sm:pb-20">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-4 text-center sm:px-6">
         <FadeInUp
-          className="flex flex-col gap-4 pr-4 text-base leading-relaxed text-pretty text-muted-foreground sm:pr-6 lg:pr-12 lg:text-lg"
+          className="flex flex-col gap-4 text-base leading-relaxed text-pretty text-primary sm:text-lg"
           delay={0.1}
         >
           <p>{t("paragraph1")}</p>
           <p>{t("paragraph2")}</p>
           <p>{t("paragraph3")}</p>
         </FadeInUp>
+
+        <Button
+          variant="outline"
+          size="lg"
+          className="rounded-full border-primary px-5 text-primary hover:bg-primary/10 hover:text-primary"
+          nativeButton={false}
+          role="link"
+          render={<a href={`#${MISSION_VALUES_ID}`} />}
+        >
+          {t("valuesButton")}
+        </Button>
       </div>
 
       {/* The left padding lives on this outer, non-positioned wrapper — an
@@ -89,7 +82,7 @@ export function OurStory() {
       >
         <div className="relative h-[280px] w-full sm:h-[360px] lg:h-[480px]">
           <Image
-            src="/about/LINE_ALBUM_รูปงานถังTANKQ_260827_4.jpg"
+            src="/about/story.jpg"
             alt={t("imageAlt")}
             fill
             className="object-cover object-center"

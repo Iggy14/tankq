@@ -52,3 +52,27 @@ account/OA link yet.
 **What to do:** once a TankQ LINE Official Account (or add-friend URL) exists,
 update the `href` for the `"line"` entry in the `SOCIAL_LINKS` array in
 `src/components/social-links.tsx`.
+
+## Contact page body
+
+**Status:** not started. Added 2026-08-28.
+
+`src/app/[locale]/contact/page.tsx` currently renders only `Breadcrumbs` and
+the new `ContactHero` banner (`src/components/contact-hero.tsx`). The
+reference (`references/contact-us.jpg`) also has a body below the banner: a
+map, an address/company card, and (implied by `contact.subtitle` in the
+messages files, still a placeholder) a contact form.
+
+**Why it was skipped:** the task asked only for the top hero section.
+
+**What to do:**
+
+1. Add a section (`tone="light"`, `max-w-6xl`, matching the rest of the site's
+   page composition — see `docs/ARCHITECTURE.md`) below `<ContactHero />` with
+   the company address/phone/email (already in `messages/*.json` under
+   `footer.companyAddress`, `footer.contactLine`, `footer.contactEmail` — reuse
+   or move into a `contact.*` key if this page's copy diverges) and, if wanted,
+   an embedded map.
+2. Replace the placeholder `contact.subtitle` copy in `messages/en.json` /
+   `messages/th.json` once real body content is decided, or remove the key if
+   it ends up unused.

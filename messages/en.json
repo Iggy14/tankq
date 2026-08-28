@@ -148,15 +148,21 @@
   "contact": {
     "metaTitle": "Contact",
     "metaDescription": "Get in touch with the TankQ team for advice and quotes.",
-    "title": "Contact us",
-    "subtitle": "Placeholder copy — add address, phone number and a contact form here."
+    "heroTitle": "CONTACT US",
+    "heroImageAlt": "TankQ FRP tanks at the factory",
+    "title": "FRP Fiberglass Tank Specialist for Industrial Plants",
+    "subtitle": "Placeholder copy — add address, phone number and a contact form here.",
+    "engineerReply": "Engineer replies within 24 hours — send specs, drawings, or MSDS directly"
   },
   "footer": {
     "ctaTitle": "Ready to spec your next",
     "ctaTitleAccent": "FRP tank?",
     "ctaSubtitle": "Tell us size, volume, water type, and pressure — engineer quotes within 24 hours.",
     "tankImageAlt": "TankQ FRP water tank",
-    "tagline": "FRP fiberglass tank specialist.",
+    "contactTitle": "Contact us",
+    "companyName": "TankQ Solution Co., Ltd.",
+    "companyDescription": "Manufacturer and distributor of water storage tanks, wastewater treatment tanks, large-capacity water tanks, industrial water tanks, aerated wastewater treatment tanks, and wastewater treatment systems. Quality standards backed by over 10 years of experience.",
+    "companyAddress": "111/176 Moo 9, Bang Phut, Pak Kret, Nonthaburi 111200",
     "contactLine": "Line: @tankq",
     "contactEmail": "tankqsolution@gmail.com",
     "lineQrTitle": "Scan to chat on LINE",
