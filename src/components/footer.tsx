@@ -1,8 +1,9 @@
-import { ArrowRight, Mail, MessageCircle, QrCode } from "lucide-react";
+import { ArrowRight, Mail, MessageCircle } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { FooterTank } from "@/components/footer-tank";
+import { SOCIAL_LINKS } from "@/components/social-links";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
@@ -78,16 +79,22 @@ export function Footer() {
               <ArrowRight aria-hidden />
             </Button>
 
-            {/* Line QR placeholder: swap the icon tile for the real QR image
-                once it's ready — sizing/spacing are already tuned for it. */}
             <div className="flex items-center gap-4 pt-2">
-              <div className="flex size-28 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-lg">
-                <QrCode
-                  aria-hidden
-                  className="size-full text-navy"
-                  strokeWidth={1}
+              <a
+                href="https://page.line.me/597iheyw"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={t("footer.lineQrTitle")}
+                className="flex size-28 shrink-0 items-center justify-center rounded-2xl bg-white p-3 shadow-lg transition-transform hover:scale-105"
+              >
+                <Image
+                  src="/contactus/line-qr.PNG"
+                  alt=""
+                  width={112}
+                  height={112}
+                  className="size-full object-contain"
                 />
-              </div>
+              </a>
               <div className="space-y-1">
                 <p className="text-sm font-semibold text-navy-foreground">
                   {t("footer.lineQrTitle")}
@@ -120,8 +127,8 @@ export function Footer() {
 />
         <div className="relative z-10 mx-auto w-full max-w-[88rem] px-4 py-14 sm:px-6">
           <div className="grid gap-10 sm:grid-cols-2 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
-            <div className="max-w-xs space-y-4">
-              <div className="inline-block rounded-lg bg-white px-3 py-2">
+            <div className="max-w-xs space-y-3">
+              <div className="-mt-2 inline-block rounded-lg bg-white px-3 py-2">
                 <Image
                   src="/brand/tankq-logo.png"
                   alt={t("common.companyName")}
@@ -130,9 +137,20 @@ export function Footer() {
                   className="h-7 w-auto"
                 />
               </div>
-              <p className="text-sm text-background/70">
-                {t("footer.tagline")}
-              </p>
+              <div className="space-y-2">
+                <p className="text-sm font-semibold text-background">
+                  {t("footer.contactTitle")}
+                </p>
+                <p className="text-sm text-background/70">
+                  {t("footer.companyName")}
+                </p>
+                <p className="text-sm text-background/70">
+                  {t("footer.companyDescription")}
+                </p>
+                <p className="text-sm text-background/70">
+                  {t("footer.companyAddress")}
+                </p>
+              </div>
             </div>
 
             <FooterLinkColumn
@@ -163,6 +181,27 @@ export function Footer() {
                   </a>
                 </li>
               </ul>
+
+              <div className="flex justify-end gap-2 pt-10 pr-45">
+                {SOCIAL_LINKS.map((social) => (
+                  <a
+                    key={social.key}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={t(`home.socials.${social.key}`)}
+                    className="flex size-8 items-center justify-center rounded-full bg-white p-1.5 shadow-md ring-1 ring-background/10 transition-transform hover:scale-105"
+                  >
+                    <Image
+                      src={social.src}
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="size-full object-contain"
+                    />
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>

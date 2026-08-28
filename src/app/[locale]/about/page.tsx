@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { FeaturedProducts } from "@/components/featured-products";
 import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
 
@@ -24,6 +25,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
 
   const t = await getTranslations("about");
   const tNav = await getTranslations("nav");
+  const tCommon = await getTranslations("common");
 
   return (
     <>
@@ -47,7 +49,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-4 pb-20 sm:px-6 sm:pb-24">
+      <section className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8">
         <Image
           src="/about/tank-lineup.png"
           alt={t("lineupAlt")}
@@ -57,8 +59,19 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
         />
       </section>
 
+      <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
+        <Image
+          src="/brand/tankq-logo.png"
+          alt={tCommon("companyName")}
+          width={304}
+          height={149}
+          className="mx-auto h-16 w-auto sm:h-20"
+        />
+      </div>
+
       <OurStory />
       <OurMission />
+      <FeaturedProducts />
     </>
   );
 }

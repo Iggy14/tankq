@@ -3,12 +3,13 @@ import { useTranslations } from "next-intl";
 
 import { FadeInUpGroup, FadeInUp } from "@/components/fade-in-up";
 
-/**
- * Circle icon links, in display order. LINE has no live account yet, so it
- * points at a placeholder until one exists — swap `href` when it does.
- */
-const SOCIAL_LINKS = [
-  { key: "line", href: "#", src: "/images/socials/LINE_logo.svg" },
+/** Circle icon links, in display order. */
+export const SOCIAL_LINKS = [
+  {
+    key: "line",
+    href: "https://page.line.me/597iheyw",
+    src: "/images/socials/LINE_logo.svg",
+  },
   {
     key: "facebook",
     href: "https://www.facebook.com/profile.php?id=61592899202754",
