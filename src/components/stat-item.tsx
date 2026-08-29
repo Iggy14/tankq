@@ -51,7 +51,7 @@ export function StatItem({ icon, value, label }: StatItemProps) {
           <AnimatedStatValue
             value={value}
             replayKey={replayKey}
-            className="text-lg font-bold tracking-tight text-primary"
+            className="text-2xl font-bold tracking-tight text-primary sm:text-3xl lg:text-4xl"
           />
           <span className="text-xs text-navy">{label}</span>
         </div>

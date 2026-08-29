@@ -1,4 +1,4 @@
-import { ArrowRight, Mail, MessageCircle } from "lucide-react";
+import { ArrowRight, Mail, MessageCircle, Phone } from "lucide-react";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
@@ -178,6 +178,15 @@ export function Footer() {
                   >
                     <Mail aria-hidden className="size-4 shrink-0" />
                     {t("footer.contactEmail")}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${t("footer.contactPhone")}`}
+                    className="flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
+                  >
+                    <Phone aria-hidden className="size-4 shrink-0" />
+                    {t("footer.contactPhone")}
                   </a>
                 </li>
               </ul>
