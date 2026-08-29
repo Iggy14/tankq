@@ -346,6 +346,60 @@ export const products: Product[] = [
     ],
     featured: true,
     order: 3,
+    sections: [
+      {
+        type: "bulletList",
+        title: {
+          th: "การใช้งาน",
+          en: "Usage",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "เหมาะสำหรับสำรองน้ำใช้ เพื่อการอุปโภคและบริโภค",
+            en: "Suitable for storing reserve water for household use and for drinking",
+          },
+          {
+            th: "ควรใช้งานกับน้ำสะอาดเท่านั้น",
+            en: "Should be used with clean water only",
+          },
+        ],
+      },
+      {
+        type: "bulletList",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาดทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
+            en: "Clean the water tank every 3 to 6 months, and never leave it longer than a year",
+          },
+          {
+            th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
+            en: "Scrub the inside of the tank with a soft-bristled brush or a sponge. For a deep tank, use a long-handled brush so every surface is reached",
+          },
+          {
+            th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะ เหล็ก หรือฟองน้ำที่ทำจากเหล็ก",
+            en: "Avoid brushes with metal or steel bristles, and sponges made of steel wool",
+          },
+          {
+            th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
+            en: "Never use a cleaning agent with strong acidic properties",
+          },
+          {
+            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+          },
+          {
+            th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
+            en: "The installation area must be strong enough to carry the weight of the filled tank",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "pe-underground-water-tank",
@@ -380,6 +434,40 @@ export const products: Product[] = [
     ],
     featured: false,
     order: 4,
+    sections: [
+      {
+        type: "bulletList",
+        title: {
+          th: "การใช้งาน",
+          en: "Usage",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+            en: "Suitable for wastewater treatment",
+          },
+        ],
+      },
+      {
+        type: "bulletList",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+          },
+          {
+            th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
+            en: "The installation area must be strong enough to carry the weight of the filled tank",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "pe-above-ground-water-tank-granite",
@@ -423,6 +511,60 @@ export const products: Product[] = [
     ],
     featured: false,
     order: 5,
+    sections: [
+      {
+        type: "bulletList",
+        title: {
+          th: "การใช้งาน",
+          en: "Usage",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "เหมาะสำหรับสำรองน้ำใช้ เพื่อการอุปโภคและบริโภค",
+            en: "Suitable for storing reserve water for household use and for drinking",
+          },
+          {
+            th: "ควรใช้งานกับน้ำสะอาดเท่านั้น",
+            en: "Should be used with clean water only",
+          },
+        ],
+      },
+      {
+        type: "bulletList",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาดทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
+            en: "Clean the water tank every 3 to 6 months, and never leave it longer than a year",
+          },
+          {
+            th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
+            en: "Scrub the inside of the tank with a soft-bristled brush or a sponge. For a deep tank, use a long-handled brush so every surface is reached",
+          },
+          {
+            th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะ เหล็ก หรือฟองน้ำที่ทำจากเหล็ก",
+            en: "Avoid brushes with metal or steel bristles, and sponges made of steel wool",
+          },
+          {
+            th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
+            en: "Never use a cleaning agent with strong acidic properties",
+          },
+          {
+            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+          },
+          {
+            th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
+            en: "The installation area must be strong enough to carry the weight of the filled tank",
+          },
+        ],
+      },
+    ],
   },
   {
     id: "pe-waste-water-treatment-tank",
@@ -456,6 +598,89 @@ export const products: Product[] = [
     ],
     featured: false,
     order: 6,
+    sections: [
+      {
+        type: "bulletList",
+        title: {
+          th: "การใช้งาน",
+          en: "Usage",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+            en: "Suitable for wastewater treatment",
+          },
+        ],
+      },
+      {
+        type: "bulletList",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "ระยะเวลาในการสูบกากตะกอน ทั้งส่วนเกรอะและกรองทุก ๆ 2-3 ปี เพื่อให้บ่อเกรอะมีประสิทธิภาพในการบำบัดอยู่เสมอ และต้องให้มีน้ำเหลืออยู่ 2 ใน 3 ส่วนหลังการสูบกาก",
+            en: "Pump out the sludge from both the septic and the filter chamber every 2 to 3 years so the septic chamber keeps treating at full efficiency, and leave the tank two thirds full of water after pumping",
+          },
+          {
+            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+          },
+        ],
+      },
+      {
+        type: "orderedList",
+        title: {
+          th: "ระบบบำบัดที่เราออกแบบและจัดหา",
+          en: "Systems We Design & Supply",
+        },
+        items: [
+          {
+            title: {
+              th: "ระบบเติมอากาศ (Aerobic)",
+              en: "Aerobic System",
+            },
+            body: {
+              th: "ระบบเติมอากาศเพื่อลดค่า BOD/COD เหมาะกับน้ำเสียจากอุตสาหกรรมอาหาร เครื่องดื่ม และอุตสาหกรรมทั่วไป",
+              en: "Aeration system reducing BOD/COD. Ideal for food, beverage, general industry wastewater.",
+            },
+          },
+          {
+            title: {
+              th: "ระบบไร้อากาศ (Anaerobic)",
+              en: "Anaerobic System",
+            },
+            body: {
+              th: "ระบบบำบัดแบบไร้ออกซิเจน สำหรับน้ำเสียที่มีค่า BOD สูงจากโรงงานสุรา แป้ง และน้ำตาล",
+              en: "No-oxygen system for high-BOD wastewater from distilleries, starch, sugar plants.",
+            },
+          },
+          {
+            title: {
+              th: "ระบบ SBR / MBR",
+              en: "SBR / MBR System",
+            },
+            body: {
+              th: "ระบบบำบัดครบวงจรในถังเดียว ประหยัดพื้นที่ เหมาะกับนิคมอุตสาหกรรมหรือชุมชน",
+              en: "All-in-one tank system, space-efficient, ideal for industrial estates or communities.",
+            },
+          },
+          {
+            title: {
+              th: "ถังปรับสมดุล (Equalization Tank)",
+              en: "Equalization Tank",
+            },
+            body: {
+              th: "ถังพักน้ำก่อนเข้าสู่ระบบบำบัด เพื่อปรับอัตราการไหลให้สม่ำเสมอ ไฟเบอร์กลาสทนต่อน้ำเสียได้ทุกประเภท",
+              en: "Buffer tank before treatment to equalize flow rate. FRP resists all wastewater types.",
+            },
+          },
+        ],
+      },
+    ],
   },
   {
     id: "septic-tank-and-grease-trap",
@@ -492,6 +717,48 @@ export const products: Product[] = [
     ],
     featured: false,
     order: 7,
+    sections: [
+      {
+        type: "bulletList",
+        title: {
+          th: "การใช้งาน",
+          en: "Usage",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+            en: "Suitable for wastewater treatment",
+          },
+        ],
+      },
+      {
+        type: "bulletList",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "ตักเศษอาหารทุกวัน: นำตะแกรงกรองเศษอาหารออกมาเททิ้งทุกวัน เพื่อไม่ให้เศษอาหารเน่าเสียและเกิดกลิ่นเหม็น",
+            en: "Scoop out food scraps daily: lift the food strainer out and empty it every day so the scraps do not rot and turn foul-smelling",
+          },
+          {
+            th: "ตักไขมันออกทุก 7 วัน: เปิดฝาถังแล้วใช้กระบวยหรือภาชนะตักชั้นไขมันที่ลอยอยู่ผิวน้ำด้านบนไปทิ้งถังขยะ ห้ามเทลงท่อระบายน้ำเด็ดขาด",
+            en: "Skim the grease every 7 days: open the lid and use a ladle or a container to lift the layer of grease floating on the surface into the bin. Never pour it down the drain",
+          },
+          {
+            th: "ล้างทำความสะอาดถังทุก 1 เดือน: ถอดชิ้นส่วนภายในหรือเปิดก้นถังเพื่อระบายตะกอนสะสม ล้างคราบสกปรกด้วยน้ำยาล้างจานและน้ำเปล่า",
+            en: "Wash the tank out once a month: take the internal parts out or open the base to drain the sediment that has built up, then wash the grime off with dish soap and water",
+          },
+          {
+            th: "ใช้จุลินทรีย์ช่วยย่อย: เติมหัวเชื้อจุลินทรีย์หรือเอนไซม์สัปดาห์ละครั้ง เพื่อช่วยย่อยสลายคราบไขมันที่เกาะตามผนังถังและลดกลิ่นอับ",
+            en: "Use microbes to help break it down: add a microbial or enzyme starter once a week to digest the grease clinging to the tank walls and cut back the stale smell",
+          },
+        ],
+      },
+    ],
   },
 ];
 

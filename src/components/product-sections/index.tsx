@@ -4,6 +4,7 @@ import type { ProductSection } from "@/lib/product-sections";
 
 import { BulletListSection } from "./bullet-list-section";
 import { ImageGridSection } from "./image-grid-section";
+import { OrderedListSection } from "./ordered-list-section";
 import { ParagraphSection } from "./paragraph-section";
 import { SpecTableSection } from "./spec-table-section";
 
@@ -41,6 +42,17 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
         return (
           <FadeInUp key={headingId}>
             <BulletListSection
+              section={section}
+              locale={locale}
+              headingId={headingId}
+            />
+          </FadeInUp>
+        );
+
+      case "orderedList":
+        return (
+          <FadeInUp key={headingId}>
+            <OrderedListSection
               section={section}
               locale={locale}
               headingId={headingId}

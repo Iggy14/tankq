@@ -67,6 +67,33 @@ export interface ParagraphSection {
 }
 
 /**
+ * One step in an <OrderedListSection>.
+ *
+ * `title` names the thing in a couple of words and `body` explains it in a
+ * sentence or two - the number itself is not stored, it comes from the item's
+ * position, so reordering the array renumbers the list.
+ */
+export interface OrderedListItem {
+  title: Localized;
+  body: Localized;
+}
+
+/**
+ * A numbered list of short write-ups - a process, a range of systems, a set of
+ * options - laid out two across with each item's number sitting above it.
+ *
+ * Reach for this over <BulletListSection> when the items need a sentence of
+ * explanation rather than a phrase, and over <SpecTableSection> when they are
+ * prose rather than figures. The order is meaningful enough to number: if it
+ * is not, a bullet list is the honest block.
+ */
+export interface OrderedListSection {
+  type: "orderedList";
+  title: Localized;
+  items: OrderedListItem[];
+}
+
+/**
  * One picture in an <ImageGridSection>.
  *
  * `alt` is localized and required — the drawings and photos in a grid carry
@@ -93,5 +120,6 @@ export interface ImageGridSection {
 export type ProductSection =
   | SpecTableSection
   | BulletListSection
+  | OrderedListSection
   | ParagraphSection
   | ImageGridSection;

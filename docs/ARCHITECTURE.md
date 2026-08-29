@@ -206,6 +206,7 @@ src/components/product-sections/
   index.tsx                        the type -> component switch
   spec-table-section.tsx           one renderer per union member
   bullet-list-section.tsx
+  ordered-list-section.tsx
   paragraph-section.tsx
   image-grid-section.tsx
 ```
@@ -237,10 +238,14 @@ primitive before hand-rolling one.
 | --- | --- |
 | `specTable` | Size/spec table: navy header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
 | `bulletList` | Short selling points, two columns from `sm` up. `marker: "check"` puts a lucide `Check` in a tinted teal disc beside each item, `marker: "dot"` a plain teal bullet |
+| `orderedList` | Numbered write-ups, two columns from `sm` up. Each item is a `{ title, body }` pair under a rule, with its zero-padded number (from the array position, not stored) above it in teal mono |
 | `paragraph` | A heading over one centred paragraph, capped at a readable measure |
 | `imageGrid` | Pictures three across on desktop down to one on a phone, filling square tiles (`object-cover`). Localized `alt` required |
 
-`frp-vertical-water-tank` and `frp-horizontal-water-tank` carry sections today.
+Both FRP tanks carry sections today; the four PE tanks and the grease trap
+carry a `Usage` and a `Recommendation` bullet list each, and
+`pe-waste-water-treatment-tank` adds an `orderedList` of the treatment systems
+TankQ designs and supplies.
 
 ### If a product needs a one-off layout
 
