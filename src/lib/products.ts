@@ -11,8 +11,7 @@ export type { Localized };
  * as `product.title[locale]`, not through next-intl. The message files stay
  * reserved for static UI chrome.
  *
- * The FRP tanks and the PE tank carry the real catalogue copy; products 4..8
- * are still placeholder text derived from the source image filenames.
+ * Every entry carries the real catalogue copy.
  */
 
 export interface Product {
@@ -224,101 +223,25 @@ export const products: Product[] = [
     ],
   },
   {
-    id: "pe-water-tank",
-    slug: "pe-water-tank",
+    id: "pe-above-ground-water-tank",
+    slug: "pe-above-ground-water-tank",
     title: {
-      th: "ถังเก็บน้ำ PE บนดิน/ใต้ดิน",
-      en: "PE On Ground & Underground Water Tank",
+      th: "ถังเก็บน้ำบนดิน PE รุ่น TQ",
+      en: "TANK-Q PE Above-Ground Water Storage Tank",
     },
     description: {
-      th: "ถังเก็บน้ำ PE คือตัวเลือกที่ตอบโจทย์ทุกความต้องการ ด้วยนวัตกรรมการผลิตที่ทันสมัย ทำให้ถังน้ำของเรามีความแข็งแรงทนทานและปลอดภัยสำหรับทุกการใช้งาน ตัวถังผลิตจากวัสดุ Polyethylene (PE) คุณภาพสูง ซึ่งเป็นพลาสติกเกรดดีเยี่ยม ไร้สารอันตราย Food Grade 100% จึงมั่นใจได้ว่าน้ำที่เก็บไว้จะสะอาด ปลอดภัย ไร้กลิ่น และไม่ส่งผลกระทบต่อสุขภาพ",
-      en: "The PE water tank answers every requirement. Modern manufacturing technology makes our tanks strong, durable, and safe for every application. The body is produced from high-quality Polyethylene (PE), an excellent-grade plastic that is free of hazardous substances and 100% Food Grade — so you can be confident the water stored inside stays clean, safe, and odour-free, with no impact on your health.",
+      th: "ถังเก็บน้ำแบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
+      en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
     },
     images: [
-      "/images/products/pe-water-tank/1.webp",
-      "/images/products/pe-water-tank/2.webp",
-      "/images/products/pe-water-tank/3.webp",
+      "/images/products/pe-above-ground-water-tank/1.webp",
+      "/images/products/pe-above-ground-water-tank/2.webp",
+      "/images/products/pe-above-ground-water-tank/3.webp",
+      "/images/products/pe-above-ground-water-tank/4.webp",
+      "/images/products/pe-above-ground-water-tank/5.webp",
     ],
     featured: true,
     order: 3,
-  },
-  {
-    id: "product-4",
-    slug: "product-4",
-    title: {
-      th: "สินค้า 4",
-      en: "Product 4",
-    },
-    description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 4 ผลิตเพื่อการใช้งานที่ยาวนาน ติดตั้งง่าย และดูแลรักษาน้อย รายละเอียดทางเทคนิคอยู่ระหว่างจัดเตรียม",
-      en: "Placeholder description for Product 4. Manufactured for long service life with straightforward installation and low maintenance. Detailed specifications are pending.",
-    },
-    images: ["/images/products/product-4/1.webp"],
-    featured: false,
-    order: 4,
-  },
-  {
-    id: "product-5",
-    slug: "product-5",
-    title: {
-      th: "สินค้า 5",
-      en: "Product 5",
-    },
-    description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 5 รองรับการติดตั้งทั้งแบบตั้งพื้นและในพื้นที่มีหลังคาคลุม ขึ้นอยู่กับรูปแบบที่เลือก รายละเอียดฉบับสมบูรณ์จะตามมาภายหลัง",
-      en: "Placeholder description for Product 5. Suitable for both above-ground and sheltered installations depending on the configuration chosen. Final details are still being prepared.",
-    },
-    images: [
-      "/images/products/product-5/1.webp",
-      "/images/products/product-5/2.webp",
-    ],
-    featured: false,
-    order: 5,
-  },
-  {
-    id: "product-6",
-    slug: "product-6",
-    title: {
-      th: "สินค้า 6",
-      en: "Product 6",
-    },
-    description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 6 ตัวเลือกขนาดกะทัดรัดสำหรับหน้างานที่พื้นที่จำกัดแต่ยังต้องการความจุที่ไว้ใจได้ วัสดุ ขนาด และราคาจะระบุในภายหลัง",
-      en: "Placeholder description for Product 6. A compact option for smaller sites that still need dependable capacity. Materials, sizes, and pricing will be documented later.",
-    },
-    images: ["/images/products/product-6/1.webp"],
-    featured: false,
-    order: 6,
-  },
-  {
-    id: "product-7",
-    slug: "product-7",
-    title: {
-      th: "สินค้า 7",
-      en: "Product 7",
-    },
-    description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 7 โครงสร้างเสริมความแข็งแรงสำหรับงานอุตสาหกรรมที่ใช้งานหนัก สเปกทางเทคนิคอยู่ระหว่างการยืนยัน",
-      en: "Placeholder description for Product 7. Built around a reinforced structure intended for demanding industrial environments. Technical specifications are to be confirmed.",
-    },
-    images: ["/images/products/product-7/1.webp"],
-    featured: false,
-    order: 7,
-  },
-  {
-    id: "product-8",
-    slug: "product-8",
-    title: {
-      th: "สินค้า 8",
-      en: "Product 8",
-    },
-    description: {
-      th: "คำอธิบายตัวอย่างสำหรับสินค้า 8 ปิดท้ายกลุ่มสินค้าด้วยรูปแบบที่เน้นความจุสูงสำหรับการจัดเก็บปริมาณมาก ข้อความนี้จะถูกแทนที่ด้วยเนื้อหาจริง",
-      en: "Placeholder description for Product 8. Rounds out the range with a configuration aimed at higher-volume storage needs. Real copy will replace this placeholder text.",
-    },
-    images: ["/images/products/product-8/1.webp"],
-    featured: false,
-    order: 8,
   },
 ];
 
