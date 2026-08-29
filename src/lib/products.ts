@@ -70,10 +70,10 @@ export const products: Product[] = [
       en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
     },
     images: [
+      "/images/products/frp-vertical-water-tank/4.webp",
       "/images/products/frp-vertical-water-tank/1.webp",
       "/images/products/frp-vertical-water-tank/2.webp",
       "/images/products/frp-vertical-water-tank/3.webp",
-      "/images/products/frp-vertical-water-tank/4.webp",
       "/images/products/frp-vertical-water-tank/5.webp",
       "/images/products/frp-vertical-water-tank/6.webp",
       "/images/products/frp-vertical-water-tank/7.webp",
