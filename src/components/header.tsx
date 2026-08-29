@@ -73,6 +73,7 @@ export function Header() {
             nativeButton={false}
             role="link"
             render={<Link href="/contact" />}
+            className="hidden lg:flex"
             // The theme's light/dark tokens have no "on top of the navy band"
             // surface, so the glass treatment is spelled out here.
           >
