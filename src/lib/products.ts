@@ -1,4 +1,5 @@
 import type { Localized } from "./localized";
+import type { ProductCategoryId } from "./product-categories";
 import type { ProductSection } from "./product-sections";
 
 // Re-exported so callers can keep reaching for it alongside `Product`.
@@ -19,6 +20,8 @@ export interface Product {
   id: string;
   /** URL-friendly segment, e.g. `/products/frp-horizontal-water-tank`. */
   slug: string;
+  /** The category this product belongs to - see `src/lib/product-categories.ts`. */
+  categoryId: ProductCategoryId;
   title: Localized;
   description: Localized;
   /** Public paths, first image is treated as the cover. */
@@ -38,6 +41,7 @@ export const products: Product[] = [
   {
     id: "frp-horizontal-water-tank",
     slug: "frp-horizontal-water-tank",
+    categoryId: "frp-horizontal-water-tank",
     title: {
       th: "ถังเก็บน้ำไฟเบอร์กลาสทรงนอน",
       en: "FRP Horizontal Water Tank",
@@ -60,6 +64,7 @@ export const products: Product[] = [
   {
     id: "frp-vertical-water-tank",
     slug: "frp-vertical-water-tank",
+    categoryId: "frp-vertical-water-tank",
     title: {
       th: "ถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง",
       en: "FRP Vertical Water Tank",
@@ -225,6 +230,7 @@ export const products: Product[] = [
   {
     id: "pe-above-ground-water-tank",
     slug: "pe-above-ground-water-tank",
+    categoryId: "pe-water-tank",
     title: {
       th: "ถังเก็บน้ำบนดิน PE รุ่น TQ",
       en: "TANK-Q PE Above-Ground Water Storage Tank",
@@ -266,4 +272,11 @@ export function getRelatedProducts(slug: string, limit = 3): Product[] {
   return getAllProducts()
     .filter((product) => product.slug !== slug)
     .slice(0, limit);
+}
+
+/** Every product in the given category, in listing order. */
+export function getProductsByCategory(
+  categoryId: ProductCategoryId,
+): Product[] {
+  return getAllProducts().filter((product) => product.categoryId === categoryId);
 }

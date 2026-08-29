@@ -104,13 +104,26 @@ prefix.
 
 `src/lib/products.ts` holds the `Product[]` and the accessors
 (`getProductBySlug`, `getFeaturedProducts`, `getAllProducts`,
-`getRelatedProducts`). Pages import the accessors, never the array, so the
-storage can change later without touching page code.
+`getRelatedProducts`, `getProductsByCategory`). Pages import the accessors,
+never the array, so the storage can change later without touching page code.
 
 A `Product` carries `id`, `slug`, localized `title` and `description`, `images`
 (public paths, first is the cover), `featured`, `order`, and optionally
 `sections?: ProductSection[]`. Images live at
 `public/images/products/<slug>/<n>.webp`.
+
+### Categories
+
+`src/lib/product-categories.ts` holds the top-level grouping every product
+belongs to: an `id`, a localized `title`, and an `order`. The array is declared
+`as const satisfies readonly ProductCategory[]`, so its ids collapse into the
+`ProductCategoryId` union that types `Product.categoryId` - a product naming a
+category that does not exist fails to compile. Read a category name as
+`category.title[locale]`, same as any other content.
+
+Adding a category means adding a row there; adding a product means picking one
+of those ids. Group with `getProductsByCategory(id)`, list with
+`getAllProductCategories()`, resolve one with `getProductCategoryById(id)`.
 
 ## Product detail sections
 
