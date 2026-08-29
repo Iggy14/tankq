@@ -18,7 +18,7 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 /** Fraction of the tank that must be on screen before it plays. */
 const VIEWPORT_AMOUNT = 0.3;
 
-type FooterTankProps = {
+type TankProps = {
   /** Translated alt text — doubles as the link's accessible name. */
   alt: string;
 };
@@ -34,7 +34,7 @@ type FooterTankProps = {
  * and links through to the products page. Under the OS "reduce motion" setting
  * the rise and the hover growth are dropped and only the fade remains.
  */
-export function FooterTank({ alt }: FooterTankProps) {
+export function Tank({ alt }: TankProps) {
   const prefersReducedMotion = useReducedMotion();
 
   const variants: Variants = {

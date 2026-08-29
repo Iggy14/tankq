@@ -4,7 +4,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { FeaturedProducts } from "@/components/featured-products";
 import { Hero } from "@/components/hero";
 import { SocialLinks } from "@/components/social-links";
-import { StatsStrip } from "@/components/stats-strip";
 import { WhyTankQ } from "@/components/why-tankq";
 
 // Localized <title>/<description> — the layout appends "| TankQ".
@@ -27,8 +26,6 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <Hero />
-
-      <StatsStrip />
 
       <WhyTankQ />
 

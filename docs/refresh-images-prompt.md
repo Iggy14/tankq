@@ -62,8 +62,8 @@ and neither needs clearing.
 
 | Path | Used by |
 | --- | --- |
-| `public/brand/` | `src/components/header.tsx`, `src/components/footer.tsx` |
-| `public/hero/` | `src/components/hero.tsx` |
-| `public/why/` | `src/components/why-tankq-slideshow.tsx` |
-| `public/footer/` | `src/components/footer-tank.tsx` (currently `TQ.png`) |
+| `public/brand/` | `src/components/header.tsx`, `src/components/footer/link-columns.tsx` |
+| `public/hero/` | `src/components/hero/index.tsx` |
+| `public/why/` | `src/components/why-tankq/slideshow.tsx` |
+| `public/footer/` | `src/components/footer/tank.tsx` (currently `TQ.png`) |
 | `public/images/products/` | `src/lib/products.ts` |

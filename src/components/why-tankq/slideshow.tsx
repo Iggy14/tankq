@@ -52,12 +52,12 @@ type SlideshowState = {
 
 const SlideshowContext = createContext<SlideshowState | null>(null);
 
-export function useWhyTankQSlideshow() {
+export function useSlideshow() {
   const state = useContext(SlideshowContext);
 
   if (!state) {
     throw new Error(
-      "useWhyTankQSlideshow must be used inside <WhyTankQSlideshowProvider>",
+      "useSlideshow must be used inside <SlideshowProvider>",
     );
   }
 
@@ -75,7 +75,7 @@ export function useWhyTankQSlideshow() {
  * was hovered rather than snapping back, so the loop simply carries on from
  * wherever the visitor left it.
  */
-export function WhyTankQSlideshowProvider({ children }: { children: ReactNode }) {
+export function SlideshowProvider({ children }: { children: ReactNode }) {
   const prefersReducedMotion = useReducedMotion();
 
   const [current, setCurrent] = useState(0);
@@ -120,7 +120,7 @@ export function WhyTankQSlideshowProvider({ children }: { children: ReactNode })
   );
 }
 
-type WhyTankQSlidesProps = {
+type SlidesProps = {
   /** Passed straight to every `<Image>` — the caller knows how wide it renders. */
   sizes: string;
   /** Applied to every `<Image>`, on top of `object-cover`. */
@@ -138,9 +138,9 @@ type WhyTankQSlidesProps = {
  * once by the section backdrop — and both read the same index, so they stay in
  * lockstep for free.
  */
-export function WhyTankQSlides({ sizes, imageClassName }: WhyTankQSlidesProps) {
+export function Slides({ sizes, imageClassName }: SlidesProps) {
   const prefersReducedMotion = useReducedMotion();
-  const { current, previous, crossfadeSeconds } = useWhyTankQSlideshow();
+  const { current, previous, crossfadeSeconds } = useSlideshow();
 
   return (
     <>

@@ -2,25 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { FadeInUpGroup, FadeInUp } from "@/components/fade-in-up";
-
-/** Circle icon links, in display order. */
-export const SOCIAL_LINKS = [
-  {
-    key: "line",
-    href: "https://page.line.me/597iheyw",
-    src: "/images/socials/LINE_logo.svg",
-  },
-  {
-    key: "facebook",
-    href: "https://www.facebook.com/profile.php?id=61592899202754",
-    src: "/images/socials/fb-logo.png",
-  },
-  {
-    key: "instagram",
-    href: "https://www.instagram.com/tankq.official/",
-    src: "/images/socials/ih-logo.jpg",
-  },
-] as const;
+import { SOCIAL_LINKS } from "@/lib/social-links";
 
 /**
  * Full-width "follow us" banners bracketing the icon row, in display order.

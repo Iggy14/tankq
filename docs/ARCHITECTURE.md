@@ -91,7 +91,7 @@ If it is the same on every page of that kind, it is chrome.
 
 Message files are namespaced per page (`nav`, `common`, `home`, `products`,
 `about`, ..., `footer`) and shallow inside. A repeated UI block keeps its list
-in code and its copy under a key prefix: `stats-strip.tsx` holds
+in code and its copy under a key prefix: `hero/stats-strip.tsx` holds
 `[{ key: "experience", Icon: Trophy }, ...]` and reads
 `home.stats.experienceValue`. `th.json` and `en.json` must stay key-for-key
 identical.
@@ -176,13 +176,53 @@ src/components/
   ui/               shadcn primitives: breadcrumb, button, card, dropdown-menu,
                     section, table
   product-sections/ the section registry above
-  *.tsx             page-level blocks: header, footer, hero, why-tankq,
-                    our-story, stats-strip, ...
+  footer/           multi-part blocks, each folded into one folder (see below)
+  hero/
+  why-tankq/
+  *.tsx             single-file page-level blocks: header, our-story,
+                    process-roadmap, ...
 ```
 
 Page-level blocks are self-contained: each reads its own copy through
 `useTranslations`, so a page composes them with no props. Split anything that
 grows past one job.
+
+### Blocks that grow into several files
+
+A block that needs more than one file gets a folder rather than a run of
+sibling `<block>-<part>.tsx` files:
+
+```
+src/components/why-tankq/
+  index.tsx        exports the block itself (WhyTankQ) and composes the parts
+  backdrop.tsx     the parts, named for their role only - the folder already
+  showcase.tsx     says which block they belong to
+  slideshow.tsx    shared state: SlideshowProvider, useSlideshow, Slides, reasons
+
+src/components/footer/
+  index.tsx        Footer: the CTA band, the lower band, the copyright bar
+  cta-band.tsx     CtaBand: closing pitch, contact CTA, LINE QR, tank
+  tank.tsx         Tank: the breakout tank photo and its scroll-in rise
+  link-columns.tsx LinkColumns: the lower grid, plus its private LinkColumn
+
+src/components/hero/
+  index.tsx        Hero: the navy band (top half) over the stats strip
+  slideshow.tsx    Slideshow: the looping photo panel behind the band
+  stats-strip.tsx  StatsStrip: the section's bottom half, the five stats
+  stat-item.tsx    StatItem: one stat, and the viewport latch for its count-up
+  animated-stat-value.tsx  AnimatedStatValue: the count-up itself
+```
+
+Rules: the parts are private to the folder and import each other by relative
+path (`./slideshow`); everything outside imports only the folder
+(`@/components/why-tankq`), which resolves to `index.tsx`. Drop the block name
+from the parts - `Showcase`, not `WhyTankQShowcase`. Convert a block to this
+shape when it reaches a second file; leave one-file blocks as they are.
+
+Data a block shares with another part of the site does not belong in either of
+them: it goes in `src/lib` (e.g. `src/lib/social-links.ts`, read by both the
+footer and the home page's "follow us" section). Data only one component ever
+renders stays next to it.
 
 - `ui/section.tsx` is a full-bleed band owning only the ground (`light` /
   `navy`) and the vertical rhythm. Inner width stays the page's job: wrap the

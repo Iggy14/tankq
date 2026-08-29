@@ -10,23 +10,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import {
-  reasons,
-  useWhyTankQSlideshow,
-  WhyTankQSlides,
-} from "@/components/why-tankq-slideshow";
+
+import { reasons, Slides, useSlideshow } from "./slideshow";
 
 /**
  * The cards and their paired photo panel. Left column on desktop, stacked with
  * the panel underneath on phones.
  *
  * One index drives both halves — and the section backdrop besides. It lives in
- * `WhyTankQSlideshowProvider`; this component only reads it and hands hover
- * back to it.
+ * `SlideshowProvider`; this component only reads it and hands hover back to it.
  */
-export function WhyTankQShowcase() {
+export function Showcase() {
   const t = useTranslations("home.whyUs");
-  const { current, show, setPaused } = useWhyTankQSlideshow();
+  const { current, show, setPaused } = useSlideshow();
 
   return (
     <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
@@ -74,7 +70,7 @@ export function WhyTankQShowcase() {
         aria-hidden
         className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-muted ring-1 ring-foreground/10 lg:aspect-auto lg:h-full"
       >
-        <WhyTankQSlides sizes="(max-width: 1024px) 100vw, 50vw" />
+        <Slides sizes="(max-width: 1024px) 100vw, 50vw" />
 
         {/* Names the photo's card, numbered to match its position in the grid,
             over a scrim that keeps the caption legible on every image. */}

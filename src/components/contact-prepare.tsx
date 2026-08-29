@@ -21,7 +21,7 @@ const prepareItems = [
 /**
  * Sits below the "engineer replies" line on the contact page: a LINE QR code
  * beside a checklist of what to have ready before reaching out. The QR gets
- * the same hover growth as the footer's tank photo (`FooterTank`) so the two
+ * the same hover growth as the footer's tank photo (`footer/tank.tsx`) so the two
  * clickable photos on the site read as one interaction pattern.
  */
 export function ContactPrepare() {

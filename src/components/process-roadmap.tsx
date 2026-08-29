@@ -16,7 +16,7 @@ import { FadeInUp } from "@/components/fade-in-up";
 /**
  * The eight production/QC stages, in display order. Each entry names its icon
  * and the `quality.processStep<N>` key prefix its copy lives under - same
- * list-in-code / copy-in-messages split as `stats-strip.tsx`.
+ * list-in-code / copy-in-messages split as `hero/stats-strip.tsx`.
  */
 const steps = [
   { n: 1, Icon: ClipboardList },

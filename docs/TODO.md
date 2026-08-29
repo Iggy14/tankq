@@ -37,22 +37,6 @@ than none.
 **Related:** `metadataBase` also fixes the currently-relative Open Graph and
 canonical URLs, so it is worth doing as one change rather than two.
 
-## LINE social link placeholder
-
-**Status:** not started. Added 2026-08-27 alongside the home page social icons.
-
-`src/components/social-links.tsx` renders three circular social icons (LINE,
-Facebook, Instagram) between the home page's featured products and the
-footer. Facebook and Instagram link to the real profiles; LINE links to `"#"`.
-
-**Why it was skipped:** the user gave real URLs for Facebook and Instagram but
-said the LINE link should be a placeholder — there is no official LINE
-account/OA link yet.
-
-**What to do:** once a TankQ LINE Official Account (or add-friend URL) exists,
-update the `href` for the `"line"` entry in the `SOCIAL_LINKS` array in
-`src/components/social-links.tsx`.
-
 ## Contact page body
 
 **Status:** not started. Added 2026-08-28.

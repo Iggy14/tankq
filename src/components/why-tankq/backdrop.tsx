@@ -1,6 +1,6 @@
 "use client";
 
-import { WhyTankQSlides } from "@/components/why-tankq-slideshow";
+import { Slides } from "./slideshow";
 
 /**
  * The section's full-bleed backdrop: the same photo the showcase panel is
@@ -10,13 +10,13 @@ import { WhyTankQSlides } from "@/components/why-tankq-slideshow";
  * Purely decorative — the cards carry the meaning — so the whole layer is
  * hidden from assistive tech.
  */
-export function WhyTankQBackdrop() {
+export function Backdrop() {
   return (
     <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden">
       {/* Softened by a hair — not to hide the photo, but so it reads as ground
           rather than competing with the sharp copy of itself in the panel. The
           scale is only there to keep that blur off the section's edges. */}
-      <WhyTankQSlides sizes="100vw" imageClassName="scale-105" />
+      <Slides sizes="100vw" imageClassName="scale-105" />
 
       {/* The wash: a light coat of page ground over the whole thing — enough to
           take the glare off without losing the photo — then a second pass that

@@ -11,7 +11,7 @@ const SLIDE_INTERVAL_MS = 5000;
 /** Length of the crossfade, in seconds (Motion works in seconds). */
 const CROSSFADE_SECONDS = 1.2;
 
-type HeroSlideshowProps = {
+type SlideshowProps = {
   /** Public-folder paths, shown in order and looped. */
   images: readonly string[];
   className?: string;
@@ -34,7 +34,11 @@ type HeroSlideshowProps = {
  * The images are decorative — the hero copy carries the meaning — so they are
  * hidden from assistive tech with empty alt text.
  */
-export function HeroSlideshow({ images, className, imageClassName }: HeroSlideshowProps) {
+export function Slideshow({
+  images,
+  className,
+  imageClassName,
+}: SlideshowProps) {
   const prefersReducedMotion = useReducedMotion();
   const [current, setCurrent] = useState(0);
   const [previous, setPrevious] = useState(-1);

@@ -3,7 +3,8 @@ import { useTranslations } from "next-intl";
 import type { LucideIcon } from "lucide-react";
 
 import { FadeInUpGroup } from "@/components/fade-in-up";
-import { StatItem } from "@/components/stat-item";
+
+import { StatItem } from "./stat-item";
 
 /**
  * The five headline stats, in display order. Each entry names its icon and the
@@ -20,19 +21,19 @@ const stats = [
 ] as const satisfies readonly { key: string; Icon: LucideIcon }[];
 
 /**
- * A metrics bar pulled up over the hero's bottom curve with a negative margin,
- * so it lands in the same first screen as the hero rather than waiting below
- * the fold. Five stats sit in one row on desktop, collapsing to two-up then
- * one-up on smaller screens. The bar is one flat, tinted panel spanning the
- * same width as the hero's content — `divide-*` separates the items inside
- * it, but no stat gets its own card.
+ * A metrics bar that fills the hero section's bottom half, below the band's
+ * curved edge — from `lg` up it takes an even share of the section's height
+ * (`flex-1`) and centres itself in it. Five stats sit in one row on desktop,
+ * collapsing to two-up then one-up on smaller screens. The bar is one flat
+ * panel spanning the same width as the hero's content — `divide-*` separates
+ * the items inside it, but no stat gets its own card.
  */
 export function StatsStrip() {
   const t = useTranslations("home.stats");
 
   return (
-    <section className="relative z-30 w-full px-4 sm:px-6">
-      <FadeInUpGroup className="mx-auto -mt-20 grid w-full max-w-[88rem] grid-cols-1 divide-y divide-border bg-white sm:-mt-24 sm:grid-cols-2 sm:divide-x lg:-mt-40 lg:grid-cols-5 lg:divide-y-0">
+    <section className="relative z-30 flex w-full items-center flex-col justify-center px-4 py-10 sm:px-6 lg:flex-1 lg:py-6">
+      <FadeInUpGroup className="mx-auto grid w-full items-center max-w-[88rem] grid-cols-1 bg-white sm:grid-cols-2 lg:grid-cols-5">
         {stats.map(({ key, Icon }) => (
           <StatItem
             key={key}

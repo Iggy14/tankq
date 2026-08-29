@@ -3,9 +3,11 @@ import { useTranslations } from "next-intl";
 
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { FEATURED_PRODUCTS_ID } from "@/components/featured-products";
-import { HeroSlideshow } from "@/components/hero-slideshow";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+
+import { Slideshow } from "./slideshow";
+import { StatsStrip } from "./stats-strip";
 
 // Rotating hero backdrop; the slideshow loops through these in order.
 const heroImages = [
@@ -17,23 +19,26 @@ const heroImages = [
 
 /**
  * The home page's opening screen: one full viewport (minus the 4rem sticky
- * header), of which only the top half is the navy hero band. The bottom half is
- * deliberately left as plain ground for now.
+ * header), of which only the top half is the navy hero band. The stats strip
+ * fills the bottom half, pulled up over the band's curved edge with its own
+ * negative margin so both land on the same first screen.
  */
 export function Hero() {
   const t = useTranslations();
 
   return (
-    <section className="w-full lg:min-h-[calc(100svh-4rem)]">
-      {/* The band. Everything inside dissolves into this one navy, so the photo
-          and the flat colour never show a seam. `isolate` keeps the stacking
-          order local; `overflow-hidden` clips the photo to the band. */}
-      <div className="relative isolate w-full overflow-hidden bg-navy text-navy-foreground">
+    <section className="flex w-full flex-col lg:min-h-[calc(100svh-4rem)]">
+      {/* The band, and the section's top half — from `lg` up it and the stats
+          strip below split the section's height evenly (`flex-1` on both).
+          Everything inside dissolves into this one navy, so the photo and the
+          flat colour never show a seam. `isolate` keeps the stacking order
+          local; `overflow-hidden` clips the photo to the band. */}
+      <div className="relative isolate flex w-full flex-col overflow-hidden bg-navy text-navy-foreground lg:flex-1">
         {/* Full-bleed on phones; from `lg` up it is anchored to the right edge
             and given 90% of the band, leaving a 10% strip of flat navy on the
             left. Widen/narrow the photo here — `lg:w-[…]` is the only knob. */}
         <div className="absolute inset-0 z-0 lg:left-auto lg:w-[90%]">
-          <HeroSlideshow
+          <Slideshow
             images={heroImages}
             className="absolute inset-0"
             // From `lg` up the crop window sits below centre, so the panel keeps
@@ -65,7 +70,7 @@ export function Hero() {
 
         {/* On load this is already on screen, so the cascade plays straight
             away — it carries the layout (flex/gap) the band used to hold. */}
-        <FadeInUpGroup className="relative z-20 mx-auto flex w-full max-w-[88rem] flex-col items-start gap-6 px-4 pt-14 pb-24 sm:px-6 lg:min-h-[calc((100svh-4rem)/2)] lg:justify-center lg:pt-16 lg:pb-28">
+        <FadeInUpGroup className="relative z-20 mx-auto flex w-full max-w-[88rem] flex-col items-start gap-6 px-4 pt-14 pb-24 sm:px-6 lg:flex-1 lg:justify-center lg:pt-16 lg:pb-28">
           <FadeInUp>
             <p className="text-sm font-semibold tracking-[0.2em] text-brand uppercase">
               {t("home.heroEyebrow")}
@@ -96,12 +101,13 @@ export function Hero() {
               from `scroll-behavior` in globals.css. */}
             <Button
               size="lg"
-              variant={'outline'}
+              variant="outline"
               nativeButton={false}
               role="link"
               render={<a href={`#${FEATURED_PRODUCTS_ID}`} />}
-                            className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
-
+              // The theme's light/dark tokens have no "on top of the navy band"
+              // surface, so the glass treatment is spelled out here.
+              className="border-white/40 bg-white/10 text-white backdrop-blur-sm hover:bg-white/20 hover:text-white"
             >
               {t("home.heroCta")}
               <MoveDown aria-hidden />
@@ -112,8 +118,6 @@ export function Hero() {
               nativeButton={false}
               role="link"
               render={<Link href="/contact" />}
-              // The theme's light/dark tokens have no "on top of the navy band"
-              // surface, so the glass treatment is spelled out here.
             >
               {t("common.ctaButton")}
             </Button>
@@ -132,6 +136,9 @@ export function Hero() {
           <path d="M0 96V70c245 6 452 2 686-19C920 30 1180 12 1440 0v96H0Z" />
         </svg>
       </div>
+
+      {/* The section's bottom half. */}
+      <StatsStrip />
     </section>
   );
 }
