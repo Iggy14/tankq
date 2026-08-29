@@ -1,11 +1,15 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { NavLink } from "@/components/nav-link";
+import { ProductsNavMenu } from "@/components/products-nav-menu";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { toAppLocale } from "@/i18n/locale";
+import { getAllProductCategories } from "@/lib/product-categories";
+import { productsHref } from "@/lib/product-category-url";
 
 const navItems = [
   { href: "/", key: "home" },
@@ -19,6 +23,15 @@ const navItems = [
 
 export function Header() {
   const t = useTranslations();
+  const locale = toAppLocale(useLocale());
+
+  // Category names are content, not chrome, so they are read from the data here
+  // once and handed to both menus - the same reason MobileNav takes its labels
+  // as props rather than translating them itself.
+  const categories = getAllProductCategories().map((category) => ({
+    id: category.id,
+    label: category.title[locale],
+  }));
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur">
@@ -37,11 +50,20 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-0.5 lg:flex">
-          {navItems.map((item) => (
-            <NavLink key={item.key} href={item.href}>
-              {t(`nav.${item.key}`)}
-            </NavLink>
-          ))}
+          {navItems.map((item) =>
+            item.key === "products" ? (
+              <ProductsNavMenu
+                key={item.key}
+                label={t("nav.products")}
+                menuLabel={t("nav.productsMenu")}
+                categories={categories}
+              />
+            ) : (
+              <NavLink key={item.key} href={item.href}>
+                {t(`nav.${item.key}`)}
+              </NavLink>
+            ),
+          )}
         </nav>
 
         <div className="flex items-center gap-2 lg:justify-self-end">
@@ -60,6 +82,15 @@ export function Header() {
             items={navItems.map((item) => ({
               href: item.href,
               label: t(`nav.${item.key}`),
+              // Hover is not available on a phone, so the categories ride along
+              // as a nested group under Products.
+              children:
+                item.key === "products"
+                  ? categories.map((category) => ({
+                      href: productsHref(category.id),
+                      label: category.label,
+                    }))
+                  : undefined,
             }))}
             menuLabel={t("common.openMenu")}
             ctaHref="/contact"

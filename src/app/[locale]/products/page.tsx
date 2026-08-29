@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
-import { ProductCard } from "@/components/product-card";
+import { FadeInUp } from "@/components/fade-in-up";
+import {
+  CatalogueView,
+  ProductCatalogue,
+} from "@/components/product-catalogue";
 import { getAllProducts } from "@/lib/products";
 
 export async function generateMetadata({
@@ -43,14 +47,13 @@ export default async function ProductsPage({
           </p>
         </FadeInUp>
 
-        <FadeInUpGroup className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {allProducts.map((product, index) => (
-            <FadeInUp key={product.id} className="h-full">
-              {/* The first row is above the fold on most desktops. */}
-              <ProductCard product={product} priority={index < 3} />
-            </FadeInUp>
-          ))}
-        </FadeInUpGroup>
+        {/* ProductCatalogue reads `?category=`, which suspends during the
+            prerender. The fallback is the same view at "all", so the build-time
+            HTML carries every card and pill rather than a skeleton, and a visit
+            with no query renders identically before and after hydration. */}
+        <Suspense fallback={<CatalogueView products={allProducts} active="all" />}>
+          <ProductCatalogue products={allProducts} />
+        </Suspense>
       </section>
     </>
   );

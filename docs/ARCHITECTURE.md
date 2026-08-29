@@ -64,8 +64,8 @@ src/app/
   `metaDescription`; the layout supplies the `%s | TankQ` title template.
 - Server components are the default. `"use client"` only for state, event
   handlers, or Motion: `fade-in-up`, `nav-link`, `language-switcher`,
-  `mobile-nav`, `product-gallery`, the slideshows, plus `ui/dropdown-menu` and
-  `ui/table`.
+  `mobile-nav`, `products-nav-menu`, `product-gallery`, `product-catalogue`,
+  the slideshows, plus `ui/dropdown-menu` and `ui/table`.
 
 ## Two kinds of text, two homes
 
@@ -123,7 +123,59 @@ category that does not exist fails to compile. Read a category name as
 
 Adding a category means adding a row there; adding a product means picking one
 of those ids. Group with `getProductsByCategory(id)`, list with
-`getAllProductCategories()`, resolve one with `getProductCategoryById(id)`.
+`getAllProductCategories()`, resolve one with `getProductCategoryById(id)`. The
+accessors return `ProductCategoryEntry`, not the wider `ProductCategory`, so
+`category.id` stays the literal union at the call site.
+
+The pill icons are a second registry - `CATEGORY_ICONS` in
+`product-catalogue/category-filter.tsx`, a
+`Record<ProductCategoryId, LucideIcon>` - so a new category needs a row in the
+data file *and* an icon there, or it fails to compile. Categories with no
+products still get a pill; selecting one shows `products.emptyCategory`.
+
+### The `?category=` filter
+
+`src/lib/product-category-url.ts` is the contract: the `CATEGORY_PARAM` key, the
+`ActiveCategory` type (`ProductCategoryId | "all"`), `parseActiveCategory()`
+(anything unrecognised falls back to "all") and `productsHref()`. Three places
+read it - the listing pills, the header dropdown and the mobile menu - so it
+sits in `src/lib` rather than inside any one of them. `productsHref("all")`
+returns a bare string on purpose: next-intl serializes a `query` object
+unconditionally, so an empty one would leave a trailing "?" behind.
+
+The selection lives in the URL rather than component state, because the header
+links into a category from any page. That shapes `product-catalogue/`:
+
+```
+index.tsx           reads useSearchParams, picks the active category
+catalogue-view.tsx  the pills + grid for a given `active` - pure props
+category-filter.tsx the pill row; pills are Links, not buttons
+```
+
+`useSearchParams` suspends during a prerender, and in this Next version a
+static page that calls it outside a `<Suspense>` **fails the build**. The page
+wraps it and passes the unfiltered view as the fallback:
+
+```tsx
+<Suspense fallback={<CatalogueView products={allProducts} active="all" />}>
+  <ProductCatalogue products={allProducts} />
+</Suspense>
+```
+
+That is why `catalogue-view.tsx` is split out and re-exported from `index.tsx` -
+the fallback is what lands in the build-time HTML, so it has to be the real grid
+rather than a skeleton, and no page reaches past the folder boundary to get it.
+Keep it that way: moving the `useSearchParams` call up into the page, or reading
+the server `searchParams` prop, turns `/products` from SSG into a dynamic route.
+
+The header's Products item is `src/components/products-nav-menu.tsx`, built on
+`ui/navigation-menu` (Base UI opens it on hover with no extra props). Its
+trigger is `render={<Link href="/products" />} nativeButton={false}`, so the
+item is still a real link to the unfiltered page. It does not read
+`useSearchParams` to highlight the current category - the header is on every
+page, and that would force a Suspense boundary onto all of them. `MobileNav`
+carries the same categories as indented `children` under its Products item,
+since hover does not exist on a phone.
 
 ## Product detail sections
 
@@ -187,7 +239,7 @@ composes with the others in whatever order the data says.
 ```
 src/components/
   ui/               shadcn primitives: breadcrumb, button, card, dropdown-menu,
-                    section, table
+                    navigation-menu, section, table
   product-sections/ the section registry above
   footer/           multi-part blocks, each folded into one folder (see below)
   hero/

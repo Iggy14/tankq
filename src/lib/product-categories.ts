@@ -71,16 +71,25 @@ export const productCategories = [
   },
 ] as const satisfies readonly ProductCategory[];
 
-/** Every id declared above, as a union - the type of `Product.categoryId`. */
-export type ProductCategoryId = (typeof productCategories)[number]["id"];
+/** One row of the array above, with its `id` narrowed to its own literal. */
+export type ProductCategoryEntry = (typeof productCategories)[number];
 
-/** The full list in listing order. */
-export function getAllProductCategories(): readonly ProductCategory[] {
+/** Every id declared above, as a union - the type of `Product.categoryId`. */
+export type ProductCategoryId = ProductCategoryEntry["id"];
+
+/**
+ * The full list in listing order.
+ *
+ * Returns the entries rather than the wider `ProductCategory`, so a caller
+ * keying something off `category.id` - the listing page's icon map, say - gets
+ * the `ProductCategoryId` union and not a bare `string`.
+ */
+export function getAllProductCategories(): readonly ProductCategoryEntry[] {
   return [...productCategories].sort((a, b) => a.order - b.order);
 }
 
 export function getProductCategoryById(
   id: ProductCategoryId,
-): ProductCategory | undefined {
+): ProductCategoryEntry | undefined {
   return productCategories.find((category) => category.id === id);
 }
