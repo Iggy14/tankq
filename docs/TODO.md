@@ -60,3 +60,65 @@ messages files, still a placeholder) a contact form.
 2. Replace the placeholder `contact.subtitle` copy in `messages/en.json` /
    `messages/th.json` once real body content is decided, or remove the key if
    it ends up unused.
+
+## Project photography
+
+**Status:** not started. Added 2026-08-29 with the project data.
+
+Both entries in `src/lib/projects.ts` carry `images: []`. The field follows the
+product convention - public paths, first entry is the cover - but no files
+exist yet under `public/images/projects/`.
+
+**Why it was skipped:** no photography was supplied with the copy.
+
+**What to do:**
+
+1. Add files at `public/images/projects/<slug>/<n>.webp`, matching the two
+   slugs: `frp-horizontal-buffer-tank-15000l` and
+   `fire-water-frp-tank-500000l-nfpa`.
+2. Fill the `images` array on each entry, cover first.
+3. Until then, any card or detail renderer must handle an empty array - do not
+   assume `images[0]` exists.
+
+## Thai copy review for the project showcase
+
+**Status:** not started. Added 2026-08-29 with the project data.
+
+The English side of `src/lib/projects.ts` and `src/lib/project-tags.ts` is the
+customer's own copy. The Thai side was written by Claude and has not been read
+by a native speaker.
+
+**Why it was skipped:** only English copy was supplied, and the data shape
+requires both locales inline.
+
+**What to do:**
+
+1. Review every `th` string in `src/lib/projects.ts` (titles, `industry`,
+   `province`, and the problem/solution/result lines) and in
+   `src/lib/project-tags.ts`.
+2. Settle the `frp-factory` label in particular. Its English source was
+   "FRP factory", which is ambiguous next to the other label
+   ("Horizontal FRP Tank") - it may have been meant as a tank type, a job type,
+   or a photo caption. The Thai currently reads "งานโรงงานไฟเบอร์กลาส".
+   Renaming the id means updating `tankTypeId` on the entry that uses it.
+
+## Projects page UI
+
+**Status:** not started. Added 2026-08-29.
+
+`src/app/[locale]/projects/page.tsx` renders only `Breadcrumbs`, an `h1` and
+the placeholder `projects.subtitle`. The data now exists behind it.
+
+**Why it was skipped:** the task asked for the data only, no UI.
+
+**What to do:**
+
+1. Build the card grid off `getAllProjects()`, reading copy as
+   `project.title[locale]` and resolving the two labels through
+   `getProjectTankTypeById()` / `getProjectApplicationById()`. See the
+   "Project showcase" section of `docs/ARCHITECTURE.md`.
+2. Replace the placeholder `projects.subtitle` in `messages/en.json` and
+   `messages/th.json`, and add any new chrome keys (the "Problem" / "Solution"
+   / "Result" labels are chrome, not content) to both files key-for-key.
+3. Decide whether projects need detail pages. `Project.slug` exists for that,
+   but no route consumes it yet - drop the field if the answer is no.

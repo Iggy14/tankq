@@ -234,6 +234,30 @@ Do not add a per-slug page component. Add a section type for it even if only
 one product ever uses it: the page stays one component and the block still
 composes with the others in whatever order the data says.
 
+## Project showcase
+
+`src/lib/projects.ts` holds the `Project[]` and the accessors
+(`getAllProjects`, `getProjectBySlug`, `getFeaturedProjects`). A project is a
+delivered job told as a short case study: `industry`, `province`, `year`, a
+localized `title`, and the `problem` / `solution` / `result` triad that a card
+renders together. It also carries `slug`, `images`, `featured` and `order`,
+same as a product. `images` is empty on every entry today - there is no project
+photography yet, so a renderer must cope with a job that has no cover.
+
+The two labels on a card are ids, not free text. `src/lib/project-tags.ts`
+holds two registries - `projectTankTypes` (the kind of tank or job) and
+`projectApplications` (what the tank is used for) - each declared
+`as const satisfies readonly ProjectTag[]`, so their ids collapse into the
+`ProjectTankTypeId` and `ProjectApplicationId` unions that type
+`Project.tankTypeId` and `Project.applicationId`. A new label needs a row in
+that file before a project can name it, or it fails to compile. List with
+`getAllProjectTankTypes()` / `getAllProjectApplications()`, resolve one for
+display with `getProjectTankTypeById(id)` / `getProjectApplicationById(id)` and
+read it as `tag.title[locale]`.
+
+`/projects` is still the placeholder page; the data above exists ahead of the
+UI. See `docs/TODO.md`.
+
 ## Components
 
 ```
