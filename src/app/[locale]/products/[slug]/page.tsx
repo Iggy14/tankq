@@ -7,6 +7,7 @@ import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { ProductCard } from "@/components/product-card";
 import { ProductGallery } from "@/components/product-gallery";
 import { ProductSections } from "@/components/product-sections";
+import { ProductSpecs } from "@/components/product-specs";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
@@ -82,6 +83,12 @@ export default async function ProductDetailPage({
               {product.description[activeLocale]}
             </p>
           </FadeInUp>
+
+          {product.specs && product.specs.length > 0 && (
+            <FadeInUp>
+              <ProductSpecs specs={product.specs} locale={activeLocale} />
+            </FadeInUp>
+          )}
 
           <FadeInUp>
             <div className="mt-2 flex flex-wrap items-center justify-center gap-3">

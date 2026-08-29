@@ -109,8 +109,22 @@ never the array, so the storage can change later without touching page code.
 
 A `Product` carries `id`, `slug`, localized `title` and `description`, `images`
 (public paths, first is the cover), `featured`, `order`, and optionally
-`sections?: ProductSection[]`. Images live at
+`specs?: ProductSpec[]` and `sections?: ProductSection[]`. Images live at
 `public/images/products/<slug>/<n>.webp`.
+
+### Specs
+
+`src/lib/product-specs.ts` holds `ProductSpec` - the at-a-glance facts shown as
+one row under the description on a detail page, above the CTA buttons. A spec is
+a localized `label` of a couple of words (material, use, brand) plus an optional
+`icon`.
+
+`icon` is an id, not a component: the ids are frozen into `ProductSpecIconId`
+and the lucide icon each resolves to lives in `SPEC_ICONS` in
+`src/components/product-specs.tsx`. Same split as the category pills - the lib
+file stays pure content, and a new id without a row in the registry fails to
+compile. A spec with no `icon` renders a bullet dot instead, so a fact with no
+sensible icon still fits the row.
 
 ### Categories
 

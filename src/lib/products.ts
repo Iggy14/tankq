@@ -1,6 +1,7 @@
 import type { Localized } from "./localized";
 import type { ProductCategoryId } from "./product-categories";
 import type { ProductSection } from "./product-sections";
+import type { ProductSpec } from "./product-specs";
 
 // Re-exported so callers can keep reaching for it alongside `Product`.
 export type { Localized };
@@ -24,6 +25,11 @@ export interface Product {
   categoryId: ProductCategoryId;
   title: Localized;
   description: Localized;
+  /**
+   * A short row of at-a-glance facts - material, use, brand - shown under the
+   * description on the detail page. Keep each label to a couple of words.
+   */
+  specs?: ProductSpec[];
   /** Public paths, first image is treated as the cover. */
   images: string[];
   /** Highlighted on the homepage — the first three carry this flag. */
@@ -50,6 +56,20 @@ export const products: Product[] = [
       th: "ถังเก็บนํ้าไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยเเก้วเสริมเเรงที่มีความใส่ใจเป็นพิเศษเเละทุกๆขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง เเข็งเเรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
       en: "Fiberglass Reinforced Plastic (FRP) water tank, manufactured with reinforced fiberglass under careful, standardized processes at every step for cleanliness, safety, and zero residue. Strong and durable, used to store large volumes of water in medium to large scale industries and for fire water reserve systems. Suitable for offices, government agencies, condominiums, shopping malls, gas stations, factories, dormitories, and government projects.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุไฟเบอร์กลาส (FRP)", en: "FRP Material" },
+      },
+      {
+        icon: "waterStorage",
+        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/frp-horizontal-water-tank/6.webp",
       "/images/products/frp-horizontal-water-tank/1.webp",
@@ -73,6 +93,20 @@ export const products: Product[] = [
       th: "ถังเก็บน้ำไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยแก้วเสริมแรงที่มีความใส่ใจเป็นพิเศษ และทุก ๆ ขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง แข็งแรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
       en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุไฟเบอร์กลาส (FRP)", en: "FRP Material" },
+      },
+      {
+        icon: "waterStorage",
+        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/frp-vertical-water-tank/4.webp",
       "/images/products/frp-vertical-water-tank/1.webp",
@@ -239,6 +273,20 @@ export const products: Product[] = [
       th: "ถังเก็บน้ำแบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
       en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุ PE", en: "PE Material" },
+      },
+      {
+        icon: "waterStorage",
+        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/pe-above-ground-water-tank/1.webp",
       "/images/products/pe-above-ground-water-tank/2.webp",
@@ -261,6 +309,20 @@ export const products: Product[] = [
       th: "ถังเก็บน้ำใต้ดิน TANK-Q รุ่น TU มาตรฐานสากล ปลอดภัย แข็งแรง ทนทาน ตอบโจทย์ทุกไลฟ์สไตล์อย่างลงตัว ผลิตขึ้นรูปด้วยแบบไร้รอยต่อด้วยกระบวนการผลิตที่มีคุณภาพ ทนทานกว่าแข็งแรงกว่าถังประกอบทั่วไปเป็นผลิตภัณฑ์ถังเก็บน้ำใต้ดินที่ได้มาตรฐานตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพจากแบรนด์ชั้นนำ สะอาดปลอดภัย FOOD GRADE 100% Fitting น้ำเข้า-น้ำออก ทองเหลือง รับประกันยาวนาน 15 ปี",
       en: "The TANK-Q TU underground water tank meets international standards - safe, strong and durable, a perfect fit for every lifestyle. Moulded as one seamless piece through a quality manufacturing process, it is tougher and stronger than assembled tanks. This standard-compliant underground water tank is made from quality material sourced from leading brands, clean and safe with 100% food grade construction, brass inlet and outlet fittings, and backed by a long 15 year warranty.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุ PE", en: "PE Material" },
+      },
+      {
+        icon: "waterStorage",
+        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/pe-underground-water-tank/1.webp",
       "/images/products/pe-underground-water-tank/2.webp",
@@ -281,6 +343,20 @@ export const products: Product[] = [
       th: "ถังเก็บน้ำ แบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
       en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุลายหินแกรนิต", en: "Granite Material" },
+      },
+      {
+        icon: "waterStorage",
+        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/pe-above-ground-water-tank-granite/1.webp",
       "/images/products/pe-above-ground-water-tank-granite/2.webp",
@@ -310,6 +386,20 @@ export const products: Product[] = [
       th: "มาตรฐานนวัตกรรมการผลิตถังที่แข็งแรงสูงสุดไร้รอยต่อทั้งใบ มีประสิทธิภาพในการบำบัด ถังบำบัดน้ำเสีย แข็งแรงทนทานถังไร้รอยต่อ มีให้เลือกหลาย เช่น ถังบำบัดน้ำเสีย 600 ลิตร ไปจนถึง 6000 ลิตร ราคาคุณภาพ และขนาดอื่นๆ ที่สามารถตอบทุกโจทย์ความต้องการ ด้วยคุณภาพที่เหนือกว่าถังบำบัดทั่วไป",
       en: "Built with innovative manufacturing standards for maximum strength in one seamless, joint-free tank, delivering highly effective wastewater treatment. Strong and durable with a seamless tank body, available in a wide range of sizes from 600 litres up to 6000 litres and beyond, all at a price that matches the quality. It answers every requirement with quality that surpasses ordinary treatment tanks.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุ PE", en: "PE Material" },
+      },
+      {
+        icon: "wasteWaterTreatment",
+        label: { th: "สำหรับบำบัดน้ำเสีย", en: "For Waste Water Treatment" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/pe-waste-water-treatment-tank/1.webp",
       "/images/products/pe-waste-water-treatment-tank/2.webp",
@@ -329,6 +419,20 @@ export const products: Product[] = [
       th: "ถังดักไขมัน เป็นอุปกรณ์ที่ช่วยดักจับไขมันที่เกิดจากการล้างภาชนะและอุปกรณ์หุงต้มอาหาร ไม่ให้ไหลปนไปกับน้ำทิ้ง เพราะไขมันที่ลอยตัวอยู่ผิวน้ำ ทำให้ออกซิเจนละลายน้ำได้น้อย เป็นสาเหตุให้น้ำเน่าเสีย และท่อระบายน้ำเกิดการอุดตันได้ เรามีถังดักไขมันตั้งแต่ขนาดเล็กถึงใหญ่ ให้บริการแก่ลูกค้า เพื่อใช้ในครัวเรือน และภาคอุตสาหกรรม สินค้ารับประกันคุณภาพ ราคาโรงงาน",
       en: "A grease trap is a device that captures the fat and oil produced from washing dishes and cooking equipment, keeping it from flowing out with the wastewater. Grease that floats on the water's surface reduces dissolved oxygen, which causes the water to spoil and the drainage pipes to clog. We offer grease traps from small to large sizes, serving customers for household and industrial use, with guaranteed quality at factory prices.",
     },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุ PE", en: "PE Material" },
+      },
+      {
+        icon: "greaseTrap",
+        label: { th: "สำหรับดักไขมัน", en: "For Grease Trapping" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
     images: [
       "/images/products/septic-tank-and-grease-trap/1.webp",
       "/images/products/septic-tank-and-grease-trap/2.webp",
