@@ -2,7 +2,7 @@ import { FadeInUp } from "@/components/fade-in-up";
 import type { AppLocale } from "@/i18n/routing";
 import type { ProductSection } from "@/lib/product-sections";
 
-import { CheckListSection } from "./check-list-section";
+import { BulletListSection } from "./bullet-list-section";
 import { ImageGridSection } from "./image-grid-section";
 import { ParagraphSection } from "./paragraph-section";
 import { SpecTableSection } from "./spec-table-section";
@@ -37,10 +37,10 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
           </FadeInUp>
         );
 
-      case "checkList":
+      case "bulletList":
         return (
           <FadeInUp key={headingId}>
-            <CheckListSection
+            <BulletListSection
               section={section}
               locale={locale}
               headingId={headingId}

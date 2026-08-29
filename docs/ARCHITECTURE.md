@@ -205,7 +205,7 @@ src/lib/product-sections.ts        the ProductSection discriminated union
 src/components/product-sections/
   index.tsx                        the type -> component switch
   spec-table-section.tsx           one renderer per union member
-  check-list-section.tsx
+  bullet-list-section.tsx
   paragraph-section.tsx
   image-grid-section.tsx
 ```
@@ -236,11 +236,11 @@ primitive before hand-rolling one.
 | `type` | Renders |
 | --- | --- |
 | `specTable` | Size/spec table: navy header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
-| `checkList` | Short selling points, each beside a lucide `Check` in a tinted teal disc; two columns from `sm` up |
+| `bulletList` | Short selling points, two columns from `sm` up. `marker: "check"` puts a lucide `Check` in a tinted teal disc beside each item, `marker: "dot"` a plain teal bullet |
 | `paragraph` | A heading over one centred paragraph, capped at a readable measure |
 | `imageGrid` | Pictures three across on desktop down to one on a phone, filling square tiles (`object-cover`). Localized `alt` required |
 
-Only `frp-vertical-water-tank` carries sections today.
+`frp-vertical-water-tank` and `frp-horizontal-water-tank` carry sections today.
 
 ### If a product needs a one-off layout
 

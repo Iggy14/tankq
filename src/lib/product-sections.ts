@@ -30,15 +30,26 @@ export interface SpecTableSection {
 }
 
 /**
- * A list of short, scannable selling points — compliance, options, services —
- * each rendered beside a check icon.
+ * How each item in a <BulletListSection> is marked.
+ *
+ * `check` reads as a claim being ticked off - compliance, features, what the
+ * product does for you. `dot` is the neutral bullet for a list that is simply
+ * enumerating things and would overclaim with a tick.
+ */
+export type BulletMarker = "check" | "dot";
+
+/**
+ * A list of short, scannable points - compliance, options, services - each
+ * rendered beside its `marker`.
  *
  * Items are single lines of copy, not paragraphs; keep them to a phrase so the
  * list stays a glance-and-go summary rather than a wall of prose.
  */
-export interface CheckListSection {
-  type: "checkList";
+export interface BulletListSection {
+  type: "bulletList";
   title: Localized;
+  /** Ticks or plain bullets - see <BulletMarker>. */
+  marker: BulletMarker;
   items: Localized[];
 }
 
@@ -81,6 +92,6 @@ export interface ImageGridSection {
 
 export type ProductSection =
   | SpecTableSection
-  | CheckListSection
+  | BulletListSection
   | ParagraphSection
   | ImageGridSection;

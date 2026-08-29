@@ -80,6 +80,44 @@ export const products: Product[] = [
     ],
     featured: true,
     order: 1,
+    sections: [
+      {
+        type: "paragraph",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        body: {
+          th: "ผลิตตามความต้องการของท่าน เราสามารถออกแบบและผลิตถังเก็บน้ำไฟเบอร์กลาสและถังบำบัดน้ำเสียตามสเปคที่ท่านกำหนด รวมถึงรุ่นทรงกระบอกแนวตั้ง",
+          en: "Custom manufacturing based on your specifications. We can design and manufacture fiberglass water storage tanks and wastewater treatment tanks, including vertical cylindrical models.",
+        },
+      },
+      {
+        type: "specTable",
+        title: {
+          th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
+          en: "Standard FRP Water Tank Sizes",
+        },
+        columns: [
+          { th: "ความจุ (ลิตร)", en: "Capacity (L)" },
+          { th: "เส้นผ่านศูนย์กลาง (มม.)", en: "Diameter (mm)" },
+          { th: "ความสูง (มม.)", en: "Height (mm)" },
+          { th: "ความหนาผนัง", en: "Wall Thickness" },
+          { th: "น้ำหนัก (กก.)", en: "Weight (kg)" },
+        ],
+        rows: [
+          [{ th: "500", en: "500" }, { th: "800", en: "800" }, { th: "1,050", en: "1,050" }, { th: "5", en: "5" }, { th: "42", en: "42" }],
+          [{ th: "1,000", en: "1,000" }, { th: "1,000", en: "1,000" }, { th: "1,350", en: "1,350" }, { th: "6", en: "6" }, { th: "68", en: "68" }],
+          [{ th: "2,000", en: "2,000" }, { th: "1,200", en: "1,200" }, { th: "1,850", en: "1,850" }, { th: "6", en: "6" }, { th: "105", en: "105" }],
+          [{ th: "3,000", en: "3,000" }, { th: "1,400", en: "1,400" }, { th: "2,000", en: "2,000" }, { th: "7", en: "7" }, { th: "145", en: "145" }],
+          [{ th: "5,000", en: "5,000" }, { th: "1,600", en: "1,600" }, { th: "2,600", en: "2,600" }, { th: "8", en: "8" }, { th: "210", en: "210" }],
+          [{ th: "10,000", en: "10,000" }, { th: "2,000", en: "2,000" }, { th: "3,300", en: "3,300" }, { th: "10", en: "10" }, { th: "390", en: "390" }],
+          [{ th: "20,000", en: "20,000" }, { th: "2,500", en: "2,500" }, { th: "4,200", en: "4,200" }, { th: "12", en: "12" }, { th: "680", en: "680" }],
+          [{ th: "50,000", en: "50,000" }, { th: "3,500", en: "3,500" }, { th: "5,500", en: "5,500" }, { th: "16", en: "16" }, { th: "1,600", en: "1,600" }],
+          [{ th: "100,000", en: "100,000" }, { th: "4,500", en: "4,500" }, { th: "6,500", en: "6,500" }, { th: "20", en: "20" }, { th: "3,200", en: "3,200" }],
+        ],
+      },
+    ],
   },
   {
     id: "frp-vertical-water-tank",
@@ -127,11 +165,12 @@ export const products: Product[] = [
     order: 2,
     sections: [
       {
-        type: "checkList",
+        type: "bulletList",
         title: {
           th: "คุณสมบัติและมาตรฐานคุณภาพ",
           en: "Features and Quality Standards",
         },
+        marker: "check",
         items: [
           {
             th: "ผลิตจากเรซิ่นชนิดพิเศษ ผสมใยแก้ว มีความแข็งแรง",
@@ -154,6 +193,17 @@ export const products: Product[] = [
             en: "Withstands outdoor sunlight and protects against UV radiation",
           },
         ],
+      },
+      {
+        type: "paragraph",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        body: {
+          th: "ถังเก็บนํ้าไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยเเก้วเสริมเเรงที่มีความใส่ใจเป็นพิเศษเเละทุกๆขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง เเข็งเเรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
+          en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
+        },
       },
       {
         type: "specTable",
