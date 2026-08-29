@@ -47,7 +47,7 @@ export function Header() {
         <div className="flex items-center gap-2 lg:justify-self-end">
           <LanguageSwitcher />
           <Button
-            size="sm"
+            size="lg"
             nativeButton={false}
             role="link"
             render={<Link href="/contact" />}

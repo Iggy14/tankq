@@ -15,3 +15,10 @@ export const localeLabels: Record<AppLocale, string> = {
   th: "ไทย",
   en: "English",
 };
+
+// Two-letter codes for tight chrome like the header's language switch, where
+// the full label would not fit.
+export const localeShortLabels: Record<AppLocale, string> = {
+  th: "TH",
+  en: "EN",
+};
