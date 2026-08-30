@@ -79,6 +79,12 @@ exist yet under `public/images/projects/`.
 2. Fill the `images` array on each entry, cover first.
 3. Until then, any card or detail renderer must handle an empty array - do not
    assume `images[0]` exists.
+4. `src/components/project-case-studies.tsx`'s `CASE_STUDIES` list borrows
+   "why TankQ" stock photos, not real job-site photography, as stand-in
+   covers: `/why/delivery.jpg` for `frp-horizontal-buffer-tank-15000l` and
+   `/why/engineered.jpg` for `fire-water-frp-tank-500000l-nfpa`. Once an entry
+   gets its own `images[0]`, drop its `image` field from `CASE_STUDIES` and
+   have the renderer fall back to `project.images[0]`.
 
 ## Thai copy review for the project showcase
 
@@ -104,21 +110,29 @@ requires both locales inline.
 
 ## Projects page UI
 
-**Status:** not started. Added 2026-08-29.
+**Status:** in progress. Added 2026-08-29, updated 2026-08-30.
 
-`src/app/[locale]/projects/page.tsx` renders only `Breadcrumbs`, an `h1` and
-the placeholder `projects.subtitle`. The data now exists behind it.
+`src/app/[locale]/projects/page.tsx` now has a hero (title, subtitle, rule),
+`ProjectStats`, a "Featured Project Case Studies" heading, and
+`ProjectCaseStudies` (`src/components/project-case-studies.tsx`) - both
+entries in `src/lib/projects.ts` (`frp-horizontal-buffer-tank-15000l`,
+`fire-water-frp-tank-500000l-nfpa`) as a photo/copy block each, image
+alternating left/right. The `projects.subtitle` placeholder is gone and the
+"Problem" / "Solution" / "Result" chrome keys exist in both message files.
 
-**Why it was skipped:** the task asked for the data only, no UI.
+**Why the rest was skipped:** the task that added this section built one case
+study per existing project by hand, not a data-driven grid.
 
 **What to do:**
 
-1. Build the card grid off `getAllProjects()`, reading copy as
-   `project.title[locale]` and resolving the two labels through
-   `getProjectTankTypeById()` / `getProjectApplicationById()`. See the
-   "Project showcase" section of `docs/ARCHITECTURE.md`.
-2. Replace the placeholder `projects.subtitle` in `messages/en.json` and
-   `messages/th.json`, and add any new chrome keys (the "Problem" / "Solution"
-   / "Result" labels are chrome, not content) to both files key-for-key.
-3. Decide whether projects need detail pages. `Project.slug` exists for that,
+1. `ProjectCaseStudies`' `CASE_STUDIES` list is hand-maintained (slug, stand-in
+   image, left/right position) rather than generated from
+   `getAllProjects()`, so a third project added to `src/lib/projects.ts` needs
+   a matching row added there too or it won't appear on the page. Consider
+   switching to a card grid driven directly by `getAllProjects()` once there
+   are enough entries (and enough real photography) that hand-listing stops
+   scaling - reading copy as `project.title[locale]` and resolving the two
+   labels through `getProjectTankTypeById()` / `getProjectApplicationById()`.
+   See the "Project showcase" section of `docs/ARCHITECTURE.md`.
+2. Decide whether projects need detail pages. `Project.slug` exists for that,
    but no route consumes it yet - drop the field if the answer is no.

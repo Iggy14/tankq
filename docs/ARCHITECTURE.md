@@ -274,8 +274,11 @@ that file before a project can name it, or it fails to compile. List with
 display with `getProjectTankTypeById(id)` / `getProjectApplicationById(id)` and
 read it as `tag.title[locale]`.
 
-`/projects` is still the placeholder page; the data above exists ahead of the
-UI. See `docs/TODO.md`.
+`/projects` renders a hero, `ProjectStats`, and `ProjectCaseStudies`
+(`src/components/project-case-studies.tsx`) - one photo/copy block per project
+in that file's own `CASE_STUDIES` list, alternating the photo between left and
+right. It is not yet a full listing off `getAllProjects()` - a new job needs a
+row added to `CASE_STUDIES` by hand; see `docs/TODO.md` "Projects page UI".
 
 ## Components
 
@@ -288,7 +291,10 @@ src/components/
   hero/
   why-tankq/
   *.tsx             single-file page-level blocks: header, our-story,
-                    process-roadmap, ...
+                    project-stats, project-case-studies, ...
+  stat-item.tsx     shared across blocks: one stat, plus the viewport latch
+  animated-stat-value.tsx  for its count-up (used by hero/stats-strip and
+                    project-stats)
 ```
 
 Page-level blocks are self-contained: each reads its own copy through
@@ -317,9 +323,13 @@ src/components/hero/
   index.tsx        Hero: the navy band (top half) over the stats strip
   slideshow.tsx    Slideshow: the looping photo panel behind the band
   stats-strip.tsx  StatsStrip: the section's bottom half, the five stats
-  stat-item.tsx    StatItem: one stat, and the viewport latch for its count-up
-  animated-stat-value.tsx  AnimatedStatValue: the count-up itself
 ```
+
+`stat-item.tsx` and `animated-stat-value.tsx` (one stat, and the count-up
+inside it) live at the top level of `src/components` rather than inside
+`hero/` because both `hero/stats-strip.tsx` and `project-stats.tsx` render
+them - a part shared by more than one block moves out of any single block's
+folder.
 
 Rules: the parts are private to the folder and import each other by relative
 path (`./slideshow`); everything outside imports only the folder

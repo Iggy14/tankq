@@ -128,8 +128,22 @@
   "projects": {
     "metaTitle": "ผลงาน",
     "metaDescription": "ผลงานติดตั้งถัง TankQ ให้กับโรงงานอุตสาหกรรมไทย",
-    "title": "ผลงาน",
-    "subtitle": "เนื้อหาตัวอย่าง - กรณีศึกษาและผลงานที่ติดตั้งแล้วจะแสดงที่นี่"
+    "title": "ผลงานโครงการของเรา",
+    "subtitle": "มากกว่า 500 โครงการทั่วประเทศ | โรงงานชั้นนำ | หน่วยงานราชการ | นิคมอุตสาหกรรม",
+    "caseStudiesTitle": "กรณีศึกษาโครงการเด่น",
+    "problemLabel": "โจทย์",
+    "solutionLabel": "แนวทางแก้ไข",
+    "resultLabel": "ผลลัพธ์",
+    "stats": {
+      "projectsValue": "500+",
+      "projectsLabel": "โครงการที่แล้วเสร็จ",
+      "industriesValue": "50+",
+      "industriesLabel": "อุตสาหกรรมที่ให้บริการ",
+      "experienceValue": "15+",
+      "experienceLabel": "ปีประสบการณ์",
+      "provincesValue": "77",
+      "provincesLabel": "จังหวัดทั่วประเทศ"
+    }
   },
   "quality": {
     "metaTitle": "คุณภาพ",
@@ -137,22 +151,7 @@
     "title": "มาตรฐานการผลิตและกระบวนการ QC",
     "subtitle": "ถังทุกใบผ่านการตรวจสอบก่อนส่งมอบ - Hydrostatic Test | Barcol Hardness | Visual QC | QC Certificate",
     "processTitle": "กระบวนการผลิตถัง FRP ของ TankQ",
-    "processStep1Title": "วิเคราะห์สเปคและเลือกเรซิน",
-    "processStep1Description": "วิศวกรตรวจสอบสารเคมี อุณหภูมิ แรงดัน แล้วเลือกเรซินและลำดับชั้นลามิเนตที่เหมาะสม",
-    "processStep2Title": "เตรียมแม่พิมพ์และเจลโค้ท",
-    "processStep2Description": "ทำความสะอาดแม่พิมพ์ ทาเจลโค้ทชั้นแรกให้สม่ำเสมอ สีตามสเปคลูกค้า",
-    "processStep3Title": "พันใยแก้วทีละชั้น",
-    "processStep3Description": "พัน Chopped Strand Mat และ Woven Roving สลับชั้นตามลำดับลามิเนต",
-    "processStep4Title": "ตรวจสอบความหนาและความแข็ง",
-    "processStep4Description": "วัดความหนาทุกตำแหน่ง ค่า Barcol Hardness ≥40 เพื่อยืนยันการบ่มตัวสมบูรณ์",
-    "processStep5Title": "ทดสอบ Hydrostatic",
-    "processStep5Description": "เติมน้ำและทดสอบที่ 1.25 เท่าของแรงดันออกแบบ อย่างน้อย 1 ชั่วโมง ไม่มีจุดรั่ว",
-    "processStep6Title": "ตรวจสอบสายตาและตกแต่ง",
-    "processStep6Description": "ตรวจสอบด้วยสายตาทั้งภายในและภายนอก ขัดผิวท็อปโค้ท ทำความสะอาด ติดเครื่องหมายก่อนบรรจุ",
-    "processStep7Title": "ออกใบรับรองคุณภาพ",
-    "processStep7Description": "จัดทำใบรับรอง QC พร้อมผลการทดสอบทั้งหมด แบบ As-built และใบรับรองวัสดุ",
-    "processStep8Title": "บรรจุและจัดส่ง",
-    "processStep8Description": "บรรจุพร้อมป้องกันการกระแทก จัดส่งด้วยการขนส่งพิเศษ พร้อมทีมติดตั้งและทดสอบระบบ (ถ้าต้องการ)"
+    "processImageAlt": "แผนภาพกระบวนการผลิตถัง FRP ของ TankQ"
   },
   "service": {
     "metaTitle": "บริการ",

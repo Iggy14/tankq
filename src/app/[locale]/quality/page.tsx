@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
-import { ProcessRoadmap } from "@/components/process-roadmap";
 
 export async function generateMetadata({
   params,
@@ -45,7 +45,16 @@ export default async function QualityPage({ params }: PageProps<"/[locale]/quali
           </h2>
         </FadeInUp>
 
-        <ProcessRoadmap />
+        <FadeInUp className="relative mt-10 aspect-[1672/941] w-full sm:mt-12">
+          <Image
+            src="/quality/production-process.png"
+            alt={t("processImageAlt")}
+            fill
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+        </FadeInUp>
       </section>
     </>
   );

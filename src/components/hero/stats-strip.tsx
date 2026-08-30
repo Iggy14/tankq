@@ -3,8 +3,7 @@ import { useTranslations } from "next-intl";
 import type { LucideIcon } from "lucide-react";
 
 import { FadeInUpGroup } from "@/components/fade-in-up";
-
-import { StatItem } from "./stat-item";
+import { StatItem } from "@/components/stat-item";
 
 /**
  * The five headline stats, in display order. Each entry names its icon and the

@@ -128,8 +128,22 @@
   "projects": {
     "metaTitle": "Projects",
     "metaDescription": "See TankQ tank installations completed for Thai industry.",
-    "title": "Projects",
-    "subtitle": "Placeholder copy - case studies and completed installations will go here."
+    "title": "Our Project References",
+    "subtitle": "500+ projects nationwide | Leading factories | Government | Industrial estates",
+    "caseStudiesTitle": "Featured Project Case Studies",
+    "problemLabel": "Problem",
+    "solutionLabel": "Solution",
+    "resultLabel": "Result",
+    "stats": {
+      "projectsValue": "500+",
+      "projectsLabel": "Completed Projects",
+      "industriesValue": "50+",
+      "industriesLabel": "Industries Served",
+      "experienceValue": "15+",
+      "experienceLabel": "Years Experience",
+      "provincesValue": "77",
+      "provincesLabel": "Provinces Delivered"
+    }
   },
   "quality": {
     "metaTitle": "Quality",
@@ -137,22 +151,7 @@
     "title": "Production Standards & QC Process",
     "subtitle": "Every tank inspected before delivery - Hydrostatic Test | Barcol Hardness | Visual QC | QC Certificate",
     "processTitle": "TankQ FRP Production Process",
-    "processStep1Title": "Spec Analysis & Resin Selection",
-    "processStep1Description": "Engineer reviews chemical, temperature, pressure. Selects appropriate resin and laminate schedule.",
-    "processStep2Title": "Mold Preparation & Gel Coat",
-    "processStep2Description": "Clean mold, apply first Gel Coat layer evenly, color per customer spec.",
-    "processStep3Title": "Layer-by-Layer Lamination",
-    "processStep3Description": "Apply Chopped Strand Mat and Woven Roving alternating layers per laminate schedule.",
-    "processStep4Title": "Thickness & Hardness Check",
-    "processStep4Description": "Measure thickness at all positions. Barcol Hardness ≥40 to confirm complete cure.",
-    "processStep5Title": "Hydrostatic Test",
-    "processStep5Description": "Fill with water and test at 1.25× design pressure for minimum 1 hour with zero leaks.",
-    "processStep6Title": "Visual QC & Finishing",
-    "processStep6Description": "Visual inspection inside and out, polish top coat, clean, apply marking before packing.",
-    "processStep7Title": "Issue QC Certificate",
-    "processStep7Description": "Prepare QC Certificate with all test results, As-built Drawing, and Material Certificate.",
-    "processStep8Title": "Packing & Delivery",
-    "processStep8Description": "Pack with shock protection, ship by special transport with installation and commissioning team (optional)."
+    "processImageAlt": "TankQ FRP tank production process diagram"
   },
   "service": {
     "metaTitle": "Service",
