@@ -634,8 +634,8 @@ export const products: Product[] = [
       {
         type: "specTable",
         title: {
-          th: "ขนาดถังบำบัดน้ำเสียตามอัตราการไหล",
-          en: "Treatment Tank Sizing by Flow Rate",
+          th: "ตารางขนาดถังบำบัดน้ำเสียไฟเบอร์กลาส",
+          en: "FRP Wastewater Tank Size Table",
         },
         columns: [
           { th: "อัตราการไหล (m³/วัน)", en: "Flow Rate (m³/day)" },
