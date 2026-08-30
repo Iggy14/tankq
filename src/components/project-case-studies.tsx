@@ -2,73 +2,56 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
+import { ProjectTagPills } from "@/components/project-tag-pills";
 import { toAppLocale } from "@/i18n/locale";
-import { getProjectApplicationById, getProjectTankTypeById } from "@/lib/project-tags";
-import { getProjectBySlug } from "@/lib/projects";
+import { getAllProjects, type Project } from "@/lib/projects";
 import { cn } from "@/lib/utils";
 
 /**
- * The projects the site currently has a real photo for, paired with a still
- * to stand in for it. `images` is empty on every `src/lib/projects.ts` entry
- * (see docs/TODO.md "Project photography"), so these borrow stills from the
- * "why TankQ" set rather than waiting on job-site photography - swap each
- * `image` to `project.images[0]` once that entry gets its own cover.
- * `imagePosition` alternates left/right so consecutive case studies don't
- * read as a repeating template.
- */
-const CASE_STUDIES = [
-  {
-    slug: "frp-horizontal-buffer-tank-15000l",
-    image: "/why/delivery.jpg",
-    imagePosition: "left",
-  },
-  {
-    slug: "fire-water-frp-tank-500000l-nfpa",
-    image: "/why/engineered.jpg",
-    imagePosition: "right",
-  },
-] as const satisfies readonly {
-  slug: string;
-  image: string;
-  imagePosition: "left" | "right";
-}[];
-
-/**
  * The projects page's photo/copy case studies, under its "Featured Project
- * Case Studies" heading. The page's last section, so `flex-1` lets it soak up
- * any leftover viewport height, matching the single-section pattern on
- * `quality`/`service`. The first case study gets a modest top padding to
- * separate it from the heading above; every one after that gets a more
- * generous top padding so consecutive showcases read as distinct blocks
- * rather than one continuous one.
+ * Case Studies" heading. Driven straight off `getAllProjects()`, so a project
+ * added to `src/lib/projects.ts` appears here with no second edit - covers
+ * come from the entry's own `images[0]`. The page's last section, so `flex-1`
+ * lets it soak up any leftover viewport height, matching the single-section
+ * pattern on `quality`/`service`. The first case study gets a modest top
+ * padding to separate it from the heading above; every one after that gets a
+ * more generous top padding so consecutive showcases read as distinct blocks
+ * rather than one continuous one. The image alternates left/right so they
+ * don't read as a repeating template.
  */
 export function ProjectCaseStudies() {
+  const projects = getAllProjects();
+
   return (
     <section className="mx-auto flex w-full max-w-[88rem] flex-1 flex-col px-4 pb-16 sm:px-6 sm:pb-20">
-      {CASE_STUDIES.map((entry, index) => (
-        <CaseStudy key={entry.slug} {...entry} isFirst={index === 0} />
+      {projects.map((project, index) => (
+        <CaseStudy
+          key={project.id}
+          project={project}
+          imagePosition={index % 2 === 1 ? "right" : "left"}
+          isFirst={index === 0}
+        />
       ))}
     </section>
   );
 }
 
-type CaseStudyProps = (typeof CASE_STUDIES)[number] & { isFirst: boolean };
+type CaseStudyProps = {
+  project: Project;
+  imagePosition: "left" | "right";
+  isFirst: boolean;
+};
 
 /**
  * One project told as a photo beside its problem / solution / result triad.
- * Reads `src/lib/projects.ts` and `src/lib/project-tags.ts` directly rather
- * than duplicating the copy, so it stays in sync with the data. Renders
- * nothing if its slug is ever removed from the data.
+ * The cover may be missing (`images` is empty until a job gets photography -
+ * see docs/TODO.md), in which case the frame renders on its own.
  */
-function CaseStudy({ slug, image, imagePosition, isFirst }: CaseStudyProps) {
+function CaseStudy({ project, imagePosition, isFirst }: CaseStudyProps) {
   const t = useTranslations("projects");
   const locale = toAppLocale(useLocale());
 
-  const project = getProjectBySlug(slug);
-  if (!project) return null;
-
-  const tankType = getProjectTankTypeById(project.tankTypeId);
-  const application = getProjectApplicationById(project.applicationId);
+  const cover = project.images[0];
 
   return (
     <FadeInUpGroup
@@ -83,13 +66,15 @@ function CaseStudy({ slug, image, imagePosition, isFirst }: CaseStudyProps) {
           imagePosition === "right" && "lg:order-2",
         )}
       >
-        <Image
-          src={image}
-          alt={project.title[locale]}
-          fill
-          className="object-cover"
-          sizes="(min-width: 1024px) 32rem, 100vw"
-        />
+        {cover && (
+          <Image
+            src={cover}
+            alt={project.title[locale]}
+            fill
+            className="object-cover"
+            sizes="(min-width: 1024px) 32rem, 100vw"
+          />
+        )}
       </FadeInUp>
 
       <FadeInUp
@@ -101,18 +86,10 @@ function CaseStudy({ slug, image, imagePosition, isFirst }: CaseStudyProps) {
           imagePosition === "right" && "lg:order-1 lg:pl-[calc(50%-16rem)]",
         )}
       >
-        <div className="flex flex-wrap gap-2">
-          {tankType && (
-            <span className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-              {tankType.title[locale]}
-            </span>
-          )}
-          {application && (
-            <span className="inline-flex items-center rounded-full bg-muted px-3 py-1 text-xs font-medium text-muted-foreground">
-              {application.title[locale]}
-            </span>
-          )}
-        </div>
+        <ProjectTagPills
+          tankTypeId={project.tankTypeId}
+          applicationId={project.applicationId}
+        />
 
         <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">
           {project.title[locale]}

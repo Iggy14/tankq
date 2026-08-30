@@ -260,8 +260,9 @@ composes with the others in whatever order the data says.
 delivered job told as a short case study: `industry`, `province`, `year`, a
 localized `title`, and the `problem` / `solution` / `result` triad that a card
 renders together. It also carries `slug`, `images`, `featured` and `order`,
-same as a product. `images` is empty on every entry today - there is no project
-photography yet, so a renderer must cope with a job that has no cover.
+same as a product. `images` holds stand-in stills from the "why TankQ" set
+rather than real job photography (see `docs/TODO.md`), and may be empty on a
+newly added job - a renderer must cope with one that has no cover.
 
 The two labels on a card are ids, not free text. `src/lib/project-tags.ts`
 holds two registries - `projectTankTypes` (the kind of tank or job) and
@@ -274,11 +275,24 @@ that file before a project can name it, or it fails to compile. List with
 display with `getProjectTankTypeById(id)` / `getProjectApplicationById(id)` and
 read it as `tag.title[locale]`.
 
+Two components render a project, so both stay in step with the data:
+
+- `ProjectTagPills` (`src/components/project-tag-pills.tsx`) draws the two
+  labels from a `tankTypeId` / `applicationId` pair. Any block showing a
+  project's labels uses it rather than repeating the pill markup.
+- `ProjectCard` (`src/components/project-card.tsx`) is the tile: cover, title
+  and those pills. It is deliberately *not* a link - there is no
+  `/projects/<slug>` route - so it carries none of `ProductCard`'s hover
+  affordance and otherwise matches a product card at rest.
+
 `/projects` renders a hero, `ProjectStats`, and `ProjectCaseStudies`
-(`src/components/project-case-studies.tsx`) - one photo/copy block per project
-in that file's own `CASE_STUDIES` list, alternating the photo between left and
-right. It is not yet a full listing off `getAllProjects()` - a new job needs a
-row added to `CASE_STUDIES` by hand; see `docs/TODO.md` "Projects page UI".
+(`src/components/project-case-studies.tsx`) - one photo/copy block per entry in
+`getAllProjects()`, alternating the photo left/right by index parity. The
+homepage's `FeaturedProjects` (`src/components/featured-projects.tsx`) renders
+`getFeaturedProjects()` as a row of `ProjectCard`s under the featured products,
+mirroring `FeaturedProducts`. Both are driven straight off the data, so a job
+added to `src/lib/projects.ts` appears on the projects page immediately, and on
+the homepage as soon as it carries `featured: true`.
 
 ## Service sections
 

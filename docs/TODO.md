@@ -63,11 +63,15 @@ messages files, still a placeholder) a contact form.
 
 ## Project photography
 
-**Status:** not started. Added 2026-08-29 with the project data.
+**Status:** not started. Added 2026-08-29 with the project data, updated
+2026-08-30.
 
-Both entries in `src/lib/projects.ts` carry `images: []`. The field follows the
-product convention - public paths, first entry is the cover - but no files
-exist yet under `public/images/projects/`.
+Neither entry in `src/lib/projects.ts` has real photography. Both now carry a
+stand-in cover borrowed from the "why TankQ" stock set -
+`images: ["/why/delivery.jpg"]` on `frp-horizontal-buffer-tank-15000l` and
+`images: ["/why/engineered.jpg"]` on `fire-water-frp-tank-500000l-nfpa` - so
+that the homepage cards and the case studies have something to show. Nothing
+exists under `public/images/projects/`.
 
 **Why it was skipped:** no photography was supplied with the copy.
 
@@ -76,15 +80,12 @@ exist yet under `public/images/projects/`.
 1. Add files at `public/images/projects/<slug>/<n>.webp`, matching the two
    slugs: `frp-horizontal-buffer-tank-15000l` and
    `fire-water-frp-tank-500000l-nfpa`.
-2. Fill the `images` array on each entry, cover first.
-3. Until then, any card or detail renderer must handle an empty array - do not
-   assume `images[0]` exists.
-4. `src/components/project-case-studies.tsx`'s `CASE_STUDIES` list borrows
-   "why TankQ" stock photos, not real job-site photography, as stand-in
-   covers: `/why/delivery.jpg` for `frp-horizontal-buffer-tank-15000l` and
-   `/why/engineered.jpg` for `fire-water-frp-tank-500000l-nfpa`. Once an entry
-   gets its own `images[0]`, drop its `image` field from `CASE_STUDIES` and
-   have the renderer fall back to `project.images[0]`.
+2. Replace the `/why/*.jpg` path on each entry's `images` array with the real
+   ones, cover first. That is the only edit needed - both
+   `src/components/project-card.tsx` and
+   `src/components/project-case-studies.tsx` already read `project.images[0]`.
+3. A renderer must still handle an empty array - a newly added job may arrive
+   with no photo, so do not assume `images[0]` exists.
 
 ## Thai copy review for the project showcase
 
@@ -120,22 +121,24 @@ entries in `src/lib/projects.ts` (`frp-horizontal-buffer-tank-15000l`,
 alternating left/right. The `projects.subtitle` placeholder is gone and the
 "Problem" / "Solution" / "Result" chrome keys exist in both message files.
 
-**Why the rest was skipped:** the task that added this section built one case
-study per existing project by hand, not a data-driven grid.
+**Why the rest was skipped:** the page shows every project as a photo/copy
+case study. That reads well at two entries and is now driven off
+`getAllProjects()`, but it is not a listing - revisit the format once there
+are enough jobs that one full-width block each stops scaling.
 
 **What to do:**
 
-1. `ProjectCaseStudies`' `CASE_STUDIES` list is hand-maintained (slug, stand-in
-   image, left/right position) rather than generated from
-   `getAllProjects()`, so a third project added to `src/lib/projects.ts` needs
-   a matching row added there too or it won't appear on the page. Consider
-   switching to a card grid driven directly by `getAllProjects()` once there
-   are enough entries (and enough real photography) that hand-listing stops
-   scaling - reading copy as `project.title[locale]` and resolving the two
-   labels through `getProjectTankTypeById()` / `getProjectApplicationById()`.
-   See the "Project showcase" section of `docs/ARCHITECTURE.md`.
-2. Decide whether projects need detail pages. `Project.slug` exists for that,
-   but no route consumes it yet - drop the field if the answer is no.
+1. Decide whether projects need detail pages. `Project.slug` exists for that,
+   but no route consumes it yet - drop the field if the answer is no. Until
+   one exists, `src/components/project-card.tsx` is deliberately not a link;
+   wrap it in a `Link` to `/projects/<slug>` and restore `ProductCard`'s hover
+   affordance once there is somewhere to go.
+2. The homepage's `FeaturedProjects`
+   (`src/components/featured-projects.tsx`) shows every project carrying
+   `featured: true` - both of them today, so its grid is two-up
+   (`sm:grid-cols-2` inside `max-w-4xl`). Once a third job is flagged, add
+   `lg:grid-cols-3` and drop the `max-w-4xl` so it matches the three-across
+   featured products row above it.
 
 ## Service page photography
 

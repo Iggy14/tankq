@@ -37,8 +37,10 @@ export interface Project {
   /** The measurable outcome. */
   result: Localized;
   /**
-   * Public paths, first image is treated as the cover. Empty until the site
-   * has photography for the job - see `docs/TODO.md`.
+   * Public paths, first image is treated as the cover. Currently stand-in
+   * stills borrowed from the "why TankQ" set, not job-site photography -
+   * swap them for real covers per `docs/TODO.md`. May still be empty, so a
+   * renderer must not assume `images[0]` exists.
    */
   images: string[];
   /** Highlighted on the homepage. */
@@ -78,7 +80,7 @@ export const projects: Project[] = [
       th: "ส่งมอบตรงเวลา ผ่านการทดสอบแรงดันน้ำ และลูกค้าสั่งซื้อเพิ่มอีก 3 ใบ",
       en: "On-time delivery, passed hydro test, customer reordered 3 more",
     },
-    images: [],
+    images: ["/why/delivery.jpg"],
     featured: true,
     order: 1,
   },
@@ -112,7 +114,7 @@ export const projects: Project[] = [
       th: "ผ่านการตรวจสอบของบริษัทประกันภัย รองรับระบบสปริงเกลอร์ได้เต็มระบบ",
       en: "Passed insurance inspection, supports full sprinkler system",
     },
-    images: [],
+    images: ["/why/engineered.jpg"],
     featured: true,
     order: 2,
   },

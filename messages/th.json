@@ -32,6 +32,11 @@
       "subtitle": "ถัง FRP สำหรับทุกงานอุตสาหกรรม",
       "viewAll": "ดูสินค้าทั้งหมด"
     },
+    "projects": {
+      "title": "ผลงานของเรา",
+      "subtitle": "โครงการถัง FRP ที่ส่งมอบให้โรงงานอุตสาหกรรมไทย",
+      "viewAll": "ดูผลงานทั้งหมด"
+    },
     "stats": {
       "experienceValue": "15+",
       "experienceLabel": "ปีประสบการณ์",
