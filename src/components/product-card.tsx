@@ -1,15 +1,13 @@
 import Image from "next/image";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
 import type { Product } from "@/lib/products";
@@ -30,60 +28,61 @@ type ProductCardProps = {
 };
 
 /**
- * One catalogue entry: cover image, title, truncated description and a link
- * through to its detail page.
+ * One catalogue entry: cover image with its title and a two-line description
+ * centred underneath, the whole tile linking through to the detail page.
+ *
+ * Nothing but the picture and the words shows at rest; the card shell - a
+ * primary-blue ring and a shadow tinted the same, for the water read - fades
+ * in on hover. Padding is constant in both states, so the shell appears around
+ * the tile without moving it.
  *
  * Shared by the homepage's featured row, the products listing and the
  * "other products" strip, so all three stay identical by construction. Titles
- * and descriptions come from the data itself rather than the message files,
- * so they are read as `product.title[locale]`.
+ * and descriptions come from the data itself rather than the message files, so
+ * they are read as `product.title[locale]`.
  */
 export function ProductCard({
   product,
   sizes = PRODUCT_CARD_SIZES,
   priority = false,
 }: ProductCardProps) {
-  const t = useTranslations("products");
   const locale = toAppLocale(useLocale());
 
   return (
-    <Card className="h-full transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:ring-foreground/25">
-      {/* Direct child of Card on purpose: the recipe rounds and unpads a
-          leading <img> for edge-to-edge covers. */}
-      <Image
-        src={product.images[0]}
-        alt={product.title[locale]}
-        width={640}
-        height={480}
-        sizes={sizes}
-        priority={priority}
-        className="aspect-4/3 w-full bg-muted object-cover transition-transform duration-300 group-hover/card:scale-[1.03]"
-      />
+    <Link
+      href={`/products/${product.slug}`}
+      className="block h-full rounded-xl outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+    >
+      <Card
+        size="sm"
+        className="h-full bg-transparent shadow-none ring-transparent transition-all duration-300 hover:-translate-y-1 hover:bg-card hover:shadow-lg hover:shadow-primary/25 hover:ring-primary/40"
+      >
+        <CardContent>
+          {/* Its own frame rather than a direct child of Card: the recipe
+              rounds only the top of a leading <img> for edge-to-edge covers,
+              and this card wants the picture rounded all round. */}
+          <div className="overflow-hidden rounded-lg bg-muted">
+            <Image
+              src={product.images[0]}
+              alt={product.title[locale]}
+              width={640}
+              height={480}
+              sizes={sizes}
+              priority={priority}
+              className="aspect-4/3 w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.03]"
+            />
+          </div>
+        </CardContent>
 
-      <CardHeader>
-        <CardTitle className="text-lg">{product.title[locale]}</CardTitle>
-      </CardHeader>
-
-      <CardContent className="flex-1">
-        <CardDescription className="line-clamp-3 leading-relaxed">
-          {product.description[locale]}
-        </CardDescription>
-      </CardContent>
-
-      <CardFooter>
-        <Button
-          variant="outline"
-          size="sm"
-          nativeButton={false}
-          role="link"
-          render={<Link href={`/products/${product.slug}`} />}
-        >
-          {/* Names the product for screen readers, which would otherwise hear
-              a page full of identical "View detail" links. */}
-          {t("viewDetail")}
-          <span className="sr-only"> — {product.title[locale]}</span>
-        </Button>
-      </CardFooter>
-    </Card>
+        <CardHeader>
+          <CardTitle className="text-center text-base text-primary sm:text-lg">
+            {product.title[locale]}
+          </CardTitle>
+          <CardDescription className="line-clamp-2 text-center leading-relaxed">
+            {product.description[locale]}
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    </Link>
   );
 }

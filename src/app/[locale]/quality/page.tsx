@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
+import { QcChecklistTable } from "@/components/qc-checklist-table";
 
 export async function generateMetadata({
   params,
@@ -54,6 +55,10 @@ export default async function QualityPage({ params }: PageProps<"/[locale]/quali
             sizes="100vw"
             priority
           />
+        </FadeInUp>
+
+        <FadeInUp className="mt-16 sm:mt-20">
+          <QcChecklistTable />
         </FadeInUp>
       </section>
     </>

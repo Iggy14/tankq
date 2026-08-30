@@ -632,6 +632,52 @@ export const products: Product[] = [
         ],
       },
       {
+        type: "specTable",
+        title: {
+          th: "ตารางขนาดถังบำบัดน้ำเสียไฟเบอร์กลาส",
+          en: "FRP Wastewater Tank Size Table",
+        },
+        columns: [
+          { th: "อัตราการไหล (m³/วัน)", en: "Flow Rate (m³/day)" },
+          { th: "ความจุถัง (m³)", en: "Tank Capacity (m³)" },
+          { th: "⌀ (มม.)", en: "⌀ (mm)" },
+          { th: "สูง (มม.)", en: "Height (mm)" },
+          { th: "ระบบแนะนำ", en: "Recommended System" },
+        ],
+        rows: [
+          [
+            { th: "1-5", en: "1-5" },
+            { th: "3-10", en: "3-10" },
+            { th: "1,400-2,000", en: "1,400-2,000" },
+            { th: "2,000-3,000", en: "2,000-3,000" },
+            { th: "SBR / เติมอากาศ", en: "SBR / Aerobic" },
+          ],
+          [
+            { th: "5-20", en: "5-20" },
+            { th: "10-40", en: "10-40" },
+            { th: "2,000-3,000", en: "2,000-3,000" },
+            { th: "3,000-4,000", en: "3,000-4,000" },
+            { th: "เติมอากาศ + ตกตะกอน", en: "Aerobic + Settling" },
+          ],
+          [
+            { th: "20-100", en: "20-100" },
+            { th: "40-200", en: "40-200" },
+            { th: "3,000-4,000", en: "3,000-4,000" },
+            { th: "4,000-5,000", en: "4,000-5,000" },
+            { th: "ไร้อากาศ + เติมอากาศ", en: "Anaerobic + Aerobic" },
+          ],
+          [
+            { th: "100-500", en: "100-500" },
+            { th: "200-1,000", en: "200-1,000" },
+            // No fixed vessel size at this flow rate: the job becomes several
+            // tanks in series, so the source table gives a note, not figures.
+            { th: "หลายถังต่ออนุกรม", en: "Multiple tanks in series" },
+            { th: "-", en: "-" },
+            { th: "ออกแบบระบบครบวงจร", en: "Full System Design" },
+          ],
+        ],
+      },
+      {
         type: "orderedList",
         title: {
           th: "ระบบบำบัดที่เราออกแบบและจัดหา",
