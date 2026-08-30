@@ -122,3 +122,51 @@ the placeholder `projects.subtitle`. The data now exists behind it.
    / "Result" labels are chrome, not content) to both files key-for-key.
 3. Decide whether projects need detail pages. `Project.slug` exists for that,
    but no route consumes it yet - drop the field if the answer is no.
+
+## Service page photography
+
+**Status:** not started. Added 2026-08-30 with the service page sections.
+
+All six entries in `src/lib/services.ts` carry `image: null`, so every row on
+`/service` renders the placeholder box from
+`src/components/service-sections/service-image.tsx` instead of a photo.
+
+**Why it was skipped:** no service photography was supplied. `public/service/`
+does already hold `s1.jpg` - `s6.jpg`, but they are generic finished-tank shots
+(site installation, warehouse, transport, a tank farm) and none of them depict
+inspection, repair, lining, accessory replacement, survey or PM work, so wiring
+them in would caption a transport photo as "FRP Tank Inspection". They are
+referenced nowhere in `src/`.
+
+**What to do:**
+
+1. Add a photo per service under `public/service/`, named for its entry id
+   (`inspection`, `repair`, `lining`, `accessories`, `survey`, `pm-contract`).
+   Landscape crops - the box is 4:3, and `object-cover` will cut a portrait
+   shot hard. The two portrait files already there (`s3.jpg`, `s4.jpg`) are the
+   reason to check this.
+2. Set `image` on that entry in `src/lib/services.ts` and review its
+   `imageAlt`, which currently describes the intended photo rather than a real
+   one.
+3. Decide what to do with `s1.jpg` - `s6.jpg`. If they are not going to be
+   used anywhere, delete them - they are 4.5 MB of unreferenced assets.
+
+## Thai copy review for the service page
+
+**Status:** not started. Added 2026-08-30 with the service page sections.
+
+The English side of `src/lib/services.ts` is the customer's own copy from
+`tasks/service_page.md`. The Thai side was written by Claude and has not been
+read by a native speaker.
+
+**Why it was skipped:** the source brief was English apart from two bullets in
+the lining section (`ถังเหล็ก`, `ถังคอนกรีต`), which were split across the two
+locales as written.
+
+**What to do:**
+
+1. Review every `th` string in `src/lib/services.ts` - the six titles,
+   descriptions, point lists and `imageAlt` values.
+2. Check the technical terms in particular: "ทดสอบความแข็ง Barcol",
+   "ตุ่มพอง" for blisters, and "เคลือบ Vinyl Ester / Isophthalic" - these are
+   trade terms and the shop may have its own wording.

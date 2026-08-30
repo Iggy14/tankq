@@ -277,6 +277,29 @@ read it as `tag.title[locale]`.
 `/projects` is still the placeholder page; the data above exists ahead of the
 UI. See `docs/TODO.md`.
 
+## Service sections
+
+`src/lib/services.ts` holds the `Service[]` behind `/service`, listed by
+`getAllServices()`. One entry is one after-sales service: a localized `title`,
+a one-line `description`, a short `points` list rendered as ticks, and an
+`image` / `imageAlt` pair. It is content, not chrome, so both locales live
+inline and the page reads `service.title[locale]`; nothing here belongs in
+`messages/*.json`.
+
+`src/components/service-sections/` renders the list. `index.tsx` maps the
+array and passes `reversed={index % 2 === 1}`; `service-section.tsx` lays out
+one row as a two-column grid and swaps the sides with explicit `lg:col-start`
+placement, so the DOM order stays photo-then-copy and the single mobile column
+does not alternate. Adding a service is one array entry - which side it lands
+on follows from its position, and nothing else changes.
+
+`image` is `null` while a service has no photo, and `service-image.tsx` draws a
+placeholder in the same 4:3 box instead, so the row does not resize when a real
+file arrives. Shipping a photo means dropping the file in `public/service/` and
+setting `image` on that entry. `getAllServices()` deliberately returns the wide
+`Service`, not the literal row type, so the photo branch stays reachable while
+every entry is still `null`.
+
 ## Components
 
 ```
@@ -370,7 +393,7 @@ Thai + Latin) as `--font-sans` and `--font-heading`, Geist Mono as
 
 ## Static assets
 
-`public/` holds `brand/`, `hero/`, `about/`, `why/`, `footer/`,
+`public/` holds `brand/`, `hero/`, `about/`, `why/`, `footer/`, `service/`,
 `images/products/<slug>/` and `images/socials/`. Use `next/image` with explicit
 `width` and `height`; pass `priority` only for above-the-fold art.
 

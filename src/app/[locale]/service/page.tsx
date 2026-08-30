@@ -3,6 +3,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
+import { ServiceSections } from "@/components/service-sections";
+import { toAppLocale } from "@/i18n/locale";
 
 export async function generateMetadata({
   params,
@@ -20,6 +22,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const activeLocale = toAppLocale(locale);
   const t = await getTranslations("service");
   const tNav = await getTranslations("nav");
 
@@ -35,9 +38,11 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
           <p className="mt-6 max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base">
             {t("subtitle")}
           </p>
-          <div className="mb-40 mt-8 h-px w-40 bg-neutral-500 sm:mb-14 sm:mt-10" />
+          <div className="mt-8 mb-14 h-px w-40 bg-neutral-500 sm:mt-10" />
         </FadeInUp>
       </section>
+
+      <ServiceSections locale={activeLocale} />
     </>
   );
 }
