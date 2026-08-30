@@ -244,8 +244,8 @@ primitive before hand-rolling one.
 
 Both FRP tanks carry sections today; the four PE tanks and the grease trap
 carry a `Usage` and a `Recommendation` bullet list each, and
-`pe-waste-water-treatment-tank` adds an `orderedList` of the treatment systems
-TankQ designs and supplies.
+`pe-waste-water-treatment-tank` adds a `specTable` sizing tanks by flow rate
+plus an `orderedList` of the treatment systems TankQ designs and supplies.
 
 ### If a product needs a one-off layout
 
