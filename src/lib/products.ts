@@ -777,7 +777,7 @@ export const products: Product[] = [
       },
     ],
     images: [
-      "/images/products/fiberglass-septic-tank/1.jpg",
+      "/images/products/fiberglass-septic-tank/fiberglassentry.jpg",
       "/images/products/fiberglass-septic-tank/2.jpg",
       "/images/products/fiberglass-septic-tank/3.jpg",
     ],
