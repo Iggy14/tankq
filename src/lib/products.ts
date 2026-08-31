@@ -338,6 +338,7 @@ export const products: Product[] = [
       },
     ],
     images: [
+      "/images/products/pe-above-ground-water-tank/6.jpg",
       "/images/products/pe-above-ground-water-tank/1.webp",
       "/images/products/pe-above-ground-water-tank/2.webp",
       "/images/products/pe-above-ground-water-tank/3.webp",
@@ -440,6 +441,7 @@ export const products: Product[] = [
       },
     ],
     images: [
+      "/images/products/pe-underground-water-tank/1.jpg",
       "/images/products/pe-underground-water-tank/2.webp",
       "/images/products/pe-underground-water-tank/1.webp",
       "/images/products/pe-underground-water-tank/3.webp",
@@ -508,13 +510,8 @@ export const products: Product[] = [
       },
     ],
     images: [
+      "/images/products/pe-above-ground-water-tank-granite/13.png",
       "/images/products/pe-above-ground-water-tank-granite/1.webp",
-      "/images/products/pe-above-ground-water-tank-granite/2.webp",
-      "/images/products/pe-above-ground-water-tank-granite/3.webp",
-      "/images/products/pe-above-ground-water-tank-granite/4.webp",
-      "/images/products/pe-above-ground-water-tank-granite/5.webp",
-      "/images/products/pe-above-ground-water-tank-granite/6.webp",
-      "/images/products/pe-above-ground-water-tank-granite/7.webp",
       "/images/products/pe-above-ground-water-tank-granite/8.webp",
       "/images/products/pe-above-ground-water-tank-granite/9.webp",
       "/images/products/pe-above-ground-water-tank-granite/10.webp",
@@ -617,6 +614,7 @@ export const products: Product[] = [
       },
     ],
     images: [
+      "/images/products/pe-waste-water-treatment-tank/2.jpg",
       "/images/products/pe-waste-water-treatment-tank/1.webp",
       "/images/products/pe-waste-water-treatment-tank/2.webp",
     ],
