@@ -22,7 +22,7 @@ export function CtaBand() {
   const t = useTranslations();
 
   return (
-    <section className="relative overflow-x-clip bg-navy text-navy-foreground">
+    <section className="relative overflow-x-clip bg-[#1960C8] text-navy-foreground">
       <div className="relative mx-auto grid w-full max-w-[88rem] gap-12 px-4 py-20 sm:px-6 md:grid-cols-2 md:items-center md:py-24">
         <div className="relative z-10 max-w-lg space-y-5">
           <h2 className="text-3xl leading-[1.15] font-semibold tracking-tight text-balance sm:text-4xl">

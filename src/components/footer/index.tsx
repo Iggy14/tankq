@@ -15,10 +15,10 @@ export function Footer() {
           from the CTA band's navy into this section's own darker background
           (gradient overlay behind the z-10 content) so the seam dissolves
           instead of showing as a hard line. */}
-      <div className="relative bg-foreground text-background">
+      <div className="relative bg-[#0594DB] text-background">
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 z-0 bg-linear-to-t from-foreground from-10% to-transparent sm:-top-15 sm:h-15"
+          className="pointer-events-none absolute inset-x-0 z-0 bg-linear-to-t from-[#0594DB] from-10% to-transparent sm:-top-15 sm:h-15"
         />
         <div className="relative z-10 mx-auto w-full max-w-[88rem] px-4 py-14 sm:px-6">
           <LinkColumns />

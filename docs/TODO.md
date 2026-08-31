@@ -168,6 +168,27 @@ referenced nowhere in `src/`.
 3. Decide what to do with `s1.jpg` - `s6.jpg`. If they are not going to be
    used anywhere, delete them - they are 4.5 MB of unreferenced assets.
 
+## Fiberglass septic tank product: photo format and Thai copy review
+
+**Status:** not started. Added 2026-08-31 with the new `fiberglass-septic-tank`
+product (`src/lib/products.ts`, category `frp-wastewater-treatment-tank`).
+
+The three photos supplied for this product
+(`public/images/products/fiberglass-septic-tank/1.jpg` - `3.jpg`) are unedited
+phone/camera JPEGs, renamed and moved into place as-is. Every other product's
+`images` array points at optimized `.webp` files.
+
+**Why it was skipped:** no image-conversion tooling is available in this
+session, and re-encoding was out of scope for adding the product entry.
+
+**What to do:**
+
+1. Convert the three files to `.webp` (matching the sizing/quality other
+   product photos use) and update the three paths in the
+   `fiberglass-septic-tank` entry in `src/lib/products.ts`.
+2. Review the Thai `description` on that entry - it was translated by Claude
+   from the customer's English copy and has not been read by a native speaker.
+
 ## Thai copy review for the service page
 
 **Status:** not started. Added 2026-08-30 with the service page sections.

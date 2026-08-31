@@ -146,9 +146,9 @@ export const products: Product[] = [
       },
     ],
     images: [
+      "/images/products/frp-vertical-water-tank/2.webp",
       "/images/products/frp-vertical-water-tank/4.webp",
       "/images/products/frp-vertical-water-tank/1.webp",
-      "/images/products/frp-vertical-water-tank/2.webp",
       "/images/products/frp-vertical-water-tank/3.webp",
       "/images/products/frp-vertical-water-tank/5.webp",
       "/images/products/frp-vertical-water-tank/6.webp",
@@ -753,6 +753,74 @@ export const products: Product[] = [
     ],
   },
   {
+    id: "fiberglass-septic-tank",
+    slug: "fiberglass-septic-tank",
+    categoryId: "frp-wastewater-treatment-tank",
+    title: {
+      th: "ถังบำบัดน้ำเสียไฟเบอร์กลาส",
+      en: "Fiberglass Septic Tank",
+    },
+    description: {
+      th: "ถังบำบัดน้ำเสียไฟเบอร์กลาสแบรนด์ TANK-Q ใช้สำหรับบำบัดน้ำเสีย ผลิตจากไฟเบอร์กลาสที่ขึ้นชื่อในเรื่องความแข็งแรง ทนต่อการกัดกร่อน และมีน้ำหนักเบา ทำให้ติดตั้งและขนย้ายได้ง่าย ระบบบำบัดน้ำเสียภายในถังใช้กระบวนการทางชีวภาพในการย่อยสลายสารอินทรีย์และกำจัดสารปนเปื้อนต่าง ๆ ในน้ำเสีย ส่งผลให้ได้น้ำที่ผ่านการบำบัดคุณภาพสูงขึ้นก่อนปล่อยคืนสู่สิ่งแวดล้อมหรือระบบระบายน้ำสาธารณะ เรามีถังบำบัดน้ำเสียขนาดใหญ่ให้เลือก 3 รูปแบบ",
+      en: "TANK-Q brand fiberglass septic tanks are used for wastewater treatment. Made from fiberglass, they are known for their strength, corrosion resistance, and lightweight design, making them easy to install and transport. The wastewater treatment system within the tank uses a biological process to decompose organic matter and remove various pollutants in wastewater. This results in treated water of higher quality before being released back into the environment or public drainage systems. We offer three types of large-scale septic tanks.",
+    },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุไฟเบอร์กลาส (FRP)", en: "FRP Material" },
+      },
+      {
+        icon: "wasteWaterTreatment",
+        label: { th: "สำหรับบำบัดน้ำเสีย", en: "For Waste Water Treatment" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
+    images: [
+      "/images/products/fiberglass-septic-tank/1.jpg",
+      "/images/products/fiberglass-septic-tank/2.jpg",
+      "/images/products/fiberglass-septic-tank/3.jpg",
+    ],
+    featured: false,
+    order: 8,
+    sections: [
+      {
+        type: "bulletList",
+        title: {
+          th: "การใช้งาน",
+          en: "Usage",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+            en: "Suitable for wastewater treatment",
+          },
+        ],
+      },
+      {
+        type: "bulletList",
+        title: {
+          th: "คำแนะนำ",
+          en: "Recommendation",
+        },
+        marker: "dot",
+        items: [
+          {
+            th: "ระยะเวลาในการสูบกากตะกอน ทั้งส่วนเกรอะและกรองทุก ๆ 2-3 ปี เพื่อให้บ่อเกรอะมีประสิทธิภาพในการบำบัดอยู่เสมอ และต้องให้มีน้ำเหลืออยู่ 2 ใน 3 ส่วนหลังการสูบกาก",
+            en: "Pump out the sludge from both the septic and the filter chamber every 2 to 3 years so the septic chamber keeps treating at full efficiency, and leave the tank two thirds full of water after pumping",
+          },
+          {
+            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+          },
+        ],
+      },
+    ],
+  },
+  {
     id: "septic-tank-and-grease-trap",
     slug: "septic-tank-and-grease-trap",
     categoryId: "septic-tank-grease-trap",
@@ -786,7 +854,7 @@ export const products: Product[] = [
       "/images/products/septic-tank-and-grease-trap/5.webp",
     ],
     featured: false,
-    order: 7,
+    order: 9,
     sections: [
       {
         type: "bulletList",

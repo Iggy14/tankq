@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FeaturedProducts } from "@/components/featured-products";
 import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
+import { SocialLinks } from "@/components/social-links";
 
 export async function generateMetadata({
   params,
@@ -72,6 +73,8 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       <OurStory />
       <OurMission />
       <FeaturedProducts />
+
+      <SocialLinks />
     </>
   );
 }
