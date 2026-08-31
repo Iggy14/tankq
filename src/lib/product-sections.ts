@@ -117,9 +117,97 @@ export interface ImageGridSection {
   images: ImageGridItem[];
 }
 
+/**
+ * A list inside a <ContentSection>, ordered or not.
+ *
+ * Split out from <ContentListBlock> so an item's `children` can be the same
+ * shape as the list it sits in: a sub-list is just another list, and it may
+ * flip from bullets to numbers at any level.
+ */
+export interface ContentList {
+  ordered: boolean;
+  items: ContentListItem[];
+}
+
+/**
+ * One item of a <ContentList>.
+ *
+ * `text` is a phrase or a sentence, not a paragraph. `children` nests a
+ * sub-list under it to any depth; nothing else nests, so an item cannot hold a
+ * picture or a run of prose - if it needs one, it is really its own block.
+ */
+export interface ContentListItem {
+  text: Localized;
+  /** A sub-list rendered indented under this item. */
+  children?: ContentList;
+}
+
+/**
+ * One paragraph in a <ContentSection>'s flow.
+ *
+ * Unlike <ParagraphSection>, which is a whole section and caps itself at one
+ * paragraph, these stack: a section may carry as many as the copy needs.
+ */
+export interface ContentParagraphBlock {
+  type: "paragraph";
+  body: Localized;
+}
+
+/**
+ * One picture in a <ContentSection>'s flow, shown at its own aspect ratio
+ * across the text column - a drawing, a diagram, a site photograph.
+ *
+ * `width` and `height` are the file's intrinsic pixel size, required by
+ * `next/image`: guessing a ratio here shifts the layout on every image whose
+ * real shape differs. `alt` is localized and required, same as an image grid's;
+ * `caption` is optional and prints under the picture.
+ */
+export interface ContentImageBlock {
+  type: "image";
+  src: string;
+  alt: Localized;
+  width: number;
+  height: number;
+  caption?: Localized;
+}
+
+/** A list in a <ContentSection>'s flow - see <ContentList> for the nesting. */
+export interface ContentListBlock extends ContentList {
+  type: "list";
+}
+
+/**
+ * One block in a <ContentSection>.
+ *
+ * This is its own discriminated union, separate from <ProductSection>, so the
+ * `"paragraph"` tag here is unrelated to <ParagraphSection>'s and the two do
+ * not collide. Do not rename either to "fix" the overlap.
+ */
+export type ContentBlock =
+  | ContentParagraphBlock
+  | ContentImageBlock
+  | ContentListBlock;
+
+/**
+ * A title over an ordered run of mixed blocks - paragraphs, pictures and
+ * lists, in whatever order the copy reads best.
+ *
+ * Reach for this when a product's story is one short article rather than
+ * several separate blocks: the single-purpose sections above each impose their
+ * own heading, which chops a continuous piece of copy into unrelated parts.
+ * When the content really is one table, one list or one paragraph, use the
+ * section built for it instead - it is laid out for that shape.
+ */
+export interface ContentSection {
+  type: "content";
+  title: Localized;
+  blocks: ContentBlock[];
+}
+
 export type ProductSection =
   | SpecTableSection
   | BulletListSection
   | OrderedListSection
   | ParagraphSection
-  | ImageGridSection;
+  | ImageGridSection
+  | ContentSection;

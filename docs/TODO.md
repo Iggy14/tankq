@@ -168,26 +168,72 @@ referenced nowhere in `src/`.
 3. Decide what to do with `s1.jpg` - `s6.jpg`. If they are not going to be
    used anywhere, delete them - they are 4.5 MB of unreferenced assets.
 
-## Fiberglass septic tank product: photo format and Thai copy review
+## Fiberglass septic tank: photo format, table images and English copy
 
-**Status:** not started. Added 2026-08-31 with the new `fiberglass-septic-tank`
-product (`src/lib/products.ts`, category `frp-wastewater-treatment-tank`).
+**Status:** not started. Added 2026-08-31 with the `fiberglass-septic-tank`
+product (`src/lib/products.ts`, category `frp-wastewater-treatment-tank`),
+updated 2026-08-31 when the three treatment-system `content` sections landed.
 
-The three photos supplied for this product
+Three separate things are outstanding on this one product.
+
+### 1. Gallery photos are unconverted JPEGs
+
+The three photos in the product's `images` array
 (`public/images/products/fiberglass-septic-tank/1.jpg` - `3.jpg`) are unedited
 phone/camera JPEGs, renamed and moved into place as-is. Every other product's
-`images` array points at optimized `.webp` files.
+`images` array points at optimized `.webp` files. The six treatment-system
+diagrams added later are already `.webp` and are not affected.
 
 **Why it was skipped:** no image-conversion tooling is available in this
 session, and re-encoding was out of scope for adding the product entry.
 
+**What to do:** convert the three files to `.webp` (matching the sizing and
+quality other product photos use) and update the three paths in the
+`fiberglass-septic-tank` entry in `src/lib/products.ts`.
+
+### 2. Three sizing tables ship as pictures, not as `specTable` data
+
+`treatment-systems/2.webp`, `4.webp` and `6.webp` are screenshots of tables -
+the WSF, WSFA and WAS model ranges, each roughly 10 to 14 rows by 9 to 11
+columns, listing flow rate, tank dimensions, pipe sizes and maximum occupancy.
+They render as images inside the `content` sections, so the figures are not
+selectable, not searchable, not readable by a screen reader beyond the `alt`
+summary, and are hard to read on a phone: a 1024px-wide table scaled into a
+360px column leaves the digits tiny.
+
+**Why it was skipped:** the source brief (`tasks/add_contents.md`) placed them
+in the flow as images, and `ContentBlock` has no table member, so honouring the
+brief meant shipping them as pictures. Transcribing them is a content decision
+and a few hundred bilingual cells of data entry.
+
 **What to do:**
 
-1. Convert the three files to `.webp` (matching the sizing/quality other
-   product photos use) and update the three paths in the
-   `fiberglass-septic-tank` entry in `src/lib/products.ts`.
-2. Review the Thai `description` on that entry - it was translated by Claude
-   from the customer's English copy and has not been read by a native speaker.
+1. Transcribe each table into a `specTable` section - see `ProductSection` in
+   `src/lib/product-sections.ts` and any existing `specTable` for the shape.
+   `pe-waste-water-treatment-tank` has a close analogue already.
+2. Drop the matching image block from the `content` section and add the
+   `specTable` section after it, so the diagram stays in the flow and the
+   figures become real markup.
+3. Delete the three `.webp` files once nothing references them.
+
+Alternatively add a `table` member to `ContentBlock` so a table can sit inside
+the flow rather than becoming its own section. Only worth doing if more
+products need tables mid-article.
+
+### 3. English copy on this product is Claude-written
+
+The Thai side of the three treatment-system sections is the customer's own copy
+from `tasks/add_contents.md`; the English side was translated by Claude and has
+not been read by a native or technical reviewer. The product `description` has
+the reverse problem - its English is the customer's and the Thai is Claude's.
+
+**What to do:** review both locales on the `fiberglass-septic-tank` entry. The
+process terms are worth checking against the shop's own wording in particular:
+"septic chamber" for ส่วนเกรอะ, "anaerobic / aerobic filter", "microbial flocs"
+for ตะกอนจุลชีพ, and "clarifier" for ถังแยกตะกอน. Also confirm the closing
+paragraph is meant to read "Thai Chemical Storage (TCS)" on a TankQ-branded
+site - it is the only place on the site that names TCS, and it was supplied
+that way in the brief.
 
 ## Thai copy review for the service page
 

@@ -79,6 +79,10 @@
     "relatedTitle": "Other products",
     "gallery": {
       "viewImage": "View image {number}"
+    },
+    "sectionImage": {
+      "enlarge": "View larger",
+      "close": "Close"
     }
   },
   "about": {

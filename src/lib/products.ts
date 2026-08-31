@@ -785,37 +785,260 @@ export const products: Product[] = [
     order: 8,
     sections: [
       {
-        type: "bulletList",
+        type: "content",
         title: {
-          th: "การใช้งาน",
-          en: "Usage",
+          th: "ระบบบำบัดน้ำเสียแบบเกรอะ-กรองไร้อากาศ (Anaerobic Filter System)",
+          en: "Septic - Anaerobic Filter System",
         },
-        marker: "dot",
-        items: [
+        blocks: [
           {
-            th: "เหมาะสำหรับการบำบัดน้ำเสีย",
-            en: "Suitable for wastewater treatment",
+            type: "paragraph",
+            body: {
+              th: "เป็นหนึ่งในเทคโนโลยีการบำบัดน้ำเสียที่ใช้กระบวนการชีวภาพแบบไร้อากาศ โดยมีหลักการทำงานดังนี้",
+              en: "One of the wastewater treatment technologies that works by an anaerobic biological process. It runs as follows.",
+            },
+          },
+          {
+            type: "image",
+            src: "/images/products/fiberglass-septic-tank/treatment-systems/1.webp",
+            alt: {
+              th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองไร้อากาศ แสดงส่วนเกรอะ (1) และส่วนกรองไร้อากาศที่บรรจุวัสดุกรอง (2)",
+              en: "Cutaway of the septic - anaerobic filter tank showing the septic chamber (1) and the anaerobic filter chamber packed with filter media (2)",
+            },
+            width: 1024,
+            height: 645,
+          },
+          {
+            type: "list",
+            ordered: true,
+            items: [
+              {
+                text: {
+                  th: "ส่วนเกรอะ: น้ำเสียจะถูกนำเข้ามาผ่านถังเกรอะ (Septic Tank) ที่ซึ่งสิ่งสกปรกที่เป็นของแข็งหนักจะตกตะกอนลงไปที่ก้นถัง ส่วนที่เบากว่าจะแยกตัวออกมาลอยที่ผิวน้ำ ในถังนี้จะมีแบคทีเรียไร้อากาศทำการย่อยสลายสารอินทรีย์",
+                  en: "Septic chamber: wastewater is fed through the septic tank, where the heavy solids settle to the bottom and the lighter matter separates out and floats on the surface. Anaerobic bacteria in this chamber break down the organic matter.",
+                },
+              },
+              {
+                text: {
+                  th: "ส่วนไร้อากาศ: น้ำเสียที่ผ่านการเกรอะแล้วจะถูกนำไปผ่านระบบกรองไร้อากาศ ซึ่งมีวัสดุกรองต่าง ๆ เช่น หินกรวด หินภูเขาไฟ หรือวัสดุพลาสติก ที่แบคทีเรียจะเกาะอยู่และทำการย่อยสลายสารอินทรีย์ในน้ำเสีย",
+                  en: "Anaerobic chamber: the settled water then passes through an anaerobic filter holding media such as gravel, volcanic rock or plastic media. Bacteria colonise the media and break down the organic matter in the water.",
+                },
+              },
+            ],
+          },
+          {
+            type: "image",
+            src: "/images/products/fiberglass-septic-tank/treatment-systems/2.webp",
+            alt: {
+              th: "ตารางขนาดถังรุ่น WSF-04 ถึง WSF-50 ระบุปริมาณน้ำเสียต่อวัน ขนาดถัง ขนาดท่อเข้าและท่อออก และจำนวนผู้ใช้สูงสุดสำหรับที่พักอาศัย สำนักงาน โรงเรียนและโรงงาน",
+              en: "Sizing table for models WSF-04 to WSF-50, listing daily wastewater volume, tank dimensions, inlet and outlet pipe sizes, and the maximum number of users for housing, offices, schools and factories",
+            },
+            width: 1024,
+            height: 361,
           },
         ],
       },
       {
-        type: "bulletList",
+        type: "content",
         title: {
-          th: "คำแนะนำ",
-          en: "Recommendation",
+          th: "ระบบบำบัดน้ำเสียแบบเกรอะ-กรองเติมอากาศ (Aerobic Filter System)",
+          en: "Septic - Aerobic Filter System",
         },
-        marker: "dot",
-        items: [
+        blocks: [
           {
-            th: "ระยะเวลาในการสูบกากตะกอน ทั้งส่วนเกรอะและกรองทุก ๆ 2-3 ปี เพื่อให้บ่อเกรอะมีประสิทธิภาพในการบำบัดอยู่เสมอ และต้องให้มีน้ำเหลืออยู่ 2 ใน 3 ส่วนหลังการสูบกาก",
-            en: "Pump out the sludge from both the septic and the filter chamber every 2 to 3 years so the septic chamber keeps treating at full efficiency, and leave the tank two thirds full of water after pumping",
+            type: "paragraph",
+            body: {
+              th: "เป็นเทคโนโลยีที่ใช้ในการบำบัดน้ำเสีย โดยผสมผสานการใช้กระบวนการกรองและการเติมอากาศเพื่อส่งเสริมการย่อยสลายสารอินทรีย์ด้วยแบคทีเรียที่ต้องการออกซิเจน (Aerobic Bacteria) มีหลักการทำงานดังนี้",
+              en: "A treatment technology that combines filtration with aeration, so that oxygen-dependent bacteria (aerobic bacteria) break the organic matter down. It runs as follows.",
+            },
           },
           {
-            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
-            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+            type: "image",
+            src: "/images/products/fiberglass-septic-tank/treatment-systems/3.webp",
+            alt: {
+              th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองเติมอากาศ แสดงส่วนเกรอะ (1) ส่วนกรองเติมอากาศ (2) และส่วนพักน้ำที่ผ่านการบำบัด (3)",
+              en: "Cutaway of the septic - aerobic filter tank showing the septic chamber (1), the aerated filter chamber (2) and the treated water chamber (3)",
+            },
+            width: 1024,
+            height: 617,
+          },
+          {
+            type: "list",
+            ordered: true,
+            items: [
+              {
+                text: {
+                  th: "ส่วนเกรอะ (Septic Tank): น้ำเสียจะถูกนำเข้าถังเกรอะ เพื่อให้สารแขวนลอยและสารที่มีขนาดใหญ่อยู่ในน้ำตกตะกอนลงที่ก้นถัง ส่วนที่เบากว่าจะลอยอยู่ด้านบน แบคทีเรียจะเริ่มทำการย่อยสลายสารอินทรีย์ในน้ำเสีย",
+                  en: "Septic chamber (Septic Tank): wastewater is fed into the septic tank so that suspended and larger solids settle to the bottom while the lighter matter floats on top. Bacteria begin breaking down the organic matter in the water.",
+                },
+              },
+              {
+                text: {
+                  th: "ส่วนเติมอากาศ (Aerobic Filtration)",
+                  en: "Aeration stage (Aerobic Filtration)",
+                },
+                children: {
+                  ordered: false,
+                  items: [
+                    {
+                      text: {
+                        th: "น้ำเสียที่ผ่านการเกรอะจะถูกนำเข้าสู่ระบบกรองที่มีการเติมอากาศ เช่น ระบบฟิลเตอร์ที่มีวัสดุกรองเช่น กรวด หินภูเขาไฟ หรือวัสดุพลาสติก แบคทีเรียที่ต้องการออกซิเจนจะเกาะอยู่ที่วัสดุกรองและทำการย่อยสลายสารอินทรีย์ในน้ำเสีย",
+                        en: "The settled water enters an aerated filter, for example a filter bed of gravel, volcanic rock or plastic media. Aerobic bacteria colonise the media and break down the organic matter in the water.",
+                      },
+                    },
+                    {
+                      text: {
+                        th: "ในขั้นตอนนี้จะมีการเติมอากาศอย่างต่อเนื่อง เพื่อเพิ่มปริมาณออกซิเจนในน้ำเสีย ทำให้แบคทีเรียเจริญเติบโตและทำงานได้ดี",
+                        en: "Air is fed in continuously at this stage to raise the oxygen level in the water, which keeps the bacteria growing and working well.",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: "image",
+            src: "/images/products/fiberglass-septic-tank/treatment-systems/4.webp",
+            alt: {
+              th: "ตารางขนาดถังรุ่น WSFA-04 ถึง WSFA-50 ระบุปริมาณน้ำเสียต่อวัน ขนาดถัง ขนาดท่อ ปริมาณการจ่ายอากาศ และจำนวนผู้ใช้สูงสุดสำหรับที่พักอาศัย สำนักงาน โรงเรียนและโรงงาน",
+              en: "Sizing table for models WSFA-04 to WSFA-50, listing daily wastewater volume, tank dimensions, pipe sizes, air supply rate, and the maximum number of users for housing, offices, schools and factories",
+            },
+            width: 1024,
+            height: 385,
           },
         ],
       },
+      {
+        type: "content",
+        title: {
+          th: "ระบบบำบัดน้ำเสียแบบตะกอนเวียนเติมอากาศ (Activated Sludge Process)",
+          en: "Activated Sludge Process",
+        },
+        blocks: [
+          {
+            type: "paragraph",
+            body: {
+              th: "เป็นเทคโนโลยีการบำบัดน้ำเสียที่ใช้กระบวนการชีวภาพแบบแอโรบิก (ต้องการออกซิเจน) โดยมีการหมุนเวียนตะกอนกลับมาใช้ใหม่เพื่อเพิ่มประสิทธิภาพในการบำบัดน้ำเสีย หลักการทำงานของระบบนี้มีดังนี้",
+              en: "A treatment technology that works by an aerobic (oxygen-dependent) biological process and recirculates the sludge to raise treatment efficiency. The system runs as follows.",
+            },
+          },
+          {
+            type: "image",
+            src: "/images/products/fiberglass-septic-tank/treatment-systems/5.webp",
+            alt: {
+              th: "ภาพตัดถังบำบัดน้ำเสียแบบตะกอนเวียนเติมอากาศ แสดงส่วนเกรอะ (1) ถังเติมอากาศ (2) ถังแยกตะกอน (3) และชุดสูบตะกอนเวียนกลับ (4)",
+              en: "Cutaway of the activated sludge tank showing the septic chamber (1), the aeration tank (2), the clarifier (3) and the sludge return set (4)",
+            },
+            width: 1024,
+            height: 617,
+          },
+          {
+            type: "list",
+            ordered: true,
+            items: [
+              {
+                text: {
+                  th: "ขั้นตอนการเกรอะ (Primary Treatment)",
+                  en: "Septic stage (Primary Treatment)",
+                },
+                children: {
+                  ordered: false,
+                  items: [
+                    {
+                      text: {
+                        th: "น้ำเสียจะถูกนำเข้าถังเกรอะเพื่อแยกของแข็งออกจากของเหลว ของแข็งที่ตกตะกอนจะถูกเก็บรวบรวมในถังเกรอะ ส่วนของเหลวจะถูกส่งต่อไปยังขั้นตอนถัดไป",
+                        en: "Wastewater is fed into the septic tank to separate the solids from the liquid. The settled solids collect in the septic tank and the liquid passes on to the next stage.",
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                text: {
+                  th: "ขั้นตอนการเติมอากาศ (Aeration Tank)",
+                  en: "Aeration stage (Aeration Tank)",
+                },
+                children: {
+                  ordered: false,
+                  items: [
+                    {
+                      text: {
+                        th: "น้ำเสียจากถังเกรอะจะถูกนำเข้าสู่ถังเติมอากาศ ที่ซึ่งมีการเติมอากาศอย่างต่อเนื่องเพื่อเพิ่มปริมาณออกซิเจนในน้ำเสีย ทำให้แบคทีเรียแอโรบิกสามารถย่อยสลายสารอินทรีย์ได้",
+                        en: "Water from the septic tank enters the aeration tank, where air is fed in continuously to raise the oxygen level so that aerobic bacteria can break down the organic matter.",
+                      },
+                    },
+                    {
+                      text: {
+                        th: "ในถังนี้ แบคทีเรียจะรวมตัวกันเป็นตะกอนจุลชีพ (Microbial Flocs) ที่สามารถดูดซับสารอินทรีย์และย่อยสลายได้อย่างมีประสิทธิภาพ",
+                        en: "In this tank the bacteria gather into microbial flocs that absorb organic matter and break it down efficiently.",
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                text: {
+                  th: "ขั้นตอนการแยกตะกอน (Secondary Clarifier)",
+                  en: "Settling stage (Secondary Clarifier)",
+                },
+                children: {
+                  ordered: false,
+                  items: [
+                    {
+                      text: {
+                        th: "น้ำเสียที่ผ่านการเติมอากาศจะถูกนำเข้าสู่ถังแยกตะกอน ที่ซึ่งตะกอนจุลชีพจะตกตะกอนลงก้นถัง น้ำใสที่อยู่ด้านบนจะถูกนำออกมาเป็นน้ำที่ผ่านการบำบัดแล้ว",
+                        en: "The aerated water enters the clarifier, where the microbial flocs settle to the bottom and the clear water above is drawn off as treated water.",
+                      },
+                    },
+                    {
+                      text: {
+                        th: "ตะกอนจุลชีพบางส่วนจะถูกหมุนเวียนกลับไปยังถังเติมอากาศเพื่อเพิ่มปริมาณแบคทีเรียและเพิ่มประสิทธิภาพในการบำบัด",
+                        en: "Part of the sludge is recirculated to the aeration tank to build up the bacteria and raise treatment efficiency.",
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                text: {
+                  th: "การจัดการตะกอนส่วนเกิน",
+                  en: "Handling the surplus sludge",
+                },
+                children: {
+                  ordered: false,
+                  items: [
+                    {
+                      text: {
+                        th: "ตะกอนจุลชีพที่ไม่ได้หมุนเวียนกลับจะถูกนำไปบำบัดเพิ่มเติมหรือกำจัดตามวิธีการที่เหมาะสม",
+                        en: "Sludge that is not recirculated goes on for further treatment or is disposed of by a suitable method.",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
+          {
+            type: "image",
+            src: "/images/products/fiberglass-septic-tank/treatment-systems/6.webp",
+            alt: {
+              th: "ตารางขนาดถังรุ่น WAS-20 ถึง WAS-100 ระบุปริมาณน้ำเสียต่อวัน ขนาดถัง จำนวนถัง ขนาดท่อเข้าและท่อออก และจำนวนผู้ใช้สูงสุด",
+              en: "Sizing table for models WAS-20 to WAS-100, listing daily wastewater volume, tank dimensions, number of tanks, inlet and outlet pipe sizes, and the maximum number of users",
+            },
+            width: 1024,
+            height: 244,
+          },
+          {
+            type: "paragraph",
+            body: {
+              th: "Thai Chemical Storage (TCS) ผู้เชี่ยวชาญด้านการออกแบบ ผลิต และติดตั้งระบบบำบัดน้ำเสียให้กับกลุ่มโรงงานอุตสาหกรรมต่างๆ ที่เกิดจากการผลิตชิ้นงานของลูกค้า ด้วยประสบการณ์กว่า 20 ปีและโรงงานผลิตขนาดใหญ่ที่ได้มาตรฐาน ISO 9001:2015 เรามุ่งมั่นในการให้บริการและสินค้าที่มีคุณภาพสูงสุด ตอบสนองความต้องการของลูกค้าในทุกอุตสาหกรรม ด้วยทีมงานวิศวกรผู้เชี่ยวชาญและเทคโนโลยีที่ทันสมัย TCS ได้รับความไว้วางใจจากลูกค้าทั้งในและต่างประเทศ เลือก TCS เพื่อความมั่นใจในคุณภาพและบริการระดับมืออาชีพ",
+              en: "Thai Chemical Storage (TCS) specialises in designing, manufacturing and installing wastewater treatment systems for industrial plants, handling the wastewater their production generates. With over 20 years of experience and a large ISO 9001:2015 certified factory, we are committed to the highest standard of product and service, meeting the needs of customers in every industry. With a team of specialist engineers and up to date technology, TCS is trusted by customers in Thailand and abroad. Choose TCS for confidence in quality and professional service.",
+            },
+          },
+        ],
+      }
+
     ],
   },
   {

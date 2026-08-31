@@ -79,6 +79,10 @@
     "relatedTitle": "สินค้าอื่น ๆ",
     "gallery": {
       "viewImage": "ดูรูปที่ {number}"
+    },
+    "sectionImage": {
+      "enlarge": "ดูภาพขนาดใหญ่",
+      "close": "ปิด"
     }
   },
   "about": {
