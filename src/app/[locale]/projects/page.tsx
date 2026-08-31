@@ -34,7 +34,7 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
           <h1 className="text-3xl leading-[1] font-black tracking-tight text-primary uppercase sm:text-4xl md:text-5xl lg:text-6xl">
             {t("title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base">
+          <p className="mt-6 max-w-2xl text-pretty text-sm font-medium text-black sm:text-base">
             {t("subtitle")}
           </p>
           <div className="mt-8 h-px w-40 bg-neutral-500 sm:mt-10" />

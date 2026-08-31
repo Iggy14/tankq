@@ -374,16 +374,28 @@ export const products: Product[] = [
         marker: "dot",
         items: [
           {
-            th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาดทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
-            en: "Clean the water tank every 3 to 6 months, and never leave it longer than a year",
+            th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาด",
+            en: "Clean the water tank",
           },
           {
-            th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
-            en: "Scrub the inside of the tank with a soft-bristled brush or a sponge. For a deep tank, use a long-handled brush so every surface is reached",
+            th: "ทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
+            en: "Every 3 to 6 months, and never leave it longer than a year",
           },
           {
-            th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะ เหล็ก หรือฟองน้ำที่ทำจากเหล็ก",
-            en: "Avoid brushes with metal or steel bristles, and sponges made of steel wool",
+            th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ",
+            en: "Scrub the inside of the tank with a soft-bristled brush or a sponge",
+          },
+          {
+            th: "หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
+            en: "For a deep tank, use a long-handled brush so every surface is reached",
+          },
+          {
+            th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะหรือเหล็ก",
+            en: "Avoid brushes with metal or steel bristles",
+          },
+          {
+            th: "ควรหลีกเลี่ยงฟองน้ำที่ทำจากเหล็ก",
+            en: "Avoid sponges made of steel wool",
           },
           {
             th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
@@ -428,8 +440,8 @@ export const products: Product[] = [
       },
     ],
     images: [
-      "/images/products/pe-underground-water-tank/1.webp",
       "/images/products/pe-underground-water-tank/2.webp",
+      "/images/products/pe-underground-water-tank/1.webp",
       "/images/products/pe-underground-water-tank/3.webp",
     ],
     featured: false,
@@ -539,16 +551,28 @@ export const products: Product[] = [
         marker: "dot",
         items: [
           {
-            th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาดทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
-            en: "Clean the water tank every 3 to 6 months, and never leave it longer than a year",
+            th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาด",
+            en: "Clean the water tank",
           },
           {
-            th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
-            en: "Scrub the inside of the tank with a soft-bristled brush or a sponge. For a deep tank, use a long-handled brush so every surface is reached",
+            th: "ทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
+            en: "Every 3 to 6 months, and never leave it longer than a year",
           },
           {
-            th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะ เหล็ก หรือฟองน้ำที่ทำจากเหล็ก",
-            en: "Avoid brushes with metal or steel bristles, and sponges made of steel wool",
+            th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ",
+            en: "Scrub the inside of the tank with a soft-bristled brush or a sponge",
+          },
+          {
+            th: "หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
+            en: "For a deep tank, use a long-handled brush so every surface is reached",
+          },
+          {
+            th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะหรือเหล็ก",
+            en: "Avoid brushes with metal or steel bristles",
+          },
+          {
+            th: "ควรหลีกเลี่ยงฟองน้ำที่ทำจากเหล็ก",
+            en: "Avoid sponges made of steel wool",
           },
           {
             th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
@@ -569,7 +593,7 @@ export const products: Product[] = [
   {
     id: "pe-waste-water-treatment-tank",
     slug: "pe-waste-water-treatment-tank",
-    categoryId: "frp-wastewater-treatment-tank",
+    categoryId: "septic-tank-grease-trap",
     title: {
       th: "ถังบำบัดน้ำเสีย PE",
       en: "PE Waste Water Treatment Tank",
