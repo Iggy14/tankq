@@ -1039,39 +1039,8 @@ export const products: Product[] = [
             },
           },
         ],
-      },
-      {
-        type: "bulletList",
-        title: {
-          th: "การใช้งาน",
-          en: "Usage",
-        },
-        marker: "dot",
-        items: [
-          {
-            th: "เหมาะสำหรับการบำบัดน้ำเสีย",
-            en: "Suitable for wastewater treatment",
-          },
-        ],
-      },
-      {
-        type: "bulletList",
-        title: {
-          th: "คำแนะนำ",
-          en: "Recommendation",
-        },
-        marker: "dot",
-        items: [
-          {
-            th: "ระยะเวลาในการสูบกากตะกอน ทั้งส่วนเกรอะและกรองทุก ๆ 2-3 ปี เพื่อให้บ่อเกรอะมีประสิทธิภาพในการบำบัดอยู่เสมอ และต้องให้มีน้ำเหลืออยู่ 2 ใน 3 ส่วนหลังการสูบกาก",
-            en: "Pump out the sludge from both the septic and the filter chamber every 2 to 3 years so the septic chamber keeps treating at full efficiency, and leave the tank two thirds full of water after pumping",
-          },
-          {
-            th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
-            en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
-          },
-        ],
-      },
+      }
+
     ],
   },
   {
