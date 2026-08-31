@@ -3,6 +3,7 @@ import type { AppLocale } from "@/i18n/routing";
 import type { ProductSection } from "@/lib/product-sections";
 
 import { BulletListSection } from "./bullet-list-section";
+import { ContentSection } from "./content-section";
 import { ImageGridSection } from "./image-grid-section";
 import { OrderedListSection } from "./ordered-list-section";
 import { ParagraphSection } from "./paragraph-section";
@@ -75,6 +76,17 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
         return (
           <FadeInUp key={headingId}>
             <ImageGridSection
+              section={section}
+              locale={locale}
+              headingId={headingId}
+            />
+          </FadeInUp>
+        );
+
+      case "content":
+        return (
+          <FadeInUp key={headingId}>
+            <ContentSection
               section={section}
               locale={locale}
               headingId={headingId}
