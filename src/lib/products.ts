@@ -337,6 +337,84 @@ export const products: Product[] = [
     featured: false,
     order: 9,
   },
+  {
+    id: "epoxy-flooring",
+    slug: "epoxy-flooring",
+    categoryId: "epoxy-pu-flooring",
+    title: {
+      th: "พื้นอีพ็อกซี่",
+      en: "Epoxy Flooring",
+    },
+    description: {
+      th: "เป็นสีประสิทธิภาพสูงระบบ 2 ส่วนผสม สำหรับเคลือบพื้นหรือผนังคอนกรีต ให้ความเงางาม ทำความสะอาดง่าย ไม่ก่อให้เกิดฝุ่น ทนทานต่อการกัดกร่อน รอยขีดข่วน ไอระเหย กรด ด่าง น้ำ และสารเคมี ใช้งานง่าย มีความหนาเริ่มต้นที่ 150 ไมครอน เหมาะสำหรับอุตสาหกรรมขนาดเบาถึงขนาดกลาง",
+      en: "A high-performance two-component paint for coating concrete floors or walls, giving a glossy finish that is easy to clean and dust-free. Resistant to corrosion, scratches, vapor, acids, alkalis, water and chemicals, and easy to apply, with a starting thickness of 150 microns. Suitable for light to medium-duty industrial use.",
+    },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุอีพ็อกซี่ 2 ส่วนผสม", en: "2-Component Epoxy" },
+      },
+      {
+        label: { th: "สำหรับเคลือบพื้นและผนัง", en: "For Floor & Wall Coating" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
+    images: [
+      "/images/products/epoxy-flooring/1.jpg",
+      "/images/products/epoxy-flooring/2.jpg",
+      "/images/products/epoxy-flooring/3.jpg",
+      "/images/products/epoxy-flooring/4.jpg",
+      "/images/products/epoxy-flooring/5.jpg",
+      "/images/products/epoxy-flooring/6.jpg",
+      "/images/products/epoxy-flooring/7.jpg",
+      "/images/products/epoxy-flooring/8.jpg",
+      "/images/products/epoxy-flooring/9.jpg",
+      "/images/products/epoxy-flooring/10.jpg",
+      "/images/products/epoxy-flooring/11.jpg",
+      "/images/products/epoxy-flooring/12.jpg",
+    ],
+    featured: false,
+    order: 10,
+  },
+  {
+    id: "polyurethane-concrete-flooring",
+    slug: "polyurethane-concrete-flooring",
+    categoryId: "epoxy-pu-flooring",
+    title: {
+      th: "พื้นโพลียูรีเทนคอนกรีต",
+      en: "Polyurethane Concrete Flooring",
+    },
+    description: {
+      th: "เรานำเสนอระบบพื้นโพลียูรีเทนสำหรับงานคอนกรีตที่หลากหลาย ซึ่งออกแบบมาเพื่อรองรับการใช้งานหนักและสภาพแวดล้อมที่ต้องเผชิญกับสภาวะการใช้งานที่รุนแรง พื้นระบบนี้มีความทนทานต่อสารเคมีและการแทรกซึมของความชื้น อีกทั้งยังทนทานต่อกรดที่ใช้ในการปรุงอาหาร ด่าง น้ำมัน ไขมัน และกระบวนการทำความสะอาดที่เข้มข้น จึงเป็นทางเลือกที่เหมาะสมอย่างยิ่งสำหรับโรงงานแปรรูปอาหารและเครื่องดื่ม โดยให้ผลลัพธ์ที่ทนทานและต้องการการบำรุงรักษาน้อย ความหนาโดยทั่วไป: 2.0 - 20.0 มม. ระยะเวลาแห้งตัว: แตกต่างกันไปตามแต่ละระบบ แต่โดยทั่วไปจะใช้เวลาประมาณ 12 ถึง 24 ชั่วโมงก่อนเปิดใช้งานเต็มรูปแบบ",
+      en: "We offer a range of polyurethane concrete flooring systems designed to withstand heavy use and harsh operating environments. This flooring system resists chemicals and moisture penetration, and is also resistant to food-preparation acids, alkalis, oils, fats and intensive cleaning processes, making it an excellent choice for food and beverage processing plants, with durable results that require little maintenance. Typical thickness: 2.0 - 20.0 mm. Curing time: varies by system, but generally takes around 12 to 24 hours before full use.",
+    },
+    specs: [
+      {
+        icon: "material",
+        label: { th: "วัสดุโพลียูรีเทน", en: "Polyurethane Material" },
+      },
+      {
+        label: { th: "สำหรับโรงงานอาหารและเครื่องดื่ม", en: "For Food & Beverage Plants" },
+      },
+      {
+        icon: "brand",
+        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+      },
+    ],
+    images: [
+      "/images/products/polyurethane-concrete-flooring/1.png",
+      "/images/products/polyurethane-concrete-flooring/2.png",
+      "/images/products/polyurethane-concrete-flooring/3.png",
+      "/images/products/polyurethane-concrete-flooring/4.png",
+      "/images/products/polyurethane-concrete-flooring/5.png",
+      "/images/products/polyurethane-concrete-flooring/6.png",
+    ],
+    featured: false,
+    order: 11,
+  },
 ];
 
 export function getProductBySlug(slug: string): Product | undefined {
