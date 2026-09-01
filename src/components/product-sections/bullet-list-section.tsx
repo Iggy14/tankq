@@ -13,10 +13,10 @@ type BulletListSectionProps = {
 /**
  * A list of selling points, ticked or bulleted.
  *
- * The marker is decorative — the list markup already says "list item" — so it
- * is hidden from assistive tech and the copy carries the meaning. Teal is the
- * palette's accent, and it is too light to read on white, so the mark takes
- * the darker `teal-foreground` on a tint of teal rather than sitting on it.
+ * The marker is decorative - the list markup already says "list item" - so it
+ * is hidden from assistive tech and the copy carries the meaning. The check
+ * marker uses the site's primary blue for the circle with a white check, so
+ * it reads as an affirmative brand accent rather than a neutral bullet.
  * Both markers occupy the same size-6 slot, so a page mixing the two keeps one
  * text edge. Two columns from `sm` up, because the items are short and a
  * single tall column wastes the width of a detail page.
@@ -41,7 +41,7 @@ export function BulletListSection({
             {section.marker === "check" ? (
               <span
                 aria-hidden
-                className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-teal/15 text-teal-foreground"
+                className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground"
               >
                 <Check className="size-4" strokeWidth={3} />
               </span>

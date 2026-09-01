@@ -45,7 +45,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
             </span>
           </span>
         </h1>
-        <p className="mt-6 max-w-md text-sm text-muted-foreground sm:text-base">
+        <p className="mt-6 max-w-lg text-lg text-muted-foreground sm:text-xl md:text-2xl">
           {t("heroSubtitle")}
         </p>
       </section>

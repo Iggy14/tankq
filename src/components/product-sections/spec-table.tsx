@@ -39,13 +39,13 @@ export function SpecTable({ columns, rows, locale, className }: SpecTableProps) 
     >
       <Table>
         <TableHeader>
-          <TableRow className="border-b-0 bg-navy hover:bg-navy">
+          <TableRow className="border-b-0 bg-primary hover:bg-primary">
             {columns.map((column, columnIndex) => (
               <TableHead
                 key={columnIndex}
                 scope="col"
                 className={cn(
-                  "h-12 px-4 text-navy-foreground",
+                  "h-12 px-4 text-primary-foreground",
                   columnIndex > 0 && "text-right",
                 )}
               >

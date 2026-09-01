@@ -63,7 +63,7 @@ export function ContactPrepare() {
                   <li key={key} className="flex items-start gap-3">
                     <span
                       aria-hidden
-                      className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-teal/15 text-teal-foreground"
+                      className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground"
                     >
                       <Check className="size-4" strokeWidth={3} />
                     </span>

@@ -20,8 +20,8 @@ type ListProps = {
  * A marker sits in a fixed-width slot beside the text - the same `size-6` slot
  * the tick lists elsewhere on the site use - so wrapped lines align under the
  * first line instead of under the bullet. Nested levels are drawn back: a
- * hollow ring rather than a filled dot, a muted number rather than a teal one,
- * so depth reads without introducing a second colour.
+ * hollow ring rather than a filled dot, a muted number rather than a primary
+ * one, so depth reads without introducing a second colour.
  */
 export function List({ list, locale, depth = 0 }: ListProps) {
   const ListTag = list.ordered ? "ol" : "ul";
@@ -39,7 +39,7 @@ export function List({ list, locale, depth = 0 }: ListProps) {
               <span
                 className={cn(
                   "font-mono text-sm leading-none font-semibold tabular-nums",
-                  nested ? "text-muted-foreground" : "text-teal-foreground",
+                  nested ? "text-muted-foreground" : "text-primary",
                 )}
               >
                 {index + 1}.
@@ -48,9 +48,7 @@ export function List({ list, locale, depth = 0 }: ListProps) {
               <span
                 className={cn(
                   "size-2 rounded-full",
-                  nested
-                    ? "border-2 border-teal-foreground"
-                    : "bg-teal-foreground",
+                  nested ? "border-2 border-primary" : "bg-primary",
                 )}
               />
             )}

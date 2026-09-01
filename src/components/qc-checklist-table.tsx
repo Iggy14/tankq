@@ -73,7 +73,7 @@ export function QcChecklistTable() {
                   {t(`qcRow${n}Instrument`)}
                 </TableCell>
                 <TableCell className="px-4 py-3">
-                  <span className="inline-flex items-center gap-1.5 font-medium text-teal-foreground">
+                  <span className="inline-flex items-center gap-1.5 font-medium text-primary">
                     <Check className="size-4" strokeWidth={3} aria-hidden />
                     {t(`qcRow${n}Result`)}
                   </span>

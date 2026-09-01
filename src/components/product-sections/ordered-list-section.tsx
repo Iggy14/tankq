@@ -42,7 +42,7 @@ export function OrderedListSection({
           <li key={index} className="border-t border-border pt-5">
             <span
               aria-hidden
-              className="block font-mono text-2xl leading-none font-semibold tabular-nums text-teal-foreground"
+              className="block font-mono text-2xl leading-none font-semibold tabular-nums text-primary"
             >
               {String(index + 1).padStart(2, "0")}
             </span>

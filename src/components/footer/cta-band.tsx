@@ -27,13 +27,14 @@ export function CtaBand() {
         <div className="relative z-10 max-w-lg space-y-5">
           <h2 className="text-3xl leading-[1.15] font-semibold tracking-tight text-balance sm:text-4xl">
             {t("footer.ctaTitle")}{" "}
-            <span className="text-brand">{t("footer.ctaTitleAccent")}</span>
+            <span className="text-white">{t("footer.ctaTitleAccent")}</span>
           </h2>
           <p className="max-w-md text-navy-foreground/80">
             {t("footer.ctaSubtitle")}
           </p>
           <Button
             size="lg"
+            className="h-12 gap-2 px-6 text-base has-data-[icon=inline-end]:pr-5 has-data-[icon=inline-start]:pl-5"
             nativeButton={false}
             role="link"
             render={<Link href="/contact" />}

@@ -54,14 +54,14 @@ export function ServiceSection({
 
           {/* Same ticked marker as the product detail pages and the contact
               page's checklist. Decorative - the list markup already carries
-              the semantics - and teal-foreground on a teal tint because plain
-              teal is too light to read on white. */}
+              the semantics - and white-on-primary so the check reads as an
+              affirmative brand accent. */}
           <ul className="mt-6 grid grid-cols-1 gap-y-3">
             {service.points.map((point) => (
               <li key={point.en} className="flex items-start gap-3">
                 <span
                   aria-hidden
-                  className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-teal/15 text-teal-foreground"
+                  className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground"
                 >
                   <Check className="size-4" strokeWidth={3} />
                 </span>

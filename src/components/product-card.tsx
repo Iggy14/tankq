@@ -75,7 +75,7 @@ export function ProductCard({
         </CardContent>
 
         <CardHeader>
-          <CardTitle className="text-center text-base text-primary sm:text-lg">
+          <CardTitle className="text-center text-xl font-bold text-primary sm:text-2xl">
             {product.title[locale]}
           </CardTitle>
           <CardDescription className="line-clamp-2 text-center leading-relaxed">
