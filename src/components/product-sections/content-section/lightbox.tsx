@@ -26,6 +26,9 @@ type LightboxProps = {
  *
  * `sizes` asks for the full-resolution source rather than the column-width one
  * the inline picture uses; serving the small file here would defeat the point.
+ * It is deliberately wider than the box the picture is drawn in, so the browser
+ * fetches a copy with detail left to zoom into rather than one that is exactly
+ * sharp at 100% and mush at 200%.
  *
  * The heading is the picture's `alt`, hidden visually because the picture is
  * right there, but it is what names the dialog for a screen reader.
@@ -46,7 +49,7 @@ export function Lightbox({ block, locale }: LightboxProps) {
           alt={block.alt[locale]}
           width={block.width}
           height={block.height}
-          sizes="64rem"
+          sizes="128rem"
           className="mx-auto h-auto w-auto max-h-[80vh] max-w-none"
         />
       </div>

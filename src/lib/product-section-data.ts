@@ -513,8 +513,8 @@ const productSections: Record<string, ProductSection[]> = {
             th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองไร้อากาศ แสดงส่วนเกรอะ (1) และส่วนกรองไร้อากาศที่บรรจุวัสดุกรอง (2)",
             en: "Cutaway of the septic - anaerobic filter tank showing the septic chamber (1) and the anaerobic filter chamber packed with filter media (2)",
           },
-          width: 1024,
-          height: 645,
+          width: 2482,
+          height: 1755,
         },
         {
           type: "list",
@@ -584,13 +584,13 @@ const productSections: Record<string, ProductSection[]> = {
         },
         {
           type: "image",
-          src: "/images/products/fiberglass-septic-tank/treatment-systems/3.webp",
+          src: "/images/products/fiberglass-septic-tank/treatment-systems/2.webp",
           alt: {
-            th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองเติมอากาศ แสดงส่วนเกรอะ (1) ส่วนกรองเติมอากาศ (2) และส่วนพักน้ำที่ผ่านการบำบัด (3)",
-            en: "Cutaway of the septic - aerobic filter tank showing the septic chamber (1), the aerated filter chamber (2) and the treated water chamber (3)",
+            th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองเติมอากาศ แสดงส่วนเกรอะ (1) ส่วนกรองเติมอากาศ (2) และส่วนตกตะกอน (3)",
+            en: "Cutaway of the septic - aerobic filter tank showing the septic chamber (1), the aerated filter chamber (2) and the sedimentation chamber (3)",
           },
-          width: 1024,
-          height: 617,
+          width: 2482,
+          height: 1755,
         },
         {
           type: "list",
@@ -681,13 +681,13 @@ const productSections: Record<string, ProductSection[]> = {
         },
         {
           type: "image",
-          src: "/images/products/fiberglass-septic-tank/treatment-systems/5.webp",
+          src: "/images/products/fiberglass-septic-tank/treatment-systems/3.webp",
           alt: {
-            th: "ภาพตัดถังบำบัดน้ำเสียแบบตะกอนเวียนเติมอากาศ แสดงส่วนเกรอะ (1) ถังเติมอากาศ (2) ถังแยกตะกอน (3) และชุดสูบตะกอนเวียนกลับ (4)",
-            en: "Cutaway of the activated sludge tank showing the septic chamber (1), the aeration tank (2), the clarifier (3) and the sludge return set (4)",
+            th: "ภาพตัดถังบำบัดน้ำเสียแบบตะกอนเวียนเติมอากาศ แสดงส่วนเกรอะ (1) ส่วนกรองไร้อากาศ (2) ส่วนกรองเติมอากาศ (3) และส่วนตกตะกอน (4)",
+            en: "Cutaway of the activated sludge tank showing the septic chamber (1), the anaerobic chamber (2), the aerated filter chamber (3) and the sedimentation chamber (4)",
           },
-          width: 1024,
-          height: 617,
+          width: 2482,
+          height: 1755,
         },
         {
           type: "list",
