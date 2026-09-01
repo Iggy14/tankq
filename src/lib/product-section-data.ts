@@ -513,8 +513,8 @@ const productSections: Record<string, ProductSection[]> = {
             th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองไร้อากาศ แสดงส่วนเกรอะ (1) และส่วนกรองไร้อากาศที่บรรจุวัสดุกรอง (2)",
             en: "Cutaway of the septic - anaerobic filter tank showing the septic chamber (1) and the anaerobic filter chamber packed with filter media (2)",
           },
-          width: 2482,
-          height: 1755,
+          width: 2289,
+          height: 1490,
         },
         {
           type: "list",
@@ -589,8 +589,8 @@ const productSections: Record<string, ProductSection[]> = {
             th: "ภาพตัดถังบำบัดน้ำเสียแบบเกรอะ-กรองเติมอากาศ แสดงส่วนเกรอะ (1) ส่วนกรองเติมอากาศ (2) และส่วนตกตะกอน (3)",
             en: "Cutaway of the septic - aerobic filter tank showing the septic chamber (1), the aerated filter chamber (2) and the sedimentation chamber (3)",
           },
-          width: 2482,
-          height: 1755,
+          width: 2289,
+          height: 1497,
         },
         {
           type: "list",
@@ -686,8 +686,8 @@ const productSections: Record<string, ProductSection[]> = {
             th: "ภาพตัดถังบำบัดน้ำเสียแบบตะกอนเวียนเติมอากาศ แสดงส่วนเกรอะ (1) ส่วนกรองไร้อากาศ (2) ส่วนกรองเติมอากาศ (3) และส่วนตกตะกอน (4)",
             en: "Cutaway of the activated sludge tank showing the septic chamber (1), the anaerobic chamber (2), the aerated filter chamber (3) and the sedimentation chamber (4)",
           },
-          width: 2482,
-          height: 1755,
+          width: 2285,
+          height: 1492,
         },
         {
           type: "list",
