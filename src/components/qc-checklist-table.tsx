@@ -24,12 +24,12 @@ const columns = ["Item", "Standard", "Instrument", "Result"] as const;
  * The per-tank QC checklist - what is inspected, against what, with what, and
  * the outcome.
  *
- * Styled after the product detail pages' spec table (navy header, zebra body,
- * ringed container that scrolls sideways when narrow), but every column here
- * holds words rather than figures, so all four stay left-aligned instead of
- * right-aligning the figures under a size chart. The first cell of a row is a
- * <th> so the standard and instrument beside it are announced with the item
- * they belong to.
+ * Styled after the product detail pages' spec table (primary-color header,
+ * zebra body, ringed container that scrolls sideways when narrow), but every
+ * column here holds words rather than figures, so all four stay left-aligned
+ * instead of right-aligning the figures under a size chart. The first cell of
+ * a row is a <th> so the standard and instrument beside it are announced with
+ * the item they belong to.
  */
 export function QcChecklistTable() {
   const t = useTranslations("quality");
@@ -47,12 +47,12 @@ export function QcChecklistTable() {
       <div className="mt-8 overflow-hidden rounded-xl ring-1 ring-border">
         <Table>
           <TableHeader>
-            <TableRow className="border-b-0 bg-navy hover:bg-navy">
+            <TableRow className="border-b-0 bg-primary hover:bg-primary">
               {columns.map((column) => (
                 <TableHead
                   key={column}
                   scope="col"
-                  className="h-12 px-4 text-navy-foreground"
+                  className="h-12 px-4 text-primary-foreground"
                 >
                   {t(`qcCol${column}`)}
                 </TableHead>

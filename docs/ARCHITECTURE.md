@@ -271,7 +271,7 @@ primitive before hand-rolling one.
 
 | `type` | Renders |
 | --- | --- |
-| `specTable` | Size/spec table under its own heading. The chart is `spec-table.tsx`: navy header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
+| `specTable` | Size/spec table under its own heading. The chart is `spec-table.tsx`: primary-color header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
 | `bulletList` | Short selling points, two columns from `sm` up. `marker: "check"` puts a lucide `Check` in a tinted teal disc beside each item, `marker: "dot"` a plain teal bullet |
 | `orderedList` | Numbered write-ups, two columns from `sm` up. Each item is a `{ title, body }` pair under a rule, with its zero-padded number (from the array position, not stored) above it in teal mono |
 | `paragraph` | A heading over one centred paragraph, capped at a readable measure |
@@ -520,3 +520,6 @@ Thai + Latin) as `--font-sans` and `--font-heading`, Geist Mono as
 - This Next.js version has breaking changes against older docs. Read
   `node_modules/next/dist/docs/` before writing framework-level code, as
   `AGENTS.md` instructs.
+- A grid/table's header banner row (e.g. `spec-table.tsx`, `qc-checklist-table.tsx`)
+  uses `bg-primary` / `text-primary-foreground`, not `bg-navy`. Follow this for
+  any new grid-style table banner.
