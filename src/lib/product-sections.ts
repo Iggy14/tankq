@@ -180,6 +180,26 @@ export interface ContentListBlock extends ContentList {
 }
 
 /**
+ * A table in a <ContentSection>'s flow - a sizing chart sitting mid-article
+ * rather than standing alone as its own section.
+ *
+ * Same contract as <SpecTableSection>: every cell is localized, each row must
+ * have as many cells as `columns`, and the first cell of a row is its header.
+ * It carries no `title` of its own - the section's heading already names it,
+ * and a second heading inside the flow would read as a new section.
+ *
+ * This is the one block that leaves the prose measure: a sizing table runs to
+ * ten columns or more, which is unreadable at the text column's width, so it
+ * spans the full section instead. `caption` is optional and prints under it.
+ */
+export interface ContentTableBlock {
+  type: "table";
+  columns: Localized[];
+  rows: Localized[][];
+  caption?: Localized;
+}
+
+/**
  * One block in a <ContentSection>.
  *
  * This is its own discriminated union, separate from <ProductSection>, so the
@@ -189,11 +209,12 @@ export interface ContentListBlock extends ContentList {
 export type ContentBlock =
   | ContentParagraphBlock
   | ContentImageBlock
-  | ContentListBlock;
+  | ContentListBlock
+  | ContentTableBlock;
 
 /**
- * A title over an ordered run of mixed blocks - paragraphs, pictures and
- * lists, in whatever order the copy reads best.
+ * A title over an ordered run of mixed blocks - paragraphs, pictures, lists
+ * and tables, in whatever order the copy reads best.
  *
  * Reach for this when a product's story is one short article rather than
  * several separate blocks: the single-purpose sections above each impose their

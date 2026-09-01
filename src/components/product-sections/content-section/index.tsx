@@ -1,8 +1,16 @@
 import type { AppLocale } from "@/i18n/routing";
 import type { ContentSection as ContentSectionData } from "@/lib/product-sections";
+import { cn } from "@/lib/utils";
 
 import { Figure } from "./figure";
 import { List } from "./list";
+import { Table } from "./table";
+
+/**
+ * The reading measure every block but a table is held to. The flow itself is
+ * full width so a table can span it; the prose is centred inside that.
+ */
+const PROSE_COLUMN = "mx-auto w-full max-w-3xl";
 
 type ContentSectionProps = {
   section: ContentSectionData;
@@ -12,13 +20,14 @@ type ContentSectionProps = {
 };
 
 /**
- * A heading over an ordered run of mixed blocks - paragraphs, pictures and
- * lists in whatever order the data declares.
+ * A heading over an ordered run of mixed blocks - paragraphs, pictures, lists
+ * and tables in whatever order the data declares.
  *
- * Everything sits in one column at the prose measure, so a picture lines up
- * with the copy around it and the whole section reads as one article rather
- * than a stack of unrelated blocks. The gap here is between blocks; the gap
- * between sections belongs to the page.
+ * Paragraphs, pictures and lists sit in one column at the prose measure, so a
+ * picture lines up with the copy around it and the whole section reads as one
+ * article rather than a stack of unrelated blocks. A `table` is the exception
+ * and spans the full section - see <Table>. The gap here is between blocks;
+ * the gap between sections belongs to the page.
  *
  * Paragraphs are left-aligned, unlike <ParagraphSection>'s single centred one:
  * centring reads as a pull quote at one paragraph and as a mess at three.
@@ -41,24 +50,38 @@ export function ContentSection({
         {section.title[locale]}
       </h2>
 
-      <div className="mx-auto mt-8 flex max-w-3xl flex-col gap-6">
+      <div className="mt-8 flex flex-col gap-6">
         {section.blocks.map((block, index) => {
           switch (block.type) {
             case "paragraph":
               return (
                 <p
                   key={index}
-                  className="text-base leading-relaxed text-pretty text-muted-foreground"
+                  className={cn(
+                    PROSE_COLUMN,
+                    "text-base leading-relaxed text-pretty text-muted-foreground",
+                  )}
                 >
                   {block.body[locale]}
                 </p>
               );
 
             case "image":
-              return <Figure key={index} block={block} locale={locale} />;
+              return (
+                <div key={index} className={PROSE_COLUMN}>
+                  <Figure block={block} locale={locale} />
+                </div>
+              );
 
             case "list":
-              return <List key={index} list={block} locale={locale} />;
+              return (
+                <div key={index} className={PROSE_COLUMN}>
+                  <List list={block} locale={locale} />
+                </div>
+              );
+
+            case "table":
+              return <Table key={index} block={block} locale={locale} />;
           }
         })}
       </div>

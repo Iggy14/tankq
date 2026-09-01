@@ -212,11 +212,14 @@ src/components/product-sections/
   ordered-list-section.tsx
   paragraph-section.tsx
   image-grid-section.tsx
+  spec-table.tsx                   the size chart itself, shared by the
+                                   specTable section and the table block
   content-section/                 a renderer that needed more than one file
     index.tsx                      takes the folder shape the rest of
     figure.tsx                     src/components uses
     lightbox.tsx
     list.tsx
+    table.tsx
 ```
 
 Everything above the sections - title, description, CTA, gallery - is shared by
@@ -268,7 +271,7 @@ primitive before hand-rolling one.
 
 | `type` | Renders |
 | --- | --- |
-| `specTable` | Size/spec table: navy header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
+| `specTable` | Size/spec table under its own heading. The chart is `spec-table.tsx`: navy header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
 | `bulletList` | Short selling points, two columns from `sm` up. `marker: "check"` puts a lucide `Check` in a tinted teal disc beside each item, `marker: "dot"` a plain teal bullet |
 | `orderedList` | Numbered write-ups, two columns from `sm` up. Each item is a `{ title, body }` pair under a rule, with its zero-padded number (from the array position, not stored) above it in teal mono |
 | `paragraph` | A heading over one centred paragraph, capped at a readable measure |
@@ -285,6 +288,7 @@ primitive before hand-rolling one.
 | `paragraph` | One `body`. Several may stack - unlike `ParagraphSection`, which is capped at one per section |
 | `image` | `src`, required localized `alt`, the file's intrinsic `width`/`height`, and an optional localized `caption`. Shown whole at its own ratio across the text column, not cropped square like `imageGrid`. Pressing it opens the picture larger - see below |
 | `list` | `ordered: boolean` plus `items`, each an `{ text, children? }` pair |
+| `table` | `columns` and `rows` of `Localized` cells, plus an optional localized `caption`. Same contract and same look as a `specTable` section - both render `spec-table.tsx` - but with no title of its own, since the section heading already names it |
 
 Only lists nest. An item's `children` is another `ContentList`, so a sub-list
 may flip between bullets and numbers at any level and go as deep as the copy
@@ -294,23 +298,30 @@ parent `<li>`, where HTML expects it, and draws nested levels back (a hollow
 ring for a bullet, a muted figure for a number) so depth reads without a second
 colour.
 
+A `table` is the one block that leaves the prose measure. Paragraphs, pictures
+and lists sit in a `max-w-3xl` column so they read as one article; a sizing
+table runs to ten columns or more and is unreadable there, so `index.tsx` holds
+the flow at full section width and centres a `max-w-3xl` wrapper around every
+block except the table. A block added later belongs in a wrapper unless it has
+the same reason not to.
+
 The block union deliberately reuses the tag `"paragraph"`, which `ProductSection`
 also uses. The two unions are unrelated and never mix, so there is nothing to
 rename.
 
 An `image` block is pressable: `figure.tsx` wraps the picture in a Base UI
-dialog trigger and `lightbox.tsx` is the enlarged copy. This is the one part of
-`product-sections/` that is client-side, so it is kept to those two files and
-the rest of the registry stays server components. The dialog body is not in the
+dialog trigger and `lightbox.tsx` is the enlarged copy. They are the only
+renderers in `product-sections/` that declare `"use client"` themselves - every
+other one is a server component, though `spec-table.tsx` pulls in `ui/table`,
+which is a client module. Keep it that way. The dialog body is not in the
 server-rendered HTML, so the full-resolution file is not fetched until someone
 opens it.
 
 The enlarged picture is drawn at its own pixel size inside a scrolling box,
 capped only by the viewport height, rather than being fitted to the screen.
-That is deliberate: some of these pictures are screenshots of sizing tables,
-and fitting a 1024px table onto a phone reproduces exactly the problem the
-enlarged view exists to solve. A picture wider than the screen is panned
-instead.
+That is deliberate: these are technical drawings, and fitting a 1024px diagram
+onto a phone reproduces exactly the problem the enlarged view exists to solve.
+A picture wider than the screen is panned instead.
 
 Its two labels are chrome, not content, so they live in `messages/*.json` under
 `products.sectionImage` rather than in the block data.

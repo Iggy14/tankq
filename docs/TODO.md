@@ -168,20 +168,22 @@ referenced nowhere in `src/`.
 3. Decide what to do with `s1.jpg` - `s6.jpg`. If they are not going to be
    used anywhere, delete them - they are 4.5 MB of unreferenced assets.
 
-## Fiberglass septic tank: photo format, table images and English copy
+## Fiberglass septic tank: photo format and English copy
 
-**Status:** not started. Added 2026-08-31 with the `fiberglass-septic-tank`
+**Status:** part done. Added 2026-08-31 with the `fiberglass-septic-tank`
 product (`src/lib/products.ts`, category `frp-wastewater-treatment-tank`),
-updated 2026-08-31 when the three treatment-system `content` sections landed.
+updated 2026-08-31 when the three treatment-system `content` sections landed,
+and again on 2026-09-01 when all three sizing tables became real `table` blocks
+and their screenshots were deleted.
 
-Three separate things are outstanding on this one product.
+Two separate things are still outstanding on this one product.
 
 ### 1. Gallery photos are unconverted JPEGs
 
 The three photos in the product's `images` array
 (`public/images/products/fiberglass-septic-tank/1.jpg` - `3.jpg`) are unedited
 phone/camera JPEGs, renamed and moved into place as-is. Every other product's
-`images` array points at optimized `.webp` files. The six treatment-system
+`images` array points at optimized `.webp` files. The three treatment-system
 diagrams added later are already `.webp` and are not affected.
 
 **Why it was skipped:** no image-conversion tooling is available in this
@@ -191,36 +193,7 @@ session, and re-encoding was out of scope for adding the product entry.
 quality other product photos use) and update the three paths in the
 `fiberglass-septic-tank` entry in `src/lib/products.ts`.
 
-### 2. Three sizing tables ship as pictures, not as `specTable` data
-
-`treatment-systems/2.webp`, `4.webp` and `6.webp` are screenshots of tables -
-the WSF, WSFA and WAS model ranges, each roughly 10 to 14 rows by 9 to 11
-columns, listing flow rate, tank dimensions, pipe sizes and maximum occupancy.
-They render as images inside the `content` sections, so the figures are not
-selectable, not searchable, not readable by a screen reader beyond the `alt`
-summary, and are hard to read on a phone: a 1024px-wide table scaled into a
-360px column leaves the digits tiny.
-
-**Why it was skipped:** the source brief (`tasks/add_contents.md`) placed them
-in the flow as images, and `ContentBlock` has no table member, so honouring the
-brief meant shipping them as pictures. Transcribing them is a content decision
-and a few hundred bilingual cells of data entry.
-
-**What to do:**
-
-1. Transcribe each table into a `specTable` section - see `ProductSection` in
-   `src/lib/product-sections.ts` and any existing `specTable` for the shape.
-   `pe-waste-water-treatment-tank` has a close analogue already.
-2. Drop the matching image block from the `content` section and add the
-   `specTable` section after it, so the diagram stays in the flow and the
-   figures become real markup.
-3. Delete the three `.webp` files once nothing references them.
-
-Alternatively add a `table` member to `ContentBlock` so a table can sit inside
-the flow rather than becoming its own section. Only worth doing if more
-products need tables mid-article.
-
-### 3. English copy on this product is Claude-written
+### 2. English copy on this product is Claude-written
 
 The Thai side of the three treatment-system sections is the customer's own copy
 from `tasks/add_contents.md`; the English side was translated by Claude and has

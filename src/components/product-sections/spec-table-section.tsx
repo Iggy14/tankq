@@ -1,14 +1,7 @@
 import type { AppLocale } from "@/i18n/routing";
 import type { SpecTableSection as SpecTableSectionData } from "@/lib/product-sections";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { cn } from "@/lib/utils";
+
+import { SpecTable } from "./spec-table";
 
 type SpecTableSectionProps = {
   section: SpecTableSectionData;
@@ -18,13 +11,11 @@ type SpecTableSectionProps = {
 };
 
 /**
- * A specification table — sizes, capacities, weights.
+ * A specification table as a section of its own - sizes, capacities, weights.
  *
- * The first cell of a row is its header (the capacity, typically) and stays
- * left-aligned; every other column holds figures, so it is right-aligned with
- * tabular numerals to keep the digits in a column. The table scrolls sideways
- * on narrow screens rather than wrapping cells, which would break the reading
- * order of a size chart.
+ * The table is <SpecTable>; this adds the heading and the section landmark.
+ * A table that belongs inside a run of copy is the `table` block of a
+ * <ContentSection> instead, which renders the same chart without a heading.
  */
 export function SpecTableSection({
   section,
@@ -40,53 +31,12 @@ export function SpecTableSection({
         {section.title[locale]}
       </h2>
 
-      <div className="mt-8 overflow-hidden rounded-xl ring-1 ring-border">
-        <Table>
-          <TableHeader>
-            <TableRow className="border-b-0 bg-navy hover:bg-navy">
-              {section.columns.map((column, columnIndex) => (
-                <TableHead
-                  key={columnIndex}
-                  scope="col"
-                  className={cn(
-                    "h-12 px-4 text-navy-foreground",
-                    columnIndex > 0 && "text-right",
-                  )}
-                >
-                  {column[locale]}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            {section.rows.map((row, rowIndex) => (
-              <TableRow key={rowIndex} className="border-border odd:bg-muted/40">
-                {row.map((cell, cellIndex) =>
-                  cellIndex === 0 ? (
-                    // A <th> rather than a cell, so the figures beside it are
-                    // announced with the size they belong to.
-                    <TableHead
-                      key={cellIndex}
-                      scope="row"
-                      className="h-auto px-4 py-3 tabular-nums"
-                    >
-                      {cell[locale]}
-                    </TableHead>
-                  ) : (
-                    <TableCell
-                      key={cellIndex}
-                      className="px-4 py-3 text-right tabular-nums text-muted-foreground"
-                    >
-                      {cell[locale]}
-                    </TableCell>
-                  ),
-                )}
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </div>
+      <SpecTable
+        columns={section.columns}
+        rows={section.rows}
+        locale={locale}
+        className="mt-8"
+      />
     </section>
   );
 }
