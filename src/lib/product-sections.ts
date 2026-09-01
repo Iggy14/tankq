@@ -6,8 +6,11 @@ import type { Localized } from "./localized";
  *
  * Products differ in what they need to show — one wants a size table, the next
  * a datasheet download, another a chart — so instead of a bespoke page per
- * product, each product declares an ordered list of sections and
+ * product, each product gets an ordered list of sections and
  * <ProductSections> maps every `type` to a component.
+ *
+ * This file is the shape only. The data lives in
+ * `src/lib/product-section-data.ts`, keyed by `Product.id`.
  *
  * To add a kind of section: add a member to this union, then handle it in
  * `src/components/product-sections/index.tsx`. The switch there is exhaustive,

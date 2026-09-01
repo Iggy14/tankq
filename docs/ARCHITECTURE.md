@@ -109,8 +109,9 @@ never the array, so the storage can change later without touching page code.
 
 A `Product` carries `id`, `slug`, localized `title` and `description`, `images`
 (public paths, first is the cover), `featured`, `order`, and optionally
-`specs?: ProductSpec[]` and `sections?: ProductSection[]`. Images live at
-`public/images/products/<slug>/<n>.webp`.
+`specs?: ProductSpec[]`. Images live at
+`public/images/products/<slug>/<n>.webp`. Detail-page sections are *not* a
+field on `Product` - see below.
 
 ### Specs
 
@@ -197,11 +198,13 @@ since hover does not exist on a phone.
 size table, the next a datasheet, another a chart. A bespoke page per product
 duplicates layout and drifts visually.
 
-**Pattern.** Each product declares an ordered list of typed blocks; one
-renderer maps each block's `type` to a component.
+**Pattern.** Each product gets an ordered list of typed blocks, declared
+against its id in a separate data file; one renderer maps each block's `type`
+to a component.
 
 ```
 src/lib/product-sections.ts        the ProductSection discriminated union
+src/lib/product-section-data.ts    the section data, keyed by product id
 src/components/product-sections/
   index.tsx                        the type -> component switch
   spec-table-section.tsx           one renderer per union member
@@ -222,6 +225,29 @@ the gallery and the related-products strip. The switch in `index.tsx` is
 exhaustive over the union, so adding a member without a branch is a compile
 error, not a silently blank page.
 
+### Where the data lives
+
+Section data does **not** sit on the product. `src/lib/product-section-data.ts`
+holds one `Record<string, ProductSection[]>` keyed by `Product.id`, and the
+detail page reads it through `getProductSections(product.id)` - a product with
+no entry renders no sections. This keeps `src/lib/products.ts` a short,
+scannable list of catalogue entries while the long-form detail copy, which is
+most of the bytes, lives on its own.
+
+```ts
+const productSections: Record<string, ProductSection[]> = {
+  "frp-horizontal-water-tank": [
+    { type: "paragraph", title: { th: "...", en: "..." }, body: { ... } },
+  ],
+};
+```
+
+So: add or edit a product's sections in `product-section-data.ts` under its id,
+never in `products.ts`. The key is the product's `id`, not its `slug` - the two
+match today, but `id` is the stable one. Only the detail page reads the data,
+so it imports `getProductSections` and never the record itself, same rule as
+the catalogue accessors.
+
 ### Adding a section type
 
 1. Add an interface to `src/lib/product-sections.ts` and to the
@@ -232,7 +258,8 @@ error, not a silently blank page.
    `<section aria-labelledby={headingId}>` with an `<h2 id={headingId}>`
    carrying `section.title[locale]`.
 3. Add the `case` to the switch in `index.tsx`.
-4. Add the data to the relevant product in `src/lib/products.ts`.
+4. Add the data under that product's id in
+   `src/lib/product-section-data.ts`.
 
 Keep renderers server components unless they need state. Reach for a shadcn
 primitive before hand-rolling one.

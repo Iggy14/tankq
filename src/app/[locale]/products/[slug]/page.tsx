@@ -11,6 +11,7 @@ import { ProductSpecs } from "@/components/product-specs";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
+import { getProductSections } from "@/lib/product-section-data";
 import {
   getAllProducts,
   getProductBySlug,
@@ -58,6 +59,7 @@ export default async function ProductDetailPage({
   const tNav = await getTranslations("nav");
   const tCommon = await getTranslations("common");
 
+  const sections = getProductSections(product.id);
   const related = getRelatedProducts(product.slug);
 
   return (
@@ -120,9 +122,9 @@ export default async function ProductDetailPage({
           />
         </FadeInUp>
 
-        {product.sections && product.sections.length > 0 && (
+        {sections.length > 0 && (
           <FadeInUpGroup className="mt-20 flex flex-col gap-20">
-            <ProductSections sections={product.sections} locale={activeLocale} />
+            <ProductSections sections={sections} locale={activeLocale} />
           </FadeInUpGroup>
         )}
 
