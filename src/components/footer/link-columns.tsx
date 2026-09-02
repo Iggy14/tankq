@@ -33,13 +33,13 @@ function LinkColumn({ title, items }: LinkColumnProps) {
 
   return (
     <div className="space-y-3">
-      <p className="text-sm font-semibold text-background">{title}</p>
+      <p className="text-[1.1375rem] font-semibold text-background">{title}</p>
       <ul className="space-y-2">
         {items.map((item) => (
           <li key={item.key}>
             <Link
               href={item.href}
-              className="text-sm text-background/70 transition-colors hover:text-background"
+              className="text-[1.1375rem] text-background/70 transition-colors hover:text-background"
             >
               {t(`nav.${item.key}`)}
             </Link>
@@ -89,29 +89,29 @@ export function LinkColumns() {
       <LinkColumn title={t("footer.columns.company")} items={companyLinks} />
 
       <div className="space-y-3">
-        <p className="text-sm font-semibold text-background">
+        <p className="text-[1.1375rem] font-semibold text-background">
           {t("footer.columns.contact")}
         </p>
         <ul className="space-y-2">
-          <li className="flex items-center gap-2 text-sm text-background/70">
-            <MessageCircle aria-hidden className="size-4 shrink-0" />
+          <li className="flex items-center gap-2 text-[1.1375rem] text-background/70">
+            <MessageCircle aria-hidden className="size-5 shrink-0" />
             {t("footer.contactLine")}
           </li>
           <li>
             <a
               href={`mailto:${t("footer.contactEmail")}`}
-              className="flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
+              className="flex items-center gap-2 text-[1.1375rem] text-background/70 transition-colors hover:text-background"
             >
-              <Mail aria-hidden className="size-4 shrink-0" />
+              <Mail aria-hidden className="size-5 shrink-0" />
               {t("footer.contactEmail")}
             </a>
           </li>
           <li>
             <a
               href={`tel:${t("footer.contactPhone")}`}
-              className="flex items-center gap-2 text-sm text-background/70 transition-colors hover:text-background"
+              className="flex items-center gap-2 text-[1.1375rem] text-background/70 transition-colors hover:text-background"
             >
-              <Phone aria-hidden className="size-4 shrink-0" />
+              <Phone aria-hidden className="size-5 shrink-0" />
               {t("footer.contactPhone")}
             </a>
           </li>

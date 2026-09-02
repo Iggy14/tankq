@@ -14,14 +14,14 @@ export const MISSION_VALUES_ID = "mission-values";
  */
 const STORY_STATS = ["experience", "projects", "industries", "warranty"] as const;
 
-/** Splits a trailing "+" (as in "15+") off into its own `text-primary` span. */
+/** Splits a trailing "+" (as in "15+") off into its own `text-primary-foreground` span. */
 function renderStatValue(value: string) {
   if (!value.endsWith("+")) return value;
 
   return (
     <>
       {value.slice(0, -1)}
-      <span className="text-primary">+</span>
+      <span className="text-primary-foreground">+</span>
     </>
   );
 }
@@ -99,20 +99,20 @@ export function OurStory() {
           its bottom half — then continues as the visible band below. Extra
           top padding equal to that same overlap keeps the stats themselves
           sitting just under the photo, exactly where they'd land without the
-          overlap. A shade darker than the design system's `--navy` token so
-          it still reads as distinct from the navy bands elsewhere on the
-          site (footer CTA, hero). */}
+          overlap. Uses the design system's `--primary` token rather than
+          navy, so it reads as an accent band distinct from the navy bands
+          elsewhere on the site (footer CTA, hero). */}
       <FadeInUp
-        className="relative z-0 -mt-[140px] bg-[oklch(0.26_0.075_250)] px-4 pt-[180px] pb-10 sm:-mt-[180px] sm:px-6 sm:pt-[228px] sm:pb-12 lg:-mt-[240px] lg:px-[max(1.5rem,calc((100vw-72rem)/2))] lg:pt-[296px] lg:pb-14"
+        className="relative z-0 -mt-[140px] bg-primary px-4 pt-[180px] pb-10 sm:-mt-[180px] sm:px-6 sm:pt-[228px] sm:pb-12 lg:-mt-[240px] lg:px-[max(1.5rem,calc((100vw-72rem)/2))] lg:pt-[296px] lg:pb-14"
         delay={0.2}
       >
         <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4 lg:gap-x-12">
           {STORY_STATS.map((key) => (
             <div key={key}>
-              <p className="text-xs text-navy-foreground/70 sm:text-sm">
+              <p className="text-xs text-primary-foreground/70 sm:text-sm">
                 {tStats(`${key}Label`)}
               </p>
-              <p className="mt-2 text-3xl leading-none font-bold text-navy-foreground sm:text-4xl lg:text-5xl">
+              <p className="mt-2 text-3xl leading-none font-bold text-primary-foreground sm:text-4xl lg:text-5xl">
                 {renderStatValue(tStats(`${key}Value`))}
               </p>
             </div>
