@@ -35,7 +35,7 @@ export function StatItem({ icon, value, label, size = "default" }: StatItemProps
       <div
         ref={ref}
         className={cn(
-          "flex items-center justify-center gap-3 px-5 py-4 sm:px-4 lg:px-5 lg:py-5 find-me-here",
+          "flex items-center justify-center gap-3 px-5 py-4 sm:px-4 lg:px-5 lg:py-5",
           size === "sm" && "gap-2 px-4 py-3 lg:px-4 lg:py-3",
         )}
       >
@@ -45,11 +45,11 @@ export function StatItem({ icon, value, label, size = "default" }: StatItemProps
             value={value}
             start={isInView}
             className={cn(
-              "text-2xl font-bold tracking-tight text-primary sm:text-4xl lg:text-4xl xl:text-5xl",
+              "text-2xl font-bold tracking-tight light:text-primary dark:text-white sm:text-4xl lg:text-4xl xl:text-5xl",
               size === "sm" && "text-xl sm:text-2xl lg:text-2xl xl:text-3xl",
             )}
           />
-          <span className="text-xs text-navy">{label}</span>
+          <span className="text-xs light:text-navy dark:text-gray-300">{label}</span>
         </div>
       </div>
     </FadeInUp>

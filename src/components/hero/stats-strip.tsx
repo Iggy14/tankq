@@ -32,11 +32,11 @@ export function StatsStrip() {
 
   return (
     <section className="relative z-30 flex w-full items-center flex-col justify-center px-4 py-10 sm:px-6 lg:flex-1 lg:py-6">
-      <FadeInUpGroup className="mx-auto grid w-full items-center max-w-[88rem] grid-cols-1 bg-white sm:grid-cols-2 lg:grid-cols-5">
+      <FadeInUpGroup className="mx-auto grid w-full items-center max-w-[88rem] grid-cols-1 bg-background sm:grid-cols-2 lg:grid-cols-5">
         {stats.map(({ key, Icon }) => (
           <StatItem
             key={key}
-            icon={<Icon className="size-6 shrink-0 text-primary" aria-hidden />}
+            icon={<Icon className="size-6 shrink-0 light:text-primary dark:text-white" aria-hidden />}
             value={t(`${key}Value`)}
             label={t(`${key}Label`)}
           />
