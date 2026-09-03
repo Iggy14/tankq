@@ -34,7 +34,7 @@ export default async function QualityPage({ params }: PageProps<"/[locale]/quali
           <h1 className="text-3xl leading-[1] font-black tracking-tight text-primary uppercase sm:text-4xl md:text-5xl lg:text-6xl">
             {t("title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-sm font-medium text-black sm:text-base">
+          <p className="mt-6 max-w-2xl text-pretty text-sm font-medium dark:text-neutral-400 light:text-muted-foreground sm:text-base">
             {t("subtitle")}
           </p>
           <div className="mb-10 mt-8 h-px w-40 bg-neutral-500 sm:mb-14 sm:mt-10" />
