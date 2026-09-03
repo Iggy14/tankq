@@ -19,7 +19,6 @@ const productLinks = [
 const companyLinks = [
   { href: "/about", key: "about" },
   { href: "/projects", key: "projects" },
-  { href: "/blog", key: "blog" },
 ] as const;
 
 type LinkColumnProps = {

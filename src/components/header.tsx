@@ -19,7 +19,6 @@ const navItems = [
   { href: "/projects", key: "projects" },
   { href: "/quality", key: "quality" },
   { href: "/service", key: "service" },
-  { href: "/blog", key: "blog" },
 ] as const;
 
 export function Header() {

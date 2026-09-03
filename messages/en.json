@@ -7,7 +7,6 @@
     "projects": "Projects",
     "quality": "Quality",
     "service": "Service",
-    "blog": "Blog",
     "contact": "Contact"
   },
   "common": {
@@ -221,12 +220,6 @@
     "metaDescription": "After-sales service, inspection and maintenance from TankQ.",
     "title": "FRP After-Sales Services",
     "subtitle": "Full lifecycle FRP tank care - inspection, repair, coating, and upgrades"
-  },
-  "blog": {
-    "metaTitle": "Blog",
-    "metaDescription": "News, guides and updates from the TankQ team.",
-    "title": "Blog",
-    "subtitle": "Placeholder copy - articles and updates will go here."
   },
   "contact": {
     "metaTitle": "Contact",

@@ -48,7 +48,7 @@ src/app/
     layout.tsx                     html/body, fonts, Header, Footer,
                                    NextIntlClientProvider
     page.tsx                       home
-    about|projects|quality|service|blog|contact/page.tsx
+    about|projects|quality|service|contact/page.tsx
     products/page.tsx              catalogue listing
     products/[slug]/page.tsx       detail page
 ```
