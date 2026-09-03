@@ -15,7 +15,10 @@ export function Footer() {
           from the CTA band's navy into this section's own darker background
           (gradient overlay behind the z-10 content) so the seam dissolves
           instead of showing as a hard line. */}
-      <div className="relative bg-[#0594DB] text-background">
+      {/* text-navy-foreground, not text-background: this band's own bg is a
+          fixed hex, but --background flips dark in .dark, which would take
+          this text down with it even though the blue never moves. */}
+      <div className="relative bg-[#0594DB] text-navy-foreground">
         <div
           aria-hidden
           className="pointer-events-none absolute inset-x-0 z-0 bg-linear-to-t from-[#0594DB] from-10% to-transparent sm:-top-15 sm:h-15"
@@ -24,8 +27,8 @@ export function Footer() {
           <LinkColumns />
         </div>
 
-        <div className="border-t border-background/10">
-          <p className="mx-auto w-full max-w-[88rem] px-4 py-4 text-xs text-background/60 sm:px-6">
+        <div className="border-t border-navy-foreground/10">
+          <p className="mx-auto w-full max-w-[88rem] px-4 py-4 text-xs text-navy-foreground/60 sm:px-6">
             © {year} {t("common.companyName")}. {t("common.allRightsReserved")}
           </p>
         </div>

@@ -5,6 +5,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { MobileNav } from "@/components/mobile-nav";
 import { NavLink } from "@/components/nav-link";
 import { ProductsNavMenu } from "@/components/products-nav-menu";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
@@ -67,6 +68,10 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 lg:justify-self-end">
+          <ThemeToggle
+            darkLabel={t("common.switchToDarkMode")}
+            lightLabel={t("common.switchToLightMode")}
+          />
           <LanguageSwitcher />
           <Button
             size="lg"

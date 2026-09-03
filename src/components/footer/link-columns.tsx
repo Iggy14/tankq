@@ -33,13 +33,13 @@ function LinkColumn({ title, items }: LinkColumnProps) {
 
   return (
     <div className="space-y-3">
-      <p className="text-[1.1375rem] font-semibold text-background">{title}</p>
+      <p className="text-[1.1375rem] font-semibold text-navy-foreground">{title}</p>
       <ul className="space-y-2">
         {items.map((item) => (
           <li key={item.key}>
             <Link
               href={item.href}
-              className="text-[1.1375rem] text-background/70 transition-colors hover:text-background"
+              className="text-[1.1375rem] text-navy-foreground/70 transition-colors hover:text-navy-foreground"
             >
               {t(`nav.${item.key}`)}
             </Link>
@@ -70,16 +70,16 @@ export function LinkColumns() {
           />
         </div>
         <div className="space-y-2">
-          <p className="text-sm font-semibold text-background">
+          <p className="text-sm font-semibold text-navy-foreground">
             {t("footer.contactTitle")}
           </p>
-          <p className="text-sm text-background/70">
+          <p className="text-sm text-navy-foreground/70">
             {t("footer.companyName")}
           </p>
-          <p className="text-sm text-background/70">
+          <p className="text-sm text-navy-foreground/70">
             {t("footer.companyDescription")}
           </p>
-          <p className="text-sm text-background/70">
+          <p className="text-sm text-navy-foreground/70">
             {t("footer.companyAddress")}
           </p>
         </div>
@@ -89,18 +89,18 @@ export function LinkColumns() {
       <LinkColumn title={t("footer.columns.company")} items={companyLinks} />
 
       <div className="space-y-3">
-        <p className="text-[1.1375rem] font-semibold text-background">
+        <p className="text-[1.1375rem] font-semibold text-navy-foreground">
           {t("footer.columns.contact")}
         </p>
         <ul className="space-y-2">
-          <li className="flex items-center gap-2 text-[1.1375rem] text-background/70">
+          <li className="flex items-center gap-2 text-[1.1375rem] text-navy-foreground/70">
             <MessageCircle aria-hidden className="size-5 shrink-0" />
             {t("footer.contactLine")}
           </li>
           <li>
             <a
               href={`mailto:${t("footer.contactEmail")}`}
-              className="flex items-center gap-2 text-[1.1375rem] text-background/70 transition-colors hover:text-background"
+              className="flex items-center gap-2 text-[1.1375rem] text-navy-foreground/70 transition-colors hover:text-navy-foreground"
             >
               <Mail aria-hidden className="size-5 shrink-0" />
               {t("footer.contactEmail")}
@@ -109,7 +109,7 @@ export function LinkColumns() {
           <li>
             <a
               href={`tel:${t("footer.contactPhone")}`}
-              className="flex items-center gap-2 text-[1.1375rem] text-background/70 transition-colors hover:text-background"
+              className="flex items-center gap-2 text-[1.1375rem] text-navy-foreground/70 transition-colors hover:text-navy-foreground"
             >
               <Phone aria-hidden className="size-5 shrink-0" />
               {t("footer.contactPhone")}
@@ -125,7 +125,7 @@ export function LinkColumns() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t(`home.socials.${social.key}`)}
-              className="flex size-8 items-center justify-center rounded-full bg-white p-1.5 shadow-md ring-1 ring-background/10 transition-transform hover:scale-105"
+              className="flex size-8 items-center justify-center rounded-full bg-white p-1.5 shadow-md ring-1 ring-navy-foreground/10 transition-transform hover:scale-105"
             >
               <Image
                 src={social.src}

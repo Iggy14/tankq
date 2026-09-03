@@ -3,6 +3,7 @@ import { Anuphan, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
+import { ThemeProvider } from "next-themes";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
@@ -61,6 +62,10 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={`${anuphan.variable} ${geistMono.variable} h-full antialiased`}
+      // next-themes sets the "dark" class on this element before hydration,
+      // via a script it injects itself, so a light/dark mismatch here is
+      // expected and this is the tool's documented way to silence it.
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
         {/* The scroll reveals are server-rendered at opacity: 0 and only
@@ -69,13 +74,15 @@ export default async function LocaleLayout({
         <noscript>
           <style>{`[data-fade-in-up]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
-        {/* Without props the provider inherits locale + messages from the
-            request config, making them available to client components. */}
-        <NextIntlClientProvider>
-          <Header />
-          <main className="flex flex-1 flex-col">{children}</main>
-          <Footer />
-        </NextIntlClientProvider>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          {/* Without props the provider inherits locale + messages from the
+              request config, making them available to client components. */}
+          <NextIntlClientProvider>
+            <Header />
+            <main className="flex flex-1 flex-col">{children}</main>
+            <Footer />
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
