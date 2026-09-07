@@ -28,7 +28,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
     <>
       <Breadcrumbs items={[{ label: tNav("contact") }]} />
       <ContactHero />
-      <p className="px-4 pt-10 pb-8 text-center text-lg font-medium text-navy sm:pt-12 sm:pb-10">
+      <p className="px-4 pt-10 pb-8 text-center text-lg font-medium light:text-navy dark:text-white sm:pt-12 sm:pb-10">
         {t("engineerReply")}
       </p>
       <ContactPrepare />
