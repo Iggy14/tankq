@@ -150,7 +150,7 @@ export const products: Product[] = [
       },
     ],
     images: [
-      "/images/products/pe-above-ground-water-tank/6.jpg",
+      "/images/products/pe-above-ground-water-tank/6.webp",
       "/images/products/pe-above-ground-water-tank/1.webp",
       "/images/products/pe-above-ground-water-tank/2.webp",
       "/images/products/pe-above-ground-water-tank/3.webp",

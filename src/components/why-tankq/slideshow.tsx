@@ -19,10 +19,10 @@ import { cn } from "@/lib/utils";
  * list is card N and photo N.
  */
 export const reasons = [
-  { key: "engineered", Icon: DraftingCompass, image: "/why/engineered.jpg" },
-  { key: "warranty", Icon: ShieldCheck, image: "/why/warranty.jpg" },
-  { key: "delivery", Icon: Truck, image: "/why/delivery.jpg" },
-  { key: "service", Icon: Wrench, image: "/why/service.jpg" },
+  { key: "engineered", Icon: DraftingCompass, image: "/why/engineered.webp" },
+  { key: "warranty", Icon: ShieldCheck, image: "/why/warranty.webp" },
+  { key: "delivery", Icon: Truck, image: "/why/delivery.webp" },
+  { key: "service", Icon: Wrench, image: "/why/service.webp" },
 ] as const satisfies readonly {
   key: string;
   Icon: LucideIcon;

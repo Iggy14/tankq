@@ -18,6 +18,7 @@ export function ContactHero() {
         width={1280}
         height={960}
         priority
+        sizes="100vw"
         className="h-[260px] w-full object-cover object-center sm:h-[340px] lg:h-[420px]"
       />
 

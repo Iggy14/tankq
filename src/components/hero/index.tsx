@@ -14,7 +14,7 @@ const heroImages = [
   "/hero/tankq-hero-1.jpg",
   "/hero/tankq-hero-2.jpg",
   "/hero/tankq-hero-3.jpg",
-  "/hero/tankq-hero-4.jpg",
+  "/hero/tankq-hero-4.webp",
 ] as const;
 
 /**

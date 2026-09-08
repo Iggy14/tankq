@@ -124,14 +124,14 @@ export function LinkColumns() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t(`home.socials.${social.key}`)}
-              className="flex size-8 items-center justify-center rounded-full bg-white p-1.5 shadow-md ring-1 ring-navy-foreground/10 transition-transform hover:scale-105"
+              className="flex size-8 items-center justify-center overflow-hidden rounded-[22%] transition-transform hover:scale-105"
             >
               <Image
                 src={social.src}
                 alt=""
-                width={20}
-                height={20}
-                className="size-full object-contain"
+                width={32}
+                height={32}
+                className="size-full object-cover"
               />
             </a>
           ))}

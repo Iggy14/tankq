@@ -66,10 +66,11 @@ export function Tank({ alt }: TankProps) {
           className="block origin-bottom transition-transform duration-500 ease-out hover:scale-[1.06] focus-visible:scale-[1.06] focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-brand motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:focus-visible:scale-100"
         >
           <Image
-            src="/footer/TQ.png"
+            src="/footer/TQ.webp"
             alt={alt}
             width={640}
             height={800}
+            sizes="23rem"
             className="h-auto w-full"
           />
         </Link>

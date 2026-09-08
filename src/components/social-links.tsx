@@ -16,12 +16,12 @@ const FOLLOW_BANNERS = [
   {
     key: "instagram",
     href: "https://www.instagram.com/tankq.official/",
-    src: "/images/socials/กดติดตามเพจวันนี้ (1).png",
+    src: "/images/socials/กดติดตามเพจวันนี้ (1).webp",
   },
   {
     key: "facebook",
     href: "https://www.facebook.com/profile.php?id=61592899202754",
-    src: "/images/socials/กดติดตามเพจวันนี้ (2).png",
+    src: "/images/socials/กดติดตามเพจวันนี้ (2).webp",
   },
 ] as const;
 
@@ -46,8 +46,8 @@ export function SocialLinks() {
           <Image
             src={FOLLOW_BANNERS[0].src}
             alt=""
-            width={3030}
-            height={781}
+            width={2200}
+            height={567}
             sizes="100vw"
             className="h-auto w-full"
           />
@@ -62,14 +62,14 @@ export function SocialLinks() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t(social.key)}
-              className="flex size-16 items-center justify-center rounded-full bg-white p-4 shadow-md ring-1 ring-border transition-transform hover:scale-105 hover:shadow-lg sm:size-20 sm:p-5"
+              className="flex size-16 items-center justify-center overflow-hidden rounded-[22%] transition-transform hover:scale-105 sm:size-20"
             >
               <Image
                 src={social.src}
                 alt=""
-                width={48}
-                height={48}
-                className="size-full object-contain"
+                width={80}
+                height={80}
+                className="size-full object-cover"
               />
             </a>
           </FadeInUp>
@@ -87,8 +87,8 @@ export function SocialLinks() {
           <Image
             src={FOLLOW_BANNERS[1].src}
             alt=""
-            width={3030}
-            height={781}
+            width={2200}
+            height={567}
             sizes="100vw"
             className="h-auto w-full"
           />

@@ -52,10 +52,11 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8">
         <Image
-          src="/about/tank-lineup.png"
+          src="/about/tank-lineup.webp"
           alt={t("lineupAlt")}
-          width={3292}
-          height={1796}
+          width={1800}
+          height={982}
+          sizes="(min-width: 768px) 48rem, 100vw"
           className="mx-auto h-auto w-full max-w-3xl"
         />
       </section>
