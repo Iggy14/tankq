@@ -48,7 +48,7 @@ export function OurStory() {
     <section className="w-full pt-4 pb-16 sm:pt-6 sm:pb-20">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-6 px-4 text-center sm:px-6">
         <FadeInUp
-          className="flex flex-col gap-4 text-base leading-relaxed text-pretty light:text-primary dark:text-white sm:text-lg"
+          className="flex flex-col gap-4 text-base leading-relaxed text-pretty text-primary dark:text-white sm:text-lg"
           delay={0.1}
         >
           <p>{t("paragraph1")}</p>

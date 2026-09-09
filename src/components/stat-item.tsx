@@ -45,11 +45,11 @@ export function StatItem({ icon, value, label, size = "default" }: StatItemProps
             value={value}
             start={isInView}
             className={cn(
-              "text-2xl font-bold tracking-tight light:text-primary dark:text-white sm:text-4xl lg:text-4xl xl:text-5xl",
+              "text-2xl font-bold tracking-tight text-primary dark:text-white sm:text-4xl lg:text-4xl xl:text-5xl",
               size === "sm" && "text-xl sm:text-2xl lg:text-2xl xl:text-3xl",
             )}
           />
-          <span className="text-xs light:text-navy dark:text-gray-300">{label}</span>
+          <span className="text-xs text-navy dark:text-gray-300">{label}</span>
         </div>
       </div>
     </FadeInUp>

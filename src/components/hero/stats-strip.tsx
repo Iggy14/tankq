@@ -36,7 +36,7 @@ export function StatsStrip() {
         {stats.map(({ key, Icon }) => (
           <StatItem
             key={key}
-            icon={<Icon className="size-6 shrink-0 light:text-primary dark:text-white" aria-hidden />}
+            icon={<Icon className="size-6 shrink-0 text-primary dark:text-white" aria-hidden />}
             value={t(`${key}Value`)}
             label={t(`${key}Label`)}
           />
