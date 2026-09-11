@@ -27,7 +27,10 @@ export function ServiceImage({ service, locale }: ServiceImageProps) {
           src={service.image}
           alt={service.imageAlt[locale]}
           fill
-          className="object-cover object-center"
+          // `aspect-4/3` matches the wrapper above; redundant for layout
+          // (`fill` already forces 100%/100%), but it's what Chrome's
+          // lazy-image-dimensions check looks for on the `<img>` itself.
+          className="aspect-4/3 object-cover object-center"
           sizes="(min-width: 1024px) 36rem, 100vw"
         />
       ) : (

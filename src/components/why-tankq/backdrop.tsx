@@ -16,7 +16,7 @@ export function Backdrop() {
       {/* Softened by a hair — not to hide the photo, but so it reads as ground
           rather than competing with the sharp copy of itself in the panel. The
           scale is only there to keep that blur off the section's edges. */}
-      <Slides sizes="100vw" imageClassName="scale-105" />
+      <Slides sizes="100vw" imageClassName="aspect-video scale-105" />
 
       {/* The wash: a light coat of page ground over the whole thing — enough to
           take the glare off without losing the photo — then a second pass that

@@ -508,6 +508,18 @@ Thai + Latin) as `--font-sans` and `--font-heading`, Geist Mono as
 `images/products/<slug>/` and `images/socials/`. Use `next/image` with explicit
 `width` and `height`; pass `priority` only for above-the-fold art.
 
+A `fill` image (used where the box's own size is driven by its container, not
+the picture) always needs an `aspect-*` Tailwind class on the `<Image>` itself,
+matching whatever ratio its wrapper already draws - `object-cover object-center`
+alone leaves the rendered `<img>` with no width/height attributes and no CSS
+`aspect-ratio`, which Chrome's DevTools flags as a lazy-loaded image without
+explicit dimensions even though the sized wrapper already prevents any real
+layout shift. The class has no visual effect (`fill` forces the `<img>`'s own
+width and height to 100% at every breakpoint, so its `aspect-ratio` is never
+used to size anything) - it exists only to satisfy that check, so a rough or
+representative ratio is fine when the wrapper's own ratio is fluid rather than
+fixed.
+
 ## Conventions worth knowing
 
 - `@/*` maps to `src/*` (`tsconfig.json`), and TypeScript runs in `strict` mode.

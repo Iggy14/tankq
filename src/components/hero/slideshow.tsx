@@ -87,6 +87,11 @@ export function Slideshow({
               // The first slide is the LCP element; the rest are in-viewport
               // siblings the browser fetches on its own.
               preload={index === 0}
+              // The caller's `imageClassName` is expected to carry an
+              // `aspect-*` utility matching its own box. It's redundant for
+              // layout (`fill` already forces 100%/100%), but it's what
+              // Chrome's lazy-image-dimensions check looks for on the
+              // `<img>` itself.
               className={cn("object-cover", imageClassName)}
             />
           </motion.div>

@@ -71,7 +71,10 @@ function CaseStudy({ project, imagePosition, isFirst }: CaseStudyProps) {
             src={cover}
             alt={project.title[locale]}
             fill
-            className="object-cover"
+            // `aspect-4/3` matches the wrapper above; redundant for layout
+            // (`fill` already forces 100%/100%), but it's what Chrome's
+            // lazy-image-dimensions check looks for on the `<img>` itself.
+            className="aspect-4/3 object-cover"
             sizes="(min-width: 1024px) 32rem, 100vw"
           />
         )}

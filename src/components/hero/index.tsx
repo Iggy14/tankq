@@ -43,7 +43,7 @@ export function Hero() {
             className="absolute inset-0"
             // From `lg` up the crop window sits below centre, so the panel keeps
             // more of each photo's bottom half. Phones stay centred.
-            imageClassName="lg:object-[50%_60%]"
+            imageClassName="aspect-video lg:object-[50%_60%]"
           />
 
           {/* On phones, one flat navy tint over the whole photo — no gradient.

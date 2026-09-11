@@ -70,7 +70,14 @@ export function Showcase() {
         aria-hidden
         className="relative aspect-4/3 w-full overflow-hidden rounded-xl bg-muted ring-1 ring-foreground/10 lg:aspect-auto lg:h-full"
       >
-        <Slides sizes="(max-width: 1024px) 100vw, 50vw" />
+        <Slides
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          // Unconditional, unlike the wrapper's own `aspect-4/3 lg:aspect-auto`:
+          // `fill` forces the `<img>`'s own width/height to 100% at every
+          // breakpoint, so its `aspect-ratio` never affects layout — it's only
+          // here for Chrome's lazy-image-dimensions check.
+          imageClassName="aspect-4/3"
+        />
 
         {/* Names the photo's card, numbered to match its position in the grid,
             over a scrim that keeps the caption legible on every image. */}

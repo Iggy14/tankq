@@ -85,7 +85,11 @@ export function OurStory() {
             src="/about/story.jpg"
             alt={t("imageAlt")}
             fill
-            className="object-cover object-center"
+            // `aspect-video` here is inert — `fill` already forces width and
+            // height to 100% of the sized wrapper above — it only gives
+            // Chrome's lazy-image-dimensions check something to see on the
+            // `<img>` itself.
+            className="aspect-video object-cover object-center"
             sizes="100vw"
           />
         </div>

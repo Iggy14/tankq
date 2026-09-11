@@ -51,7 +51,10 @@ export function OurMission() {
             src="/about/mission.jpg"
             alt={t("imageAlt")}
             fill
-            className="object-cover object-center"
+            // `aspect-square` matches the wrapper above; redundant for layout
+            // (`fill` already forces 100%/100%), but it's what Chrome's
+            // lazy-image-dimensions check looks for on the `<img>` itself.
+            className="aspect-square object-cover object-center"
             sizes="(min-width: 1024px) 24rem, 100vw"
           />
         </FadeInUp>
