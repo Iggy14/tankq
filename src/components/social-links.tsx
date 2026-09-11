@@ -6,22 +6,24 @@ import { SOCIAL_LINKS } from "@/lib/social-links";
 
 /**
  * Full-width "follow us" banners bracketing the icon row, in display order.
- * Both are fixed 3030x781 marketing graphics with their own baked-in
- * background (white for Instagram, black for Facebook) and copy, so they're
- * rendered edge-to-edge with no added padding or background of their own.
- * Sizing is a first pass — the user flagged they'll want to tune it further
- * once it's live.
+ * Both are marketing graphics with their own copy, rendered edge-to-edge
+ * with no added padding or background of their own - the site's own
+ * background shows through around the artwork.
  */
 const FOLLOW_BANNERS = [
   {
     key: "instagram",
     href: "https://www.instagram.com/tankq.official/",
-    src: "/images/socials/กดติดตามเพจวันนี้ (1).webp",
+    src: "/images/socials/กดติดตามเพจวันนี้ (1)-v4.webp",
+    width: 2941,
+    height: 781,
   },
   {
     key: "facebook",
     href: "https://www.facebook.com/profile.php?id=61592899202754",
     src: "/images/socials/กดติดตามเพจวันนี้ (2).webp",
+    width: 2200,
+    height: 567,
   },
 ] as const;
 
@@ -46,8 +48,8 @@ export function SocialLinks() {
           <Image
             src={FOLLOW_BANNERS[0].src}
             alt=""
-            width={2200}
-            height={567}
+            width={FOLLOW_BANNERS[0].width}
+            height={FOLLOW_BANNERS[0].height}
             sizes="100vw"
             className="h-auto w-full"
           />
@@ -87,8 +89,8 @@ export function SocialLinks() {
           <Image
             src={FOLLOW_BANNERS[1].src}
             alt=""
-            width={2200}
-            height={567}
+            width={FOLLOW_BANNERS[1].width}
+            height={FOLLOW_BANNERS[1].height}
             sizes="100vw"
             className="h-auto w-full"
           />

@@ -54,6 +54,8 @@ type FadeInUpProps = {
    * fraction cannot be reached by elements taller than a few viewports.
    */
   amount?: ViewportAmount;
+  /** Entrance length in seconds. Defaults to DURATION_SECONDS; raise it for a slower, calmer reveal. */
+  duration?: number;
 };
 
 /**
@@ -74,6 +76,7 @@ export function FadeInUp({
   className,
   delay = 0,
   amount = DEFAULT_AMOUNT,
+  duration = DURATION_SECONDS,
 }: FadeInUpProps) {
   const prefersReducedMotion = useReducedMotion();
   const inGroup = useContext(GroupContext);
@@ -84,7 +87,7 @@ export function FadeInUp({
       opacity: 1,
       y: 0,
       transition: {
-        duration: DURATION_SECONDS,
+        duration,
         ease: EASE,
         delay: inGroup ? 0 : delay,
       },

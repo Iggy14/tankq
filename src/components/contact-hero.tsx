@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 
+import { FadeInUp } from "@/components/fade-in-up";
+
 /**
  * Full-bleed photo band opening the contact page, matching the reference's
  * banner: a wide factory photo with the brand's navy wash cut in from the
@@ -29,12 +31,14 @@ export function ContactHero() {
 
       <div className="absolute inset-0 flex items-center">
         <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <h1 className="text-4xl leading-[0.95] font-black tracking-tight uppercase sm:text-5xl md:text-6xl lg:text-7xl">
-            {t("heroTitle")}
-          </h1>
-          <p className="mt-3 text-base font-medium text-navy-foreground/80 sm:text-lg">
-            {t("title")}
-          </p>
+          <FadeInUp>
+            <h1 className="text-4xl leading-[0.95] font-black tracking-tight uppercase sm:text-5xl md:text-6xl lg:text-7xl">
+              {t("heroTitle")}
+            </h1>
+            <p className="mt-3 text-base font-medium text-navy-foreground/80 sm:text-lg">
+              {t("title")}
+            </p>
+          </FadeInUp>
         </div>
       </div>
     </section>

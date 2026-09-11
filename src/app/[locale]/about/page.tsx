@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import { FadeInUp } from "@/components/fade-in-up";
 import { FeaturedProducts } from "@/components/featured-products";
 import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
@@ -33,42 +34,50 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
       <Breadcrumbs items={[{ label: tNav("about") }]} />
 
       <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center px-4 pt-12 pb-16 text-center sm:px-6 sm:pt-16 sm:pb-20">
-        <h1 className="text-4xl leading-[0.95] font-black tracking-tight text-primary uppercase sm:text-5xl md:text-6xl lg:text-7xl">
-          <span className="block">{t("heroLine1")}</span>
-          <span className="block">
-            {t("heroLine2")}{" "}
-            {/* Outlined instead of filled, matching the reference's ghost
-                "TEAM" treatment — stroke reads off `--primary` directly so
-                it stays legible even though `color` itself is transparent. */}
-            <span className="text-transparent [-webkit-text-stroke:1.5px_var(--primary)] sm:[-webkit-text-stroke:2px_var(--primary)]">
-              {t("heroLine2Accent")}
+        <FadeInUp className="flex flex-col items-center" duration={0.7}>
+          <h1 className="text-4xl leading-[0.95] font-black tracking-tight text-primary uppercase sm:text-5xl md:text-6xl lg:text-7xl">
+            <span className="block">{t("heroLine1")}</span>
+            <span className="block">
+              {t("heroLine2")}{" "}
+              {/* Outlined instead of filled, matching the reference's ghost
+                  "TEAM" treatment — stroke reads off `--primary` directly so
+                  it stays legible even though `color` itself is transparent. */}
+              <span className="text-transparent [-webkit-text-stroke:1.5px_var(--primary)] sm:[-webkit-text-stroke:2px_var(--primary)]">
+                {t("heroLine2Accent")}
+              </span>
             </span>
-          </span>
-        </h1>
-        <p className="mt-6 max-w-lg text-lg text-muted-foreground sm:text-xl md:text-2xl">
-          {t("heroSubtitle")}
-        </p>
+          </h1>
+        </FadeInUp>
+        <FadeInUp className="flex flex-col items-center" delay={0.4} duration={0.7}>
+          <p className="mt-6 max-w-lg text-lg text-muted-foreground sm:text-xl md:text-2xl">
+            {t("heroSubtitle")}
+          </p>
+        </FadeInUp>
       </section>
 
       <section className="mx-auto w-full max-w-6xl px-4 pb-6 sm:px-6 sm:pb-8">
-        <Image
-          src="/about/tank-lineup.webp"
-          alt={t("lineupAlt")}
-          width={1800}
-          height={982}
-          sizes="(min-width: 768px) 48rem, 100vw"
-          className="mx-auto h-auto w-full max-w-3xl"
-        />
+        <FadeInUp delay={0.8} duration={0.7}>
+          <Image
+            src="/about/tank-lineup.webp"
+            alt={t("lineupAlt")}
+            width={1800}
+            height={982}
+            sizes="(min-width: 768px) 48rem, 100vw"
+            className="mx-auto h-auto w-full max-w-3xl"
+          />
+        </FadeInUp>
       </section>
 
       <div className="mx-auto w-full max-w-6xl px-4 py-6 sm:px-6 sm:py-8">
-        <Image
-          src="/brand/tankq-logo.png"
-          alt={tCommon("companyName")}
-          width={304}
-          height={149}
-          className="mx-auto h-16 w-auto sm:h-20"
-        />
+        <FadeInUp>
+          <Image
+            src="/brand/tankq-logo.png"
+            alt={tCommon("companyName")}
+            width={304}
+            height={149}
+            className="mx-auto h-16 w-auto sm:h-20"
+          />
+        </FadeInUp>
       </div>
 
       <OurStory />
