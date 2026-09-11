@@ -6,10 +6,13 @@
  * matching string in `messages/{en,th}.json`. Shared by the home page's
  * "follow us" section and the footer's icon row, so both stay in step.
  */
+/** TankQ's LINE Official Account URL, reused wherever a LINE link appears outside the icon row. */
+export const LINE_URL = "https://page.line.me/597iheyw";
+
 export const SOCIAL_LINKS = [
   {
     key: "line",
-    href: "https://page.line.me/597iheyw",
+    href: LINE_URL,
     src: "/images/socials/LINE_logo.svg",
   },
   {

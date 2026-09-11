@@ -4,6 +4,7 @@ import { useTranslations } from "next-intl";
 
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
+import { LINE_URL } from "@/lib/social-links";
 
 import { Tank } from "./tank";
 
@@ -45,7 +46,7 @@ export function CtaBand() {
 
           <div className="flex items-center gap-4 pt-2">
             <a
-              href="https://page.line.me/597iheyw"
+              href={LINE_URL}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("footer.lineQrTitle")}

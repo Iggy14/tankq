@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 
 import { Link } from "@/i18n/navigation";
-import { SOCIAL_LINKS } from "@/lib/social-links";
+import { LINE_URL, SOCIAL_LINKS } from "@/lib/social-links";
 
 /**
  * The two nav columns, in display order. `key` is the `nav.*` translation key
@@ -92,9 +92,16 @@ export function LinkColumns() {
           {t("footer.columns.contact")}
         </p>
         <ul className="space-y-2">
-          <li className="flex items-center gap-2 text-[1.1375rem] text-navy-foreground/70">
-            <MessageCircle aria-hidden className="size-5 shrink-0" />
-            {t("footer.contactLine")}
+          <li>
+            <a
+              href={LINE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-[1.1375rem] text-navy-foreground/70 transition-colors hover:text-navy-foreground"
+            >
+              <MessageCircle aria-hidden className="size-5 shrink-0" />
+              {t("footer.contactLine")}
+            </a>
           </li>
           <li>
             <a
