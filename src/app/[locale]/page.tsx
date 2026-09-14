@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { FeaturedProducts } from "@/components/featured-products";
-import { FeaturedProjects } from "@/components/featured-projects";
 import { Hero } from "@/components/hero";
 import { SocialLinks } from "@/components/social-links";
 import { WhyTankQ } from "@/components/why-tankq";
@@ -31,8 +30,6 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
       <WhyTankQ />
 
       <FeaturedProducts />
-
-      <FeaturedProjects />
 
       <SocialLinks />
     </>

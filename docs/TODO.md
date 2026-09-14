@@ -140,6 +140,43 @@ are enough jobs that one full-width block each stops scaling.
    `lg:grid-cols-3` and drop the `max-w-4xl` so it matches the three-across
    featured products row above it.
 
+## Projects page unlinked pending real photos/data
+
+**Status:** in progress. Added 2026-09-14.
+
+The supervisor asked to hide the Projects page for now because both entries in
+`src/lib/projects.ts` still use placeholder photography and copy (see
+"Project photography" above) and they don't want it shown publicly until real
+job photos/data are gathered. The `/projects` route itself was deliberately
+**not** removed or blocked (no redirect/`notFound()`), only every on-site link
+to it - the page is small-traffic with no `sitemap.ts` in this project, so the
+supervisor accepted the low risk of someone finding the bare URL directly.
+
+**What was changed:**
+
+1. `src/components/header.tsx` - removed the `{ href: "/projects", key:
+   "projects" }` entry from `navItems` (this array drives both the desktop
+   `<nav>` and the `MobileNav` items, so both were hidden by removing it here).
+2. `src/components/footer/link-columns.tsx` - removed the same entry from
+   `companyLinks`, leaving that footer column with only `about`.
+3. `src/app/[locale]/page.tsx` - removed the `<FeaturedProjects />` section
+   (and its now-unused import) from the homepage. The component itself,
+   `src/components/featured-projects.tsx`, was left in place, just unused.
+
+**What to do once real project photos/data are ready:**
+
+1. Re-add `{ href: "/projects", key: "projects" }` to `navItems` in
+   `src/components/header.tsx` (restore it before `quality` to match the
+   original order).
+2. Re-add the same entry to `companyLinks` in
+   `src/components/footer/link-columns.tsx`.
+3. Re-add the `FeaturedProjects` import and `<FeaturedProjects />` element to
+   `src/app/[locale]/page.tsx` (it sat between `<FeaturedProducts />` and
+   `<SocialLinks />`).
+4. Resolve "Project photography" and "Thai copy review for the project
+   showcase" above first (or alongside), since the whole point of hiding the
+   page was to keep the placeholder photos/copy off the public site.
+
 ## Service page photography
 
 **Status:** not started. Added 2026-08-30 with the service page sections.
