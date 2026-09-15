@@ -17,6 +17,8 @@
     "switchToDarkMode": "Switch to dark mode",
     "switchToLightMode": "Switch to light mode",
     "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "navigationMenu": "Navigation menu",
     "allRightsReserved": "All rights reserved",
     "breadcrumb": "Breadcrumb"
   },
@@ -232,6 +234,10 @@
     "prepareQrAlt": "LINE QR code - scan to chat with TankQ",
     "prepareQrCaption": "Scan to chat on LINE",
     "prepareTitle": "Information to Prepare",
+    "addressLabel": "Address",
+    "phoneLabel": "Telephone Number",
+    "emailLabel": "Email",
+    "lineLabel": "Line ID",
     "prepare": {
       "chemical": "Chemical / liquid type to store",
       "capacity": "Required capacity (liters / m³)",
@@ -258,5 +264,11 @@
       "company": "Company",
       "contact": "Contact"
     }
+  },
+  "floatingContact": {
+    "toggleLabel": "Contact us",
+    "closeLabel": "Close",
+    "callLabel": "Call us",
+    "emailLabel": "Email us"
   }
 }

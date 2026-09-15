@@ -17,6 +17,8 @@
     "switchToDarkMode": "สลับเป็นโหมดมืด",
     "switchToLightMode": "สลับเป็นโหมดสว่าง",
     "openMenu": "เปิดเมนู",
+    "closeMenu": "ปิดเมนู",
+    "navigationMenu": "เมนูนำทาง",
     "allRightsReserved": "สงวนลิขสิทธิ์",
     "breadcrumb": "เส้นทางนำทาง"
   },
@@ -232,6 +234,10 @@
     "prepareQrAlt": "คิวอาร์โค้ด LINE - สแกนเพื่อพูดคุยกับ TankQ",
     "prepareQrCaption": "สแกนเพื่อแอดไลน์",
     "prepareTitle": "ข้อมูลที่ควรเตรียม",
+    "addressLabel": "ที่อยู่",
+    "phoneLabel": "เบอร์โทรศัพท์",
+    "emailLabel": "อีเมล",
+    "lineLabel": "ไลน์ไอดี",
     "prepare": {
       "chemical": "ชนิดสารเคมี / ของเหลวที่ต้องการจัดเก็บ",
       "capacity": "ความจุที่ต้องการ (ลิตร / ลูกบาศก์เมตร)",
@@ -258,5 +264,11 @@
       "company": "บริษัท",
       "contact": "ติดต่อ"
     }
+  },
+  "floatingContact": {
+    "toggleLabel": "ติดต่อเรา",
+    "closeLabel": "ปิด",
+    "callLabel": "โทรหาเรา",
+    "emailLabel": "อีเมลถึงเรา"
   }
 }

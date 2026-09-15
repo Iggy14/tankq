@@ -190,7 +190,10 @@ item is still a real link to the unfiltered page. It does not read
 `useSearchParams` to highlight the current category - the header is on every
 page, and that would force a Suspense boundary onto all of them. `MobileNav`
 carries the same categories as indented `children` under its Products item,
-since hover does not exist on a phone.
+since hover does not exist on a phone. It renders as a `ui/sheet` panel (half
+the viewport width, capped at `sm:max-w-sm`) sliding in from the right, with
+any item that has `children` rendered as a `ui/accordion` item instead of a
+plain link so the categories expand in place.
 
 ## Product detail sections
 
@@ -408,8 +411,9 @@ every entry is still `null`.
 
 ```
 src/components/
-  ui/               shadcn primitives: breadcrumb, button, card, dialog,
-                    dropdown-menu, navigation-menu, section, table
+  ui/               shadcn primitives: accordion, breadcrumb, button, card,
+                    dialog, dropdown-menu, navigation-menu, section, sheet,
+                    table
   product-sections/ the section registry above
   footer/           multi-part blocks, each folded into one folder (see below)
   hero/
@@ -462,9 +466,9 @@ from the parts - `Showcase`, not `WhyTankQShowcase`. Convert a block to this
 shape when it reaches a second file; leave one-file blocks as they are.
 
 Data a block shares with another part of the site does not belong in either of
-them: it goes in `src/lib` (e.g. `src/lib/social-links.ts`, read by both the
-footer and the home page's "follow us" section). Data only one component ever
-renders stays next to it.
+them: it goes in `src/lib` (e.g. `src/lib/social-links.ts`, read by the
+footer, the home page's "follow us" section, and the floating contact button).
+Data only one component ever renders stays next to it.
 
 - `ui/section.tsx` is a full-bleed band owning only the ground (`light` /
   `navy`) and the vertical rhythm. Inner width stays the page's job: wrap the

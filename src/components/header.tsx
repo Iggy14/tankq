@@ -97,6 +97,8 @@ export function Header() {
                   : undefined,
             }))}
             menuLabel={t("common.openMenu")}
+            closeLabel={t("common.closeMenu")}
+            logoAlt={t("common.companyName")}
             ctaHref="/contact"
             ctaLabel={t("common.ctaButton")}
           />

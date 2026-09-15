@@ -5,6 +5,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
 
+import { FloatingContact } from "@/components/floating-contact";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { routing } from "@/i18n/routing";
@@ -81,6 +82,7 @@ export default async function LocaleLayout({
             <Header />
             <main className="flex flex-1 flex-col">{children}</main>
             <Footer />
+            <FloatingContact />
           </NextIntlClientProvider>
         </ThemeProvider>
       </body>
