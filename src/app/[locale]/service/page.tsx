@@ -28,7 +28,7 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
 
   return (
     <>
-      <Breadcrumbs wide items={[{ label: tNav("service") }]} />
+      <Breadcrumbs wide items={[{ label: tNav("service"), href: "/service" }]} />
 
       <section className="mx-auto w-full max-w-[88rem] flex-1 px-4 py-16 sm:px-6">
         <FadeInUp className="flex flex-col items-center text-center">

@@ -9,6 +9,7 @@ import { FloatingContact } from "@/components/floating-contact";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { routing } from "@/i18n/routing";
+import { siteUrl } from "@/lib/site";
 import "../globals.css";
 
 // Anuphan is a variable Thai/Latin family: smooth, humanist letterforms with
@@ -36,6 +37,10 @@ export async function generateMetadata({
   const t = await getTranslations({ locale, namespace: "common" });
 
   return {
+    // Lets every page's relative metadata (JSON-LD URLs today; Open Graph
+    // images and canonical links if added later) resolve against the real
+    // domain instead of being emitted as invalid relative URLs.
+    metadataBase: new URL(siteUrl),
     title: {
       default: t("companyName"),
       template: `%s | ${t("companyName")}`,

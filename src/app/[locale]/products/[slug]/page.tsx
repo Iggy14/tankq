@@ -68,7 +68,10 @@ export default async function ProductDetailPage({
         wide
         items={[
           { label: tNav("products"), href: "/products" },
-          { label: product.title[activeLocale] },
+          {
+            label: product.title[activeLocale],
+            href: `/products/${product.slug}`,
+          },
         ]}
       />
 

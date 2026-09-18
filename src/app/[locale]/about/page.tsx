@@ -31,7 +31,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
 
   return (
     <>
-      <Breadcrumbs items={[{ label: tNav("about") }]} />
+      <Breadcrumbs items={[{ label: tNav("about"), href: "/about" }]} />
 
       <section className="mx-auto flex w-full max-w-6xl flex-1 flex-col items-center px-4 pt-12 pb-16 text-center sm:px-6 sm:pt-16 sm:pb-20">
         <FadeInUp className="flex flex-col items-center" duration={0.7}>

@@ -27,7 +27,7 @@ export default async function ContactPage({ params }: PageProps<"/[locale]/conta
 
   return (
     <>
-      <Breadcrumbs items={[{ label: tNav("contact") }]} />
+      <Breadcrumbs items={[{ label: tNav("contact"), href: "/contact" }]} />
       <ContactHero />
       <FadeInUp>
         <p className="px-4 pt-10 pb-8 text-center text-lg font-medium text-navy dark:text-white sm:pt-12 sm:pb-10">

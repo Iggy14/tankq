@@ -506,6 +506,16 @@ Fonts load through `next/font/google` in the locale layout: Anuphan (variable,
 Thai + Latin) as `--font-sans` and `--font-heading`, Geist Mono as
 `--font-mono`.
 
+## SEO
+
+`src/lib/site.ts` exports `siteUrl`, the canonical production origin
+(`https://www.tankq-solution.com`, overridable via `NEXT_PUBLIC_SITE_URL` for
+previews). It backs `metadataBase` in `src/app/[locale]/layout.tsx`'s
+`generateMetadata` and the absolute URLs in the `BreadcrumbList` JSON-LD that
+`src/components/breadcrumbs.tsx` emits. Anything else needing an absolute URL
+(Open Graph images, `alternates.canonical`) should read `siteUrl` rather than
+hardcoding the domain.
+
 ## Static assets
 
 `public/` holds `brand/`, `hero/`, `about/`, `why/`, `footer/`, `service/`,

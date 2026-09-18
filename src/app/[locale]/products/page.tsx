@@ -35,7 +35,10 @@ export default async function ProductsPage({
 
   return (
     <>
-      <Breadcrumbs wide items={[{ label: tNav("products") }]} />
+      <Breadcrumbs
+        wide
+        items={[{ label: tNav("products"), href: "/products" }]}
+      />
 
       <section className="mx-auto w-full max-w-[88rem] flex-1 px-4 py-16 sm:px-6">
         <FadeInUp className="flex flex-col items-center text-center">

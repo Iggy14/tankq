@@ -27,7 +27,10 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
 
   return (
     <>
-      <Breadcrumbs wide items={[{ label: tNav("projects") }]} />
+      <Breadcrumbs
+        wide
+        items={[{ label: tNav("projects"), href: "/projects" }]}
+      />
 
       <section className="mx-auto w-full max-w-[88rem] px-4 pt-16 pb-14 sm:px-6">
         <FadeInUp className="flex flex-col items-center text-center">

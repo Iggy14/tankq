@@ -27,7 +27,7 @@ export default async function QualityPage({ params }: PageProps<"/[locale]/quali
 
   return (
     <>
-      <Breadcrumbs wide items={[{ label: tNav("quality") }]} />
+      <Breadcrumbs wide items={[{ label: tNav("quality"), href: "/quality" }]} />
 
       <section className="mx-auto w-full max-w-[88rem] flex-1 px-4 py-16 sm:px-6">
         <FadeInUp className="flex flex-col items-center text-center">
