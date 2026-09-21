@@ -22,7 +22,12 @@ type TableProps = {
 export function Table({ block, locale }: TableProps) {
   return (
     <figure>
-      <SpecTable columns={block.columns} rows={block.rows} locale={locale} />
+      <SpecTable
+        columns={block.columns}
+        rows={block.rows}
+        locale={locale}
+        columnAlign={block.columnAlign}
+      />
 
       {block.caption && (
         <figcaption className="mt-2 text-center text-sm leading-relaxed text-pretty text-muted-foreground">

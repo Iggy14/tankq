@@ -35,6 +35,7 @@ export function SpecTableSection({
         columns={section.columns}
         rows={section.rows}
         locale={locale}
+        columnAlign={section.columnAlign}
         className="mt-8"
       />
     </section>

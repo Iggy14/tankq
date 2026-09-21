@@ -274,7 +274,7 @@ primitive before hand-rolling one.
 
 | `type` | Renders |
 | --- | --- |
-| `specTable` | Size/spec table under its own heading. The chart is `spec-table.tsx`: primary-color header row, zebra body, first cell of each row is a `<th scope="row">`, figures right-aligned with `tabular-nums`, scrolls sideways when narrow |
+| `specTable` | Size/spec table under its own heading. The chart is `spec-table.tsx`: primary-color header row, zebra body, first cell of each row is a `<th scope="row">`. Every other column defaults to right-aligned `tabular-nums` figures; set the optional `columnAlign: SpecColumnAlign[]` (parallel to `columns`, index 0 ignored) to `"left"` or `"center"` for a column that holds words rather than a number - e.g. a pipe size or note - so it isn't treated as a right-aligned figure. Scrolls sideways when narrow |
 | `bulletList` | Short selling points, two columns from `sm` up. `marker: "check"` puts a lucide `Check` in a tinted teal disc beside each item, `marker: "dot"` a plain teal bullet |
 | `orderedList` | Numbered write-ups, two columns from `sm` up. Each item is a `{ title, body }` pair under a rule, with its zero-padded number (from the array position, not stored) above it in teal mono |
 | `paragraph` | A heading over one centred paragraph, capped at a readable measure |

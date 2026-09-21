@@ -18,7 +18,18 @@ import type { Localized } from "./localized";
  */
 
 /**
- * A table of specifications — capacities, dimensions, weights.
+ * Text alignment for one column of a <SpecTable>.
+ *
+ * The row header (column 0) is always left-aligned regardless of this value.
+ * Every other column defaults to "right" with tabular figures, which suits a
+ * size chart's numbers; set "left" or "center" for a column that holds words
+ * instead (a pipe size, a note) so it is not treated as a right-aligned
+ * figure.
+ */
+export type SpecColumnAlign = "left" | "center" | "right";
+
+/**
+ * A table of specifications - capacities, dimensions, weights.
  *
  * Every cell is localized, because a Thai row may spell out units or use Thai
  * numerals even when the English row is plain digits. Rows are rendered in the
@@ -30,6 +41,8 @@ export interface SpecTableSection {
   title: Localized;
   columns: Localized[];
   rows: Localized[][];
+  /** Per-column alignment, parallel to `columns`. Omit for the all-right-aligned default. */
+  columnAlign?: SpecColumnAlign[];
 }
 
 /**
@@ -197,6 +210,8 @@ export interface ContentTableBlock {
   columns: Localized[];
   rows: Localized[][];
   caption?: Localized;
+  /** Per-column alignment, parallel to `columns`. Omit for the all-right-aligned default. See <SpecColumnAlign>. */
+  columnAlign?: SpecColumnAlign[];
 }
 
 /**

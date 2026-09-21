@@ -1,5 +1,6 @@
 import type { AppLocale } from "@/i18n/routing";
 import type { Localized } from "@/lib/localized";
+import type { SpecColumnAlign } from "@/lib/product-sections";
 import {
   Table,
   TableBody,
@@ -14,8 +15,16 @@ type SpecTableProps = {
   columns: Localized[];
   rows: Localized[][];
   locale: AppLocale;
+  /** Per-column alignment, parallel to `columns`. Column 0 ignores this and always stays left. See <SpecColumnAlign>. */
+  columnAlign?: SpecColumnAlign[];
   /** Outer spacing, owned by whoever places the table. */
   className?: string;
+};
+
+const alignClassName: Record<SpecColumnAlign, string> = {
+  left: "text-left",
+  center: "text-center",
+  right: "text-right tabular-nums",
 };
 
 /**
@@ -29,7 +38,15 @@ type SpecTableProps = {
  * sideways on narrow screens rather than wrapping cells, which would break the
  * reading order of a size chart.
  */
-export function SpecTable({ columns, rows, locale, className }: SpecTableProps) {
+export function SpecTable({
+  columns,
+  rows,
+  locale,
+  columnAlign,
+  className,
+}: SpecTableProps) {
+  const align = columns.map((_, index) => columnAlign?.[index] ?? "right");
+
   return (
     <div
       className={cn(
@@ -46,7 +63,7 @@ export function SpecTable({ columns, rows, locale, className }: SpecTableProps) 
                 scope="col"
                 className={cn(
                   "h-12 px-4 text-primary-foreground",
-                  columnIndex > 0 && "text-right",
+                  columnIndex > 0 && alignClassName[align[columnIndex]],
                 )}
               >
                 {column[locale]}
@@ -72,7 +89,10 @@ export function SpecTable({ columns, rows, locale, className }: SpecTableProps) 
                 ) : (
                   <TableCell
                     key={cellIndex}
-                    className="px-4 py-3 text-right tabular-nums text-muted-foreground"
+                    className={cn(
+                      "px-4 py-3 text-muted-foreground",
+                      alignClassName[align[cellIndex]],
+                    )}
                   >
                     {cell[locale]}
                   </TableCell>
