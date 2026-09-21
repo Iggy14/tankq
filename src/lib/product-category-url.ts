@@ -1,4 +1,5 @@
 import { productCategories, type ProductCategoryId } from "./product-categories";
+import { getProductsByCategory } from "./products";
 
 /**
  * The `?category=` contract for the products listing page.
@@ -42,4 +43,18 @@ export function productsHref(category: ActiveCategory) {
   return category === "all"
     ? "/products"
     : { pathname: "/products", query: { [CATEGORY_PARAM]: category } };
+}
+
+/**
+ * Where a category link should go. A category with exactly one product skips
+ * the listing and points at that product's detail page; anything else (several
+ * products, or none, which still shows `products.emptyCategory`) filters the
+ * listing as usual. Resolved at build time from static data, so the link stays
+ * a plain crawlable href.
+ */
+export function categoryHref(category: ProductCategoryId) {
+  const inCategory = getProductsByCategory(category);
+  return inCategory.length === 1
+    ? `/products/${inCategory[0].slug}`
+    : productsHref(category);
 }

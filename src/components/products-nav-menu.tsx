@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { ProductCategoryId } from "@/lib/product-categories";
-import { productsHref } from "@/lib/product-category-url";
+import { categoryHref } from "@/lib/product-category-url";
 import { cn } from "@/lib/utils";
 
 const PRODUCTS_HREF = "/products";
@@ -74,7 +74,7 @@ export function ProductsNavMenu({
               {categories.map((category) => (
                 <li key={category.id}>
                   <NavigationMenuLink
-                    render={<Link href={productsHref(category.id)} />}
+                    render={<Link href={categoryHref(category.id)} />}
                   >
                     {category.label}
                   </NavigationMenuLink>

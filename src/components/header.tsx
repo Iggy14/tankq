@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
 import { getAllProductCategories } from "@/lib/product-categories";
-import { productsHref } from "@/lib/product-category-url";
+import { categoryHref } from "@/lib/product-category-url";
 
 const navItems = [
   { href: "/", key: "home" },
@@ -91,7 +91,7 @@ export function Header() {
               children:
                 item.key === "products"
                   ? categories.map((category) => ({
-                      href: productsHref(category.id),
+                      href: categoryHref(category.id),
                       label: category.label,
                     }))
                   : undefined,

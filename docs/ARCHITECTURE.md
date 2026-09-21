@@ -158,6 +158,11 @@ sits in `src/lib` rather than inside any one of them. `productsHref("all")`
 returns a bare string on purpose: next-intl serializes a `query` object
 unconditionally, so an empty one would leave a trailing "?" behind.
 
+Category links (pills, header dropdown, mobile menu) use `categoryHref(id)`, not
+`productsHref(id)`: a category holding exactly one product links straight to
+that product's detail page, everything else filters the listing. A direct
+`?category=<id>` URL still renders the filtered listing.
+
 The selection lives in the URL rather than component state, because the header
 links into a category from any page. That shapes `product-catalogue/`:
 

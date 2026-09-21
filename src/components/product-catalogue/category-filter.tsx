@@ -19,7 +19,11 @@ import {
   getAllProductCategories,
   type ProductCategoryId,
 } from "@/lib/product-categories";
-import { productsHref, type ActiveCategory } from "@/lib/product-category-url";
+import {
+  categoryHref,
+  productsHref,
+  type ActiveCategory,
+} from "@/lib/product-category-url";
 import { cn } from "@/lib/utils";
 
 /**
@@ -74,7 +78,7 @@ export function CategoryFilter({ active }: CategoryFilterProps) {
           Icon={CATEGORY_ICONS[category.id]}
           label={category.title[locale]}
           isActive={active === category.id}
-          href={productsHref(category.id)}
+          href={categoryHref(category.id)}
         />
       ))}
     </div>
