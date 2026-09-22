@@ -52,6 +52,7 @@ const productSections: Record<string, ProductSection[]> = {
         [{ th: "90", en: "90" }, { th: "3,500", en: "3,500" }, { th: "10,150", en: "10,150" }, { th: "2\"", en: "2\"" }],
         [{ th: "100", en: "100" }, { th: "3,500", en: "3,500" }, { th: "11,500", en: "11,500" }, { th: "2\"", en: "2\"" }],
       ],
+      columnAlign: ["left", "center", "center", "center"],
     },
   ],
   "frp-vertical-water-tank": [
@@ -126,6 +127,7 @@ const productSections: Record<string, ProductSection[]> = {
         [{ th: "90", en: "90" }, { th: "3,500", en: "3,500" }, { th: "9,400", en: "9,400" }, { th: "2\"", en: "2\"" }],
         [{ th: "100", en: "100" }, { th: "3,500", en: "3,500" }, { th: "10,400", en: "10,400" }, { th: "2\"", en: "2\"" }],
       ],
+      columnAlign: ["left", "center", "center", "center"],
     },
     {
       type: "imageGrid",
@@ -451,6 +453,7 @@ const productSections: Record<string, ProductSection[]> = {
           { th: "ออกแบบระบบครบวงจร", en: "Full System Design" },
         ],
       ],
+      columnAlign: ["left", "center", "center", "center", "center"],
     },
     {
       type: "orderedList",
