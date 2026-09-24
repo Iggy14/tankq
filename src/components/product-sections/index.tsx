@@ -25,7 +25,10 @@ type ProductSectionsProps = {
  */
 export function ProductSections({ sections, locale }: ProductSectionsProps) {
   return sections.map((section, index) => {
-    const headingId = `product-section-${index}`;
+    // A stable `id` (set when something links to this section - see
+    // `ProductSectionLink`) survives reordering; falling back to the index
+    // keeps every other section working without one.
+    const headingId = `product-section-${section.id ?? index}`;
 
     switch (section.type) {
       case "specTable":
@@ -90,6 +93,9 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
               section={section}
               locale={locale}
               headingId={headingId}
+              // The last section on the page needs no close of its own - the
+              // related-products strip right after it already draws one.
+              showDivider={index < sections.length - 1}
             />
           </FadeInUp>
         );

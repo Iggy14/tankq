@@ -4,6 +4,7 @@ import {
   Container,
   Cylinder,
   Database,
+  Droplets,
   Funnel,
   LayoutGrid,
   PaintRoller,
@@ -41,6 +42,7 @@ const CATEGORY_ICONS: Record<ProductCategoryId, LucideIcon> = {
   "frp-wastewater-treatment-tank": Recycle,
   "septic-tank-grease-trap": Funnel,
   "epoxy-pu-flooring": PaintRoller,
+  "water-solution": Droplets,
 };
 
 type CategoryFilterProps = {

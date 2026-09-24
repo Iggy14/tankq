@@ -69,6 +69,14 @@ export const productCategories = [
     },
     order: 6,
   },
+  {
+    id: "water-solution",
+    title: {
+      th: "โซลูชันด้านน้ำ",
+      en: "Water Solution",
+    },
+    order: 7,
+  },
 ] as const satisfies readonly ProductCategory[];
 
 /** One row of the array above, with its `id` narrowed to its own literal. */

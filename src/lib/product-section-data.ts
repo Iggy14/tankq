@@ -1,4 +1,74 @@
-import type { ProductSection } from "./product-sections";
+import type { ContentSection, ProductSection } from "./product-sections";
+
+/**
+ * Shared verbatim between `water-treatment-system` and
+ * `wastewater-treatment-system`: its title and copy talk about both systems
+ * generically (filters, pumps, control valves, storage tanks, membranes), so
+ * it is one constant referenced from both products' arrays below rather than
+ * two copies that could drift out of sync.
+ */
+const waterAndWastewaterMaintenanceSection: ContentSection = {
+  type: "content",
+  // Nothing links here - it stands on its own at the end of the page - but
+  // the `id` is set anyway in case something needs to later.
+  id: "maintenance",
+  title: {
+    th: "การซ่อมบำรุงของระบบน้ำดีและน้ำเสีย",
+    en: "Water Treatment and Wastewater System Maintenance",
+  },
+  blocks: [
+    {
+      type: "paragraph",
+      body: {
+        th: "เป็นกระบวนการที่จำเป็นเพื่อให้ระบบทำงานอย่างมีประสิทธิภาพและยืดอายุการใช้งานของอุปกรณ์ โดยปกติจะประกอบด้วยการตรวจสอบและบำรุงรักษาส่วนประกอบต่างๆ ดังนี้:",
+        en: "This is a necessary process to keep the system running efficiently and to extend the equipment's service life. It normally consists of inspecting and maintaining the following components:",
+      },
+    },
+    {
+      type: "list",
+      ordered: false,
+      items: [
+        {
+          text: {
+            th: "ตัวกรอง: ทำความสะอาดหรือเปลี่ยนไส้กรองเพื่อป้องกันการอุดตัน",
+            en: "Filters: clean or replace the filter cartridges to prevent clogging.",
+          },
+        },
+        {
+          text: {
+            th: "ปั๊มและท่อ: ตรวจสอบการทำงานและซ่อมแซมท่อที่อาจมีการรั่วไหล",
+            en: "Pumps and Pipes: check that they are working and repair any pipes that may be leaking.",
+          },
+        },
+        {
+          text: {
+            th: "ระบบควบคุมและวาล์ว: ตรวจสอบการทำงานและการตั้งค่าของระบบควบคุมเพื่อให้แน่ใจว่าทำงานตามมาตรฐาน",
+            en: "Control System and Valves: check the control system's operation and settings to make sure it works to standard.",
+          },
+        },
+        {
+          text: {
+            th: "ถังเก็บและระบบกักเก็บ: ตรวจสอบความสะอาดและสถานะของถังเพื่อป้องกันการปนเปื้อน",
+            en: "Storage Tanks and Containment: check the tanks' cleanliness and condition to prevent contamination.",
+          },
+        },
+        {
+          text: {
+            th: "เมมเบรนและระบบกรองละเอียด: ตรวจสอบการทำงานและเปลี่ยนเมื่อเสื่อมสภาพ",
+            en: "Membranes and Fine Filters: check their operation and replace them once they deteriorate.",
+          },
+        },
+      ],
+    },
+    {
+      type: "paragraph",
+      body: {
+        th: "การซ่อมบำรุงที่สม่ำเสมอช่วยให้ระบบทำงานได้เต็มประสิทธิภาพและลดความเสี่ยงจากการเกิดปัญหาใหญ่.",
+        en: "Regular maintenance keeps the system running at full efficiency and reduces the risk of major problems.",
+      },
+    },
+  ],
+};
 
 /**
  * Detail-page section data, keyed by `Product.id`.
@@ -872,6 +942,261 @@ const productSections: Record<string, ProductSection[]> = {
         },
       ],
     },
+  ],
+  "water-treatment-system": [
+    {
+      type: "content",
+      // `id` matches the `sectionId` of the first entry in this product's
+      // `sectionLinks` (src/lib/products.ts) - see the ProductSectionLink
+      // note in src/lib/product-sections.ts.
+      id: "water-filter-system",
+      title: {
+        th: "ระบบกรองน้ำ",
+        en: "Water Filter System",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          body: {
+            th: "ระบบกรองน้ำคือกระบวนการที่ใช้ในการกำจัดสิ่งเจือปนต่างๆ ออกจากน้ำเพื่อปรับปรุงคุณภาพของน้ำให้อยู่ในระดับที่เหมาะสมสำหรับการบริโภคหรือการใช้งานในด้านอื่นๆ การกรองน้ำสามารถใช้วิธีการที่หลากหลาย ส่วนประกอบหลักมีดังนี้:",
+            en: "A water filter system is the process used to remove various impurities from water, improving its quality to a level suitable for consumption or other uses. Water filtration can use a variety of methods. Its main components are as follows:",
+          },
+        },
+        {
+          type: "list",
+          ordered: false,
+          items: [
+            {
+              text: {
+                th: "ตัวกรองหยาบ (Pre-filter): ใช้สำหรับกำจัดสิ่งสกปรกขนาดใหญ่ เช่น ทรายและตะกอน เพื่อป้องกันไม่ให้ตัวกรองหลักอุดตันเร็วเกินไป",
+                en: "Pre-filter: removes large debris such as sand and sediment, so the main filter does not clog too quickly.",
+              },
+            },
+            {
+              text: {
+                th: "ตัวกรองคาร์บอน (Carbon Filter): ช่วยกำจัดสารเคมี, คลอรีน, และสารอินทรีย์ที่ทำให้น้ำมีกลิ่นและรสไม่พึงประสงค์",
+                en: "Carbon filter: removes chemicals, chlorine, and organic substances that give water an unpleasant smell and taste.",
+              },
+            },
+          ],
+        },
+        {
+          type: "image",
+          src: "/images/products/water-treatment-system/6.webp",
+          alt: {
+            th: "ถังกรองน้ำไฟเบอร์กลาสในระบบกรองน้ำ",
+            en: "Fiberglass water filter tanks in the water filter system",
+          },
+          width: 1478,
+          height: 1108,
+        },
+      ],
+    },
+    {
+      type: "content",
+      // Matches the second `sectionLinks` entry on this product - see the
+      // note on the previous section above.
+      id: "softener-system",
+      title: {
+        th: "ระบบ Softener หรือระบบทำน้ำอ่อน",
+        en: "Softener System (Water Softener)",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          body: {
+            th: "เป็นระบบที่ใช้ในการกำจัดความกระด้างของน้ำ ซึ่งมักเกิดจากแร่ธาตุเช่น แคลเซียม (Ca) และแมกนีเซียม (Mg) ที่ละลายในน้ำ โดยระบบนี้จะใช้หลักการแลกเปลี่ยนไอออน โดยให้แร่ธาตุที่ทำให้น้ำกระด้างจับกับเรซินในระบบและปลดปล่อยโซเดียม (Na) ออกมาแทน ทำให้น้ำมีความกระด้างลดลง ส่วนประกอบหลักมีดังนี้:",
+            en: "A system used to remove water hardness, which is usually caused by minerals such as calcium (Ca) and magnesium (Mg) dissolved in the water. It works on the principle of ion exchange: the minerals that make the water hard bind to the resin in the system, which releases sodium (Na) in their place, reducing the water's hardness. Its main components are as follows:",
+          },
+        },
+        {
+          type: "list",
+          ordered: false,
+          items: [
+            {
+              text: {
+                th: "ถังเก็บเรซิน (Resin Tank): บรรจุเรซินชนิดที่สามารถแลกเปลี่ยนไอออน ซึ่งจะจับกับแร่ธาตุที่ทำให้น้ำกระด้าง เช่น แคลเซียมและแมกนีเซียม",
+                en: "Resin Tank: holds ion-exchange resin that binds to the minerals that make water hard, such as calcium and magnesium.",
+              },
+            },
+            {
+              text: {
+                th: "ถังเกลือ (Brine Tank): ใช้เก็บเกลือที่ใช้ในการฟื้นฟูประจุของเรซิน เพื่อให้เรซินสามารถแลกเปลี่ยนไอออนกับน้ำได้อย่างต่อเนื่อง",
+                en: "Brine Tank: stores the salt used to regenerate the resin's charge, so it can keep exchanging ions with the water continuously.",
+              },
+            },
+            {
+              text: {
+                th: "หัวควบคุม (Control Valve): ควบคุมการไหลของน้ำและการทำงานของระบบ เช่น การล้างกลับเรซินและการเติมเกลือ",
+                en: "Control Valve: controls the water flow and the system's operation, such as backwashing the resin and adding salt.",
+              },
+            },
+            {
+              text: {
+                th: "ปั๊มน้ำ (Water Pump): ช่วยให้การไหลของน้ำผ่านระบบเป็นไปอย่างต่อเนื่อง",
+                en: "Water Pump: keeps the water flowing through the system continuously.",
+              },
+            },
+          ],
+        },
+        {
+          type: "image",
+          src: "/images/products/water-treatment-system/treatment-systems/1.webp",
+          alt: {
+            th: "ปั๊มน้ำและตู้ควบคุมของระบบทำน้ำอ่อน",
+            en: "Water pumps and the control panel of the softener system",
+          },
+          width: 1000,
+          height: 517,
+        },
+      ],
+    },
+    {
+      type: "content",
+      // Matches the third `sectionLinks` entry on this product - see the
+      // note on the first section above.
+      id: "reverse-osmosis-system",
+      title: {
+        th: "ระบบรีเวิร์สออสโมซิส (Reverse Osmosis)",
+        en: "Reverse Osmosis (RO) System",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          body: {
+            th: "คือระบบกรองน้ำที่ใช้เมมเบรนในการแยกสารละลายและสิ่งเจือปนออกจากน้ำ โดยใช้น้ำแรงดันสูงเพื่อผลักดันน้ำผ่านเมมเบรนที่มีรูเล็กมาก จึงสามารถกรองได้ทั้งสารเคมี, แบคทีเรีย, และโลหะหนัก ทำให้น้ำมีความบริสุทธิ์สูง",
+            en: "A water filtration system that uses a membrane to separate dissolved solids and impurities from the water. High-pressure water is forced through a membrane with extremely fine pores, so it can filter out chemicals, bacteria and heavy metals, giving very pure water.",
+          },
+        },
+        {
+          type: "list",
+          ordered: false,
+          items: [
+            {
+              text: {
+                th: "ปั๊มน้ำแรงดันสูง: เพื่อผลักดันน้ำผ่านเมมเบรน",
+                en: "High-Pressure Water Pump: pushes the water through the membrane.",
+              },
+            },
+            {
+              text: {
+                th: "เมมเบรน RO (RO Membrane): ฟิลเตอร์หลักที่กรองสิ่งเจือปน",
+                en: "RO Membrane: the main filter that filters out impurities.",
+              },
+            },
+          ],
+        },
+        {
+          type: "image",
+          src: "/images/products/water-treatment-system/5.webp",
+          alt: {
+            th: "วิศวกรตรวจสอบอุปกรณ์ในระบบบำบัดน้ำ",
+            en: "An engineer inspecting equipment in the water treatment system",
+          },
+          width: 1000,
+          height: 667,
+        },
+      ],
+    },
+    {
+      type: "content",
+      // Matches the fourth (and last) `sectionLinks` entry on this product -
+      // see the note on the first section above.
+      id: "uv-system",
+      title: {
+        th: "ระบบการใช้รังสี UV",
+        en: "UV System",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          body: {
+            th: "คือระบบบำบัดน้ำที่ใช้แสงอัลตราไวโอเลต (UV) เพื่อฆ่าเชื้อโรค, แบคทีเรีย, ไวรัส, และจุลินทรีย์ที่อาจเป็นอันตรายในน้ำ แสง UV สามารถทำลาย DNA ของจุลชีพเหล่านี้ ทำให้พวกมันไม่สามารถแพร่พันธุ์หรือก่อให้เกิดโรคได้",
+            en: "A water treatment system that uses ultraviolet (UV) light to kill pathogens, bacteria, viruses and microorganisms that may be harmful in the water. UV light destroys the DNA of these microorganisms, so they can no longer reproduce or cause disease.",
+          },
+        },
+        {
+          type: "paragraph",
+          body: {
+            th: "ส่วนประกอบของระบบการใช้รังสี UV ประกอบด้วย:",
+            en: "The components of a UV system include:",
+          },
+        },
+        {
+          type: "list",
+          ordered: false,
+          items: [
+            {
+              text: {
+                th: "หลอด UV (UV Lamp): แหล่งกำเนิดรังสี UV สำหรับการฆ่าเชื้อ",
+                en: "UV Lamp: the source of UV radiation used for disinfection.",
+              },
+            },
+            {
+              text: {
+                th: "ท่อควอตซ์ (Quartz Sleeve): ป้องกันหลอด UV จากน้ำและสิ่งปนเปื้อน",
+                en: "Quartz Sleeve: protects the UV lamp from the water and contaminants.",
+              },
+            },
+          ],
+        },
+        {
+          type: "image",
+          src: "/images/products/water-treatment-system/1.webp",
+          alt: {
+            th: "ภาพมุมสูงของโรงบำบัดน้ำ",
+            en: "Aerial view of a water treatment plant",
+          },
+          width: 1500,
+          height: 841,
+        },
+      ],
+    },
+    waterAndWastewaterMaintenanceSection,
+  ],
+  "wastewater-treatment-system": [
+    {
+      type: "content",
+      id: "wastewater-treatment-overview",
+      title: {
+        th: "ประเภทของระบบบำบัดน้ำเสีย",
+        en: "Types of Wastewater Treatment Systems",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          body: {
+            th: "ประเภทของระบบบำบัดน้ำเสีย ได้แก่:",
+            en: "Types of wastewater treatment systems include:",
+          },
+        },
+        {
+          type: "list",
+          ordered: false,
+          items: [
+            {
+              text: {
+                th: "ระบบบำบัดทางกายภาพ: เช่น การกรองและการตกตะกอน",
+                en: "Physical Treatment: for example filtration and sedimentation.",
+              },
+            },
+            {
+              text: {
+                th: "ระบบบำบัดทางชีวภาพ: เช่น การใช้ออกซิเจนในกระบวนการย่อยสลายสารอินทรีย์โดยจุลินทรีย์",
+                en: "Biological Treatment: for example using oxygen in the process by which microorganisms break down organic matter.",
+              },
+            },
+            {
+              text: {
+                th: "ระบบบำบัดทางเคมี: เช่น การเติมสารเคมีเพื่อปรับค่า pH หรือกำจัดสาร",
+                en: "Chemical Treatment: for example adding chemicals to adjust the pH or remove substances.",
+              },
+            },
+          ],
+        },
+      ],
+    },
+    waterAndWastewaterMaintenanceSection,
   ],
 };
 

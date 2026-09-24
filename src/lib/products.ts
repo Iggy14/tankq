@@ -1,5 +1,6 @@
 import type { Localized } from "./localized";
 import type { ProductCategoryId } from "./product-categories";
+import type { ProductSectionLink } from "./product-sections";
 import type { ProductSpec } from "./product-specs";
 
 // Re-exported so callers can keep reaching for it alongside `Product`.
@@ -32,6 +33,14 @@ export interface Product {
    * description on the detail page. Keep each label to a couple of words.
    */
   specs?: ProductSpec[];
+  /**
+   * A row of jump links to this product's own detail-page sections, shown in
+   * the same spot `specs` would sit - see `ProductSectionLink` in
+   * `src/lib/product-sections.ts`. A product carries this instead of `specs`
+   * when its at-a-glance row is better spent pointing at the sections below
+   * than stating facts.
+   */
+  sectionLinks?: ProductSectionLink[];
   /** Public paths, first image is treated as the cover. */
   images: string[];
   /** Highlighted on the homepage — the first three carry this flag. */
@@ -414,6 +423,73 @@ export const products: Product[] = [
     ],
     featured: false,
     order: 11,
+  },
+  {
+    id: "water-treatment-system",
+    slug: "water-treatment-system",
+    categoryId: "water-solution",
+    title: {
+      th: "ระบบบำบัดน้ำ",
+      en: "Water Treatment System",
+    },
+    description: {
+      th: "ระบบทำน้ำดีคือกระบวนการบำบัดน้ำเพื่อปรับปรุงคุณภาพน้ำให้อยู่ในระดับที่เหมาะสมสำหรับการใช้งาน เช่น การบริโภค การอุปโภค หรือการใช้งานในอุตสาหกรรม โดยผ่านกระบวนการที่ออกแบบมาเพื่อลดหรือกำจัดสิ่งเจือปนและสารพิษต่างๆ ในน้ำ ระบบทำน้ำดีมีหลากหลายประเภท ขึ้นอยู่กับการใช้งานและคุณภาพน้ำที่ต้องการ เช่น",
+      en: "A water treatment system is a process for treating water to bring its quality up to a level suitable for its intended use - for drinking, for everyday use, or for industrial applications - through processes designed to reduce or remove impurities and various contaminants in the water. Water treatment systems come in many types, depending on the application and the water quality required, such as:",
+    },
+    // Jump links to the four `content` sections below, in place of the usual
+    // `specs` row - see the ProductSectionLink note in
+    // src/lib/product-sections.ts. The sections themselves live under this
+    // product's id in product-section-data.ts, each with the matching `id`.
+    sectionLinks: [
+      {
+        label: { th: "ระบบกรองน้ำ", en: "Water Filter System" },
+        sectionId: "water-filter-system",
+      },
+      {
+        label: {
+          th: "ระบบ Softener หรือระบบทำน้ำอ่อน",
+          en: "Softener System (Water Softener)",
+        },
+        sectionId: "softener-system",
+      },
+      {
+        label: {
+          th: "ระบบรีเวิร์สออสโมซิส (Reverse Osmosis)",
+          en: "Reverse Osmosis (RO) System",
+        },
+        sectionId: "reverse-osmosis-system",
+      },
+      {
+        label: { th: "ระบบการใช้รังสี UV", en: "UV System" },
+        sectionId: "uv-system",
+      },
+    ],
+    images: [
+      "/images/products/water-treatment-system/1.webp",
+      "/images/products/water-treatment-system/2.webp",
+      "/images/products/water-treatment-system/3.webp",
+      "/images/products/water-treatment-system/4.webp",
+      "/images/products/water-treatment-system/5.webp",
+      "/images/products/water-treatment-system/6.webp",
+    ],
+    featured: false,
+    order: 12,
+  },
+  {
+    id: "wastewater-treatment-system",
+    slug: "wastewater-treatment-system",
+    categoryId: "water-solution",
+    title: {
+      th: "ระบบบำบัดน้ำเสีย",
+      en: "Wastewater Treatment System",
+    },
+    description: {
+      th: "ระบบบำบัดน้ำเสีย คือกระบวนการที่ใช้ในการทำให้น้ำเสียกลับมามีคุณภาพเหมาะสมที่จะปล่อยกลับสู่สิ่งแวดล้อมหรือใช้ซ้ำได้ โดยการกำจัดสิ่งเจือปน, สารพิษ, และจุลินทรีย์ที่เป็นอันตราย กระบวนการเหล่านี้มักเกี่ยวข้องกับการแยกของแข็ง, การย่อยสลายสารอินทรีย์, และการฆ่าเชื้อโรค",
+      en: "A wastewater treatment system is the process used to bring wastewater back to a quality suitable for release into the environment or for reuse, by removing impurities, toxins, and harmful microorganisms. These processes usually involve separating out solids, breaking down organic matter, and disinfection.",
+    },
+    images: ["/images/products/wastewater-treatment-system/1.webp"],
+    featured: false,
+    order: 13,
   },
 ];
 

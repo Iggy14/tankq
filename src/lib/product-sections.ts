@@ -38,6 +38,8 @@ export type SpecColumnAlign = "left" | "center" | "right";
  */
 export interface SpecTableSection {
   type: "specTable";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
   title: Localized;
   columns: Localized[];
   rows: Localized[][];
@@ -63,6 +65,8 @@ export type BulletMarker = "check" | "dot";
  */
 export interface BulletListSection {
   type: "bulletList";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
   title: Localized;
   /** Ticks or plain bullets - see <BulletMarker>. */
   marker: BulletMarker;
@@ -78,6 +82,8 @@ export interface BulletListSection {
  */
 export interface ParagraphSection {
   type: "paragraph";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
   title: Localized;
   body: Localized;
 }
@@ -105,6 +111,8 @@ export interface OrderedListItem {
  */
 export interface OrderedListSection {
   type: "orderedList";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
   title: Localized;
   items: OrderedListItem[];
 }
@@ -129,6 +137,8 @@ export interface ImageGridItem {
  */
 export interface ImageGridSection {
   type: "imageGrid";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
   title: Localized;
   images: ImageGridItem[];
 }
@@ -239,6 +249,8 @@ export type ContentBlock =
  */
 export interface ContentSection {
   type: "content";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
   title: Localized;
   blocks: ContentBlock[];
 }
@@ -250,3 +262,23 @@ export type ProductSection =
   | ParagraphSection
   | ImageGridSection
   | ContentSection;
+
+/**
+ * `id` on every section above is optional and only needed when something
+ * elsewhere on the page must link straight to that section - `headingId` in
+ * `src/components/product-sections/index.tsx` uses it (as
+ * `product-section-<id>`) instead of the section's array index when it is
+ * set, so the anchor survives reordering or inserting sections later. Leave
+ * it unset on a section nothing points at.
+ *
+ * `ProductSectionLink` is the other end of that link: a small labelled jump
+ * list a product can show instead of (or alongside) its `specs` row - see
+ * `Product.sectionLinks` in `src/lib/products.ts`. `sectionId` must match the
+ * `id` a section is given here once it exists; until then the link resolves
+ * to nothing, which is harmless.
+ */
+export interface ProductSectionLink {
+  label: Localized;
+  /** Matches a `ProductSection.id` on this same product. */
+  sectionId: string;
+}

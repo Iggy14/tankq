@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { ProductCard } from "@/components/product-card";
 import { ProductGallery } from "@/components/product-gallery";
+import { ProductSectionLinks } from "@/components/product-section-links";
 import { ProductSections } from "@/components/product-sections";
 import { ProductSpecs } from "@/components/product-specs";
 import { Button } from "@/components/ui/button";
@@ -92,6 +93,15 @@ export default async function ProductDetailPage({
           {product.specs && product.specs.length > 0 && (
             <FadeInUp>
               <ProductSpecs specs={product.specs} locale={activeLocale} />
+            </FadeInUp>
+          )}
+
+          {product.sectionLinks && product.sectionLinks.length > 0 && (
+            <FadeInUp>
+              <ProductSectionLinks
+                links={product.sectionLinks}
+                locale={activeLocale}
+              />
             </FadeInUp>
           )}
 

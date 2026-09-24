@@ -17,6 +17,13 @@ type ContentSectionProps = {
   locale: AppLocale;
   /** Ties the visible heading to the block flow for screen readers. */
   headingId: string;
+  /**
+   * Whether to draw the short close below this section - see the comment on
+   * it below. Defaults to `true`; `product-sections/index.tsx` passes `false`
+   * for the last section in a product's list, since the page itself already
+   * marks that boundary (the related-products strip's own top rule).
+   */
+  showDivider?: boolean;
 };
 
 /**
@@ -40,12 +47,13 @@ export function ContentSection({
   section,
   locale,
   headingId,
+  showDivider = true,
 }: ContentSectionProps) {
   return (
     <section aria-labelledby={headingId}>
       <h2
         id={headingId}
-        className="text-center text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
+        className="text-center text-2xl font-semibold tracking-tight text-balance text-primary sm:text-3xl"
       >
         {section.title[locale]}
       </h2>
@@ -85,6 +93,17 @@ export function ContentSection({
           }
         })}
       </div>
+
+      {/* A short close, not a full-width rule - the section boundary itself
+          is the big `gap-20` between sections in the page; this just marks
+          the end of this one's flow. Capped well under the prose column's
+          own width so it never reads wider than the picture above it. */}
+      {showDivider && (
+        <div
+          aria-hidden
+          className="mx-auto mt-10 h-px w-64 rounded-full bg-primary/30"
+        />
+      )}
     </section>
   );
 }

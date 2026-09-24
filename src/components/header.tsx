@@ -11,6 +11,7 @@ import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
 import { getAllProductCategories } from "@/lib/product-categories";
 import { categoryHref } from "@/lib/product-category-url";
+import { getProductsByCategory } from "@/lib/products";
 
 const navItems = [
   { href: "/", key: "home" },
@@ -26,11 +27,23 @@ export function Header() {
 
   // Category names are content, not chrome, so they are read from the data here
   // once and handed to both menus - the same reason MobileNav takes its labels
-  // as props rather than translating them itself.
-  const categories = getAllProductCategories().map((category) => ({
-    id: category.id,
-    label: category.title[locale],
-  }));
+  // as props rather than translating them itself. Each category also carries
+  // its products (localized) so the desktop dropdown can expand to them in
+  // place - see ProductsNavMenu. expandLabel is computed here rather than in
+  // that client component so the interpolated chrome string still comes from
+  // next-intl once, alongside every other translated label this maps over.
+  const categories = getAllProductCategories().map((category) => {
+    const label = category.title[locale];
+    return {
+      id: category.id,
+      label,
+      expandLabel: t("nav.expandCategory", { category: label }),
+      products: getProductsByCategory(category.id).map((product) => ({
+        slug: product.slug,
+        title: product.title[locale],
+      })),
+    };
+  });
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur">

@@ -4,6 +4,7 @@
     "about": "About",
     "products": "Products",
     "productsMenu": "Product categories",
+    "expandCategory": "Show products in {category}",
     "projects": "Projects",
     "quality": "Quality",
     "service": "Service",

@@ -193,12 +193,33 @@ The header's Products item is `src/components/products-nav-menu.tsx`, built on
 trigger is `render={<Link href="/products" />} nativeButton={false}`, so the
 item is still a real link to the unfiltered page. It does not read
 `useSearchParams` to highlight the current category - the header is on every
-page, and that would force a Suspense boundary onto all of them. `MobileNav`
-carries the same categories as indented `children` under its Products item,
-since hover does not exist on a phone. It renders as a `ui/sheet` panel (half
-the viewport width, capped at `sm:max-w-sm`) sliding in from the right, with
-any item that has `children` rendered as a `ui/accordion` item instead of a
-plain link so the categories expand in place.
+page, and that would force a Suspense boundary onto all of them.
+
+A category with 2+ products also gets a `ChevronDown` that expands it in
+place: clicking it opens a `ui/accordion` item nested inside that category's
+own `<li>`, listing those products directly underneath it - indented, in a
+`border-l` sub-list, the same shape `MobileNav` uses below. It only opens on
+click, never hover, and lives inside the category dropdown's own
+`NavigationMenuContent` rather than a second popup, so the category label and
+its products stay in one box. The row splits into two separate targets: the
+category label is still its own `NavigationMenuLink` to `categoryHref` (click
+navigates straight there), and the chevron is a sibling `AccordionTrigger`
+that only toggles the panel - its `onClick` calls `event.stopPropagation()` so
+expanding a category doesn't also trigger `NavigationMenuContent`'s own
+catch-all click-closes-the-dropdown handler. A category with exactly one
+product already skips straight to it via `categoryHref` and gets no arrow;
+one with none has nothing to list and gets no arrow either. `Header` resolves
+each category's products (slug + localized title) and an already-interpolated
+`expandLabel` (the accordion toggle's accessible name, since it renders no
+text of its own) alongside its label, the same way it resolves the label
+itself, and hands them down as `categories[].products` /
+`categories[].expandLabel`. `MobileNav` still only carries categories (no
+product level) as indented `children` under its Products item - see
+"Mobile nav: Products dropdown accordion has no second level" in
+`docs/TODO.md`. It renders as a `ui/sheet` panel (half the viewport width,
+capped at `sm:max-w-sm`) sliding in from the right, with any item that has
+`children` rendered as a `ui/accordion` item instead of a plain link so the
+categories expand in place.
 
 ## Product detail sections
 
@@ -338,15 +359,44 @@ Both FRP tanks carry sections today; the four PE tanks and the grease trap
 carry a `Usage` and a `Recommendation` bullet list each, and
 `pe-waste-water-treatment-tank` adds a `specTable` sizing tanks by flow rate
 plus an `orderedList` of the treatment systems TankQ designs and supplies.
-`fiberglass-septic-tank` is the one product using `content`: three sections,
-one per treatment system it is sold as, each running paragraph, diagram,
-numbered process steps and a sizing table.
+`fiberglass-septic-tank` uses `content`: three sections, one per treatment
+system it is sold as, each running paragraph, diagram, numbered process steps
+and a sizing table. `water-treatment-system` and `wastewater-treatment-system`
+also use `content` throughout - see "Linking to a section from above the
+fold" below for how the former's four sections tie back to its `sectionLinks`
+row, and both products share one `content` section object
+(`waterAndWastewaterMaintenanceSection` in `product-section-data.ts`) for
+their closing maintenance write-up, since its copy applies to both generically
+- reuse that pattern rather than duplicating a section verbatim across
+products.
 
 ### If a product needs a one-off layout
 
 Do not add a per-slug page component. Add a section type for it even if only
 one product ever uses it: the page stays one component and the block still
 composes with the others in whatever order the data says.
+
+### Linking to a section from above the fold
+
+Every section variant carries an optional `id?: string`. `headingId` in
+`product-sections/index.tsx` uses `product-section-<id>` when it is set
+instead of `product-section-<array index>`, so the anchor survives the
+section being reordered or another one being inserted before it - every
+renderer already puts `headingId` on its `<h2 id=...>`, so setting `id` is
+enough, nothing in `product-sections/` needs to change.
+
+`ProductSectionLink` (`src/lib/product-sections.ts`) is the other end: a
+`{ label, sectionId }` pair, `sectionId` matching a section's `id`.
+`Product.sectionLinks` (`src/lib/products.ts`) is an optional array of these,
+rendered by `ProductSectionLinks` (`src/components/product-section-links.tsx`)
+in the same spot on the detail page as the `specs` row - a product uses one or
+the other, whichever its at-a-glance row is better spent on. Plain `<a
+href="#...">` anchors, not `next-intl`'s `Link`: the jump never leaves the
+page, so there is no locale prefix to add.
+
+The two are declared independently, so a `sectionId` can be set before the
+section it points at exists yet - the link just resolves to nothing until a
+section with the matching `id` is added.
 
 ## Project showcase
 

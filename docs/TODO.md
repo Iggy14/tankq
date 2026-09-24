@@ -237,6 +237,36 @@ paragraph is meant to read "Thai Chemical Storage (TCS)" on a TankQ-branded
 site - it is the only place on the site that names TCS, and it was supplied
 that way in the brief.
 
+## Mobile nav: Products dropdown accordion has no second level
+
+**Status:** not started. Added 2026-09-24 with the desktop products dropdown
+flyout, updated 2026-09-24 when the flyout was replaced with an inline
+click-to-expand accordion.
+
+`src/components/products-nav-menu.tsx` expands a category with a click,
+listing its products in an indented sub-list right below it (see
+`docs/ARCHITECTURE.md`, "The header's Products item"). `MobileNav`
+(`src/components/mobile-nav.tsx`) still only gets one level of `children`
+(categories) under its Products item - the products within a category are
+not reachable from the phone menu at all except by opening the category
+(which filters `/products`) and scrolling.
+
+**Why it was skipped:** the task that reworked the desktop dropdown was
+scoped to that popup specifically; folding a second level into `MobileNav`'s
+`Accordion` (nested accordion, or a second `AccordionItem` level) is its own
+design decision the supervisor has not weighed in on.
+
+**What to do:**
+
+1. Decide the mobile pattern - a nested accordion under each category, or
+   leave it as "tap category -> filtered listing" and treat that as
+   sufficient on mobile.
+2. If nesting is wanted: extend `MobileNavItem` in `mobile-nav.tsx` to allow a
+   `children` entry to itself carry `children`, and render a second
+   `Accordion`/`AccordionItem` level inside `AccordionContent`. `Header`
+   already computes `categories[].products` (slug + localized title) for the
+   desktop menu - reuse that instead of adding a second data pass.
+
 ## Thai copy review for the service page
 
 **Status:** not started. Added 2026-08-30 with the service page sections.
