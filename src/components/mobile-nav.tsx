@@ -30,10 +30,17 @@ type MobileNavLink = {
   label: string;
 };
 
+type MobileNavChild = MobileNavLink & {
+  /** Accessible label for this child's own expand toggle, when it has grandchildren. */
+  expandLabel?: string;
+  /** A second level, e.g. a category's products under it - see ProductsNavMenu's desktop equivalent. */
+  children?: MobileNavLink[];
+};
+
 type MobileNavItem = MobileNavLink & {
   href: string;
   /** Rendered under the item as a collapsible sub-list, for sections with their own sub-pages. */
-  children?: MobileNavLink[];
+  children?: MobileNavChild[];
 };
 
 type MobileNavProps = {
@@ -108,16 +115,50 @@ export function MobileNav({
                   </AccordionTrigger>
                   <AccordionContent className="pb-1 pl-3 [&_a]:no-underline">
                     <div className="flex flex-col gap-0.5 border-l border-border pl-3">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.label}
-                          href={child.href}
-                          onClick={() => setOpen(false)}
-                          className="rounded-md px-2 py-2 text-sm text-muted-foreground no-underline hover:bg-muted hover:text-foreground"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
+                      {item.children.map((child) =>
+                        child.children ? (
+                          <Accordion key={child.label}>
+                            <AccordionItem value={child.label} className="border-none">
+                              <div className="flex items-center gap-0.5">
+                                <Link
+                                  href={child.href}
+                                  onClick={() => setOpen(false)}
+                                  className="flex-1 rounded-md px-2 py-2 text-base text-muted-foreground no-underline hover:bg-muted hover:text-foreground"
+                                >
+                                  {child.label}
+                                </Link>
+                                <AccordionTrigger
+                                  aria-label={child.expandLabel}
+                                  className="w-auto flex-none justify-center gap-0 rounded-md p-2 hover:bg-muted hover:no-underline"
+                                />
+                              </div>
+                              <AccordionContent className="pb-1 pl-2 [&_a]:no-underline">
+                                <div className="flex flex-col gap-0.5 border-l border-border pl-3">
+                                  {child.children.map((product) => (
+                                    <Link
+                                      key={product.label}
+                                      href={product.href}
+                                      onClick={() => setOpen(false)}
+                                      className="rounded-md px-2 py-2 text-base text-muted-foreground no-underline hover:bg-muted hover:text-foreground"
+                                    >
+                                      {product.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </AccordionContent>
+                            </AccordionItem>
+                          </Accordion>
+                        ) : (
+                          <Link
+                            key={child.label}
+                            href={child.href}
+                            onClick={() => setOpen(false)}
+                            className="rounded-md px-2 py-2 text-base text-muted-foreground no-underline hover:bg-muted hover:text-foreground"
+                          >
+                            {child.label}
+                          </Link>
+                        ),
+                      )}
                     </div>
                   </AccordionContent>
                 </AccordionItem>

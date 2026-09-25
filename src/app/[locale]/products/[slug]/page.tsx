@@ -18,6 +18,7 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/products";
+import { alternatesFor } from "@/lib/site";
 
 // The catalogue is static data, so every detail page is prerendered. The
 // parent [locale] segment supplies the locale half of each pair.
@@ -40,6 +41,7 @@ export async function generateMetadata({
   return {
     title: product.title[activeLocale],
     description: product.description[activeLocale],
+    alternates: alternatesFor(locale, `/products/${slug}`),
   };
 }
 

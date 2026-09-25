@@ -32,7 +32,7 @@ export function OrderedListSection({
     <section aria-labelledby={headingId}>
       <h2
         id={headingId}
-        className="text-center text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
+        className="text-center text-2xl font-semibold tracking-tight text-balance text-primary sm:text-3xl"
       >
         {section.title[locale]}
       </h2>

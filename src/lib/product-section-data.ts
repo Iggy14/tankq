@@ -1196,6 +1196,33 @@ const productSections: Record<string, ProductSection[]> = {
         },
       ],
     },
+    {
+      type: "content",
+      id: "wastewater-recycling-solutions",
+      title: {
+        th: "ระบบและโซลูชันการรีไซเคิลน้ำ",
+        en: "Recycling System & Solutions",
+      },
+      blocks: [
+        {
+          type: "paragraph",
+          body: {
+            th: "เราให้ความสำคัญกับการบริหารจัดการทรัพยากรน้ำผ่านการรีไซเคิลน้ำเสีย โดยใช้เทคโนโลยีขั้นสูง เช่น ไมโครฟิลเตรชันและเมมเบรน RO เรามุ่งเน้นการบริหารจัดการทรัพยากรน้ำอย่างยั่งยืน ด้วยกระบวนการ Zero Liquid Discharge (ZLD) เพื่อลดการปล่อยน้ำเสียสู่สิ่งแวดล้อม",
+            en: "We prioritize water resource management through wastewater recycling using advanced technologies such as micro-filtration and RO membrane. We focus on sustainable water resource management by utilizing the Zero Liquid Discharge (ZLD) process to reduce wastewater discharge into the environment.",
+          },
+        },
+        {
+          type: "image",
+          src: "/images/products/wastewater-treatment-system/2.jpg",
+          alt: {
+            th: "โรงบำบัดน้ำเสียพร้อมถังตกตะกอนแบบวงกลมและระบบท่อบำบัด",
+            en: "A wastewater treatment plant with circular clarifier tanks and treatment piping",
+          },
+          width: 1500,
+          height: 857,
+        },
+      ],
+    },
     waterAndWastewaterMaintenanceSection,
   ],
 };

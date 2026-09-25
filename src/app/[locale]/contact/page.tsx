@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactHero } from "@/components/contact-hero";
 import { ContactPrepare } from "@/components/contact-prepare";
 import { FadeInUp } from "@/components/fade-in-up";
+import { alternatesFor } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -15,6 +16,7 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: alternatesFor(locale, "/contact"),
   };
 }
 

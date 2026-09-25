@@ -3,8 +3,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { FeaturedProducts } from "@/components/featured-products";
 import { Hero } from "@/components/hero";
+import { IsoCertificateSection } from "@/components/iso-certificate-section";
 import { SocialLinks } from "@/components/social-links";
 import { WhyTankQ } from "@/components/why-tankq";
+import { alternatesFor } from "@/lib/site";
 
 // Localized <title>/<description> — the layout appends "| TankQ".
 export async function generateMetadata({
@@ -16,6 +18,7 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: alternatesFor(locale, ""),
   };
 }
 
@@ -26,6 +29,8 @@ export default async function HomePage({ params }: PageProps<"/[locale]">) {
   return (
     <>
       <Hero />
+
+      <IsoCertificateSection />
 
       <WhyTankQ />
 

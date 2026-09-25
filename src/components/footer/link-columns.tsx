@@ -68,16 +68,16 @@ export function LinkColumns() {
           />
         </div>
         <div className="space-y-2">
-          <p className="text-sm font-semibold text-navy-foreground">
+          <p className="text-base font-semibold text-navy-foreground">
             {t("footer.contactTitle")}
           </p>
-          <p className="text-sm text-navy-foreground/70">
+          <p className="text-base text-navy-foreground/70">
             {t("footer.companyName")}
           </p>
-          <p className="text-sm text-navy-foreground/70">
+          <p className="text-base text-navy-foreground/70">
             {t("footer.companyDescription")}
           </p>
-          <p className="text-sm text-navy-foreground/70">
+          <p className="text-base text-navy-foreground/70">
             {t("footer.companyAddress")}
           </p>
         </div>

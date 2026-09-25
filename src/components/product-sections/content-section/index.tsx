@@ -101,7 +101,7 @@ export function ContentSection({
       {showDivider && (
         <div
           aria-hidden
-          className="mx-auto mt-10 h-px w-64 rounded-full bg-primary/30"
+          className="mx-auto mt-10 h-px w-64 rounded-full bg-primary"
         />
       )}
     </section>

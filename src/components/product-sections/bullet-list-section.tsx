@@ -30,7 +30,7 @@ export function BulletListSection({
     <section aria-labelledby={headingId}>
       <h2
         id={headingId}
-        className="text-center text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
+        className="text-center text-2xl font-semibold tracking-tight text-balance text-primary sm:text-3xl"
       >
         {section.title[locale]}
       </h2>
@@ -50,7 +50,7 @@ export function BulletListSection({
                 aria-hidden
                 className="flex size-6 shrink-0 items-center justify-center"
               >
-                <span className="size-2 rounded-full bg-teal-foreground" />
+                <span className="size-2 rounded-full bg-primary" />
               </span>
             )}
             <span className="text-base leading-relaxed text-pretty">

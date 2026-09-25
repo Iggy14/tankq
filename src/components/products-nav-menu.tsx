@@ -187,7 +187,7 @@ export function ProductsNavMenu({
                             className="w-auto flex-none justify-center gap-0 rounded-lg p-2 hover:bg-muted hover:no-underline"
                           />
                         </div>
-                        <AccordionContent className="pb-1 pl-2">
+                        <AccordionContent className="pb-1 pl-2 [&_a]:no-underline">
                           <ul aria-label={category.label} className="flex flex-col gap-0.5 border-l border-border pl-3">
                             {category.products.map((product) => (
                               <li key={product.slug}>

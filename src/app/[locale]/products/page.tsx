@@ -9,6 +9,7 @@ import {
   ProductCatalogue,
 } from "@/components/product-catalogue";
 import { getAllProducts } from "@/lib/products";
+import { alternatesFor } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -19,6 +20,7 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: alternatesFor(locale, "/products"),
   };
 }
 

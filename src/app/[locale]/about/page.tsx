@@ -8,6 +8,7 @@ import { FeaturedProducts } from "@/components/featured-products";
 import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
 import { SocialLinks } from "@/components/social-links";
+import { alternatesFor } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -18,6 +19,7 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: alternatesFor(locale, "/about"),
   };
 }
 
@@ -49,7 +51,7 @@ export default async function AboutPage({ params }: PageProps<"/[locale]/about">
           </h1>
         </FadeInUp>
         <FadeInUp className="flex flex-col items-center" delay={0.4} duration={0.7}>
-          <p className="mt-6 max-w-lg text-lg text-muted-foreground sm:text-xl md:text-2xl">
+          <p className="mt-6 max-w-lg text-base text-muted-foreground sm:text-lg md:text-xl">
             {t("heroSubtitle")}
           </p>
         </FadeInUp>

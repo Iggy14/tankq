@@ -17,18 +17,16 @@ type LightboxProps = {
 /**
  * The enlarged view behind a <Figure>, opened by pressing the picture.
  *
- * The point of it is the sizing tables, which are pictures of tables: at the
- * width of the text column their figures are too small to read on a phone. So
- * the picture is drawn at its own pixel size, capped only by the viewport
- * height, and the box around it scrolls - a picture wider than the screen is
- * panned rather than shrunk back to something unreadable. On a desktop the
- * whole thing fits and there is nothing to pan.
+ * The inline picture is capped to the text column's width, which on a big
+ * screen can leave it far smaller than the source file - and no bigger than
+ * it was inline even when the source has plenty of detail left. This instead
+ * fills the available viewport (`object-contain` inside a box sized to it),
+ * scaling the picture up as well as down so pressing it always shows a
+ * visibly larger, easier to read copy.
  *
- * `sizes` asks for the full-resolution source rather than the column-width one
- * the inline picture uses; serving the small file here would defeat the point.
- * It is deliberately wider than the box the picture is drawn in, so the browser
- * fetches a copy with detail left to zoom into rather than one that is exactly
- * sharp at 100% and mush at 200%.
+ * `sizes` matches the box it fills here rather than the column-width one the
+ * inline picture uses, so the browser fetches a copy sized for this bigger
+ * box instead of reusing (and stretching) the small inline one.
  *
  * The heading is the picture's `alt`, hidden visually because the picture is
  * right there, but it is what names the dialog for a screen reader.
@@ -43,14 +41,13 @@ export function Lightbox({ block, locale }: LightboxProps) {
     >
       <DialogTitle className="sr-only">{block.alt[locale]}</DialogTitle>
 
-      <div className="overflow-auto rounded-lg bg-muted">
+      <div className="relative h-[80vh] w-full rounded-lg bg-muted">
         <Image
           src={block.src}
           alt={block.alt[locale]}
-          width={block.width}
-          height={block.height}
-          sizes="128rem"
-          className="mx-auto h-auto w-auto max-h-[80vh] max-w-none"
+          fill
+          sizes="90vw"
+          className="object-contain"
         />
       </div>
 

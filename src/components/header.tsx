@@ -100,12 +100,22 @@ export function Header() {
               href: item.href,
               label: t(`nav.${item.key}`),
               // Hover is not available on a phone, so the categories ride along
-              // as a nested group under Products.
+              // as a nested group under Products, and a category with 2+
+              // products gets its own expand toggle down to them - same split
+              // as ProductsNavMenu's desktop accordion.
               children:
                 item.key === "products"
                   ? categories.map((category) => ({
                       href: categoryHref(category.id),
                       label: category.label,
+                      expandLabel: category.expandLabel,
+                      children:
+                        category.products.length > 1
+                          ? category.products.map((product) => ({
+                              href: `/products/${product.slug}`,
+                              label: product.title,
+                            }))
+                          : undefined,
                     }))
                   : undefined,
             }))}

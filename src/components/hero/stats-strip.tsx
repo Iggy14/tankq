@@ -31,7 +31,7 @@ export function StatsStrip() {
   const t = useTranslations("home.stats");
 
   return (
-    <section className="relative z-30 flex w-full items-center flex-col justify-center px-4 py-10 sm:px-6 lg:flex-1 lg:py-6">
+    <section className="relative z-30 flex w-full items-center flex-col justify-center px-4 pt-10 pb-16 sm:px-6 sm:pb-20 lg:flex-1 lg:pt-6 lg:pb-10">
       <FadeInUpGroup className="mx-auto grid w-full items-center max-w-[88rem] grid-cols-1 bg-background sm:grid-cols-2 lg:grid-cols-5">
         {stats.map(({ key, Icon }) => (
           <StatItem

@@ -129,7 +129,7 @@ export const products: Product[] = [
       "/images/products/frp-vertical-water-tank/13.webp",
       "/images/products/frp-vertical-water-tank/14.webp",
     ],
-    featured: true,
+    featured: false,
     order: 2,
   },
   {
@@ -166,7 +166,7 @@ export const products: Product[] = [
       "/images/products/pe-above-ground-water-tank/4.webp",
       "/images/products/pe-above-ground-water-tank/5.webp",
     ],
-    featured: true,
+    featured: false,
     order: 3,
   },
   {
@@ -303,9 +303,9 @@ export const products: Product[] = [
       },
     ],
     images: [
-      "/images/products/fiberglass-septic-tank/fiberglassentry.jpg",
-      "/images/products/fiberglass-septic-tank/2.jpg",
-      "/images/products/fiberglass-septic-tank/3.jpg",
+      "/images/products/fiberglass-septic-tank/fiberglassentry.webp",
+      "/images/products/fiberglass-septic-tank/2.webp",
+      "/images/products/fiberglass-septic-tank/3.webp",
     ],
     featured: false,
     order: 8,
@@ -385,7 +385,7 @@ export const products: Product[] = [
       "/images/products/epoxy-flooring/11.jpg",
       "/images/products/epoxy-flooring/12.jpg",
     ],
-    featured: false,
+    featured: true,
     order: 10,
   },
   {
@@ -472,7 +472,7 @@ export const products: Product[] = [
       "/images/products/water-treatment-system/5.webp",
       "/images/products/water-treatment-system/6.webp",
     ],
-    featured: false,
+    featured: true,
     order: 12,
   },
   {
@@ -507,13 +507,27 @@ export function getAllProducts(): Product[] {
 }
 
 /**
- * Everything except `slug`, capped at `limit` — the "you may also need"
- * strip at the foot of a detail page.
+ * The featured trio (matching the home/about page's "Featured products"
+ * section), minus `slug`, capped at `limit` — the "view other products"
+ * strip at the foot of a detail page. Falls back to filling from the rest
+ * of the catalogue if `slug` is itself one of the featured products.
  */
 export function getRelatedProducts(slug: string, limit = 3): Product[] {
-  return getAllProducts()
-    .filter((product) => product.slug !== slug)
-    .slice(0, limit);
+  const featured = getFeaturedProducts().filter(
+    (product) => product.slug !== slug,
+  );
+
+  if (featured.length >= limit) {
+    return featured.slice(0, limit);
+  }
+
+  const fallback = getAllProducts().filter(
+    (product) =>
+      product.slug !== slug &&
+      !featured.some((featuredProduct) => featuredProduct.id === product.id),
+  );
+
+  return [...featured, ...fallback].slice(0, limit);
 }
 
 /** Every product in the given category, in listing order. */

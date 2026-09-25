@@ -29,11 +29,21 @@
     "heroEyebrow": "FRP Water Solution",
     "heroTitle": "Strong. Safe.",
     "heroTitleAccent": "Sustainable.",
-    "heroSubtitle": "For more than 15 years we have engineered fiberglass (FRP) tanks for Thai industry - matching the right resin and laminate schedule to each application instead of selling one standard product.",
+    "heroSubtitle": "For more than 15 years we have engineered solutions for fiberglass (FRP) tanks, water storage, wastewater treatment, water treatment, and industrial flooring for Thai industry - matching the right resin and laminate schedule to each application instead of selling one standard product.",
     "heroCta": "Explore products",
+    "isoCertificate": {
+      "title": "ISO 9001:2015 Certificate",
+      "subtitle": "Our expertise and services.",
+      "cards": {
+        "waterStorage": "Water Storage",
+        "wastewaterTreatment": "Wastewater Treatment",
+        "waterTreatment": "Water Treatment",
+        "industrialFlooring": "Industrial Flooring"
+      }
+    },
     "products": {
       "title": "Our Products",
-      "subtitle": "FRP Tanks for Every Industrial Application",
+      "subtitle": "Complete Solutions for Water & Industrial Applications",
       "viewAll": "View All Products"
     },
     "projects": {
@@ -75,7 +85,7 @@
     "metaTitle": "Products",
     "metaDescription": "Browse the full range of TankQ water tanks.",
     "title": "Our Products",
-    "subtitle": "Fiberglass Water Tanks, TANK-Q, a supplier of quality water tanks and fiberglass water tanks, TANK-Q fiberglass water tanks are a strong, durable choice for water storage that answers a wide range of uses. Made from special-grade fiberglass material: strong, flexible and built to take daily use\nSuitable for homes, buildings and project work alike",
+    "subtitle": "TANK-Q provides engineered solutions across water storage, wastewater treatment, water treatment, and industrial flooring. From durable fiberglass tanks to complete treatment systems and high-performance flooring, our solutions are designed to meet the practical requirements of residential, commercial, and industrial projects.",
     "allCategories": "All Products",
     "categoryFilterLabel": "Filter by category",
     "emptyCategory": "No products in this category yet.",
@@ -95,7 +105,7 @@
     "heroLine1": "ABOUT",
     "heroLine2": "TANK Q",
     "heroLine2Accent": "SOLUTION",
-    "heroSubtitle": "15 years of FRP tank expertise for Thai industry",
+    "heroSubtitle": "15+ Years of Engineering Expertise for Thai Industry",
     "lineupAlt": "TankQ FRP water tank product lineup",
     "story": {
       "titleLine1": "About Our",
@@ -112,11 +122,11 @@
       "items": {
         "mission": {
           "heading": "Mission",
-          "text": "Design and manufacture FRP tanks optimally suited to each customer's actual application - not just standard products."
+          "text": "To engineer and deliver high-quality solutions that address the evolving needs of water, wastewater, and industrial environments."
         },
         "vision": {
           "heading": "Vision",
-          "text": "To be Thailand's #1 FRP tank specialist - the first choice when top industrial plants demand maximum confidence."
+          "text": "To become a leading and trusted provider of integrated water and industrial solutions, creating sustainable value for customers, communities."
         },
         "engineering": {
           "heading": "Engineering First",

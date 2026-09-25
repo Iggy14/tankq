@@ -102,7 +102,7 @@ function CaseStudy({ project, imagePosition, isFirst }: CaseStudyProps) {
           {project.industry[locale]} · {project.province[locale]} · {project.year}
         </p>
 
-        <dl className="mt-2 flex flex-col gap-4 text-sm">
+        <dl className="mt-2 flex flex-col gap-4 text-base">
           <div>
             <dt className="font-semibold text-foreground">{t("problemLabel")}</dt>
             <dd className="mt-1 leading-relaxed text-muted-foreground">

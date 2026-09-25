@@ -3,32 +3,6 @@
 Deferred work — things intentionally left undone, with enough context to pick
 them up cold. Delete an entry once it ships.
 
-## Canonical and hreflang tags per page
-
-**Status:** not started. Added 2026-09-18.
-
-`metadataBase` is now set (`src/app/[locale]/layout.tsx`, reading
-`src/lib/site.ts`'s `siteUrl`), and `Breadcrumbs` emits absolute
-`BreadcrumbList` JSON-LD off it (see git history for that change). Neither of
-those adds a `<link rel="canonical">` or hreflang alternates — no page calls
-`alternates` in its `generateMetadata`, so Google is not told that `/th/...`
-and `/en/...` are the same page in two languages, nor given a canonical URL
-for either.
-
-**Why it was skipped:** out of scope for the breadcrumb JSON-LD task that
-unblocked this - the domain (`https://www.tankq-solution.com`) only became
-available then, and this is a separate, larger pass (every page's
-`generateMetadata`, not just `Breadcrumbs`).
-
-**What to do:**
-
-1. In each page's `generateMetadata` (or centrally, if a helper is added),
-   set `alternates: { canonical: ..., languages: { th: ..., en: ... } }`
-   with paths relative to `metadataBase` (e.g. `/th/products/${slug}`,
-   `/en/products/${slug}`).
-2. Validate with Google's Rich Results Test / URL Inspection before
-   considering it done.
-
 ## Contact page body
 
 **Status:** not started. Added 2026-08-28.
@@ -197,32 +171,15 @@ referenced nowhere in `src/`.
 3. Decide what to do with `s1.jpg` - `s6.jpg`. If they are not going to be
    used anywhere, delete them - they are 4.5 MB of unreferenced assets.
 
-## Fiberglass septic tank: photo format and English copy
+## Fiberglass septic tank: English copy
 
-**Status:** part done. Added 2026-08-31 with the `fiberglass-septic-tank`
+**Status:** not started. Added 2026-08-31 with the `fiberglass-septic-tank`
 product (`src/lib/products.ts`, category `frp-wastewater-treatment-tank`),
 updated 2026-08-31 when the three treatment-system `content` sections landed,
-and again on 2026-09-01 when all three sizing tables became real `table` blocks
-and their screenshots were deleted.
-
-Two separate things are still outstanding on this one product.
-
-### 1. Gallery photos are unconverted JPEGs
-
-The three photos in the product's `images` array
-(`public/images/products/fiberglass-septic-tank/1.jpg` - `3.jpg`) are unedited
-phone/camera JPEGs, renamed and moved into place as-is. Every other product's
-`images` array points at optimized `.webp` files. The three treatment-system
-diagrams added later are already `.webp` and are not affected.
-
-**Why it was skipped:** no image-conversion tooling is available in this
-session, and re-encoding was out of scope for adding the product entry.
-
-**What to do:** convert the three files to `.webp` (matching the sizing and
-quality other product photos use) and update the three paths in the
-`fiberglass-septic-tank` entry in `src/lib/products.ts`.
-
-### 2. English copy on this product is Claude-written
+2026-09-01 when all three sizing tables became real `table` blocks and their
+screenshots were deleted, and 2026-09-25 when the gallery photos were
+converted to `.webp` (`sharp`, already present in `node_modules` as a
+transitive dependency, handled this - no new package was needed).
 
 The Thai side of the three treatment-system sections is the customer's own copy
 from `tasks/add_contents.md`; the English side was translated by Claude and has
@@ -236,36 +193,6 @@ for ตะกอนจุลชีพ, and "clarifier" for ถังแยกต
 paragraph is meant to read "Thai Chemical Storage (TCS)" on a TankQ-branded
 site - it is the only place on the site that names TCS, and it was supplied
 that way in the brief.
-
-## Mobile nav: Products dropdown accordion has no second level
-
-**Status:** not started. Added 2026-09-24 with the desktop products dropdown
-flyout, updated 2026-09-24 when the flyout was replaced with an inline
-click-to-expand accordion.
-
-`src/components/products-nav-menu.tsx` expands a category with a click,
-listing its products in an indented sub-list right below it (see
-`docs/ARCHITECTURE.md`, "The header's Products item"). `MobileNav`
-(`src/components/mobile-nav.tsx`) still only gets one level of `children`
-(categories) under its Products item - the products within a category are
-not reachable from the phone menu at all except by opening the category
-(which filters `/products`) and scrolling.
-
-**Why it was skipped:** the task that reworked the desktop dropdown was
-scoped to that popup specifically; folding a second level into `MobileNav`'s
-`Accordion` (nested accordion, or a second `AccordionItem` level) is its own
-design decision the supervisor has not weighed in on.
-
-**What to do:**
-
-1. Decide the mobile pattern - a nested accordion under each category, or
-   leave it as "tap category -> filtered listing" and treat that as
-   sufficient on mobile.
-2. If nesting is wanted: extend `MobileNavItem` in `mobile-nav.tsx` to allow a
-   `children` entry to itself carry `children`, and render a second
-   `Accordion`/`AccordionItem` level inside `AccordionContent`. `Header`
-   already computes `categories[].products` (slug + localized title) for the
-   desktop menu - reuse that instead of adding a second data pass.
 
 ## Thai copy review for the service page
 

@@ -213,13 +213,16 @@ each category's products (slug + localized title) and an already-interpolated
 `expandLabel` (the accordion toggle's accessible name, since it renders no
 text of its own) alongside its label, the same way it resolves the label
 itself, and hands them down as `categories[].products` /
-`categories[].expandLabel`. `MobileNav` still only carries categories (no
-product level) as indented `children` under its Products item - see
-"Mobile nav: Products dropdown accordion has no second level" in
-`docs/TODO.md`. It renders as a `ui/sheet` panel (half the viewport width,
-capped at `sm:max-w-sm`) sliding in from the right, with any item that has
-`children` rendered as a `ui/accordion` item instead of a plain link so the
-categories expand in place.
+`categories[].expandLabel`. `MobileNav` reuses that same data: its Products
+item's `children` are the categories (each an indented link + `ui/accordion`
+item, `ui/sheet` panel sliding in from the right, half the viewport width
+capped at `sm:max-w-sm`), and a category with 2+ products carries its own
+`children` in turn - a second, nested `Accordion`/`AccordionItem` inside that
+category's `AccordionContent`, listing its products the same indented,
+`border-l` way. `MobileNavItem`'s `children` are typed `MobileNavChild[]` (not
+plain `MobileNavLink[]`) precisely so a child can carry this further nested
+level; a plain link (no `children`) renders with no expand toggle, same as
+the desktop dropdown.
 
 ## Product detail sections
 
@@ -568,8 +571,18 @@ Thai + Latin) as `--font-sans` and `--font-heading`, Geist Mono as
 previews). It backs `metadataBase` in `src/app/[locale]/layout.tsx`'s
 `generateMetadata` and the absolute URLs in the `BreadcrumbList` JSON-LD that
 `src/components/breadcrumbs.tsx` emits. Anything else needing an absolute URL
-(Open Graph images, `alternates.canonical`) should read `siteUrl` rather than
-hardcoding the domain.
+(Open Graph images) should read `siteUrl` rather than hardcoding the domain.
+
+`src/lib/site.ts` also exports `alternatesFor(locale, pathname)`, which every
+page's `generateMetadata` calls to fill `alternates` - `pathname` is the
+locale-less path (`""` for home, `"/about"`, `` `/products/${slug}` ``), and
+it returns a `canonical` pointing at that page's own locale plus a
+`languages` map covering both `th` and `en` (from `routing.locales`), so
+Google is told the two locale copies of a page are translations of each
+other rather than duplicate content. Resolved against `metadataBase`, so the
+paths it returns stay relative. Add a page and forget to call it and that
+page silently has no canonical/hreflang tags - there's no lint or type check
+that catches the omission, so a new `generateMetadata` should call it too.
 
 ## Static assets
 

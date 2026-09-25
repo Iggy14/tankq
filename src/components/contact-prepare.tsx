@@ -76,7 +76,7 @@ export function ContactPrepare() {
               height={149}
               className="h-10 w-auto sm:h-12"
             />
-            <p className="text-left text-sm leading-relaxed text-pretty text-muted-foreground sm:text-base">
+            <p className="text-left text-base leading-relaxed text-pretty text-muted-foreground sm:text-lg">
               {tFooter("companyDescription")}
             </p>
           </FadeInUp>
@@ -131,7 +131,7 @@ export function ContactPrepare() {
                       <span className="font-semibold text-foreground">
                         {t(labelKey)}
                       </span>
-                      <span className="text-sm text-muted-foreground">
+                      <span className="text-base text-muted-foreground">
                         {value}
                       </span>
                     </span>

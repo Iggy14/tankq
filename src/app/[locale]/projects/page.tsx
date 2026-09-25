@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
 import { ProjectCaseStudies } from "@/components/project-case-studies";
 import { ProjectStats } from "@/components/project-stats";
+import { alternatesFor } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -15,6 +16,7 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: alternatesFor(locale, "/projects"),
   };
 }
 
@@ -37,10 +39,10 @@ export default async function ProjectsPage({ params }: PageProps<"/[locale]/proj
           <h1 className="text-3xl leading-[1] font-black tracking-tight text-primary uppercase sm:text-4xl md:text-5xl lg:text-6xl">
             {t("title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-sm font-medium text-muted-foreground dark:text-neutral-400 sm:text-base">
+          <p className="mt-6 max-w-2xl text-pretty text-base font-medium text-muted-foreground dark:text-neutral-400 sm:text-lg">
             {t("subtitle")}
           </p>
-          <div className="mt-8 h-px w-40 bg-neutral-500 sm:mt-10" />
+          <div className="mt-8 h-px w-40 bg-primary sm:mt-10" />
         </FadeInUp>
       </section>
 

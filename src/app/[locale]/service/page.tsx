@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
 import { ServiceSections } from "@/components/service-sections";
 import { toAppLocale } from "@/i18n/locale";
+import { alternatesFor } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -15,6 +16,7 @@ export async function generateMetadata({
   return {
     title: t("metaTitle"),
     description: t("metaDescription"),
+    alternates: alternatesFor(locale, "/service"),
   };
 }
 
@@ -35,10 +37,10 @@ export default async function ServicePage({ params }: PageProps<"/[locale]/servi
           <h1 className="text-3xl leading-[1] font-black tracking-tight text-primary uppercase sm:text-4xl md:text-5xl lg:text-6xl">
             {t("title")}
           </h1>
-          <p className="mt-6 max-w-2xl text-pretty text-sm text-muted-foreground sm:text-base">
+          <p className="mt-6 max-w-2xl text-pretty text-base text-muted-foreground sm:text-lg">
             {t("subtitle")}
           </p>
-          <div className="mt-8 mb-14 h-px w-40 bg-neutral-500 sm:mt-10" />
+          <div className="mt-8 mb-14 h-px w-40 bg-primary sm:mt-10" />
         </FadeInUp>
       </section>
 
