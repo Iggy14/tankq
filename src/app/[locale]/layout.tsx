@@ -9,6 +9,7 @@ import { FloatingContact } from "@/components/floating-contact";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
+import { ScrollToTop } from "@/components/scroll-to-top";
 import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/site";
 import "../globals.css";
@@ -86,6 +87,7 @@ export default async function LocaleLayout({
               request config, making them available to client components. */}
           <NextIntlClientProvider>
             <OrganizationJsonLd locale={locale} />
+            <ScrollToTop />
             <Header />
             <main className="flex flex-1 flex-col">{children}</main>
             <Footer />

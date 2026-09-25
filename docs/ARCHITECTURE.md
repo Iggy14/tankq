@@ -63,7 +63,10 @@ src/app/
 - Each page exports `generateMetadata` reading `<namespace>.metaTitle` and
   `metaDescription`; the layout supplies the `%s | TankQ` title template.
 - Server components are the default. `"use client"` only for state, event
-  handlers, or Motion: `fade-in-up`, `nav-link`, `language-switcher`,
+  handlers, or Motion: `fade-in-up`, `nav-link`, `logo-link`, `scroll-to-top`
+  (mounted once in the layout: resets scroll on every pathname change; Next's
+  own reset does not fire reliably under the sticky header; the logo link
+  uses its `zoomToTop()` for the same-page click), `language-switcher`,
   `mobile-nav`, `products-nav-menu`, `product-gallery`, `product-catalogue`,
   the slideshows, `banner-carousel`, plus `ui/dropdown-menu` and `ui/table`.
 

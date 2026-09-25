@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { type ComponentProps, useState } from "react";
 
+import { LogoLink } from "@/components/logo-link";
 import { isNavLinkActive } from "@/components/nav-link";
 import {
   Accordion,
@@ -84,7 +85,7 @@ export function MobileNav({
         <SheetTitle className="sr-only">{menuLabel}</SheetTitle>
 
         <SheetHeader className="flex-row items-center justify-between gap-2 border-b border-border p-4">
-          <Link href="/" onClick={() => setOpen(false)}>
+          <LogoLink onClick={() => setOpen(false)}>
             <Image
               src="/brand/tankq-logo.png"
               alt={logoAlt}
@@ -92,7 +93,7 @@ export function MobileNav({
               height={149}
               className="h-7 w-auto"
             />
-          </Link>
+          </LogoLink>
           <SheetClose
             render={<Button variant="ghost" size="icon-sm" aria-label={closeLabel} />}
           >

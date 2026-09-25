@@ -1,5 +1,6 @@
 "use client";
 
+import { ChevronRight } from "lucide-react";
 import { animate, motion, useMotionValue, useReducedMotion } from "motion/react";
 import type { AnimationPlaybackControls, PanInfo } from "motion/react";
 import { useTranslations } from "next-intl";
@@ -42,9 +43,9 @@ const FLICK_VELOCITY = 500;
 
 /**
  * A near full-width strip of pictures (30px gutters) that slides itself along
- * every few seconds. Visitors can also drag / swipe it. The auto-advance stops
- * while the pointer is over the strip or pressed, so it never moves under
- * someone's hand. Under `prefers-reduced-motion` it never advances by itself
+ * every few seconds, hovered or not. Visitors can also drag / swipe it. The
+ * auto-advance pauses only while the strip is pressed, so it never moves under
+ * someone's hand mid-drag. Under `prefers-reduced-motion` it never advances by itself
  * and changes slide without the slide animation.
  */
 export function BannerCarousel() {
@@ -59,9 +60,8 @@ export function BannerCarousel() {
   // latest value without being rebuilt on every slide.
   const indexRef = useRef(0);
 
-  const [hovered, setHovered] = useState(false);
   const [pressed, setPressed] = useState(false);
-  const paused = hovered || pressed;
+  const paused = pressed;
 
   const goTo = useCallback(
     (target: number) => {
@@ -148,8 +148,6 @@ export function BannerCarousel() {
           aria-roledescription="carousel"
           aria-label={t("label")}
           className="relative w-full overflow-hidden rounded-xl bg-muted"
-          onPointerEnter={() => setHovered(true)}
-          onPointerLeave={() => setHovered(false)}
           onPointerDown={handlePointerDown}
         >
           <motion.div
@@ -199,6 +197,14 @@ export function BannerCarousel() {
               );
             })}
           </motion.div>
+          <button
+            type="button"
+            aria-label={t("next")}
+            onClick={() => goTo(indexRef.current + 1)}
+            className="absolute inset-y-0 right-0 z-10 flex items-center px-1 text-foreground/70 transition-colors hover:text-foreground focus-visible:text-foreground focus-visible:outline-none sm:right-1"
+          >
+            <ChevronRight className="size-8 sm:size-12" strokeWidth={1.5} aria-hidden="true" />
+          </button>
         </section>
       </div>
     </div>

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { LogoLink } from "@/components/logo-link";
 import { MobileNav } from "@/components/mobile-nav";
 import { NavLink } from "@/components/nav-link";
 import { ProductsNavMenu } from "@/components/products-nav-menu";
@@ -50,7 +51,7 @@ export function Header() {
       {/* Equal-width outer columns (1fr each) keep the auto-width nav centred on
           the header itself, not just between the brand and the actions. */}
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-4 sm:px-5 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:justify-normal lg:px-6">
-        <Link href="/" className="lg:justify-self-start">
+        <LogoLink className="lg:justify-self-start">
           <Image
             src="/brand/tankq-logo.png"
             alt={t("common.companyName")}
@@ -59,7 +60,7 @@ export function Header() {
             priority
             className="h-8 w-auto sm:h-9"
           />
-        </Link>
+        </LogoLink>
 
         <nav className="hidden items-center gap-0.5 lg:flex">
           {navItems.map((item) =>
