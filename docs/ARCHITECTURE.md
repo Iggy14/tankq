@@ -65,7 +65,7 @@ src/app/
 - Server components are the default. `"use client"` only for state, event
   handlers, or Motion: `fade-in-up`, `nav-link`, `language-switcher`,
   `mobile-nav`, `products-nav-menu`, `product-gallery`, `product-catalogue`,
-  the slideshows, plus `ui/dropdown-menu` and `ui/table`.
+  the slideshows, `banner-carousel`, plus `ui/dropdown-menu` and `ui/table`.
 
 ## Two kinds of text, two homes
 
@@ -535,6 +535,19 @@ Data only one component ever renders stays next to it.
   `max-w-[88rem]` is the wide track used by the hero, the stats strip, the
   footer and both product pages. A wide page must also pass `wide` to
   `<Breadcrumbs>`, or the trail sits indented from the heading below it.
+- `ContourBackdrop` (`src/components/contour-backdrop.tsx`) is the decorative
+  topographic-line layer. Drop it inside a `relative isolate` parent and it fills
+  it at `-z-10`, under the parent's content. The lines are
+  `public/home/contours.svg` used as a CSS mask, so the colour is a theme token
+  (`bg-primary/40`, overridable via `className`), not baked into the file. The
+  drawing is a full field of wide, smooth rings, so it also runs under the
+  parent's content: opaque children (like the carousel) hide most of it and the
+  lines show around their edges. Give the parent some padding around its content
+  so they do. `BannerCarousel` is the one user. It drifts
+  via the `--animate-contour-drift` keyframe in `globals.css` and is static
+  under `prefers-reduced-motion`. The SVG was generated (a seeded field run
+  through d3-contour, then simplified) and is not hand-edited; replace the file
+  rather than tweaking paths.
 - `FadeInUp` / `FadeInUpGroup` (`src/components/fade-in-up.tsx`) are the
   scroll-in reveals. Nest `FadeInUp` inside a `FadeInUpGroup` to cascade: the
   group takes the layout classes (grid, flex, gap) and the children inherit its
@@ -573,22 +586,47 @@ previews). It backs `metadataBase` in `src/app/[locale]/layout.tsx`'s
 `src/components/breadcrumbs.tsx` emits. Anything else needing an absolute URL
 (Open Graph images) should read `siteUrl` rather than hardcoding the domain.
 
-`src/lib/site.ts` also exports `alternatesFor(locale, pathname)`, which every
-page's `generateMetadata` calls to fill `alternates` - `pathname` is the
-locale-less path (`""` for home, `"/about"`, `` `/products/${slug}` ``), and
-it returns a `canonical` pointing at that page's own locale plus a
-`languages` map covering both `th` and `en` (from `routing.locales`), so
-Google is told the two locale copies of a page are translations of each
-other rather than duplicate content. Resolved against `metadataBase`, so the
-paths it returns stay relative. Add a page and forget to call it and that
-page silently has no canonical/hreflang tags - there's no lint or type check
-that catches the omission, so a new `generateMetadata` should call it too.
+`src/lib/site.ts` also exports `pageMetadata({ locale, pathname, title,
+description, image? })`, which every page's `generateMetadata` returns. It
+fills `title`, `description`, `alternates` (via `alternatesFor`), and the Open
+Graph + Twitter card that decide how a shared link previews in LINE/Facebook.
+`pathname` is the locale-less path (`""` for home, `"/about"`,
+`` `/products/${slug}` ``). The `alternates` give a `canonical` on that page's
+own locale plus a `languages` map covering `th` and `en`, so Google reads the
+two copies as translations rather than duplicates. `image` is a public path,
+default `DEFAULT_OG_IMAGE` (`public/og-default.jpg`, 1200x630); product pages
+pass their cover. A page's `openGraph` replaces the layout's instead of
+merging, which is why the whole object is built per page here. Add a page and
+forget to call it and that page has no canonical, hreflang or share card -
+nothing lint- or type-checks that, so every new `generateMetadata` should
+return `pageMetadata(...)`.
+
+Structured data goes through `src/components/json-ld.tsx` (`<JsonLd data=...>`,
+which escapes `<`). Emitted today: `Organization` site-wide
+(`organization-json-ld.tsx`, built from the `footer.*` strings so it cannot
+drift from the visible contact details), `Product` on each product page, and
+`BreadcrumbList` from `breadcrumbs.tsx`.
+
+`src/app/sitemap.ts` and `src/app/robots.ts` build `/sitemap.xml` and
+`/robots.txt`. The sitemap lists every locale of every page, with hreflang
+`alternates`, from the `staticPaths` array plus `getAllProducts()`, so a new
+product appears automatically but a new top-level page needs adding to
+`staticPaths`. `/projects` is deliberately absent while it is unlinked.
 
 ## Static assets
 
-`public/` holds `brand/`, `hero/`, `about/`, `why/`, `footer/`, `service/`,
-`images/products/<slug>/` and `images/socials/`. Use `next/image` with explicit
-`width` and `height`; pass `priority` only for above-the-fold art.
+`public/` holds `brand/`, `hero/`, `home/`, `about/`, `why/`, `footer/`,
+`service/`, `images/products/<slug>/` and `images/socials/`. Use `next/image`
+with explicit `width` and `height`; pass `priority` only for above-the-fold art.
+Ship web-sized files: `home/banner-*.webp` are 2560x1280 exports of 16 MB
+source JPEGs, which do not belong in the repo or the build. Each carousel
+slide has a light file (`banner-N.webp`) and a navy-backdrop dark one
+(`banner-N-dark.webp`); `BannerCarousel` renders both and swaps them with
+`dark:hidden` / `hidden dark:block`. Store photos as
+`.webp` (about 2000px wide, quality ~80); flat graphics with transparency use
+near-lossless webp so text edges stay crisp. Keep logos and social icons in
+their original format. The exception is `public/og-default.jpg`, a JPEG on
+purpose because link-preview crawlers handle it most reliably.
 
 A `fill` image (used where the box's own size is driven by its container, not
 the picture) always needs an `aspect-*` Tailwind class on the `<Image>` itself,

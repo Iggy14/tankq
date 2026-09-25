@@ -1213,7 +1213,7 @@ const productSections: Record<string, ProductSection[]> = {
         },
         {
           type: "image",
-          src: "/images/products/wastewater-treatment-system/2.jpg",
+          src: "/images/products/wastewater-treatment-system/2.webp",
           alt: {
             th: "โรงบำบัดน้ำเสียพร้อมถังตกตะกอนแบบวงกลมและระบบท่อบำบัด",
             en: "A wastewater treatment plant with circular clarifier tanks and treatment piping",

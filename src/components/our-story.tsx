@@ -82,7 +82,7 @@ export function OurStory() {
       >
         <div className="relative h-[280px] w-full sm:h-[360px] lg:h-[480px]">
           <Image
-            src="/about/story.jpg"
+            src="/about/story.webp"
             alt={t("imageAlt")}
             fill
             // `aspect-video` here is inert — `fill` already forces width and

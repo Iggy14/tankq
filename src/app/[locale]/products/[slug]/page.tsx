@@ -4,6 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
+import { JsonLd } from "@/components/json-ld";
 import { ProductCard } from "@/components/product-card";
 import { ProductGallery } from "@/components/product-gallery";
 import { ProductSectionLinks } from "@/components/product-section-links";
@@ -18,7 +19,7 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/products";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata, siteUrl } from "@/lib/site";
 
 // The catalogue is static data, so every detail page is prerendered. The
 // parent [locale] segment supplies the locale half of each pair.
@@ -38,11 +39,13 @@ export async function generateMetadata({
 
   const activeLocale = toAppLocale(locale);
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: `/products/${slug}`,
     title: product.title[activeLocale],
     description: product.description[activeLocale],
-    alternates: alternatesFor(locale, `/products/${slug}`),
-  };
+    image: product.images[0],
+  });
 }
 
 export default async function ProductDetailPage({
@@ -67,6 +70,17 @@ export default async function ProductDetailPage({
 
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: product.title[activeLocale],
+          description: product.description[activeLocale],
+          image: product.images.map((src) => `${siteUrl}${src}`),
+          url: `${siteUrl}/${locale}/products/${product.slug}`,
+          brand: { "@type": "Brand", name: "TankQ" },
+        }}
+      />
       <Breadcrumbs
         wide
         items={[

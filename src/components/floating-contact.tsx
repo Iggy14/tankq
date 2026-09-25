@@ -90,9 +90,13 @@ export function FloatingContact() {
   return (
     <div
       ref={rootRef}
-      onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      className="fixed right-6 bottom-8 z-50 flex flex-col items-center gap-3 sm:right-8 sm:bottom-10"
+      // Closed: only the trigger button is hoverable, so the invisible icon
+      // stack above it does not open the menu when the pointer passes over it.
+      className={cn(
+        "fixed right-6 bottom-8 z-50 flex flex-col items-center gap-3 sm:right-8 sm:bottom-10",
+        !open && "pointer-events-none",
+      )}
     >
       <div
         inert={!open}
@@ -120,10 +124,11 @@ export function FloatingContact() {
 
       <button
         type="button"
+        onMouseEnter={() => setOpen(true)}
         onClick={() => setOpen((value) => !value)}
         aria-label={open ? t("floatingContact.closeLabel") : t("floatingContact.toggleLabel")}
         aria-expanded={open}
-        className="relative size-14 overflow-hidden rounded-full bg-white shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
+        className="pointer-events-auto relative size-14 overflow-hidden rounded-full bg-white shadow-xl ring-1 ring-black/5 transition-transform hover:scale-105"
       >
         <Image
           src="/brand/tankq-icon.png"

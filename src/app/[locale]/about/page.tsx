@@ -8,7 +8,7 @@ import { FeaturedProducts } from "@/components/featured-products";
 import { OurMission } from "@/components/our-mission";
 import { OurStory } from "@/components/our-story";
 import { SocialLinks } from "@/components/social-links";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -16,11 +16,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: "/about",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: alternatesFor(locale, "/about"),
-  };
+  });
 }
 
 export default async function AboutPage({ params }: PageProps<"/[locale]/about">) {

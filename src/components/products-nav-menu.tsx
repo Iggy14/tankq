@@ -135,11 +135,11 @@ export function ProductsNavMenu({
             onClick={closeNow}
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
-              "relative px-2",
+              "relative h-9 px-3 text-base",
               isActive &&
                 // Matches NavLink's tab indicator so the item sits in the row
-                // identically. -bottom-[18px] = (h-16 header - h-7 button) / 2.
-                "text-brand hover:text-brand after:absolute after:inset-x-2 after:-bottom-[18px] after:h-0.5 after:rounded-full after:bg-brand after:content-['']",
+                // identically. -bottom-[14px] = (h-16 header - h-9 button) / 2.
+                "text-brand hover:text-brand after:absolute after:inset-x-3 after:-bottom-[14px] after:h-0.5 after:rounded-full after:bg-brand after:content-['']",
             )}
           >
             {label}

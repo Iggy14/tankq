@@ -15,7 +15,7 @@ export function ContactHero() {
   return (
     <section className="relative isolate w-full overflow-hidden bg-navy text-navy-foreground">
       <Image
-        src="/contactus/contactus-logo.jpg"
+        src="/contactus/contactus-logo.webp"
         alt={t("heroImageAlt")}
         width={1280}
         height={960}

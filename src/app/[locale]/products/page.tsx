@@ -9,7 +9,7 @@ import {
   ProductCatalogue,
 } from "@/components/product-catalogue";
 import { getAllProducts } from "@/lib/products";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -17,11 +17,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "products" });
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: "/products",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: alternatesFor(locale, "/products"),
-  };
+  });
 }
 
 export default async function ProductsPage({

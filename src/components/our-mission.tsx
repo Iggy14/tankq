@@ -48,7 +48,7 @@ export function OurMission() {
           delay={0.05}
         >
           <Image
-            src="/about/mission.jpg"
+            src="/about/mission.webp"
             alt={t("imageAlt")}
             fill
             // `aspect-square` matches the wrapper above; redundant for layout

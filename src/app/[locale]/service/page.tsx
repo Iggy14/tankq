@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
 import { ServiceSections } from "@/components/service-sections";
 import { toAppLocale } from "@/i18n/locale";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -13,11 +13,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "service" });
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: "/service",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: alternatesFor(locale, "/service"),
-  };
+  });
 }
 
 export default async function ServicePage({ params }: PageProps<"/[locale]/service">) {

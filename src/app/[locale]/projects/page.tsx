@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
 import { ProjectCaseStudies } from "@/components/project-case-studies";
 import { ProjectStats } from "@/components/project-stats";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -13,11 +13,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "projects" });
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: "/projects",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: alternatesFor(locale, "/projects"),
-  };
+  });
 }
 
 export default async function ProjectsPage({ params }: PageProps<"/[locale]/projects">) {

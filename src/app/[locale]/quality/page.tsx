@@ -5,7 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { FadeInUp } from "@/components/fade-in-up";
 import { QcChecklistTable } from "@/components/qc-checklist-table";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -13,11 +13,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "quality" });
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: "/quality",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: alternatesFor(locale, "/quality"),
-  };
+  });
 }
 
 export default async function QualityPage({ params }: PageProps<"/[locale]/quality">) {
@@ -50,7 +51,7 @@ export default async function QualityPage({ params }: PageProps<"/[locale]/quali
 
         <FadeInUp className="relative mt-10 aspect-[1672/941] w-full sm:mt-12">
           <Image
-            src="/quality/production-process.png"
+            src="/quality/production-process.webp"
             alt={t("processImageAlt")}
             fill
             className="object-cover"

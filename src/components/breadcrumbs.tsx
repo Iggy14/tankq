@@ -10,6 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { JsonLd } from "@/components/json-ld";
 import { Link } from "@/i18n/navigation";
 import { siteUrl } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -75,15 +76,7 @@ export function Breadcrumbs({ items, wide = false }: BreadcrumbsProps) {
 
   return (
     <div className="w-full border-b border-border bg-muted/40">
-      {/* `<` is escaped so a label or href containing "</script>" can't break
-          out of the block; every value here is our own content/route data,
-          never arbitrary user input, but this keeps it safe regardless. */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbList).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={breadcrumbList} />
       <div
         className={cn(
           "mx-auto w-full px-4 py-3 sm:px-6",

@@ -8,6 +8,7 @@ import { ThemeProvider } from "next-themes";
 import { FloatingContact } from "@/components/floating-contact";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { routing } from "@/i18n/routing";
 import { siteUrl } from "@/lib/site";
 import "../globals.css";
@@ -84,6 +85,7 @@ export default async function LocaleLayout({
           {/* Without props the provider inherits locale + messages from the
               request config, making them available to client components. */}
           <NextIntlClientProvider>
+            <OrganizationJsonLd locale={locale} />
             <Header />
             <main className="flex flex-1 flex-col">{children}</main>
             <Footer />

@@ -5,7 +5,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContactHero } from "@/components/contact-hero";
 import { ContactPrepare } from "@/components/contact-prepare";
 import { FadeInUp } from "@/components/fade-in-up";
-import { alternatesFor } from "@/lib/site";
+import { pageMetadata } from "@/lib/site";
 
 export async function generateMetadata({
   params,
@@ -13,11 +13,12 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "contact" });
 
-  return {
+  return pageMetadata({
+    locale,
+    pathname: "/contact",
     title: t("metaTitle"),
     description: t("metaDescription"),
-    alternates: alternatesFor(locale, "/contact"),
-  };
+  });
 }
 
 export default async function ContactPage({ params }: PageProps<"/[locale]/contact">) {

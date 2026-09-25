@@ -167,3 +167,18 @@
     }
   }
 }
+
+/* Slow sideways drift for the contour-line backdrop (`ContourBackdrop`). The
+   layer is scaled up a touch so its edges never show while it moves. */
+@theme {
+  --animate-contour-drift: contour-drift 22s ease-in-out infinite alternate;
+
+  @keyframes contour-drift {
+    from {
+      transform: translate3d(-3.5%, 2%, 0) scale(1.12);
+    }
+    to {
+      transform: translate3d(3.5%, -2%, 0) scale(1.12);
+    }
+  }
+}

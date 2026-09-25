@@ -45,7 +45,7 @@ export function IsoCertificateSection() {
       {/* Decorative - the heading and cards below carry the meaning. */}
       <div aria-hidden className="absolute inset-0 z-0">
         <Image
-          src="/home/wastewater-treatment-plant.jpg"
+          src="/home/wastewater-treatment-plant.webp"
           alt=""
           fill
           sizes="100vw"

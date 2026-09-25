@@ -142,6 +142,8 @@ supervisor accepted the low risk of someone finding the bare URL directly.
 4. Resolve "Project photography" and "Thai copy review for the project
    showcase" above first (or alongside), since the whole point of hiding the
    page was to keep the placeholder photos/copy off the public site.
+5. Add `"/projects"` to `staticPaths` in `src/app/sitemap.ts`. It was left
+   out on purpose so search engines are not pointed at the hidden page.
 
 ## Service page photography
 
@@ -213,3 +215,46 @@ locales as written.
 2. Check the technical terms in particular: "ทดสอบความแข็ง Barcol",
    "ตุ่มพอง" for blisters, and "เคลือบ Vinyl Ester / Isophthalic" - these are
    trade terms and the shop may have its own wording.
+
+## Delete the original JPG/PNG files after the webp conversion
+
+**Status:** not started. Added 2026-09-25.
+
+Large images under `public/` were converted to `.webp` and every reference in
+`src/` now points at the webp. The original JPG/PNG files were left in place
+because the bulk delete was blocked in the session that did the conversion.
+They are no longer referenced, so they only add about 18 MB to the repo.
+
+**What to do:**
+
+1. From the repo root, delete these (each has a `.webp` next to it, except the
+   two renames below): `public/about/{mission,story}.jpg`,
+   `public/contactus/contactus-logo.jpg`, `public/hero/tankq-hero-{1,2,3}.jpg`,
+   `public/home/wastewater-treatment-plant.jpg`,
+   `public/images/products/epoxy-flooring/{5..12}.jpg`,
+   `public/images/products/pe-above-ground-water-tank-granite/13.png`,
+   `public/images/products/polyurethane-concrete-flooring/{1..6}.png`,
+   `public/images/products/wastewater-treatment-system/2.jpg`,
+   `public/quality/production-process.png`, `public/service/s{1..6}.jpg`.
+2. Two originals were renamed because a different image already held the
+   `.webp` name: `pe-underground-water-tank/1.jpg` is now `4.webp` and
+   `pe-waste-water-treatment-tank/2.jpg` is now `3.webp`. Delete those two
+   `.jpg` files as well.
+3. Run `npm run build` and open a few product pages to confirm no image 404s.
+
+## Analytics and Search Console
+
+**Status:** not started. Added 2026-09-25.
+
+There is no analytics and no Search Console verification. Skipped because it
+needs an ID or verification token from the site owner.
+
+**What to do:**
+
+1. Register `https://www.tankq-solution.com` in Google Search Console, submit
+   `/sitemap.xml`, and use the HTML tag method: put the token in
+   `verification.google` in `generateMetadata` in
+   `src/app/[locale]/layout.tsx`.
+2. If wanted, add GA4 with `@next/third-parties` (`GoogleAnalytics` in the
+   layout, ID from an env var). Check first whether a cookie/PDPA notice is
+   needed.

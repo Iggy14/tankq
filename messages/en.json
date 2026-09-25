@@ -31,6 +31,11 @@
     "heroTitleAccent": "Sustainable.",
     "heroSubtitle": "For more than 15 years we have engineered solutions for fiberglass (FRP) tanks, water storage, wastewater treatment, water treatment, and industrial flooring for Thai industry - matching the right resin and laminate schedule to each application instead of selling one standard product.",
     "heroCta": "Explore products",
+    "productBanner": {
+      "label": "TankQ tanks and installations",
+      "slide1": "A tall FRP vertical tank beside photos of TankQ tanks installed at factories and lifted into place by crane",
+      "slide2": "A horizontal FRP tank with mounting legs, surrounded by photos of TankQ horizontal tanks on site"
+    },
     "isoCertificate": {
       "title": "ISO 9001:2015 Certificate",
       "subtitle": "Our expertise and services.",
