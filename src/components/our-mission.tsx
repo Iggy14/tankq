@@ -38,7 +38,7 @@ export function OurMission() {
           plain DOM order stacks title, then photo, then text. */}
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-start lg:gap-x-16 lg:gap-y-6">
         <FadeInUp className="lg:col-start-2 lg:row-start-1">
-          <h2 className="text-4xl leading-none font-bold tracking-tight sm:text-5xl">
+          <h2 className="text-4xl leading-none font-bold tracking-tight text-primary sm:text-5xl">
             {t("title")}
           </h2>
         </FadeInUp>
@@ -65,7 +65,7 @@ export function OurMission() {
         >
           {MISSION_ITEMS.map((key) => (
             <div key={key} className="flex flex-col gap-2">
-              <h3 className="text-base font-semibold">
+              <h3 className="text-base font-semibold text-primary">
                 {t(`items.${key}.heading`)}
               </h3>
               <p className="text-base leading-relaxed text-pretty text-muted-foreground">

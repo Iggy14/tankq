@@ -43,7 +43,7 @@ export function ServiceSection({
         >
           <h2
             id={headingId}
-            className="text-2xl font-semibold tracking-tight text-balance sm:text-3xl"
+            className="text-2xl font-semibold tracking-tight text-balance text-primary sm:text-3xl"
           >
             {service.title[locale]}
           </h2>

@@ -31,7 +31,7 @@ export function FeaturedProducts() {
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
         <FadeInUp className="flex flex-col items-center gap-3">
-          <h2 className="text-center text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+          <h2 className="text-center text-4xl font-semibold tracking-tight text-balance text-primary sm:text-5xl">
             {t("title")}
           </h2>
           <p className="max-w-2xl text-center text-base text-pretty text-muted-foreground sm:text-lg">
