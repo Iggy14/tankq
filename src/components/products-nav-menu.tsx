@@ -1,14 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { type ComponentProps, useRef, useState } from "react";
 
 import { isNavLinkActive } from "@/components/nav-link";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { buttonVariants } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -20,28 +14,27 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { ProductCategoryId } from "@/lib/product-categories";
-import { categoryHref } from "@/lib/product-category-url";
 import { cn } from "@/lib/utils";
 
 const PRODUCTS_HREF = "/products";
 const NAV_VALUE = "products";
 
-type CategoryProduct = { slug: string; title: string };
+export type ProductNavCategory = {
+  id: ProductCategoryId;
+  label: string;
+  /** Where the category title goes (see `categoryHref`). */
+  href: ComponentProps<typeof Link>["href"];
+  /** Listed indented under the title; empty for a category with 0-1 products. */
+  products: { href: string; label: string }[];
+};
 
 type ProductsNavMenuProps = {
   /** The nav label, already translated by the server Header. */
   label: string;
   /**
-   * Category names and their products, already resolved to the active
-   * locale by the Header.
+   * Category names, already resolved to the active locale by the Header.
    */
-  categories: {
-    id: ProductCategoryId;
-    label: string;
-    /** Accessible label for the expand toggle, already interpolated by Header. */
-    expandLabel: string;
-    products: CategoryProduct[];
-  }[];
+  categories: ProductNavCategory[];
   /** Labels the dropdown for screen readers. */
   menuLabel: string;
 };
@@ -60,12 +53,9 @@ type ProductsNavMenuProps = {
  * hover across the trigger and content so leaving that region still closes
  * with no added delay of its own.
  *
- * A category with 2+ products gets a `ChevronDown` and expands in place
- * (`ui/accordion`) to list them, instead of a second popup - it only opens on
- * click, never hover, matching `MobileNav`'s accordion for the same data. A
- * category with exactly one product skips straight to it via `categoryHref`
- * and gets no arrow; one with none has nothing to list and gets no arrow
- * either.
+ * The dropdown lists the category titles, each a link; a category with 2+
+ * products shows them indented right under it, also as links. Always open - no
+ * nested expanders.
  */
 export function ProductsNavMenu({
   label,
@@ -146,65 +136,34 @@ export function ProductsNavMenu({
           </NavigationMenuTrigger>
 
           {/* One onClick here, not one per link: it catches every category
-              link and product link inside, since React bubbles clicks
-              through the component tree - same as the hover tracking above -
-              not the DOM tree. Without this, clicking a link left the
-              dropdown showing over whatever page it just navigated to, until
-              the pointer was moved away. The expand/collapse toggle below
-              stops its own click from reaching here, since that should only
-              open its panel, not close the whole dropdown. */}
+              link inside, since React bubbles clicks through the component
+              tree - same as the hover tracking above - not the DOM tree.
+              Without this, clicking a link left the dropdown showing over
+              whatever page it just navigated to, until the pointer was moved
+              away. */}
           <NavigationMenuContent onClick={closeNow}>
             <ul aria-label={menuLabel} className="w-64">
-              {categories.map((category) => {
-                const isExpandable = category.products.length > 1;
-
-                if (!isExpandable) {
-                  return (
-                    <li key={category.id}>
-                      <NavigationMenuLink
-                        render={<Link href={categoryHref(category.id)} />}
-                      >
-                        {category.label}
-                      </NavigationMenuLink>
-                    </li>
-                  );
-                }
-
-                return (
-                  <li key={category.id}>
-                    <Accordion>
-                      <AccordionItem value={category.id} className="border-none">
-                        <div className="flex items-center gap-0.5">
-                          <NavigationMenuLink
-                            render={<Link href={categoryHref(category.id)} />}
-                            className="flex-1"
-                          >
-                            {category.label}
+              {categories.map((category) => (
+                <li key={category.id}>
+                  <NavigationMenuLink render={<Link href={category.href} />}>
+                    {category.label}
+                  </NavigationMenuLink>
+                  {category.products.length > 0 && (
+                    <ul
+                      aria-label={category.label}
+                      className="ml-3 flex flex-col gap-0.5 border-l border-border pl-2"
+                    >
+                      {category.products.map((product) => (
+                        <li key={product.label}>
+                          <NavigationMenuLink render={<Link href={product.href} />}>
+                            {product.label}
                           </NavigationMenuLink>
-                          <AccordionTrigger
-                            aria-label={category.expandLabel}
-                            onClick={(event) => event.stopPropagation()}
-                            className="w-auto flex-none justify-center gap-0 rounded-lg p-2 hover:bg-muted hover:no-underline"
-                          />
-                        </div>
-                        <AccordionContent className="pb-1 pl-2 [&_a]:no-underline">
-                          <ul aria-label={category.label} className="flex flex-col gap-0.5 border-l border-border pl-3">
-                            {category.products.map((product) => (
-                              <li key={product.slug}>
-                                <NavigationMenuLink
-                                  render={<Link href={`/products/${product.slug}`} />}
-                                >
-                                  {product.title}
-                                </NavigationMenuLink>
-                              </li>
-                            ))}
-                          </ul>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </li>
-                );
-              })}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>

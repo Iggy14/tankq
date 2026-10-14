@@ -198,34 +198,14 @@ item is still a real link to the unfiltered page. It does not read
 `useSearchParams` to highlight the current category - the header is on every
 page, and that would force a Suspense boundary onto all of them.
 
-A category with 2+ products also gets a `ChevronDown` that expands it in
-place: clicking it opens a `ui/accordion` item nested inside that category's
-own `<li>`, listing those products directly underneath it - indented, in a
-`border-l` sub-list, the same shape `MobileNav` uses below. It only opens on
-click, never hover, and lives inside the category dropdown's own
-`NavigationMenuContent` rather than a second popup, so the category label and
-its products stay in one box. The row splits into two separate targets: the
-category label is still its own `NavigationMenuLink` to `categoryHref` (click
-navigates straight there), and the chevron is a sibling `AccordionTrigger`
-that only toggles the panel - its `onClick` calls `event.stopPropagation()` so
-expanding a category doesn't also trigger `NavigationMenuContent`'s own
-catch-all click-closes-the-dropdown handler. A category with exactly one
-product already skips straight to it via `categoryHref` and gets no arrow;
-one with none has nothing to list and gets no arrow either. `Header` resolves
-each category's products (slug + localized title) and an already-interpolated
-`expandLabel` (the accordion toggle's accessible name, since it renders no
-text of its own) alongside its label, the same way it resolves the label
-itself, and hands them down as `categories[].products` /
-`categories[].expandLabel`. `MobileNav` reuses that same data: its Products
-item's `children` are the categories (each an indented link + `ui/accordion`
-item, `ui/sheet` panel sliding in from the right, half the viewport width
-capped at `sm:max-w-sm`), and a category with 2+ products carries its own
-`children` in turn - a second, nested `Accordion`/`AccordionItem` inside that
-category's `AccordionContent`, listing its products the same indented,
-`border-l` way. `MobileNavItem`'s `children` are typed `MobileNavChild[]` (not
-plain `MobileNavLink[]`) precisely so a child can carry this further nested
-level; a plain link (no `children`) renders with no expand toggle, same as
-the desktop dropdown.
+The dropdown lists the category titles, each a link to `categoryHref(id)`; a
+category with 2+ products also shows them indented right under it, as links
+(always open, no nested expanders). `Header` builds `ProductNavCategory[]`
+(label, href, products - empty for a category with 0-1 products) and hands it
+down as `categories`. `MobileNav` reuses it: its Products item's `children` are
+the categories, each with an indented `products` list, inside one `ui/accordion`
+item (`ui/sheet` panel sliding in from the right, half the viewport width
+capped at `sm:max-w-sm`).
 
 ## Product detail sections
 

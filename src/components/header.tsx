@@ -5,7 +5,7 @@ import { LanguageSwitcher } from "@/components/language-switcher";
 import { LogoLink } from "@/components/logo-link";
 import { MobileNav } from "@/components/mobile-nav";
 import { NavLink } from "@/components/nav-link";
-import { ProductsNavMenu } from "@/components/products-nav-menu";
+import { type ProductNavCategory, ProductsNavMenu } from "@/components/products-nav-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
@@ -28,21 +28,23 @@ export function Header() {
 
   // Category names are content, not chrome, so they are read from the data here
   // once and handed to both menus - the same reason MobileNav takes its labels
-  // as props rather than translating them itself. Each category also carries
-  // its products (localized) so the desktop dropdown can expand to them in
-  // place - see ProductsNavMenu. expandLabel is computed here rather than in
-  // that client component so the interpolated chrome string still comes from
-  // next-intl once, alongside every other translated label this maps over.
-  const categories = getAllProductCategories().map((category) => {
-    const label = category.title[locale];
+  // as props rather than translating them itself.
+  // A category with 2+ products also lists them (shown indented under it); one
+  // with a single product already links straight to it via categoryHref, so it
+  // lists none.
+  const categories: ProductNavCategory[] = getAllProductCategories().map((category) => {
+    const products = getProductsByCategory(category.id);
     return {
       id: category.id,
-      label,
-      expandLabel: t("nav.expandCategory", { category: label }),
-      products: getProductsByCategory(category.id).map((product) => ({
-        slug: product.slug,
-        title: product.title[locale],
-      })),
+      label: category.title[locale],
+      href: categoryHref(category.id),
+      products:
+        products.length > 1
+          ? products.map((product) => ({
+              href: `/products/${product.slug}`,
+              label: product.title[locale],
+            }))
+          : [],
     };
   });
 
@@ -101,24 +103,8 @@ export function Header() {
               href: item.href,
               label: t(`nav.${item.key}`),
               // Hover is not available on a phone, so the categories ride along
-              // as a nested group under Products, and a category with 2+
-              // products gets its own expand toggle down to them - same split
-              // as ProductsNavMenu's desktop accordion.
-              children:
-                item.key === "products"
-                  ? categories.map((category) => ({
-                      href: categoryHref(category.id),
-                      label: category.label,
-                      expandLabel: category.expandLabel,
-                      children:
-                        category.products.length > 1
-                          ? category.products.map((product) => ({
-                              href: `/products/${product.slug}`,
-                              label: product.title,
-                            }))
-                          : undefined,
-                    }))
-                  : undefined,
+              // as a nested group under Products - same list as ProductsNavMenu.
+              children: item.key === "products" ? categories : undefined,
             }))}
             menuLabel={t("common.openMenu")}
             closeLabel={t("common.closeMenu")}
