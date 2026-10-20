@@ -24,7 +24,7 @@ export type ProductNavCategory = {
   label: string;
   /** Where the category title goes (see `categoryHref`). */
   href: ComponentProps<typeof Link>["href"];
-  /** Listed indented under the title; empty for a category with 0-1 products. */
+  /** Listed indented under the title: the products, or a merged product's variants. Empty otherwise. */
   products: { href: string; label: string }[];
 };
 

@@ -18,17 +18,17 @@ const CARDS = [
   {
     key: "wastewaterTreatment",
     Icon: Waves,
-    href: "/products/wastewater-treatment-system",
+    href: "/products/water-wastewater-treatment-system#product-section-wastewater-treatment-system",
   },
   {
     key: "waterTreatment",
     Icon: Filter,
-    href: "/products/water-treatment-system",
+    href: "/products/water-wastewater-treatment-system#product-section-water-treatment-system",
   },
   {
     key: "industrialFlooring",
     Icon: Layers3,
-    href: categoryHref("epoxy-pu-flooring"),
+    href: categoryHref("epoxy-flooring"),
   },
 ] as const;
 

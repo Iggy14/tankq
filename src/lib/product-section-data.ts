@@ -1,11 +1,11 @@
+import type { Localized } from "./localized";
 import type { ContentSection, ProductSection } from "./product-sections";
 
 /**
- * Shared verbatim between `water-treatment-system` and
- * `wastewater-treatment-system`: its title and copy talk about both systems
- * generically (filters, pumps, control valves, storage tanks, membranes), so
- * it is one constant referenced from both products' arrays below rather than
- * two copies that could drift out of sync.
+ * Closes the merged `water-wastewater-treatment-system` page, after both
+ * variants: its title and copy talk about both systems generically (filters,
+ * pumps, control valves, storage tanks, membranes), so it is one section for the
+ * whole page rather than a copy inside each variant.
  */
 const waterAndWastewaterMaintenanceSection: ContentSection = {
   type: "content",
@@ -70,6 +70,863 @@ const waterAndWastewaterMaintenanceSection: ContentSection = {
   ],
 };
 
+// The seven blocks below are the copy of products that now share a page with
+// their siblings (see `productSections` at the foot of the file). Each is
+// composed there through `subProduct`, which opens each with its own gallery.
+
+const frpHorizontalSections: ProductSection[] = [
+  {
+    type: "paragraph",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    body: {
+      th: "ผลิตตามความต้องการของท่าน เราสามารถออกแบบและผลิตถังเก็บน้ำไฟเบอร์กลาสและถังบำบัดน้ำเสียตามสเปคที่ท่านกำหนด รวมถึงรุ่นทรงกระบอกแนวตั้ง",
+      en: "Custom manufacturing based on your specifications. We can design and manufacture fiberglass water storage tanks and wastewater treatment tanks, including vertical cylindrical models.",
+    },
+  },
+  {
+    type: "specTable",
+    title: {
+      th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
+      en: "Standard FRP Water Tank Sizes",
+    },
+    columns: [
+      { th: "Cu.m.", en: "Cu.m." },
+      { th: "เส้นผ่านศูนย์กลาง (มม.)", en: "Diameter (mm)" },
+      { th: "ความสูง (มม.)", en: "Height (mm)" },
+      { th: "ท่อเข้าออก", en: "Inlet and outlet pipes" },
+    ],
+    rows: [
+      [{ th: "8", en: "8" }, { th: "2,000", en: "2,000" }, { th: "2,950", en: "2,950" }, { th: "2\"", en: "2\"" }],
+      [{ th: "10", en: "10" }, { th: "2,000", en: "2,000" }, { th: "3,600", en: "3,600" }, { th: "2\"", en: "2\"" }],
+      [{ th: "15", en: "15" }, { th: "2,000", en: "2,000" }, { th: "5,200", en: "5,200" }, { th: "2\"", en: "2\"" }],
+      [{ th: "20", en: "20" }, { th: "2,500", en: "2,500" }, { th: "4,600", en: "4,600" }, { th: "2\"", en: "2\"" }],
+      [{ th: "25", en: "25" }, { th: "2,500", en: "2,500" }, { th: "5,600", en: "5,600" }, { th: "2\"", en: "2\"" }],
+      [{ th: "30", en: "30" }, { th: "2,500", en: "2,500" }, { th: "6,600", en: "6,600" }, { th: "2\"", en: "2\"" }],
+      [{ th: "35", en: "35" }, { th: "2,500", en: "2,500" }, { th: "7,650", en: "7,650" }, { th: "2\"", en: "2\"" }],
+      [{ th: "40", en: "40" }, { th: "2,500", en: "2,500" }, { th: "8,650", en: "8,650" }, { th: "2\"", en: "2\"" }],
+      [{ th: "45", en: "45" }, { th: "3,000", en: "3,000" }, { th: "6,700", en: "6,700" }, { th: "2\"", en: "2\"" }],
+      [{ th: "50", en: "50" }, { th: "3,000", en: "3,000" }, { th: "7,700", en: "7,700" }, { th: "2\"", en: "2\"" }],
+      [{ th: "60", en: "60" }, { th: "3,000", en: "3,000" }, { th: "9,100", en: "9,100" }, { th: "2\"", en: "2\"" }],
+      [{ th: "70", en: "70" }, { th: "3,000", en: "3,000" }, { th: "10,500", en: "10,500" }, { th: "2\"", en: "2\"" }],
+      [{ th: "80", en: "80" }, { th: "3,500", en: "3,500" }, { th: "9,110", en: "9,110" }, { th: "2\"", en: "2\"" }],
+      [{ th: "90", en: "90" }, { th: "3,500", en: "3,500" }, { th: "10,150", en: "10,150" }, { th: "2\"", en: "2\"" }],
+      [{ th: "100", en: "100" }, { th: "3,500", en: "3,500" }, { th: "11,500", en: "11,500" }, { th: "2\"", en: "2\"" }],
+    ],
+    columnAlign: ["left", "center", "center", "center"],
+  },
+];
+
+const frpVerticalSections: ProductSection[] = [
+  {
+    type: "bulletList",
+    title: {
+      th: "คุณสมบัติและมาตรฐานคุณภาพ",
+      en: "Features and Quality Standards",
+    },
+    marker: "check",
+    items: [
+      {
+        th: "ผลิตจากเรซิ่นชนิดพิเศษ ผสมใยแก้ว มีความแข็งแรง",
+        en: "Made from a special grade of resin blended with glass fibre for high strength",
+      },
+      {
+        th: "โครงสร้างแข็งแรง ป้องกันรอยรั่วซึมหรือรอยร้าว",
+        en: "Strong structure that guards against leaks and cracking",
+      },
+      {
+        th: "ไม่ย่อยสลาย ไม่ผุกร่อน ทนทุกสภาวะสิ่งแวดล้อม",
+        en: "Does not degrade or corrode, and stands up to every environment",
+      },
+      {
+        th: "ประกอบและติดตั้งง่าย รวดเร็ว ประหยัดค่าใช้จ่าย",
+        en: "Quick and easy to assemble and install, which keeps costs down",
+      },
+      {
+        th: "ทนต่อแสงแดดกลางแจ้งและป้องกันรังสียูวี (UV)",
+        en: "Withstands outdoor sunlight and protects against UV radiation",
+      },
+    ],
+  },
+  {
+    type: "paragraph",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    body: {
+      th: "ถังเก็บนํ้าไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยเเก้วเสริมเเรงที่มีความใส่ใจเป็นพิเศษเเละทุกๆขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง เเข็งเเรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
+      en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
+    },
+  },
+  {
+    type: "specTable",
+    title: {
+      th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
+      en: "Standard FRP Water Tank Sizes",
+    },
+    columns: [
+      { th: "Cu.m.", en: "Cu.m." },
+      { th: "เส้นผ่านศูนย์กลาง (มม.)", en: "Diameter (mm)" },
+      { th: "ความสูง (มม.)", en: "Height (mm)" },
+      { th: "ท่อเข้าออก", en: "Inlet and outlet pipes" },
+    ],
+    rows: [
+      [{ th: "6", en: "6" }, { th: "2,000", en: "2,000" }, { th: "1,950", en: "1,950" }, { th: "2\"", en: "2\"" }],
+      [{ th: "8", en: "8" }, { th: "2,000", en: "2,000" }, { th: "2,600", en: "2,600" }, { th: "2\"", en: "2\"" }],
+      [{ th: "10", en: "10" }, { th: "2,000", en: "2,000" }, { th: "3,200", en: "3,200" }, { th: "2\"", en: "2\"" }],
+      [{ th: "15", en: "15" }, { th: "2,000", en: "2,000" }, { th: "4,800", en: "4,800" }, { th: "2\"", en: "2\"" }],
+      [{ th: "20", en: "20" }, { th: "2,500", en: "2,500" }, { th: "4,100", en: "4,100" }, { th: "2\"", en: "2\"" }],
+      [{ th: "25", en: "25" }, { th: "2,500", en: "2,500" }, { th: "5,100", en: "5,100" }, { th: "2\"", en: "2\"" }],
+      [{ th: "30", en: "30" }, { th: "2,500", en: "2,500" }, { th: "6,200", en: "6,200" }, { th: "2\"", en: "2\"" }],
+      [{ th: "35", en: "35" }, { th: "2,500", en: "2,500" }, { th: "7,200", en: "7,200" }, { th: "2\"", en: "2\"" }],
+      [{ th: "40", en: "40" }, { th: "2,500", en: "2,500" }, { th: "8,200", en: "8,200" }, { th: "2\"", en: "2\"" }],
+      [{ th: "45", en: "45" }, { th: "3,000", en: "3,000" }, { th: "6,400", en: "6,400" }, { th: "2\"", en: "2\"" }],
+      [{ th: "50", en: "50" }, { th: "3,000", en: "3,000" }, { th: "7,100", en: "7,100" }, { th: "2\"", en: "2\"" }],
+      [{ th: "60", en: "60" }, { th: "3,000", en: "3,000" }, { th: "8,500", en: "8,500" }, { th: "2\"", en: "2\"" }],
+      [{ th: "70", en: "70" }, { th: "3,000", en: "3,000" }, { th: "9,950", en: "9,950" }, { th: "2\"", en: "2\"" }],
+      [{ th: "80", en: "80" }, { th: "3,500", en: "3,500" }, { th: "8,320", en: "8,320" }, { th: "2\"", en: "2\"" }],
+      [{ th: "90", en: "90" }, { th: "3,500", en: "3,500" }, { th: "9,400", en: "9,400" }, { th: "2\"", en: "2\"" }],
+      [{ th: "100", en: "100" }, { th: "3,500", en: "3,500" }, { th: "10,400", en: "10,400" }, { th: "2\"", en: "2\"" }],
+    ],
+    columnAlign: ["left", "center", "center", "center"],
+  },
+  {
+    type: "imageGrid",
+    title: {
+      th: "แบบมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
+      en: "Standard Tank Designs",
+    },
+    images: [
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/1.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 8 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 8 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/2.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 10 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 10 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/3.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 15 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 15 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/4.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 20 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 20 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/5.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 25 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 25 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/6.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 30 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 30 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/7.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 35 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 35 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/8.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 40 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 40 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/9.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 45 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 45 m³ FRP vertical water tank",
+        },
+      },
+      {
+        src: "/images/products/frp-vertical-water-tank/standard-designs/10.webp",
+        alt: {
+          th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 50 ลูกบาศก์เมตร",
+          en: "Dimension drawing of the 50 m³ FRP vertical water tank",
+        },
+      },
+    ],
+  },
+];
+
+const peAboveGroundSections: ProductSection[] = [
+  {
+    type: "bulletList",
+    title: {
+      th: "การใช้งาน",
+      en: "Usage",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "เหมาะสำหรับสำรองน้ำใช้ เพื่อการอุปโภคและบริโภค",
+        en: "Suitable for storing reserve water for household use and for drinking",
+      },
+      {
+        th: "ควรใช้งานกับน้ำสะอาดเท่านั้น",
+        en: "Should be used with clean water only",
+      },
+    ],
+  },
+  {
+    type: "bulletList",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาด",
+        en: "Clean the water tank",
+      },
+      {
+        th: "ทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
+        en: "Every 3 to 6 months, and never leave it longer than a year",
+      },
+      {
+        th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ",
+        en: "Scrub the inside of the tank with a soft-bristled brush or a sponge",
+      },
+      {
+        th: "หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
+        en: "For a deep tank, use a long-handled brush so every surface is reached",
+      },
+      {
+        th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะหรือเหล็ก",
+        en: "Avoid brushes with metal or steel bristles",
+      },
+      {
+        th: "ควรหลีกเลี่ยงฟองน้ำที่ทำจากเหล็ก",
+        en: "Avoid sponges made of steel wool",
+      },
+      {
+        th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
+        en: "Never use a cleaning agent with strong acidic properties",
+      },
+      {
+        th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+        en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+      },
+      {
+        th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
+        en: "The installation area must be strong enough to carry the weight of the filled tank",
+      },
+    ],
+  },
+];
+
+const peUndergroundSections: ProductSection[] = [
+  {
+    type: "bulletList",
+    title: {
+      th: "การใช้งาน",
+      en: "Usage",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+        en: "Suitable for wastewater treatment",
+      },
+    ],
+  },
+  {
+    type: "bulletList",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+        en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+      },
+      {
+        th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
+        en: "The installation area must be strong enough to carry the weight of the filled tank",
+      },
+    ],
+  },
+];
+
+const peGraniteSections: ProductSection[] = [
+  {
+    type: "bulletList",
+    title: {
+      th: "การใช้งาน",
+      en: "Usage",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "เหมาะสำหรับสำรองน้ำใช้ เพื่อการอุปโภคและบริโภค",
+        en: "Suitable for storing reserve water for household use and for drinking",
+      },
+      {
+        th: "ควรใช้งานกับน้ำสะอาดเท่านั้น",
+        en: "Should be used with clean water only",
+      },
+    ],
+  },
+  {
+    type: "bulletList",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาด",
+        en: "Clean the water tank",
+      },
+      {
+        th: "ทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
+        en: "Every 3 to 6 months, and never leave it longer than a year",
+      },
+      {
+        th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ",
+        en: "Scrub the inside of the tank with a soft-bristled brush or a sponge",
+      },
+      {
+        th: "หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
+        en: "For a deep tank, use a long-handled brush so every surface is reached",
+      },
+      {
+        th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะหรือเหล็ก",
+        en: "Avoid brushes with metal or steel bristles",
+      },
+      {
+        th: "ควรหลีกเลี่ยงฟองน้ำที่ทำจากเหล็ก",
+        en: "Avoid sponges made of steel wool",
+      },
+      {
+        th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
+        en: "Never use a cleaning agent with strong acidic properties",
+      },
+      {
+        th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+        en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+      },
+      {
+        th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
+        en: "The installation area must be strong enough to carry the weight of the filled tank",
+      },
+    ],
+  },
+];
+
+const peSepticTankSections: ProductSection[] = [
+  {
+    type: "bulletList",
+    title: {
+      th: "การใช้งาน",
+      en: "Usage",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+        en: "Suitable for wastewater treatment",
+      },
+    ],
+  },
+  {
+    type: "bulletList",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "ระยะเวลาในการสูบกากตะกอน ทั้งส่วนเกรอะและกรองทุก ๆ 2-3 ปี เพื่อให้บ่อเกรอะมีประสิทธิภาพในการบำบัดอยู่เสมอ และต้องให้มีน้ำเหลืออยู่ 2 ใน 3 ส่วนหลังการสูบกาก",
+        en: "Pump out the sludge from both the septic and the filter chamber every 2 to 3 years so the septic chamber keeps treating at full efficiency, and leave the tank two thirds full of water after pumping",
+      },
+      {
+        th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
+        en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
+      },
+    ],
+  },
+  {
+    type: "specTable",
+    title: {
+      th: "ตารางขนาดถังบำบัดน้ำเสียไฟเบอร์กลาส",
+      en: "FRP Wastewater Tank Size Table",
+    },
+    columns: [
+      { th: "อัตราการไหล (m³/วัน)", en: "Flow Rate (m³/day)" },
+      { th: "ความจุถัง (m³)", en: "Tank Capacity (m³)" },
+      { th: "⌀ (มม.)", en: "⌀ (mm)" },
+      { th: "สูง (มม.)", en: "Height (mm)" },
+      { th: "ระบบแนะนำ", en: "Recommended System" },
+    ],
+    rows: [
+      [
+        { th: "1-5", en: "1-5" },
+        { th: "3-10", en: "3-10" },
+        { th: "1,400-2,000", en: "1,400-2,000" },
+        { th: "2,000-3,000", en: "2,000-3,000" },
+        { th: "SBR / เติมอากาศ", en: "SBR / Aerobic" },
+      ],
+      [
+        { th: "5-20", en: "5-20" },
+        { th: "10-40", en: "10-40" },
+        { th: "2,000-3,000", en: "2,000-3,000" },
+        { th: "3,000-4,000", en: "3,000-4,000" },
+        { th: "เติมอากาศ + ตกตะกอน", en: "Aerobic + Settling" },
+      ],
+      [
+        { th: "20-100", en: "20-100" },
+        { th: "40-200", en: "40-200" },
+        { th: "3,000-4,000", en: "3,000-4,000" },
+        { th: "4,000-5,000", en: "4,000-5,000" },
+        { th: "ไร้อากาศ + เติมอากาศ", en: "Anaerobic + Aerobic" },
+      ],
+      [
+        { th: "100-500", en: "100-500" },
+        { th: "200-1,000", en: "200-1,000" },
+        // No fixed vessel size at this flow rate: the job becomes several
+        // tanks in series, so the source table gives a note, not figures.
+        { th: "หลายถังต่ออนุกรม", en: "Multiple tanks in series" },
+        { th: "-", en: "-" },
+        { th: "ออกแบบระบบครบวงจร", en: "Full System Design" },
+      ],
+    ],
+    columnAlign: ["left", "center", "center", "center", "center"],
+  },
+  {
+    type: "orderedList",
+    title: {
+      th: "ระบบบำบัดที่เราออกแบบและจัดหา",
+      en: "Systems We Design & Supply",
+    },
+    items: [
+      {
+        title: {
+          th: "ระบบเติมอากาศ (Aerobic)",
+          en: "Aerobic System",
+        },
+        body: {
+          th: "ระบบเติมอากาศเพื่อลดค่า BOD/COD เหมาะกับน้ำเสียจากอุตสาหกรรมอาหาร เครื่องดื่ม และอุตสาหกรรมทั่วไป",
+          en: "Aeration system reducing BOD/COD. Ideal for food, beverage, general industry wastewater.",
+        },
+      },
+      {
+        title: {
+          th: "ระบบไร้อากาศ (Anaerobic)",
+          en: "Anaerobic System",
+        },
+        body: {
+          th: "ระบบบำบัดแบบไร้ออกซิเจน สำหรับน้ำเสียที่มีค่า BOD สูงจากโรงงานสุรา แป้ง และน้ำตาล",
+          en: "No-oxygen system for high-BOD wastewater from distilleries, starch, sugar plants.",
+        },
+      },
+      {
+        title: {
+          th: "ระบบ SBR / MBR",
+          en: "SBR / MBR System",
+        },
+        body: {
+          th: "ระบบบำบัดครบวงจรในถังเดียว ประหยัดพื้นที่ เหมาะกับนิคมอุตสาหกรรมหรือชุมชน",
+          en: "All-in-one tank system, space-efficient, ideal for industrial estates or communities.",
+        },
+      },
+      {
+        title: {
+          th: "ถังปรับสมดุล (Equalization Tank)",
+          en: "Equalization Tank",
+        },
+        body: {
+          th: "ถังพักน้ำก่อนเข้าสู่ระบบบำบัด เพื่อปรับอัตราการไหลให้สม่ำเสมอ ไฟเบอร์กลาสทนต่อน้ำเสียได้ทุกประเภท",
+          en: "Buffer tank before treatment to equalize flow rate. FRP resists all wastewater types.",
+        },
+      },
+    ],
+  },
+];
+
+const greaseTrapSections: ProductSection[] = [
+  {
+    type: "bulletList",
+    title: {
+      th: "การใช้งาน",
+      en: "Usage",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "เหมาะสำหรับการบำบัดน้ำเสีย",
+        en: "Suitable for wastewater treatment",
+      },
+    ],
+  },
+  {
+    type: "bulletList",
+    title: {
+      th: "คำแนะนำ",
+      en: "Recommendation",
+    },
+    marker: "dot",
+    items: [
+      {
+        th: "ตักเศษอาหารทุกวัน: นำตะแกรงกรองเศษอาหารออกมาเททิ้งทุกวัน เพื่อไม่ให้เศษอาหารเน่าเสียและเกิดกลิ่นเหม็น",
+        en: "Scoop out food scraps daily: lift the food strainer out and empty it every day so the scraps do not rot and turn foul-smelling",
+      },
+      {
+        th: "ตักไขมันออกทุก 7 วัน: เปิดฝาถังแล้วใช้กระบวยหรือภาชนะตักชั้นไขมันที่ลอยอยู่ผิวน้ำด้านบนไปทิ้งถังขยะ ห้ามเทลงท่อระบายน้ำเด็ดขาด",
+        en: "Skim the grease every 7 days: open the lid and use a ladle or a container to lift the layer of grease floating on the surface into the bin. Never pour it down the drain",
+      },
+      {
+        th: "ล้างทำความสะอาดถังทุก 1 เดือน: ถอดชิ้นส่วนภายในหรือเปิดก้นถังเพื่อระบายตะกอนสะสม ล้างคราบสกปรกด้วยน้ำยาล้างจานและน้ำเปล่า",
+        en: "Wash the tank out once a month: take the internal parts out or open the base to drain the sediment that has built up, then wash the grime off with dish soap and water",
+      },
+      {
+        th: "ใช้จุลินทรีย์ช่วยย่อย: เติมหัวเชื้อจุลินทรีย์หรือเอนไซม์สัปดาห์ละครั้ง เพื่อช่วยย่อยสลายคราบไขมันที่เกาะตามผนังถังและลดกลิ่นอับ",
+        en: "Use microbes to help break it down: add a microbial or enzyme starter once a week to digest the grease clinging to the tank walls and cut back the stale smell",
+      },
+    ],
+  },
+];
+
+/**
+ * One variant's block on a merged page.
+ *
+ * Several catalogue entries (the FRP tank, the PE tank, the PE septic tank and
+ * grease trap) are one page covering more than one product. Each variant opens
+ * with a `gallery` section - its name as the heading, its own pictures under
+ * it - followed by its copy, so the page reads variant after variant. `id`
+ * goes on the gallery so a `Product.sectionLinks` entry can jump to where the
+ * variant starts. A `divider` closes it off.
+ */
+function subProduct(
+  id: string,
+  name: Localized,
+  images: string[],
+  sections: ProductSection[],
+): ProductSection[] {
+  return [
+    { type: "gallery", id, title: name, images },
+    ...sections,
+    { type: "divider" },
+  ];
+}
+
+/** The "Overview" section that opens a merged page's sub-product. */
+function overview(body: Localized): ProductSection {
+  return { type: "paragraph", title: { th: "ภาพรวม", en: "Overview" }, body };
+}
+
+const waterTreatmentSections: ProductSection[] = [
+  {
+    type: "content",
+    // `id` matches the `sectionId` of the first entry in this product's
+    // `sectionLinks` (src/lib/products.ts) - see the ProductSectionLink
+    // note in src/lib/product-sections.ts.
+    id: "water-filter-system",
+    title: {
+      th: "ระบบกรองน้ำ",
+      en: "Water Filter System",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        body: {
+          th: "ระบบกรองน้ำคือกระบวนการที่ใช้ในการกำจัดสิ่งเจือปนต่างๆ ออกจากน้ำเพื่อปรับปรุงคุณภาพของน้ำให้อยู่ในระดับที่เหมาะสมสำหรับการบริโภคหรือการใช้งานในด้านอื่นๆ การกรองน้ำสามารถใช้วิธีการที่หลากหลาย ส่วนประกอบหลักมีดังนี้:",
+          en: "A water filter system is the process used to remove various impurities from water, improving its quality to a level suitable for consumption or other uses. Water filtration can use a variety of methods. Its main components are as follows:",
+        },
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          {
+            text: {
+              th: "ตัวกรองหยาบ (Pre-filter): ใช้สำหรับกำจัดสิ่งสกปรกขนาดใหญ่ เช่น ทรายและตะกอน เพื่อป้องกันไม่ให้ตัวกรองหลักอุดตันเร็วเกินไป",
+              en: "Pre-filter: removes large debris such as sand and sediment, so the main filter does not clog too quickly.",
+            },
+          },
+          {
+            text: {
+              th: "ตัวกรองคาร์บอน (Carbon Filter): ช่วยกำจัดสารเคมี, คลอรีน, และสารอินทรีย์ที่ทำให้น้ำมีกลิ่นและรสไม่พึงประสงค์",
+              en: "Carbon filter: removes chemicals, chlorine, and organic substances that give water an unpleasant smell and taste.",
+            },
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/products/water-treatment-system/6.webp",
+        alt: {
+          th: "ถังกรองน้ำไฟเบอร์กลาสในระบบกรองน้ำ",
+          en: "Fiberglass water filter tanks in the water filter system",
+        },
+        width: 1478,
+        height: 1108,
+      },
+    ],
+  },
+  {
+    type: "content",
+    // Matches the second `sectionLinks` entry on this product - see the
+    // note on the previous section above.
+    id: "softener-system",
+    title: {
+      th: "ระบบ Softener หรือระบบทำน้ำอ่อน",
+      en: "Softener System (Water Softener)",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        body: {
+          th: "เป็นระบบที่ใช้ในการกำจัดความกระด้างของน้ำ ซึ่งมักเกิดจากแร่ธาตุเช่น แคลเซียม (Ca) และแมกนีเซียม (Mg) ที่ละลายในน้ำ โดยระบบนี้จะใช้หลักการแลกเปลี่ยนไอออน โดยให้แร่ธาตุที่ทำให้น้ำกระด้างจับกับเรซินในระบบและปลดปล่อยโซเดียม (Na) ออกมาแทน ทำให้น้ำมีความกระด้างลดลง ส่วนประกอบหลักมีดังนี้:",
+          en: "A system used to remove water hardness, which is usually caused by minerals such as calcium (Ca) and magnesium (Mg) dissolved in the water. It works on the principle of ion exchange: the minerals that make the water hard bind to the resin in the system, which releases sodium (Na) in their place, reducing the water's hardness. Its main components are as follows:",
+        },
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          {
+            text: {
+              th: "ถังเก็บเรซิน (Resin Tank): บรรจุเรซินชนิดที่สามารถแลกเปลี่ยนไอออน ซึ่งจะจับกับแร่ธาตุที่ทำให้น้ำกระด้าง เช่น แคลเซียมและแมกนีเซียม",
+              en: "Resin Tank: holds ion-exchange resin that binds to the minerals that make water hard, such as calcium and magnesium.",
+            },
+          },
+          {
+            text: {
+              th: "ถังเกลือ (Brine Tank): ใช้เก็บเกลือที่ใช้ในการฟื้นฟูประจุของเรซิน เพื่อให้เรซินสามารถแลกเปลี่ยนไอออนกับน้ำได้อย่างต่อเนื่อง",
+              en: "Brine Tank: stores the salt used to regenerate the resin's charge, so it can keep exchanging ions with the water continuously.",
+            },
+          },
+          {
+            text: {
+              th: "หัวควบคุม (Control Valve): ควบคุมการไหลของน้ำและการทำงานของระบบ เช่น การล้างกลับเรซินและการเติมเกลือ",
+              en: "Control Valve: controls the water flow and the system's operation, such as backwashing the resin and adding salt.",
+            },
+          },
+          {
+            text: {
+              th: "ปั๊มน้ำ (Water Pump): ช่วยให้การไหลของน้ำผ่านระบบเป็นไปอย่างต่อเนื่อง",
+              en: "Water Pump: keeps the water flowing through the system continuously.",
+            },
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/products/water-treatment-system/treatment-systems/1.webp",
+        alt: {
+          th: "ปั๊มน้ำและตู้ควบคุมของระบบทำน้ำอ่อน",
+          en: "Water pumps and the control panel of the softener system",
+        },
+        width: 1000,
+        height: 517,
+      },
+    ],
+  },
+  {
+    type: "content",
+    // Matches the third `sectionLinks` entry on this product - see the
+    // note on the first section above.
+    id: "reverse-osmosis-system",
+    title: {
+      th: "ระบบรีเวิร์สออสโมซิส (Reverse Osmosis)",
+      en: "Reverse Osmosis (RO) System",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        body: {
+          th: "คือระบบกรองน้ำที่ใช้เมมเบรนในการแยกสารละลายและสิ่งเจือปนออกจากน้ำ โดยใช้น้ำแรงดันสูงเพื่อผลักดันน้ำผ่านเมมเบรนที่มีรูเล็กมาก จึงสามารถกรองได้ทั้งสารเคมี, แบคทีเรีย, และโลหะหนัก ทำให้น้ำมีความบริสุทธิ์สูง",
+          en: "A water filtration system that uses a membrane to separate dissolved solids and impurities from the water. High-pressure water is forced through a membrane with extremely fine pores, so it can filter out chemicals, bacteria and heavy metals, giving very pure water.",
+        },
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          {
+            text: {
+              th: "ปั๊มน้ำแรงดันสูง: เพื่อผลักดันน้ำผ่านเมมเบรน",
+              en: "High-Pressure Water Pump: pushes the water through the membrane.",
+            },
+          },
+          {
+            text: {
+              th: "เมมเบรน RO (RO Membrane): ฟิลเตอร์หลักที่กรองสิ่งเจือปน",
+              en: "RO Membrane: the main filter that filters out impurities.",
+            },
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/products/water-treatment-system/5.webp",
+        alt: {
+          th: "วิศวกรตรวจสอบอุปกรณ์ในระบบบำบัดน้ำ",
+          en: "An engineer inspecting equipment in the water treatment system",
+        },
+        width: 1000,
+        height: 667,
+      },
+    ],
+  },
+  {
+    type: "content",
+    // Matches the fourth (and last) `sectionLinks` entry on this product -
+    // see the note on the first section above.
+    id: "uv-system",
+    title: {
+      th: "ระบบการใช้รังสี UV",
+      en: "UV System",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        body: {
+          th: "คือระบบบำบัดน้ำที่ใช้แสงอัลตราไวโอเลต (UV) เพื่อฆ่าเชื้อโรค, แบคทีเรีย, ไวรัส, และจุลินทรีย์ที่อาจเป็นอันตรายในน้ำ แสง UV สามารถทำลาย DNA ของจุลชีพเหล่านี้ ทำให้พวกมันไม่สามารถแพร่พันธุ์หรือก่อให้เกิดโรคได้",
+          en: "A water treatment system that uses ultraviolet (UV) light to kill pathogens, bacteria, viruses and microorganisms that may be harmful in the water. UV light destroys the DNA of these microorganisms, so they can no longer reproduce or cause disease.",
+        },
+      },
+      {
+        type: "paragraph",
+        body: {
+          th: "ส่วนประกอบของระบบการใช้รังสี UV ประกอบด้วย:",
+          en: "The components of a UV system include:",
+        },
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          {
+            text: {
+              th: "หลอด UV (UV Lamp): แหล่งกำเนิดรังสี UV สำหรับการฆ่าเชื้อ",
+              en: "UV Lamp: the source of UV radiation used for disinfection.",
+            },
+          },
+          {
+            text: {
+              th: "ท่อควอตซ์ (Quartz Sleeve): ป้องกันหลอด UV จากน้ำและสิ่งปนเปื้อน",
+              en: "Quartz Sleeve: protects the UV lamp from the water and contaminants.",
+            },
+          },
+        ],
+      },
+      {
+        type: "image",
+        src: "/images/products/water-treatment-system/1.webp",
+        alt: {
+          th: "ภาพมุมสูงของโรงบำบัดน้ำ",
+          en: "Aerial view of a water treatment plant",
+        },
+        width: 1500,
+        height: 841,
+      },
+    ],
+  },
+];
+
+const wastewaterTreatmentSections: ProductSection[] = [
+  {
+    type: "content",
+    id: "wastewater-treatment-overview",
+    title: {
+      th: "ประเภทของระบบบำบัดน้ำเสีย",
+      en: "Types of Wastewater Treatment Systems",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        body: {
+          th: "ประเภทของระบบบำบัดน้ำเสีย ได้แก่:",
+          en: "Types of wastewater treatment systems include:",
+        },
+      },
+      {
+        type: "list",
+        ordered: false,
+        items: [
+          {
+            text: {
+              th: "ระบบบำบัดทางกายภาพ: เช่น การกรองและการตกตะกอน",
+              en: "Physical Treatment: for example filtration and sedimentation.",
+            },
+          },
+          {
+            text: {
+              th: "ระบบบำบัดทางชีวภาพ: เช่น การใช้ออกซิเจนในกระบวนการย่อยสลายสารอินทรีย์โดยจุลินทรีย์",
+              en: "Biological Treatment: for example using oxygen in the process by which microorganisms break down organic matter.",
+            },
+          },
+          {
+            text: {
+              th: "ระบบบำบัดทางเคมี: เช่น การเติมสารเคมีเพื่อปรับค่า pH หรือกำจัดสาร",
+              en: "Chemical Treatment: for example adding chemicals to adjust the pH or remove substances.",
+            },
+          },
+        ],
+      },
+    ],
+  },
+  {
+    type: "content",
+    id: "wastewater-recycling-solutions",
+    title: {
+      th: "ระบบและโซลูชันการรีไซเคิลน้ำ",
+      en: "Recycling System & Solutions",
+    },
+    blocks: [
+      {
+        type: "paragraph",
+        body: {
+          th: "เราให้ความสำคัญกับการบริหารจัดการทรัพยากรน้ำผ่านการรีไซเคิลน้ำเสีย โดยใช้เทคโนโลยีขั้นสูง เช่น ไมโครฟิลเตรชันและเมมเบรน RO เรามุ่งเน้นการบริหารจัดการทรัพยากรน้ำอย่างยั่งยืน ด้วยกระบวนการ Zero Liquid Discharge (ZLD) เพื่อลดการปล่อยน้ำเสียสู่สิ่งแวดล้อม",
+          en: "We prioritize water resource management through wastewater recycling using advanced technologies such as micro-filtration and RO membrane. We focus on sustainable water resource management by utilizing the Zero Liquid Discharge (ZLD) process to reduce wastewater discharge into the environment.",
+        },
+      },
+      {
+        type: "image",
+        src: "/images/products/wastewater-treatment-system/2.webp",
+        alt: {
+          th: "โรงบำบัดน้ำเสียพร้อมถังตกตะกอนแบบวงกลมและระบบท่อบำบัด",
+          en: "A wastewater treatment plant with circular clarifier tanks and treatment piping",
+        },
+        width: 1500,
+        height: 857,
+      },
+    ],
+  },
+];
+
 /**
  * Detail-page section data, keyed by `Product.id`.
  *
@@ -81,499 +938,182 @@ const waterAndWastewaterMaintenanceSection: ContentSection = {
  * A product with no entry here simply renders no sections.
  */
 const productSections: Record<string, ProductSection[]> = {
-  "frp-horizontal-water-tank": [
-    {
-      type: "paragraph",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      body: {
-        th: "ผลิตตามความต้องการของท่าน เราสามารถออกแบบและผลิตถังเก็บน้ำไฟเบอร์กลาสและถังบำบัดน้ำเสียตามสเปคที่ท่านกำหนด รวมถึงรุ่นทรงกระบอกแนวตั้ง",
-        en: "Custom manufacturing based on your specifications. We can design and manufacture fiberglass water storage tanks and wastewater treatment tanks, including vertical cylindrical models.",
-      },
-    },
-    {
-      type: "specTable",
-      title: {
-        th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
-        en: "Standard FRP Water Tank Sizes",
-      },
-      columns: [
-        { th: "Cu.m.", en: "Cu.m." },
-        { th: "เส้นผ่านศูนย์กลาง (มม.)", en: "Diameter (mm)" },
-        { th: "ความสูง (มม.)", en: "Height (mm)" },
-        { th: "ท่อเข้าออก", en: "Inlet and outlet pipes" },
+  "frp-water-tank": [
+    ...subProduct(
+      "frp-vertical-water-tank",
+      { th: "ถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง", en: "FRP Vertical Water Tank" },
+      [
+        "/images/products/frp-vertical-water-tank/2.webp",
+        "/images/products/frp-vertical-water-tank/4.webp",
+        "/images/products/frp-vertical-water-tank/1.webp",
+        "/images/products/frp-vertical-water-tank/3.webp",
+        "/images/products/frp-vertical-water-tank/5.webp",
+        "/images/products/frp-vertical-water-tank/6.webp",
+        "/images/products/frp-vertical-water-tank/7.webp",
+        "/images/products/frp-vertical-water-tank/8.webp",
+        "/images/products/frp-vertical-water-tank/9.webp",
+        "/images/products/frp-vertical-water-tank/10.webp",
+        "/images/products/frp-vertical-water-tank/11.webp",
+        "/images/products/frp-vertical-water-tank/12.webp",
+        "/images/products/frp-vertical-water-tank/13.webp",
+        "/images/products/frp-vertical-water-tank/14.webp",
       ],
-      rows: [
-        [{ th: "8", en: "8" }, { th: "2,000", en: "2,000" }, { th: "2,950", en: "2,950" }, { th: "2\"", en: "2\"" }],
-        [{ th: "10", en: "10" }, { th: "2,000", en: "2,000" }, { th: "3,600", en: "3,600" }, { th: "2\"", en: "2\"" }],
-        [{ th: "15", en: "15" }, { th: "2,000", en: "2,000" }, { th: "5,200", en: "5,200" }, { th: "2\"", en: "2\"" }],
-        [{ th: "20", en: "20" }, { th: "2,500", en: "2,500" }, { th: "4,600", en: "4,600" }, { th: "2\"", en: "2\"" }],
-        [{ th: "25", en: "25" }, { th: "2,500", en: "2,500" }, { th: "5,600", en: "5,600" }, { th: "2\"", en: "2\"" }],
-        [{ th: "30", en: "30" }, { th: "2,500", en: "2,500" }, { th: "6,600", en: "6,600" }, { th: "2\"", en: "2\"" }],
-        [{ th: "35", en: "35" }, { th: "2,500", en: "2,500" }, { th: "7,650", en: "7,650" }, { th: "2\"", en: "2\"" }],
-        [{ th: "40", en: "40" }, { th: "2,500", en: "2,500" }, { th: "8,650", en: "8,650" }, { th: "2\"", en: "2\"" }],
-        [{ th: "45", en: "45" }, { th: "3,000", en: "3,000" }, { th: "6,700", en: "6,700" }, { th: "2\"", en: "2\"" }],
-        [{ th: "50", en: "50" }, { th: "3,000", en: "3,000" }, { th: "7,700", en: "7,700" }, { th: "2\"", en: "2\"" }],
-        [{ th: "60", en: "60" }, { th: "3,000", en: "3,000" }, { th: "9,100", en: "9,100" }, { th: "2\"", en: "2\"" }],
-        [{ th: "70", en: "70" }, { th: "3,000", en: "3,000" }, { th: "10,500", en: "10,500" }, { th: "2\"", en: "2\"" }],
-        [{ th: "80", en: "80" }, { th: "3,500", en: "3,500" }, { th: "9,110", en: "9,110" }, { th: "2\"", en: "2\"" }],
-        [{ th: "90", en: "90" }, { th: "3,500", en: "3,500" }, { th: "10,150", en: "10,150" }, { th: "2\"", en: "2\"" }],
-        [{ th: "100", en: "100" }, { th: "3,500", en: "3,500" }, { th: "11,500", en: "11,500" }, { th: "2\"", en: "2\"" }],
+      frpVerticalSections,
+    ),
+    ...subProduct(
+      "frp-horizontal-water-tank",
+      { th: "ถังเก็บน้ำไฟเบอร์กลาสทรงนอน", en: "FRP Horizontal Water Tank" },
+      [
+        "/images/products/frp-horizontal-water-tank/6.webp",
+        "/images/products/frp-horizontal-water-tank/1.webp",
+        "/images/products/frp-horizontal-water-tank/2.webp",
+        "/images/products/frp-horizontal-water-tank/3.webp",
+        "/images/products/frp-horizontal-water-tank/4.webp",
+        "/images/products/frp-horizontal-water-tank/5.webp",
       ],
-      columnAlign: ["left", "center", "center", "center"],
-    },
+      frpHorizontalSections,
+    ),
   ],
-  "frp-vertical-water-tank": [
-    {
-      type: "bulletList",
-      title: {
-        th: "คุณสมบัติและมาตรฐานคุณภาพ",
-        en: "Features and Quality Standards",
+  "pe-water-tank": [
+    ...subProduct(
+      "pe-above-ground-water-tank",
+      {
+        th: "ถังเก็บน้ำบนดิน PE รุ่น TQ",
+        en: "TQ Series PE Above-Ground Water Tank",
       },
-      marker: "check",
-      items: [
-        {
-          th: "ผลิตจากเรซิ่นชนิดพิเศษ ผสมใยแก้ว มีความแข็งแรง",
-          en: "Made from a special grade of resin blended with glass fibre for high strength",
-        },
-        {
-          th: "โครงสร้างแข็งแรง ป้องกันรอยรั่วซึมหรือรอยร้าว",
-          en: "Strong structure that guards against leaks and cracking",
-        },
-        {
-          th: "ไม่ย่อยสลาย ไม่ผุกร่อน ทนทุกสภาวะสิ่งแวดล้อม",
-          en: "Does not degrade or corrode, and stands up to every environment",
-        },
-        {
-          th: "ประกอบและติดตั้งง่าย รวดเร็ว ประหยัดค่าใช้จ่าย",
-          en: "Quick and easy to assemble and install, which keeps costs down",
-        },
-        {
-          th: "ทนต่อแสงแดดกลางแจ้งและป้องกันรังสียูวี (UV)",
-          en: "Withstands outdoor sunlight and protects against UV radiation",
-        },
+      [
+        "/images/products/pe-above-ground-water-tank/6.webp",
+        "/images/products/pe-above-ground-water-tank/1.webp",
+        "/images/products/pe-above-ground-water-tank/2.webp",
+        "/images/products/pe-above-ground-water-tank/3.webp",
+        "/images/products/pe-above-ground-water-tank/4.webp",
+        "/images/products/pe-above-ground-water-tank/5.webp",
       ],
-    },
-    {
-      type: "paragraph",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      body: {
-        th: "ถังเก็บนํ้าไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยเเก้วเสริมเเรงที่มีความใส่ใจเป็นพิเศษเเละทุกๆขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง เเข็งเเรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
-        en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
-      },
-    },
-    {
-      type: "specTable",
-      title: {
-        th: "ขนาดมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
-        en: "Standard FRP Water Tank Sizes",
-      },
-      columns: [
-        { th: "Cu.m.", en: "Cu.m." },
-        { th: "เส้นผ่านศูนย์กลาง (มม.)", en: "Diameter (mm)" },
-        { th: "ความสูง (มม.)", en: "Height (mm)" },
-        { th: "ท่อเข้าออก", en: "Inlet and outlet pipes" },
+      [
+        overview({
+          th: "ถังเก็บน้ำแบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
+          en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
+        }),
+        ...peAboveGroundSections,
       ],
-      rows: [
-        [{ th: "6", en: "6" }, { th: "2,000", en: "2,000" }, { th: "1,950", en: "1,950" }, { th: "2\"", en: "2\"" }],
-        [{ th: "8", en: "8" }, { th: "2,000", en: "2,000" }, { th: "2,600", en: "2,600" }, { th: "2\"", en: "2\"" }],
-        [{ th: "10", en: "10" }, { th: "2,000", en: "2,000" }, { th: "3,200", en: "3,200" }, { th: "2\"", en: "2\"" }],
-        [{ th: "15", en: "15" }, { th: "2,000", en: "2,000" }, { th: "4,800", en: "4,800" }, { th: "2\"", en: "2\"" }],
-        [{ th: "20", en: "20" }, { th: "2,500", en: "2,500" }, { th: "4,100", en: "4,100" }, { th: "2\"", en: "2\"" }],
-        [{ th: "25", en: "25" }, { th: "2,500", en: "2,500" }, { th: "5,100", en: "5,100" }, { th: "2\"", en: "2\"" }],
-        [{ th: "30", en: "30" }, { th: "2,500", en: "2,500" }, { th: "6,200", en: "6,200" }, { th: "2\"", en: "2\"" }],
-        [{ th: "35", en: "35" }, { th: "2,500", en: "2,500" }, { th: "7,200", en: "7,200" }, { th: "2\"", en: "2\"" }],
-        [{ th: "40", en: "40" }, { th: "2,500", en: "2,500" }, { th: "8,200", en: "8,200" }, { th: "2\"", en: "2\"" }],
-        [{ th: "45", en: "45" }, { th: "3,000", en: "3,000" }, { th: "6,400", en: "6,400" }, { th: "2\"", en: "2\"" }],
-        [{ th: "50", en: "50" }, { th: "3,000", en: "3,000" }, { th: "7,100", en: "7,100" }, { th: "2\"", en: "2\"" }],
-        [{ th: "60", en: "60" }, { th: "3,000", en: "3,000" }, { th: "8,500", en: "8,500" }, { th: "2\"", en: "2\"" }],
-        [{ th: "70", en: "70" }, { th: "3,000", en: "3,000" }, { th: "9,950", en: "9,950" }, { th: "2\"", en: "2\"" }],
-        [{ th: "80", en: "80" }, { th: "3,500", en: "3,500" }, { th: "8,320", en: "8,320" }, { th: "2\"", en: "2\"" }],
-        [{ th: "90", en: "90" }, { th: "3,500", en: "3,500" }, { th: "9,400", en: "9,400" }, { th: "2\"", en: "2\"" }],
-        [{ th: "100", en: "100" }, { th: "3,500", en: "3,500" }, { th: "10,400", en: "10,400" }, { th: "2\"", en: "2\"" }],
-      ],
-      columnAlign: ["left", "center", "center", "center"],
-    },
-    {
-      type: "imageGrid",
-      title: {
-        th: "แบบมาตรฐานถังเก็บน้ำไฟเบอร์กลาส",
-        en: "Standard Tank Designs",
+    ),
+    ...subProduct(
+      "pe-above-ground-water-tank-granite",
+      {
+        th: "ถังเก็บน้ำบนดิน PE รุ่น TG (ลายหินแกรนิต)",
+        en: "TG Series Above-Ground Water Tank (Granite Finish)",
       },
-      images: [
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/1.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 8 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 8 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/2.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 10 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 10 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/3.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 15 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 15 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/4.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 20 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 20 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/5.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 25 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 25 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/6.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 30 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 30 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/7.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 35 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 35 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/8.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 40 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 40 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/9.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 45 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 45 m³ FRP vertical water tank",
-          },
-        },
-        {
-          src: "/images/products/frp-vertical-water-tank/standard-designs/10.webp",
-          alt: {
-            th: "แบบมิติถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง ขนาด 50 ลูกบาศก์เมตร",
-            en: "Dimension drawing of the 50 m³ FRP vertical water tank",
-          },
-        },
+      [
+        "/images/products/pe-above-ground-water-tank-granite/13.webp",
+        "/images/products/pe-above-ground-water-tank-granite/1.webp",
+        "/images/products/pe-above-ground-water-tank-granite/8.webp",
+        "/images/products/pe-above-ground-water-tank-granite/9.webp",
+        "/images/products/pe-above-ground-water-tank-granite/10.webp",
+        "/images/products/pe-above-ground-water-tank-granite/11.webp",
+        "/images/products/pe-above-ground-water-tank-granite/12.webp",
       ],
-    },
+      [
+        overview({
+          th: "ถังเก็บน้ำ แบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
+          en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
+        }),
+        ...peGraniteSections,
+      ],
+    ),
+    ...subProduct(
+      "pe-underground-water-tank",
+      {
+        th: "ถังเก็บน้ำใต้ดิน PE รุ่น TU",
+        en: "TU Series PE Underground Water Tank",
+      },
+      [
+        "/images/products/pe-underground-water-tank/4.webp",
+        "/images/products/pe-underground-water-tank/2.webp",
+        "/images/products/pe-underground-water-tank/1.webp",
+        "/images/products/pe-underground-water-tank/3.webp",
+      ],
+      [
+        overview({
+          th: "ถังเก็บน้ำใต้ดิน TANK-Q รุ่น TU มาตรฐานสากล ปลอดภัย แข็งแรง ทนทาน ตอบโจทย์ทุกไลฟ์สไตล์อย่างลงตัว ผลิตขึ้นรูปด้วยแบบไร้รอยต่อด้วยกระบวนการผลิตที่มีคุณภาพ ทนทานกว่าแข็งแรงกว่าถังประกอบทั่วไปเป็นผลิตภัณฑ์ถังเก็บน้ำใต้ดินที่ได้มาตรฐานตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพจากแบรนด์ชั้นนำ สะอาดปลอดภัย FOOD GRADE 100% Fitting น้ำเข้า-น้ำออก ทองเหลือง รับประกันยาวนาน 15 ปี",
+          en: "The TANK-Q TU underground water tank meets international standards - safe, strong and durable, a perfect fit for every lifestyle. Moulded as one seamless piece through a quality manufacturing process, it is tougher and stronger than assembled tanks. This standard-compliant underground water tank is made from quality material sourced from leading brands, clean and safe with 100% food grade construction, brass inlet and outlet fittings, and backed by a long 15 year warranty.",
+        }),
+        ...peUndergroundSections,
+      ],
+    ),
   ],
-  "pe-above-ground-water-tank": [
-    {
-      type: "bulletList",
-      title: {
-        th: "การใช้งาน",
-        en: "Usage",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "เหมาะสำหรับสำรองน้ำใช้ เพื่อการอุปโภคและบริโภค",
-          en: "Suitable for storing reserve water for household use and for drinking",
-        },
-        {
-          th: "ควรใช้งานกับน้ำสะอาดเท่านั้น",
-          en: "Should be used with clean water only",
-        },
+  "pe-septic-tank-grease-trap": [
+    ...subProduct(
+      "pe-waste-water-treatment-tank",
+      { th: "ถังบำบัดน้ำเสีย PE", en: "PE Waste Water Treatment Tank" },
+      [
+        "/images/products/pe-waste-water-treatment-tank/3.webp",
+        "/images/products/pe-waste-water-treatment-tank/1.webp",
+        "/images/products/pe-waste-water-treatment-tank/2.webp",
       ],
-    },
-    {
-      type: "bulletList",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาด",
-          en: "Clean the water tank",
-        },
-        {
-          th: "ทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
-          en: "Every 3 to 6 months, and never leave it longer than a year",
-        },
-        {
-          th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ",
-          en: "Scrub the inside of the tank with a soft-bristled brush or a sponge",
-        },
-        {
-          th: "หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
-          en: "For a deep tank, use a long-handled brush so every surface is reached",
-        },
-        {
-          th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะหรือเหล็ก",
-          en: "Avoid brushes with metal or steel bristles",
-        },
-        {
-          th: "ควรหลีกเลี่ยงฟองน้ำที่ทำจากเหล็ก",
-          en: "Avoid sponges made of steel wool",
-        },
-        {
-          th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
-          en: "Never use a cleaning agent with strong acidic properties",
-        },
-        {
-          th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
-          en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
-        },
-        {
-          th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
-          en: "The installation area must be strong enough to carry the weight of the filled tank",
-        },
+      [
+        overview({
+          th: "มาตรฐานนวัตกรรมการผลิตถังที่แข็งแรงสูงสุดไร้รอยต่อทั้งใบ มีประสิทธิภาพในการบำบัด ถังบำบัดน้ำเสีย แข็งแรงทนทานถังไร้รอยต่อ มีให้เลือกหลาย เช่น ถังบำบัดน้ำเสีย 600 ลิตร ไปจนถึง 6000 ลิตร ราคาคุณภาพ และขนาดอื่นๆ ที่สามารถตอบทุกโจทย์ความต้องการ ด้วยคุณภาพที่เหนือกว่าถังบำบัดทั่วไป",
+          en: "Built with innovative manufacturing standards for maximum strength in one seamless, joint-free tank, delivering highly effective wastewater treatment. Strong and durable with a seamless tank body, available in a wide range of sizes from 600 litres up to 6000 litres and beyond, all at a price that matches the quality. It answers every requirement with quality that surpasses ordinary treatment tanks.",
+        }),
+        ...peSepticTankSections,
       ],
-    },
+    ),
+    ...subProduct(
+      "septic-tank-and-grease-trap",
+      { th: "ถังดักไขมัน", en: "Grease Trap" },
+      [
+        "/images/products/septic-tank-and-grease-trap/1.webp",
+        "/images/products/septic-tank-and-grease-trap/2.webp",
+        "/images/products/septic-tank-and-grease-trap/3.webp",
+        "/images/products/septic-tank-and-grease-trap/4.webp",
+        "/images/products/septic-tank-and-grease-trap/5.webp",
+      ],
+      [
+        overview({
+          th: "ถังดักไขมัน เป็นอุปกรณ์ที่ช่วยดักจับไขมันที่เกิดจากการล้างภาชนะและอุปกรณ์หุงต้มอาหาร ไม่ให้ไหลปนไปกับน้ำทิ้ง เพราะไขมันที่ลอยตัวอยู่ผิวน้ำ ทำให้ออกซิเจนละลายน้ำได้น้อย เป็นสาเหตุให้น้ำเน่าเสีย และท่อระบายน้ำเกิดการอุดตันได้ เรามีถังดักไขมันตั้งแต่ขนาดเล็กถึงใหญ่ ให้บริการแก่ลูกค้า เพื่อใช้ในครัวเรือน และภาคอุตสาหกรรม สินค้ารับประกันคุณภาพ ราคาโรงงาน",
+          en: "A grease trap is a device that captures the fat and oil produced from washing dishes and cooking equipment, keeping it from flowing out with the wastewater. Grease that floats on the water's surface reduces dissolved oxygen, which causes the water to spoil and the drainage pipes to clog. We offer grease traps from small to large sizes, serving customers for household and industrial use, with guaranteed quality at factory prices.",
+        }),
+        ...greaseTrapSections,
+      ],
+    ),
   ],
-  "pe-underground-water-tank": [
-    {
-      type: "bulletList",
-      title: {
-        th: "การใช้งาน",
-        en: "Usage",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "เหมาะสำหรับการบำบัดน้ำเสีย",
-          en: "Suitable for wastewater treatment",
-        },
+  "water-wastewater-treatment-system": [
+    ...subProduct(
+      "water-treatment-system",
+      { th: "ระบบบำบัดน้ำ", en: "Water Treatment System" },
+      [
+        "/images/products/water-treatment-system/1.webp",
+        "/images/products/water-treatment-system/2.webp",
+        "/images/products/water-treatment-system/3.webp",
+        "/images/products/water-treatment-system/4.webp",
+        "/images/products/water-treatment-system/5.webp",
+        "/images/products/water-treatment-system/6.webp",
       ],
-    },
-    {
-      type: "bulletList",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
-          en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
-        },
-        {
-          th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
-          en: "The installation area must be strong enough to carry the weight of the filled tank",
-        },
+      [
+        overview({
+          th: "ระบบทำน้ำดีคือกระบวนการบำบัดน้ำเพื่อปรับปรุงคุณภาพน้ำให้อยู่ในระดับที่เหมาะสมสำหรับการใช้งาน เช่น การบริโภค การอุปโภค หรือการใช้งานในอุตสาหกรรม โดยผ่านกระบวนการที่ออกแบบมาเพื่อลดหรือกำจัดสิ่งเจือปนและสารพิษต่างๆ ในน้ำ ระบบทำน้ำดีมีหลากหลายประเภท ขึ้นอยู่กับการใช้งานและคุณภาพน้ำที่ต้องการ เช่น",
+          en: "A water treatment system is a process for treating water to bring its quality up to a level suitable for its intended use - for drinking, for everyday use, or for industrial applications - through processes designed to reduce or remove impurities and various contaminants in the water. Water treatment systems come in many types, depending on the application and the water quality required, such as:",
+        }),
+        ...waterTreatmentSections,
       ],
-    },
-  ],
-  "pe-above-ground-water-tank-granite": [
-    {
-      type: "bulletList",
-      title: {
-        th: "การใช้งาน",
-        en: "Usage",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "เหมาะสำหรับสำรองน้ำใช้ เพื่อการอุปโภคและบริโภค",
-          en: "Suitable for storing reserve water for household use and for drinking",
-        },
-        {
-          th: "ควรใช้งานกับน้ำสะอาดเท่านั้น",
-          en: "Should be used with clean water only",
-        },
+    ),
+    ...subProduct(
+      "wastewater-treatment-system",
+      { th: "ระบบบำบัดน้ำเสีย", en: "Wastewater Treatment System" },
+      [
+        "/images/products/wastewater-treatment-system/1.webp",
       ],
-    },
-    {
-      type: "bulletList",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "การทำความสะอาดถังเก็บน้ำควรทำความสะอาด",
-          en: "Clean the water tank",
-        },
-        {
-          th: "ทุก ๆ 3 - 6 เดือน หรือไม่ควรเกิน 1 ปี",
-          en: "Every 3 to 6 months, and never leave it longer than a year",
-        },
-        {
-          th: "ใช้แปรงขนอ่อนหรือฟองน้ำขัดภายในตัวถังเก็บน้ำ",
-          en: "Scrub the inside of the tank with a soft-bristled brush or a sponge",
-        },
-        {
-          th: "หากถังเก็บน้ำที่มีขนาดที่ลึกควรใช้แปรงที่มีด้ามจับยาวช่วยทำความสะอาดเพื่อให้การทำความสะอาดได้ทั่วถึง",
-          en: "For a deep tank, use a long-handled brush so every surface is reached",
-        },
-        {
-          th: "ควรหลีกเลี่ยงแปรงที่มีขนเป็นโลหะหรือเหล็ก",
-          en: "Avoid brushes with metal or steel bristles",
-        },
-        {
-          th: "ควรหลีกเลี่ยงฟองน้ำที่ทำจากเหล็ก",
-          en: "Avoid sponges made of steel wool",
-        },
-        {
-          th: "ห้ามใช้น้ำยาทำความสะอาดที่มีฤทธิ์เป็นกรดรุนแรง",
-          en: "Never use a cleaning agent with strong acidic properties",
-        },
-        {
-          th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
-          en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
-        },
-        {
-          th: "พื้นที่ติดตั้งของถังต้องแข็งแรงเพียงพอต่อการรับน้ำหนักของถังน้ำ",
-          en: "The installation area must be strong enough to carry the weight of the filled tank",
-        },
+      [
+        overview({
+          th: "ระบบบำบัดน้ำเสีย คือกระบวนการที่ใช้ในการทำให้น้ำเสียกลับมามีคุณภาพเหมาะสมที่จะปล่อยกลับสู่สิ่งแวดล้อมหรือใช้ซ้ำได้ โดยการกำจัดสิ่งเจือปน, สารพิษ, และจุลินทรีย์ที่เป็นอันตราย กระบวนการเหล่านี้มักเกี่ยวข้องกับการแยกของแข็ง, การย่อยสลายสารอินทรีย์, และการฆ่าเชื้อโรค",
+          en: "A wastewater treatment system is the process used to bring wastewater back to a quality suitable for release into the environment or for reuse, by removing impurities, toxins, and harmful microorganisms. These processes usually involve separating out solids, breaking down organic matter, and disinfection.",
+        }),
+        ...wastewaterTreatmentSections,
       ],
-    },
-  ],
-  "pe-waste-water-treatment-tank": [
-    {
-      type: "bulletList",
-      title: {
-        th: "การใช้งาน",
-        en: "Usage",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "เหมาะสำหรับการบำบัดน้ำเสีย",
-          en: "Suitable for wastewater treatment",
-        },
-      ],
-    },
-    {
-      type: "bulletList",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "ระยะเวลาในการสูบกากตะกอน ทั้งส่วนเกรอะและกรองทุก ๆ 2-3 ปี เพื่อให้บ่อเกรอะมีประสิทธิภาพในการบำบัดอยู่เสมอ และต้องให้มีน้ำเหลืออยู่ 2 ใน 3 ส่วนหลังการสูบกาก",
-          en: "Pump out the sludge from both the septic and the filter chamber every 2 to 3 years so the septic chamber keeps treating at full efficiency, and leave the tank two thirds full of water after pumping",
-        },
-        {
-          th: "กรุณาตรวจสอบพื้นที่ติดตั้งสำหรับการนำสินค้าเข้าไปติดตั้งก่อน ห้ามวางบนพื้นที่ไม่เรียบ ควรวางบนพื้นเรียบไม่มีเศษวัสดุหลงเหลืออยู่",
-          en: "Check the installation area before bringing the tank in. Never place it on uneven ground - it should sit on a flat surface with no debris left on it",
-        },
-      ],
-    },
-    {
-      type: "specTable",
-      title: {
-        th: "ตารางขนาดถังบำบัดน้ำเสียไฟเบอร์กลาส",
-        en: "FRP Wastewater Tank Size Table",
-      },
-      columns: [
-        { th: "อัตราการไหล (m³/วัน)", en: "Flow Rate (m³/day)" },
-        { th: "ความจุถัง (m³)", en: "Tank Capacity (m³)" },
-        { th: "⌀ (มม.)", en: "⌀ (mm)" },
-        { th: "สูง (มม.)", en: "Height (mm)" },
-        { th: "ระบบแนะนำ", en: "Recommended System" },
-      ],
-      rows: [
-        [
-          { th: "1-5", en: "1-5" },
-          { th: "3-10", en: "3-10" },
-          { th: "1,400-2,000", en: "1,400-2,000" },
-          { th: "2,000-3,000", en: "2,000-3,000" },
-          { th: "SBR / เติมอากาศ", en: "SBR / Aerobic" },
-        ],
-        [
-          { th: "5-20", en: "5-20" },
-          { th: "10-40", en: "10-40" },
-          { th: "2,000-3,000", en: "2,000-3,000" },
-          { th: "3,000-4,000", en: "3,000-4,000" },
-          { th: "เติมอากาศ + ตกตะกอน", en: "Aerobic + Settling" },
-        ],
-        [
-          { th: "20-100", en: "20-100" },
-          { th: "40-200", en: "40-200" },
-          { th: "3,000-4,000", en: "3,000-4,000" },
-          { th: "4,000-5,000", en: "4,000-5,000" },
-          { th: "ไร้อากาศ + เติมอากาศ", en: "Anaerobic + Aerobic" },
-        ],
-        [
-          { th: "100-500", en: "100-500" },
-          { th: "200-1,000", en: "200-1,000" },
-          // No fixed vessel size at this flow rate: the job becomes several
-          // tanks in series, so the source table gives a note, not figures.
-          { th: "หลายถังต่ออนุกรม", en: "Multiple tanks in series" },
-          { th: "-", en: "-" },
-          { th: "ออกแบบระบบครบวงจร", en: "Full System Design" },
-        ],
-      ],
-      columnAlign: ["left", "center", "center", "center", "center"],
-    },
-    {
-      type: "orderedList",
-      title: {
-        th: "ระบบบำบัดที่เราออกแบบและจัดหา",
-        en: "Systems We Design & Supply",
-      },
-      items: [
-        {
-          title: {
-            th: "ระบบเติมอากาศ (Aerobic)",
-            en: "Aerobic System",
-          },
-          body: {
-            th: "ระบบเติมอากาศเพื่อลดค่า BOD/COD เหมาะกับน้ำเสียจากอุตสาหกรรมอาหาร เครื่องดื่ม และอุตสาหกรรมทั่วไป",
-            en: "Aeration system reducing BOD/COD. Ideal for food, beverage, general industry wastewater.",
-          },
-        },
-        {
-          title: {
-            th: "ระบบไร้อากาศ (Anaerobic)",
-            en: "Anaerobic System",
-          },
-          body: {
-            th: "ระบบบำบัดแบบไร้ออกซิเจน สำหรับน้ำเสียที่มีค่า BOD สูงจากโรงงานสุรา แป้ง และน้ำตาล",
-            en: "No-oxygen system for high-BOD wastewater from distilleries, starch, sugar plants.",
-          },
-        },
-        {
-          title: {
-            th: "ระบบ SBR / MBR",
-            en: "SBR / MBR System",
-          },
-          body: {
-            th: "ระบบบำบัดครบวงจรในถังเดียว ประหยัดพื้นที่ เหมาะกับนิคมอุตสาหกรรมหรือชุมชน",
-            en: "All-in-one tank system, space-efficient, ideal for industrial estates or communities.",
-          },
-        },
-        {
-          title: {
-            th: "ถังปรับสมดุล (Equalization Tank)",
-            en: "Equalization Tank",
-          },
-          body: {
-            th: "ถังพักน้ำก่อนเข้าสู่ระบบบำบัด เพื่อปรับอัตราการไหลให้สม่ำเสมอ ไฟเบอร์กลาสทนต่อน้ำเสียได้ทุกประเภท",
-            en: "Buffer tank before treatment to equalize flow rate. FRP resists all wastewater types.",
-          },
-        },
-      ],
-    },
+    ),
+    // Closes the page: its copy covers both systems, so it sits after both
+    // variants rather than inside either.
+    waterAndWastewaterMaintenanceSection,
   ],
   "fiberglass-septic-tank": [
     {
@@ -900,330 +1440,6 @@ const productSections: Record<string, ProductSection[]> = {
       ],
     }
 
-  ],
-  "septic-tank-and-grease-trap": [
-    {
-      type: "bulletList",
-      title: {
-        th: "การใช้งาน",
-        en: "Usage",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "เหมาะสำหรับการบำบัดน้ำเสีย",
-          en: "Suitable for wastewater treatment",
-        },
-      ],
-    },
-    {
-      type: "bulletList",
-      title: {
-        th: "คำแนะนำ",
-        en: "Recommendation",
-      },
-      marker: "dot",
-      items: [
-        {
-          th: "ตักเศษอาหารทุกวัน: นำตะแกรงกรองเศษอาหารออกมาเททิ้งทุกวัน เพื่อไม่ให้เศษอาหารเน่าเสียและเกิดกลิ่นเหม็น",
-          en: "Scoop out food scraps daily: lift the food strainer out and empty it every day so the scraps do not rot and turn foul-smelling",
-        },
-        {
-          th: "ตักไขมันออกทุก 7 วัน: เปิดฝาถังแล้วใช้กระบวยหรือภาชนะตักชั้นไขมันที่ลอยอยู่ผิวน้ำด้านบนไปทิ้งถังขยะ ห้ามเทลงท่อระบายน้ำเด็ดขาด",
-          en: "Skim the grease every 7 days: open the lid and use a ladle or a container to lift the layer of grease floating on the surface into the bin. Never pour it down the drain",
-        },
-        {
-          th: "ล้างทำความสะอาดถังทุก 1 เดือน: ถอดชิ้นส่วนภายในหรือเปิดก้นถังเพื่อระบายตะกอนสะสม ล้างคราบสกปรกด้วยน้ำยาล้างจานและน้ำเปล่า",
-          en: "Wash the tank out once a month: take the internal parts out or open the base to drain the sediment that has built up, then wash the grime off with dish soap and water",
-        },
-        {
-          th: "ใช้จุลินทรีย์ช่วยย่อย: เติมหัวเชื้อจุลินทรีย์หรือเอนไซม์สัปดาห์ละครั้ง เพื่อช่วยย่อยสลายคราบไขมันที่เกาะตามผนังถังและลดกลิ่นอับ",
-          en: "Use microbes to help break it down: add a microbial or enzyme starter once a week to digest the grease clinging to the tank walls and cut back the stale smell",
-        },
-      ],
-    },
-  ],
-  "water-treatment-system": [
-    {
-      type: "content",
-      // `id` matches the `sectionId` of the first entry in this product's
-      // `sectionLinks` (src/lib/products.ts) - see the ProductSectionLink
-      // note in src/lib/product-sections.ts.
-      id: "water-filter-system",
-      title: {
-        th: "ระบบกรองน้ำ",
-        en: "Water Filter System",
-      },
-      blocks: [
-        {
-          type: "paragraph",
-          body: {
-            th: "ระบบกรองน้ำคือกระบวนการที่ใช้ในการกำจัดสิ่งเจือปนต่างๆ ออกจากน้ำเพื่อปรับปรุงคุณภาพของน้ำให้อยู่ในระดับที่เหมาะสมสำหรับการบริโภคหรือการใช้งานในด้านอื่นๆ การกรองน้ำสามารถใช้วิธีการที่หลากหลาย ส่วนประกอบหลักมีดังนี้:",
-            en: "A water filter system is the process used to remove various impurities from water, improving its quality to a level suitable for consumption or other uses. Water filtration can use a variety of methods. Its main components are as follows:",
-          },
-        },
-        {
-          type: "list",
-          ordered: false,
-          items: [
-            {
-              text: {
-                th: "ตัวกรองหยาบ (Pre-filter): ใช้สำหรับกำจัดสิ่งสกปรกขนาดใหญ่ เช่น ทรายและตะกอน เพื่อป้องกันไม่ให้ตัวกรองหลักอุดตันเร็วเกินไป",
-                en: "Pre-filter: removes large debris such as sand and sediment, so the main filter does not clog too quickly.",
-              },
-            },
-            {
-              text: {
-                th: "ตัวกรองคาร์บอน (Carbon Filter): ช่วยกำจัดสารเคมี, คลอรีน, และสารอินทรีย์ที่ทำให้น้ำมีกลิ่นและรสไม่พึงประสงค์",
-                en: "Carbon filter: removes chemicals, chlorine, and organic substances that give water an unpleasant smell and taste.",
-              },
-            },
-          ],
-        },
-        {
-          type: "image",
-          src: "/images/products/water-treatment-system/6.webp",
-          alt: {
-            th: "ถังกรองน้ำไฟเบอร์กลาสในระบบกรองน้ำ",
-            en: "Fiberglass water filter tanks in the water filter system",
-          },
-          width: 1478,
-          height: 1108,
-        },
-      ],
-    },
-    {
-      type: "content",
-      // Matches the second `sectionLinks` entry on this product - see the
-      // note on the previous section above.
-      id: "softener-system",
-      title: {
-        th: "ระบบ Softener หรือระบบทำน้ำอ่อน",
-        en: "Softener System (Water Softener)",
-      },
-      blocks: [
-        {
-          type: "paragraph",
-          body: {
-            th: "เป็นระบบที่ใช้ในการกำจัดความกระด้างของน้ำ ซึ่งมักเกิดจากแร่ธาตุเช่น แคลเซียม (Ca) และแมกนีเซียม (Mg) ที่ละลายในน้ำ โดยระบบนี้จะใช้หลักการแลกเปลี่ยนไอออน โดยให้แร่ธาตุที่ทำให้น้ำกระด้างจับกับเรซินในระบบและปลดปล่อยโซเดียม (Na) ออกมาแทน ทำให้น้ำมีความกระด้างลดลง ส่วนประกอบหลักมีดังนี้:",
-            en: "A system used to remove water hardness, which is usually caused by minerals such as calcium (Ca) and magnesium (Mg) dissolved in the water. It works on the principle of ion exchange: the minerals that make the water hard bind to the resin in the system, which releases sodium (Na) in their place, reducing the water's hardness. Its main components are as follows:",
-          },
-        },
-        {
-          type: "list",
-          ordered: false,
-          items: [
-            {
-              text: {
-                th: "ถังเก็บเรซิน (Resin Tank): บรรจุเรซินชนิดที่สามารถแลกเปลี่ยนไอออน ซึ่งจะจับกับแร่ธาตุที่ทำให้น้ำกระด้าง เช่น แคลเซียมและแมกนีเซียม",
-                en: "Resin Tank: holds ion-exchange resin that binds to the minerals that make water hard, such as calcium and magnesium.",
-              },
-            },
-            {
-              text: {
-                th: "ถังเกลือ (Brine Tank): ใช้เก็บเกลือที่ใช้ในการฟื้นฟูประจุของเรซิน เพื่อให้เรซินสามารถแลกเปลี่ยนไอออนกับน้ำได้อย่างต่อเนื่อง",
-                en: "Brine Tank: stores the salt used to regenerate the resin's charge, so it can keep exchanging ions with the water continuously.",
-              },
-            },
-            {
-              text: {
-                th: "หัวควบคุม (Control Valve): ควบคุมการไหลของน้ำและการทำงานของระบบ เช่น การล้างกลับเรซินและการเติมเกลือ",
-                en: "Control Valve: controls the water flow and the system's operation, such as backwashing the resin and adding salt.",
-              },
-            },
-            {
-              text: {
-                th: "ปั๊มน้ำ (Water Pump): ช่วยให้การไหลของน้ำผ่านระบบเป็นไปอย่างต่อเนื่อง",
-                en: "Water Pump: keeps the water flowing through the system continuously.",
-              },
-            },
-          ],
-        },
-        {
-          type: "image",
-          src: "/images/products/water-treatment-system/treatment-systems/1.webp",
-          alt: {
-            th: "ปั๊มน้ำและตู้ควบคุมของระบบทำน้ำอ่อน",
-            en: "Water pumps and the control panel of the softener system",
-          },
-          width: 1000,
-          height: 517,
-        },
-      ],
-    },
-    {
-      type: "content",
-      // Matches the third `sectionLinks` entry on this product - see the
-      // note on the first section above.
-      id: "reverse-osmosis-system",
-      title: {
-        th: "ระบบรีเวิร์สออสโมซิส (Reverse Osmosis)",
-        en: "Reverse Osmosis (RO) System",
-      },
-      blocks: [
-        {
-          type: "paragraph",
-          body: {
-            th: "คือระบบกรองน้ำที่ใช้เมมเบรนในการแยกสารละลายและสิ่งเจือปนออกจากน้ำ โดยใช้น้ำแรงดันสูงเพื่อผลักดันน้ำผ่านเมมเบรนที่มีรูเล็กมาก จึงสามารถกรองได้ทั้งสารเคมี, แบคทีเรีย, และโลหะหนัก ทำให้น้ำมีความบริสุทธิ์สูง",
-            en: "A water filtration system that uses a membrane to separate dissolved solids and impurities from the water. High-pressure water is forced through a membrane with extremely fine pores, so it can filter out chemicals, bacteria and heavy metals, giving very pure water.",
-          },
-        },
-        {
-          type: "list",
-          ordered: false,
-          items: [
-            {
-              text: {
-                th: "ปั๊มน้ำแรงดันสูง: เพื่อผลักดันน้ำผ่านเมมเบรน",
-                en: "High-Pressure Water Pump: pushes the water through the membrane.",
-              },
-            },
-            {
-              text: {
-                th: "เมมเบรน RO (RO Membrane): ฟิลเตอร์หลักที่กรองสิ่งเจือปน",
-                en: "RO Membrane: the main filter that filters out impurities.",
-              },
-            },
-          ],
-        },
-        {
-          type: "image",
-          src: "/images/products/water-treatment-system/5.webp",
-          alt: {
-            th: "วิศวกรตรวจสอบอุปกรณ์ในระบบบำบัดน้ำ",
-            en: "An engineer inspecting equipment in the water treatment system",
-          },
-          width: 1000,
-          height: 667,
-        },
-      ],
-    },
-    {
-      type: "content",
-      // Matches the fourth (and last) `sectionLinks` entry on this product -
-      // see the note on the first section above.
-      id: "uv-system",
-      title: {
-        th: "ระบบการใช้รังสี UV",
-        en: "UV System",
-      },
-      blocks: [
-        {
-          type: "paragraph",
-          body: {
-            th: "คือระบบบำบัดน้ำที่ใช้แสงอัลตราไวโอเลต (UV) เพื่อฆ่าเชื้อโรค, แบคทีเรีย, ไวรัส, และจุลินทรีย์ที่อาจเป็นอันตรายในน้ำ แสง UV สามารถทำลาย DNA ของจุลชีพเหล่านี้ ทำให้พวกมันไม่สามารถแพร่พันธุ์หรือก่อให้เกิดโรคได้",
-            en: "A water treatment system that uses ultraviolet (UV) light to kill pathogens, bacteria, viruses and microorganisms that may be harmful in the water. UV light destroys the DNA of these microorganisms, so they can no longer reproduce or cause disease.",
-          },
-        },
-        {
-          type: "paragraph",
-          body: {
-            th: "ส่วนประกอบของระบบการใช้รังสี UV ประกอบด้วย:",
-            en: "The components of a UV system include:",
-          },
-        },
-        {
-          type: "list",
-          ordered: false,
-          items: [
-            {
-              text: {
-                th: "หลอด UV (UV Lamp): แหล่งกำเนิดรังสี UV สำหรับการฆ่าเชื้อ",
-                en: "UV Lamp: the source of UV radiation used for disinfection.",
-              },
-            },
-            {
-              text: {
-                th: "ท่อควอตซ์ (Quartz Sleeve): ป้องกันหลอด UV จากน้ำและสิ่งปนเปื้อน",
-                en: "Quartz Sleeve: protects the UV lamp from the water and contaminants.",
-              },
-            },
-          ],
-        },
-        {
-          type: "image",
-          src: "/images/products/water-treatment-system/1.webp",
-          alt: {
-            th: "ภาพมุมสูงของโรงบำบัดน้ำ",
-            en: "Aerial view of a water treatment plant",
-          },
-          width: 1500,
-          height: 841,
-        },
-      ],
-    },
-    waterAndWastewaterMaintenanceSection,
-  ],
-  "wastewater-treatment-system": [
-    {
-      type: "content",
-      id: "wastewater-treatment-overview",
-      title: {
-        th: "ประเภทของระบบบำบัดน้ำเสีย",
-        en: "Types of Wastewater Treatment Systems",
-      },
-      blocks: [
-        {
-          type: "paragraph",
-          body: {
-            th: "ประเภทของระบบบำบัดน้ำเสีย ได้แก่:",
-            en: "Types of wastewater treatment systems include:",
-          },
-        },
-        {
-          type: "list",
-          ordered: false,
-          items: [
-            {
-              text: {
-                th: "ระบบบำบัดทางกายภาพ: เช่น การกรองและการตกตะกอน",
-                en: "Physical Treatment: for example filtration and sedimentation.",
-              },
-            },
-            {
-              text: {
-                th: "ระบบบำบัดทางชีวภาพ: เช่น การใช้ออกซิเจนในกระบวนการย่อยสลายสารอินทรีย์โดยจุลินทรีย์",
-                en: "Biological Treatment: for example using oxygen in the process by which microorganisms break down organic matter.",
-              },
-            },
-            {
-              text: {
-                th: "ระบบบำบัดทางเคมี: เช่น การเติมสารเคมีเพื่อปรับค่า pH หรือกำจัดสาร",
-                en: "Chemical Treatment: for example adding chemicals to adjust the pH or remove substances.",
-              },
-            },
-          ],
-        },
-      ],
-    },
-    {
-      type: "content",
-      id: "wastewater-recycling-solutions",
-      title: {
-        th: "ระบบและโซลูชันการรีไซเคิลน้ำ",
-        en: "Recycling System & Solutions",
-      },
-      blocks: [
-        {
-          type: "paragraph",
-          body: {
-            th: "เราให้ความสำคัญกับการบริหารจัดการทรัพยากรน้ำผ่านการรีไซเคิลน้ำเสีย โดยใช้เทคโนโลยีขั้นสูง เช่น ไมโครฟิลเตรชันและเมมเบรน RO เรามุ่งเน้นการบริหารจัดการทรัพยากรน้ำอย่างยั่งยืน ด้วยกระบวนการ Zero Liquid Discharge (ZLD) เพื่อลดการปล่อยน้ำเสียสู่สิ่งแวดล้อม",
-            en: "We prioritize water resource management through wastewater recycling using advanced technologies such as micro-filtration and RO membrane. We focus on sustainable water resource management by utilizing the Zero Liquid Discharge (ZLD) process to reduce wastewater discharge into the environment.",
-          },
-        },
-        {
-          type: "image",
-          src: "/images/products/wastewater-treatment-system/2.webp",
-          alt: {
-            th: "โรงบำบัดน้ำเสียพร้อมถังตกตะกอนแบบวงกลมและระบบท่อบำบัด",
-            en: "A wastewater treatment plant with circular clarifier tanks and treatment piping",
-          },
-          width: 1500,
-          height: 857,
-        },
-      ],
-    },
-    waterAndWastewaterMaintenanceSection,
   ],
 };
 

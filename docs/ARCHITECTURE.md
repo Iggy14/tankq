@@ -200,7 +200,9 @@ page, and that would force a Suspense boundary onto all of them.
 
 The dropdown lists the category titles, each a link to `categoryHref(id)`; a
 category with 2+ products also shows them indented right under it, as links
-(always open, no nested expanders). `Header` builds `ProductNavCategory[]`
+(always open, no nested expanders). A category whose single product is a
+merged page lists that product's `sectionLinks` instead, each linking to
+`/products/<slug>#product-section-<id>`, so the menu jumps straight to a variant. `Header` builds `ProductNavCategory[]`
 (label, href, products - empty for a category with 0-1 products) and hands it
 down as `categories`. `MobileNav` reuses it: its Products item's `children` are
 the categories, each with an indented `products` list, inside one `ui/accordion`
@@ -286,6 +288,8 @@ primitive before hand-rolling one.
 
 | `type` | Renders |
 | --- | --- |
+| `divider` | The short blue rule (`h-px w-64 bg-primary`, same as a `content` section's close) that ends a variant on a merged page. No title or data; skipped when it would be the page's last section |
+| `gallery` | A heading over a main-frame-plus-thumbnails gallery. Opens one variant on a merged page - see "Merged pages" |
 | `specTable` | Size/spec table under its own heading. The chart is `spec-table.tsx`: primary-color header row, zebra body, first cell of each row is a `<th scope="row">`. Every other column defaults to right-aligned `tabular-nums` figures; set the optional `columnAlign: SpecColumnAlign[]` (parallel to `columns`, index 0 ignored) to `"left"` or `"center"` for a column that holds words rather than a number - e.g. a pipe size or note - so it isn't treated as a right-aligned figure. Scrolls sideways when narrow |
 | `bulletList` | Short selling points, two columns from `sm` up. `marker: "check"` puts a lucide `Check` in a tinted teal disc beside each item, `marker: "dot"` a plain teal bullet |
 | `orderedList` | Numbered write-ups, two columns from `sm` up. Each item is a `{ title, body }` pair under a rule, with its zero-padded number (from the array position, not stored) above it in teal mono |
@@ -341,20 +345,45 @@ A picture wider than the screen is panned instead.
 Its two labels are chrome, not content, so they live in `messages/*.json` under
 `products.sectionImage` rather than in the block data.
 
-Both FRP tanks carry sections today; the four PE tanks and the grease trap
-carry a `Usage` and a `Recommendation` bullet list each, and
-`pe-waste-water-treatment-tank` adds a `specTable` sizing tanks by flow rate
-plus an `orderedList` of the treatment systems TankQ designs and supplies.
+The catalogue has seven products in seven categories (see "Merged pages"
+below). `frp-water-tank` carries the vertical and horizontal tank sections; the
+PE tank and `pe-septic-tank-grease-trap` each carry an `Overview`, a `Usage` and
+a `Recommendation` per sub-product, and the PE septic tank adds a `specTable`
+sizing tanks by flow rate plus an `orderedList` of the treatment systems TankQ
+designs and supplies.
 `fiberglass-septic-tank` uses `content`: three sections, one per treatment
 system it is sold as, each running paragraph, diagram, numbered process steps
-and a sizing table. `water-treatment-system` and `wastewater-treatment-system`
-also use `content` throughout - see "Linking to a section from above the
-fold" below for how the former's four sections tie back to its `sectionLinks`
-row, and both products share one `content` section object
-(`waterAndWastewaterMaintenanceSection` in `product-section-data.ts`) for
-their closing maintenance write-up, since its copy applies to both generically
-- reuse that pattern rather than duplicating a section verbatim across
-products.
+and a sizing table. `water-wastewater-treatment-system` is a merged page of the
+water and wastewater systems, both written as `content` sections; its closing
+maintenance write-up (`waterAndWastewaterMaintenanceSection` in
+`product-section-data.ts`) applies to both, so it is one section at the end of
+the page rather than a copy per variant - reuse that pattern rather than
+duplicating a section verbatim. The water variant's four sub-systems keep their
+own section `id`s (see "Linking to a section from above the fold" below) but are
+no longer in the top link row, which now has one link per variant.
+
+### Merged pages
+
+Where one category is really several related products (FRP vertical and
+horizontal tank, the three PE water tanks, the PE septic tank and grease trap,
+water and wastewater treatment),
+the catalogue holds **one** `Product` and its page covers every variant. Do not
+add a product per variant. The pattern:
+
+- Each variant opens with a `gallery` section: its name as the heading, its own
+  pictures under it (the same main frame and thumbnails as a normal detail
+  page), then its copy. The page reads variant after variant. The product sets
+  `galleryInSections: true`, which drops the shared gallery at the top, and its
+  `images` is only the cover for cards and link previews.
+- The product's `sectionLinks` has one jump link per variant, pointing at that
+  variant's gallery section.
+- In `product-section-data.ts` each variant's copy is a private const
+  (`frpVerticalSections`, `peGraniteSections`, ...), composed into the
+  product's array with `subProduct(id, name, images, sections)`, which puts the
+  gallery first, gives it `id` and ends the variant with a `divider`. `overview(body)` builds the opening paragraph
+  for a variant whose description used to be its own product's.
+- The image files stay in their original `public/images/products/<old-slug>/`
+  folders; the folder names no longer match a product slug.
 
 ### If a product needs a one-off layout
 

@@ -258,3 +258,28 @@ needs an ID or verification token from the site owner.
 2. If wanted, add GA4 with `@next/third-parties` (`GoogleAnalytics` in the
    layout, ID from an env var). Check first whether a cookie/PDPA notice is
    needed.
+
+## Redirects for the retired `?category=` ids
+
+**Status:** not started. Added 2026-10-20.
+
+The old product slugs are redirected in `next.config.ts`, but the old category
+ids in `/products?category=<id>` are not: `frp-vertical-water-tank`,
+`frp-horizontal-water-tank`, `septic-tank-grease-trap`, `epoxy-pu-flooring` and
+`water-solution` now fall back to the unfiltered listing.
+
+**Why it was skipped:** a stale filter link only lands on the full listing, so
+it is low value.
+
+**What to do:** map the old ids to their new categories in
+`parseActiveCategory` (`src/lib/product-category-url.ts`).
+
+## Check the underground PE tank "Usage" copy
+
+**Status:** needs a decision. Added 2026-10-20.
+
+Under the PE Water Tank page, "TU Series PE Underground Water Tank: Usage"
+reads "Suitable for wastewater treatment" (`peUndergroundSections` in
+`src/lib/product-section-data.ts`). That was copied unchanged from the old
+standalone page, but it looks wrong for a water storage tank. Confirm the
+intended wording with the content owner and fix both locales.

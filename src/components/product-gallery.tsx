@@ -10,6 +10,8 @@ type ProductGalleryProps = {
   images: string[];
   /** The product title — used to describe every frame. */
   alt: string;
+  /** Preload the frame. Leave on for the page's top gallery only. */
+  priority?: boolean;
 };
 
 /**
@@ -20,7 +22,7 @@ type ProductGalleryProps = {
  *
  * With a single image the rail is dropped and this renders as a plain figure.
  */
-export function ProductGallery({ images, alt }: ProductGalleryProps) {
+export function ProductGallery({ images, alt, priority = true }: ProductGalleryProps) {
   const t = useTranslations("products");
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -47,7 +49,7 @@ export function ProductGallery({ images, alt }: ProductGalleryProps) {
           alt={alt}
           width={1280}
           height={960}
-          priority
+          priority={priority}
           sizes="(min-width: 1024px) 56rem, 100vw"
           className="aspect-4/3 w-full object-cover"
         />

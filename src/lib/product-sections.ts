@@ -255,7 +255,35 @@ export interface ContentSection {
   blocks: ContentBlock[];
 }
 
+/**
+ * A heading over a picture gallery - the opening of one variant on a merged
+ * page (see "Merged pages" in docs/ARCHITECTURE.md). Renders the same
+ * main-frame-plus-thumbnails gallery a detail page shows at its top, so each
+ * variant keeps its own pictures next to its own copy.
+ */
+export interface GallerySection {
+  type: "gallery";
+  /** Stable anchor id - see the note on `id` below `ProductSection`. */
+  id?: string;
+  title: Localized;
+  /** Public paths, first is the frame shown initially. */
+  images: string[];
+}
+
+/**
+ * The short blue rule that closes one variant on a merged page, marking that
+ * this product part is finished. `subProduct` appends one after each variant;
+ * the renderer drops it when it would be the last thing on the page.
+ */
+export interface DividerSection {
+  type: "divider";
+  /** Never set; present so every section member has an `id`. */
+  id?: string;
+}
+
 export type ProductSection =
+  | DividerSection
+  | GallerySection
   | SpecTableSection
   | BulletListSection
   | OrderedListSection

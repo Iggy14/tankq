@@ -1,11 +1,11 @@
 "use client";
 
 import {
-  Container,
   Cylinder,
   Database,
   Droplets,
   Funnel,
+  Layers3,
   LayoutGrid,
   PaintRoller,
   Recycle,
@@ -36,13 +36,13 @@ import { cn } from "@/lib/utils";
  * choosing an icon fails to compile instead of rendering a blank pill.
  */
 const CATEGORY_ICONS: Record<ProductCategoryId, LucideIcon> = {
-  "frp-vertical-water-tank": Cylinder,
-  "frp-horizontal-water-tank": Container,
+  "frp-water-tank": Cylinder,
   "pe-water-tank": Database,
   "frp-wastewater-treatment-tank": Recycle,
-  "septic-tank-grease-trap": Funnel,
-  "epoxy-pu-flooring": PaintRoller,
-  "water-solution": Droplets,
+  "pe-septic-tank-grease-trap": Funnel,
+  "epoxy-flooring": PaintRoller,
+  "polyurethane-concrete-flooring": Layers3,
+  "water-wastewater-treatment-system": Droplets,
 };
 
 type CategoryFilterProps = {

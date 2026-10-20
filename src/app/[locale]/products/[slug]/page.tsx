@@ -144,12 +144,14 @@ export default async function ProductDetailPage({
           </FadeInUp>
         </FadeInUpGroup>
 
-        <FadeInUp className="mt-12 sm:mt-16">
-          <ProductGallery
-            images={product.images}
-            alt={product.title[activeLocale]}
-          />
-        </FadeInUp>
+        {!product.galleryInSections && (
+          <FadeInUp className="mt-12 sm:mt-16">
+            <ProductGallery
+              images={product.images}
+              alt={product.title[activeLocale]}
+            />
+          </FadeInUp>
+        )}
 
         {sections.length > 0 && (
           <FadeInUpGroup className="mt-20 flex flex-col gap-20">

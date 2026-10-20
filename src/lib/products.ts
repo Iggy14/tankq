@@ -43,6 +43,12 @@ export interface Product {
   sectionLinks?: ProductSectionLink[];
   /** Public paths, first image is treated as the cover. */
   images: string[];
+  /**
+   * True when the detail page opens each variant with its own `gallery`
+   * section (a merged page - see `product-section-data.ts`), so the shared
+   * gallery above the sections is dropped and `images` is only the cover.
+   */
+  galleryInSections?: boolean;
   /** Highlighted on the homepage — the first three carry this flag. */
   featured: boolean;
   /** Manual sort order for the listing page. */
@@ -51,230 +57,68 @@ export interface Product {
 
 export const products: Product[] = [
   {
-    id: "frp-horizontal-water-tank",
-    slug: "frp-horizontal-water-tank",
-    categoryId: "frp-horizontal-water-tank",
+    id: "frp-water-tank",
+    slug: "frp-water-tank",
+    categoryId: "frp-water-tank",
     title: {
-      th: "ถังเก็บน้ำไฟเบอร์กลาสทรงนอน",
-      en: "FRP Horizontal Water Tank",
-    },
-    description: {
-      th: "ถังเก็บนํ้าไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยเเก้วเสริมเเรงที่มีความใส่ใจเป็นพิเศษเเละทุกๆขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง เเข็งเเรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
-      en: "Fiberglass Reinforced Plastic (FRP) water tank, manufactured with reinforced fiberglass under careful, standardized processes at every step for cleanliness, safety, and zero residue. Strong and durable, used to store large volumes of water in medium to large scale industries and for fire water reserve systems. Suitable for offices, government agencies, condominiums, shopping malls, gas stations, factories, dormitories, and government projects.",
-    },
-    specs: [
-      {
-        icon: "material",
-        label: { th: "วัสดุไฟเบอร์กลาส (FRP)", en: "FRP Material" },
-      },
-      {
-        icon: "waterStorage",
-        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
-      },
-    ],
-    images: [
-      "/images/products/frp-horizontal-water-tank/6.webp",
-      "/images/products/frp-horizontal-water-tank/1.webp",
-      "/images/products/frp-horizontal-water-tank/2.webp",
-      "/images/products/frp-horizontal-water-tank/3.webp",
-      "/images/products/frp-horizontal-water-tank/4.webp",
-      "/images/products/frp-horizontal-water-tank/5.webp",
-    ],
-    featured: true,
-    order: 1,
-  },
-  {
-    id: "frp-vertical-water-tank",
-    slug: "frp-vertical-water-tank",
-    categoryId: "frp-vertical-water-tank",
-    title: {
-      th: "ถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง",
-      en: "FRP Vertical Water Tank",
+      th: "ถังเก็บน้ำไฟเบอร์กลาส",
+      en: "FRP Water Tank",
     },
     description: {
       th: "ถังเก็บน้ำไฟเบอร์กลาส (FRP) ผ่านกระบวนการผลิตขึ้นรูปด้วยใยแก้วเสริมแรงที่มีความใส่ใจเป็นพิเศษ และทุก ๆ ขั้นตอนได้มาตรฐาน เพื่อความสะอาดปลอดภัย ไร้สารตกค้าง แข็งแรง ทนทาน ใช้เพื่อสำรองน้ำปริมาณมากในอุตสาหกรรมขนาดกลาง-ขนาดใหญ่ ทำระบบถังสำรองน้ำดับเพลิง เหมาะสำหรับ สำนักงาน หน่วยงาน คอนโดมิเนียม ห้างสรรพสินค้า ปั๊มน้ำมัน โรงงาน หอพัก โครงการภาครัฐ",
       en: "The FRP fiberglass water tank is formed from glass fibre reinforced plastic with exceptional care, every step of the process held to standard, so the tank stays clean and safe with no residue left behind, strong and long-lasting. It is used to hold large water reserves for medium and large-scale industry and to build fire-water reserve systems, making it suitable for offices, government agencies, condominiums, shopping malls, petrol stations, factories, dormitories and public-sector projects.",
     },
-    specs: [
+    // Jump links to where each tank type starts, in place of the usual `specs`
+    // row. The sections live under this product's id in product-section-data.ts.
+    sectionLinks: [
       {
-        icon: "material",
-        label: { th: "วัสดุไฟเบอร์กลาส (FRP)", en: "FRP Material" },
+        label: { th: "ถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง", en: "FRP Vertical Water Tank" },
+        sectionId: "frp-vertical-water-tank",
       },
       {
-        icon: "waterStorage",
-        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+        label: { th: "ถังเก็บน้ำไฟเบอร์กลาสทรงนอน", en: "FRP Horizontal Water Tank" },
+        sectionId: "frp-horizontal-water-tank",
       },
     ],
-    images: [
-      "/images/products/frp-vertical-water-tank/2.webp",
-      "/images/products/frp-vertical-water-tank/4.webp",
-      "/images/products/frp-vertical-water-tank/1.webp",
-      "/images/products/frp-vertical-water-tank/3.webp",
-      "/images/products/frp-vertical-water-tank/5.webp",
-      "/images/products/frp-vertical-water-tank/6.webp",
-      "/images/products/frp-vertical-water-tank/7.webp",
-      "/images/products/frp-vertical-water-tank/8.webp",
-      "/images/products/frp-vertical-water-tank/9.webp",
-      "/images/products/frp-vertical-water-tank/10.webp",
-      "/images/products/frp-vertical-water-tank/11.webp",
-      "/images/products/frp-vertical-water-tank/12.webp",
-      "/images/products/frp-vertical-water-tank/13.webp",
-      "/images/products/frp-vertical-water-tank/14.webp",
+    // Each variant's own pictures sit in its gallery section - see
+    // `galleryInSections`. This is just the cover for cards and link previews.
+    images: ["/images/products/frp-vertical-water-tank/2.webp"],
+    galleryInSections: true,
+    featured: true,
+    order: 1,
+  },
+  {
+    id: "pe-water-tank",
+    slug: "pe-water-tank",
+    categoryId: "pe-water-tank",
+    title: {
+      th: "ถังเก็บน้ำ PE",
+      en: "PE Water Tank",
+    },
+    description: {
+      th: "ถังเก็บน้ำ PE แบรนด์ TANK-Q ผลิตจากวัสดุที่มีคุณภาพ แข็งแรง ทนทาน สะอาด ปลอดภัย มีให้เลือก 3 รุ่น ได้แก่ รุ่น TQ ถังเก็บน้ำบนดิน รุ่น TG ถังเก็บน้ำบนดินลายหินแกรนิต และรุ่น TU ถังเก็บน้ำใต้ดิน",
+      en: "TANK-Q PE water tanks are made from quality material that is strong, durable, clean and safe. Choose from three models: the TQ above-ground tank, the TG above-ground tank in a granite finish, and the TU underground tank.",
+    },
+    sectionLinks: [
+      {
+        label: { th: "ถังเก็บน้ำบนดิน PE รุ่น TQ", en: "TQ Series Above-Ground" },
+        sectionId: "pe-above-ground-water-tank",
+      },
+      {
+        label: { th: "ถังเก็บน้ำบนดิน PE รุ่น TG (ลายหินแกรนิต)", en: "TG Series Granite Finish" },
+        sectionId: "pe-above-ground-water-tank-granite",
+      },
+      {
+        label: { th: "ถังเก็บน้ำใต้ดิน PE รุ่น TU", en: "TU Series Underground" },
+        sectionId: "pe-underground-water-tank",
+      },
     ],
+    // Each variant's own pictures sit in its gallery section - see
+    // `galleryInSections`. This is just the cover for cards and link previews.
+    images: ["/images/products/pe-above-ground-water-tank/6.webp"],
+    galleryInSections: true,
     featured: false,
     order: 2,
-  },
-  {
-    id: "pe-above-ground-water-tank",
-    slug: "pe-above-ground-water-tank",
-    categoryId: "pe-water-tank",
-    title: {
-      th: "ถังเก็บน้ำบนดิน PE รุ่น TQ",
-      en: "TANK-Q PE Above-Ground Water Storage Tank",
-    },
-    description: {
-      th: "ถังเก็บน้ำแบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
-      en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
-    },
-    specs: [
-      {
-        icon: "material",
-        label: { th: "วัสดุ PE", en: "PE Material" },
-      },
-      {
-        icon: "waterStorage",
-        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
-      },
-    ],
-    images: [
-      "/images/products/pe-above-ground-water-tank/6.webp",
-      "/images/products/pe-above-ground-water-tank/1.webp",
-      "/images/products/pe-above-ground-water-tank/2.webp",
-      "/images/products/pe-above-ground-water-tank/3.webp",
-      "/images/products/pe-above-ground-water-tank/4.webp",
-      "/images/products/pe-above-ground-water-tank/5.webp",
-    ],
-    featured: false,
-    order: 3,
-  },
-  {
-    id: "pe-underground-water-tank",
-    slug: "pe-underground-water-tank",
-    categoryId: "pe-water-tank",
-    title: {
-      th: "ถังเก็บน้ำใต้ดิน PE รุ่น TU",
-      en: "PE Underground Watertank",
-    },
-    description: {
-      th: "ถังเก็บน้ำใต้ดิน TANK-Q รุ่น TU มาตรฐานสากล ปลอดภัย แข็งแรง ทนทาน ตอบโจทย์ทุกไลฟ์สไตล์อย่างลงตัว ผลิตขึ้นรูปด้วยแบบไร้รอยต่อด้วยกระบวนการผลิตที่มีคุณภาพ ทนทานกว่าแข็งแรงกว่าถังประกอบทั่วไปเป็นผลิตภัณฑ์ถังเก็บน้ำใต้ดินที่ได้มาตรฐานตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพจากแบรนด์ชั้นนำ สะอาดปลอดภัย FOOD GRADE 100% Fitting น้ำเข้า-น้ำออก ทองเหลือง รับประกันยาวนาน 15 ปี",
-      en: "The TANK-Q TU underground water tank meets international standards - safe, strong and durable, a perfect fit for every lifestyle. Moulded as one seamless piece through a quality manufacturing process, it is tougher and stronger than assembled tanks. This standard-compliant underground water tank is made from quality material sourced from leading brands, clean and safe with 100% food grade construction, brass inlet and outlet fittings, and backed by a long 15 year warranty.",
-    },
-    specs: [
-      {
-        icon: "material",
-        label: { th: "วัสดุ PE", en: "PE Material" },
-      },
-      {
-        icon: "waterStorage",
-        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
-      },
-    ],
-    images: [
-      "/images/products/pe-underground-water-tank/4.webp",
-      "/images/products/pe-underground-water-tank/2.webp",
-      "/images/products/pe-underground-water-tank/1.webp",
-      "/images/products/pe-underground-water-tank/3.webp",
-    ],
-    featured: false,
-    order: 4,
-  },
-  {
-    id: "pe-above-ground-water-tank-granite",
-    slug: "pe-above-ground-water-tank-granite",
-    categoryId: "pe-water-tank",
-    title: {
-      th: "ถังเก็บน้ำบนดิน PE รุ่น TG (ลายหินแกรนิต)",
-      en: "TG Series Above-Ground Water Tank (Granite Finish)",
-    },
-    description: {
-      th: "ถังเก็บน้ำ แบรนด์ TANK-Q เป็นผลิตภัณฑ์ถังเก็บน้ำที่ได้มาตรฐาน มีตั้งแต่ขนาด ถังน้ำ 330 ลิตร, ถังน้ำ 500 ลิตร, ถังน้ำ 600 ลิตร, ถังน้ำ 750 ลิตร, ถังน้ำ 1000 ลิตร, ถังน้ำ 1500 ลิตร, ถังน้ำ 2000 ลิตร, ถังน้ำ 2500 ลิตร, ถังน้ำ 3000 ลิตร, ถังน้ำ 4000 ลิตร, ถังน้ำ 5000 ลิตร, ถังน้ำ 6000 ลิตร, ถังน้ำ 8000 ลิตร, ถังน้ำ 10000 ลิตร ตัวถังเก็บน้ำผลิตจากวัสดุที่มีคุณภาพ มีความแข็งแรง ทนทาน และไม่มีสารพิษในกระบวนการผลิต สะอาด ปลอดภัย ไร้กลิ่นไม่พึงประสงค์ ให้คุณใช้งานได้อย่างมั่นใจด้วยมาตรฐาน มอก. ถังเก็บน้ำ 1379-2551 เหมาะสำหรับใช้งานภายในบ้าน, อาคารสำนักงาน, ร้านอาหาร, ร้านคาเฟ่ หรือพื้นที่ใช้งานตามต้องการ",
-      en: "TANK-Q water storage tanks are built to standard and come in sizes from 330 litres, 500 litres, 600 litres, 750 litres, 1000 litres, 1500 litres, 2000 litres, 2500 litres, 3000 litres, 4000 litres, 5000 litres, 6000 litres and 8000 litres up to 10000 litres. The tank body is produced from quality material that is strong and durable, with no toxic substances used anywhere in the manufacturing process, so the water stays clean, safe and free of any unpleasant odour. You can use it with full confidence under the TIS 1379-2551 water tank standard, making it suitable for homes, office buildings, restaurants, cafes or any area where you need it.",
-    },
-    specs: [
-      {
-        icon: "material",
-        label: { th: "วัสดุลายหินแกรนิต", en: "Granite Material" },
-      },
-      {
-        icon: "waterStorage",
-        label: { th: "สำหรับเก็บน้ำ", en: "For Water Storage" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
-      },
-    ],
-    images: [
-      "/images/products/pe-above-ground-water-tank-granite/13.webp",
-      "/images/products/pe-above-ground-water-tank-granite/1.webp",
-      "/images/products/pe-above-ground-water-tank-granite/8.webp",
-      "/images/products/pe-above-ground-water-tank-granite/9.webp",
-      "/images/products/pe-above-ground-water-tank-granite/10.webp",
-      "/images/products/pe-above-ground-water-tank-granite/11.webp",
-      "/images/products/pe-above-ground-water-tank-granite/12.webp",
-    ],
-    featured: false,
-    order: 5,
-  },
-  {
-    id: "pe-waste-water-treatment-tank",
-    slug: "pe-waste-water-treatment-tank",
-    categoryId: "septic-tank-grease-trap",
-    title: {
-      th: "ถังบำบัดน้ำเสีย PE",
-      en: "PE Waste Water Treatment Tank",
-    },
-    description: {
-      th: "มาตรฐานนวัตกรรมการผลิตถังที่แข็งแรงสูงสุดไร้รอยต่อทั้งใบ มีประสิทธิภาพในการบำบัด ถังบำบัดน้ำเสีย แข็งแรงทนทานถังไร้รอยต่อ มีให้เลือกหลาย เช่น ถังบำบัดน้ำเสีย 600 ลิตร ไปจนถึง 6000 ลิตร ราคาคุณภาพ และขนาดอื่นๆ ที่สามารถตอบทุกโจทย์ความต้องการ ด้วยคุณภาพที่เหนือกว่าถังบำบัดทั่วไป",
-      en: "Built with innovative manufacturing standards for maximum strength in one seamless, joint-free tank, delivering highly effective wastewater treatment. Strong and durable with a seamless tank body, available in a wide range of sizes from 600 litres up to 6000 litres and beyond, all at a price that matches the quality. It answers every requirement with quality that surpasses ordinary treatment tanks.",
-    },
-    specs: [
-      {
-        icon: "material",
-        label: { th: "วัสดุ PE", en: "PE Material" },
-      },
-      {
-        icon: "wasteWaterTreatment",
-        label: { th: "สำหรับบำบัดน้ำเสีย", en: "For Waste Water Treatment" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
-      },
-    ],
-    images: [
-      "/images/products/pe-waste-water-treatment-tank/3.webp",
-      "/images/products/pe-waste-water-treatment-tank/1.webp",
-      "/images/products/pe-waste-water-treatment-tank/2.webp",
-    ],
-    featured: false,
-    order: 6,
   },
   {
     id: "fiberglass-septic-tank",
@@ -308,48 +152,41 @@ export const products: Product[] = [
       "/images/products/fiberglass-septic-tank/3.webp",
     ],
     featured: false,
-    order: 8,
+    order: 3,
   },
   {
-    id: "septic-tank-and-grease-trap",
-    slug: "septic-tank-and-grease-trap",
-    categoryId: "septic-tank-grease-trap",
+    id: "pe-septic-tank-grease-trap",
+    slug: "pe-septic-tank-grease-trap",
+    categoryId: "pe-septic-tank-grease-trap",
     title: {
-      th: "ถังดักไขมัน",
-      en: "Septic Tank and Grease Trap",
+      th: "ถังบำบัดน้ำเสีย PE และถังดักไขมัน",
+      en: "PE Septic Tank & Grease Trap",
     },
     description: {
-      th: "ถังดักไขมัน เป็นอุปกรณ์ที่ช่วยดักจับไขมันที่เกิดจากการล้างภาชนะและอุปกรณ์หุงต้มอาหาร ไม่ให้ไหลปนไปกับน้ำทิ้ง เพราะไขมันที่ลอยตัวอยู่ผิวน้ำ ทำให้ออกซิเจนละลายน้ำได้น้อย เป็นสาเหตุให้น้ำเน่าเสีย และท่อระบายน้ำเกิดการอุดตันได้ เรามีถังดักไขมันตั้งแต่ขนาดเล็กถึงใหญ่ ให้บริการแก่ลูกค้า เพื่อใช้ในครัวเรือน และภาคอุตสาหกรรม สินค้ารับประกันคุณภาพ ราคาโรงงาน",
-      en: "A grease trap is a device that captures the fat and oil produced from washing dishes and cooking equipment, keeping it from flowing out with the wastewater. Grease that floats on the water's surface reduces dissolved oxygen, which causes the water to spoil and the drainage pipes to clog. We offer grease traps from small to large sizes, serving customers for household and industrial use, with guaranteed quality at factory prices.",
+      th: "ถังบำบัดน้ำเสีย PE และถังดักไขมัน แบรนด์ TANK-Q ผลิตจากวัสดุที่มีคุณภาพ แข็งแรง ทนทาน มีให้เลือกทั้งถังบำบัดน้ำเสียแบบไร้รอยต่อ และถังดักไขมันตั้งแต่ขนาดเล็กถึงใหญ่ สำหรับใช้ในครัวเรือนและภาคอุตสาหกรรม",
+      en: "TANK-Q PE septic tanks and grease traps are made from quality material that is strong and durable. Choose from a seamless wastewater treatment tank and grease traps from small to large sizes, for household and industrial use.",
     },
-    specs: [
+    sectionLinks: [
       {
-        icon: "material",
-        label: { th: "วัสดุ PE", en: "PE Material" },
+        label: { th: "ถังบำบัดน้ำเสีย PE", en: "PE Waste Water Treatment Tank" },
+        sectionId: "pe-waste-water-treatment-tank",
       },
       {
-        icon: "greaseTrap",
-        label: { th: "สำหรับดักไขมัน", en: "For Grease Trapping" },
-      },
-      {
-        icon: "brand",
-        label: { th: "แบรนด์ TANK-Q", en: "TANK-Q Brand" },
+        label: { th: "ถังดักไขมัน", en: "Grease Trap" },
+        sectionId: "septic-tank-and-grease-trap",
       },
     ],
-    images: [
-      "/images/products/septic-tank-and-grease-trap/1.webp",
-      "/images/products/septic-tank-and-grease-trap/2.webp",
-      "/images/products/septic-tank-and-grease-trap/3.webp",
-      "/images/products/septic-tank-and-grease-trap/4.webp",
-      "/images/products/septic-tank-and-grease-trap/5.webp",
-    ],
+    // Each variant's own pictures sit in its gallery section - see
+    // `galleryInSections`. This is just the cover for cards and link previews.
+    images: ["/images/products/pe-waste-water-treatment-tank/3.webp"],
+    galleryInSections: true,
     featured: false,
-    order: 9,
+    order: 4,
   },
   {
     id: "epoxy-flooring",
     slug: "epoxy-flooring",
-    categoryId: "epoxy-pu-flooring",
+    categoryId: "epoxy-flooring",
     title: {
       th: "พื้นอีพ็อกซี่",
       en: "Epoxy Flooring",
@@ -386,12 +223,12 @@ export const products: Product[] = [
       "/images/products/epoxy-flooring/12.webp",
     ],
     featured: true,
-    order: 10,
+    order: 5,
   },
   {
     id: "polyurethane-concrete-flooring",
     slug: "polyurethane-concrete-flooring",
-    categoryId: "epoxy-pu-flooring",
+    categoryId: "polyurethane-concrete-flooring",
     title: {
       th: "พื้นโพลียูรีเทนคอนกรีต",
       en: "Polyurethane Concrete Flooring",
@@ -422,74 +259,36 @@ export const products: Product[] = [
       "/images/products/polyurethane-concrete-flooring/6.webp",
     ],
     featured: false,
-    order: 11,
+    order: 6,
   },
   {
-    id: "water-treatment-system",
-    slug: "water-treatment-system",
-    categoryId: "water-solution",
+    id: "water-wastewater-treatment-system",
+    slug: "water-wastewater-treatment-system",
+    categoryId: "water-wastewater-treatment-system",
     title: {
-      th: "ระบบบำบัดน้ำ",
-      en: "Water Treatment System",
+      th: "ระบบน้ำดีและน้ำเสีย",
+      en: "Water & Wastewater Treatment System",
     },
     description: {
-      th: "ระบบทำน้ำดีคือกระบวนการบำบัดน้ำเพื่อปรับปรุงคุณภาพน้ำให้อยู่ในระดับที่เหมาะสมสำหรับการใช้งาน เช่น การบริโภค การอุปโภค หรือการใช้งานในอุตสาหกรรม โดยผ่านกระบวนการที่ออกแบบมาเพื่อลดหรือกำจัดสิ่งเจือปนและสารพิษต่างๆ ในน้ำ ระบบทำน้ำดีมีหลากหลายประเภท ขึ้นอยู่กับการใช้งานและคุณภาพน้ำที่ต้องการ เช่น",
-      en: "A water treatment system is a process for treating water to bring its quality up to a level suitable for its intended use - for drinking, for everyday use, or for industrial applications - through processes designed to reduce or remove impurities and various contaminants in the water. Water treatment systems come in many types, depending on the application and the water quality required, such as:",
+      th: "ระบบน้ำดีและน้ำเสียจาก TANK-Q ครอบคลุมทั้งระบบบำบัดน้ำเพื่อปรับปรุงคุณภาพน้ำให้เหมาะสมกับการบริโภค การอุปโภค และงานอุตสาหกรรม และระบบบำบัดน้ำเสียเพื่อให้น้ำกลับมามีคุณภาพเหมาะสมที่จะปล่อยสู่สิ่งแวดล้อมหรือนำกลับมาใช้ซ้ำ",
+      en: "TANK-Q water and wastewater systems cover both water treatment, which brings water up to a quality suited to drinking, everyday use and industry, and wastewater treatment, which returns used water to a quality fit for release into the environment or for reuse.",
     },
-    // Jump links to the four `content` sections below, in place of the usual
-    // `specs` row - see the ProductSectionLink note in
-    // src/lib/product-sections.ts. The sections themselves live under this
-    // product's id in product-section-data.ts, each with the matching `id`.
     sectionLinks: [
       {
-        label: { th: "ระบบกรองน้ำ", en: "Water Filter System" },
-        sectionId: "water-filter-system",
+        label: { th: "ระบบบำบัดน้ำ", en: "Water Treatment System" },
+        sectionId: "water-treatment-system",
       },
       {
-        label: {
-          th: "ระบบ Softener หรือระบบทำน้ำอ่อน",
-          en: "Softener System (Water Softener)",
-        },
-        sectionId: "softener-system",
-      },
-      {
-        label: {
-          th: "ระบบรีเวิร์สออสโมซิส (Reverse Osmosis)",
-          en: "Reverse Osmosis (RO) System",
-        },
-        sectionId: "reverse-osmosis-system",
-      },
-      {
-        label: { th: "ระบบการใช้รังสี UV", en: "UV System" },
-        sectionId: "uv-system",
+        label: { th: "ระบบบำบัดน้ำเสีย", en: "Wastewater Treatment System" },
+        sectionId: "wastewater-treatment-system",
       },
     ],
-    images: [
-      "/images/products/water-treatment-system/1.webp",
-      "/images/products/water-treatment-system/2.webp",
-      "/images/products/water-treatment-system/3.webp",
-      "/images/products/water-treatment-system/4.webp",
-      "/images/products/water-treatment-system/5.webp",
-      "/images/products/water-treatment-system/6.webp",
-    ],
+    // Each variant's own pictures sit in its gallery section - see
+    // `galleryInSections`. This is just the cover for cards and link previews.
+    images: ["/images/products/water-treatment-system/1.webp"],
+    galleryInSections: true,
     featured: true,
-    order: 12,
-  },
-  {
-    id: "wastewater-treatment-system",
-    slug: "wastewater-treatment-system",
-    categoryId: "water-solution",
-    title: {
-      th: "ระบบบำบัดน้ำเสีย",
-      en: "Wastewater Treatment System",
-    },
-    description: {
-      th: "ระบบบำบัดน้ำเสีย คือกระบวนการที่ใช้ในการทำให้น้ำเสียกลับมามีคุณภาพเหมาะสมที่จะปล่อยกลับสู่สิ่งแวดล้อมหรือใช้ซ้ำได้ โดยการกำจัดสิ่งเจือปน, สารพิษ, และจุลินทรีย์ที่เป็นอันตราย กระบวนการเหล่านี้มักเกี่ยวข้องกับการแยกของแข็ง, การย่อยสลายสารอินทรีย์, และการฆ่าเชื้อโรค",
-      en: "A wastewater treatment system is the process used to bring wastewater back to a quality suitable for release into the environment or for reuse, by removing impurities, toxins, and harmful microorganisms. These processes usually involve separating out solids, breaking down organic matter, and disinfection.",
-    },
-    images: ["/images/products/wastewater-treatment-system/1.webp"],
-    featured: false,
-    order: 13,
+    order: 7,
   },
 ];
 

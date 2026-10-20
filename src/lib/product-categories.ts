@@ -22,28 +22,20 @@ export interface ProductCategory {
 
 export const productCategories = [
   {
-    id: "frp-vertical-water-tank",
+    id: "frp-water-tank",
     title: {
-      th: "ถังเก็บน้ำไฟเบอร์กลาสทรงตั้ง",
-      en: "FRP Vertical Water Tank",
+      th: "ถังเก็บน้ำไฟเบอร์กลาส",
+      en: "FRP Water Tank",
     },
     order: 1,
   },
   {
-    id: "frp-horizontal-water-tank",
-    title: {
-      th: "ถังเก็บน้ำไฟเบอร์กลาสทรงนอน",
-      en: "FRP Horizontal Water Tank",
-    },
-    order: 2,
-  },
-  {
     id: "pe-water-tank",
     title: {
-      th: "ถังเก็บน้ำ PE บนดิน/ใต้ดิน",
-      en: "PE On Ground & Underground Water Tank",
+      th: "ถังเก็บน้ำ PE",
+      en: "PE Water Tank",
     },
-    order: 3,
+    order: 2,
   },
   {
     id: "frp-wastewater-treatment-tank",
@@ -51,29 +43,37 @@ export const productCategories = [
       th: "ถังบำบัดน้ำเสียไฟเบอร์กลาส",
       en: "FRP Wastewater Treatment Tank",
     },
+    order: 3,
+  },
+  {
+    id: "pe-septic-tank-grease-trap",
+    title: {
+      th: "ถังบำบัดน้ำเสีย PE และถังดักไขมัน",
+      en: "PE Septic Tank & Grease Trap",
+    },
     order: 4,
   },
   {
-    id: "septic-tank-grease-trap",
+    id: "epoxy-flooring",
     title: {
-      th: "ถังบำบัดน้ำเสีย PE และถังดักไขมัน",
-      en: "Septic Tank & Grease Trap",
+      th: "พื้นอีพ็อกซี่",
+      en: "Epoxy Flooring",
     },
     order: 5,
   },
   {
-    id: "epoxy-pu-flooring",
+    id: "polyurethane-concrete-flooring",
     title: {
-      th: "พื้นอีพ็อกซี่และพื้นพียู",
-      en: "Epoxy & PU Flooring",
+      th: "พื้นพียู",
+      en: "Polyurethane Concrete Flooring",
     },
     order: 6,
   },
   {
-    id: "water-solution",
+    id: "water-wastewater-treatment-system",
     title: {
-      th: "โซลูชันด้านน้ำ",
-      en: "Water Solution",
+      th: "ระบบน้ำดีและน้ำเสีย",
+      en: "Water & Wastewater Treatment System",
     },
     order: 7,
   },

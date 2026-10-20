@@ -4,6 +4,7 @@ import type { ProductSection } from "@/lib/product-sections";
 
 import { BulletListSection } from "./bullet-list-section";
 import { ContentSection } from "./content-section";
+import { GallerySection } from "./gallery-section";
 import { ImageGridSection } from "./image-grid-section";
 import { OrderedListSection } from "./ordered-list-section";
 import { ParagraphSection } from "./paragraph-section";
@@ -31,6 +32,29 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
     const headingId = `product-section-${section.id ?? index}`;
 
     switch (section.type) {
+      case "divider":
+        // The page already closes with the related-products strip's own rule.
+        return index < sections.length - 1 ? (
+          // Pulled up into the page's section gap so it sits under the variant
+          // it closes rather than floating midway to the next one.
+          <div
+            key={headingId}
+            aria-hidden
+            className="mx-auto -mt-10 h-px w-64 rounded-full bg-primary"
+          />
+        ) : null;
+
+      case "gallery":
+        return (
+          <FadeInUp key={headingId}>
+            <GallerySection
+              section={section}
+              locale={locale}
+              headingId={headingId}
+            />
+          </FadeInUp>
+        );
+
       case "specTable":
         return (
           <FadeInUp key={headingId}>
@@ -94,8 +118,12 @@ export function ProductSections({ sections, locale }: ProductSectionsProps) {
               locale={locale}
               headingId={headingId}
               // The last section on the page needs no close of its own - the
-              // related-products strip right after it already draws one.
-              showDivider={index < sections.length - 1}
+              // related-products strip right after it already draws one. Nor does
+              // one that a variant's own divider follows.
+              showDivider={
+                index < sections.length - 1 &&
+                sections[index + 1].type !== "divider"
+              }
             />
           </FadeInUp>
         );

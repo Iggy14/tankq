@@ -29,11 +29,13 @@ export function Header() {
   // Category names are content, not chrome, so they are read from the data here
   // once and handed to both menus - the same reason MobileNav takes its labels
   // as props rather than translating them itself.
-  // A category with 2+ products also lists them (shown indented under it); one
-  // with a single product already links straight to it via categoryHref, so it
-  // lists none.
+  // A category with 2+ products lists them (shown indented under it). A single
+  // merged-page product (the FRP tank, say) instead lists its variants, each a
+  // link to that variant's section on the same page. Any other category links
+  // straight to its one product via categoryHref and lists nothing.
   const categories: ProductNavCategory[] = getAllProductCategories().map((category) => {
     const products = getProductsByCategory(category.id);
+    const [only] = products;
     return {
       id: category.id,
       label: category.title[locale],
@@ -44,7 +46,10 @@ export function Header() {
               href: `/products/${product.slug}`,
               label: product.title[locale],
             }))
-          : [],
+          : (only?.sectionLinks ?? []).map((link) => ({
+              href: `/products/${only.slug}#product-section-${link.sectionId}`,
+              label: link.label[locale],
+            })),
     };
   });
 
