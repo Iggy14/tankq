@@ -625,6 +625,16 @@ drift from the visible contact details), `Product` on each product page, and
 product appears automatically but a new top-level page needs adding to
 `staticPaths`. `/projects` is deliberately absent while it is unlinked.
 
+## Analytics (Google Tag Manager)
+
+The TANK-Q container ID is `gtmId` in `src/lib/site.ts`. The loader and the
+`<noscript>` fallback are `GtmScript` / `GtmNoscript` in
+`src/components/google-tag-manager.tsx`, rendered once each in
+`src/app/[locale]/layout.tsx` (so every page, both locales). Do not add the
+snippet anywhere else, or the container loads twice. Ads conversions (phone
+and LINE clicks) are configured inside GTM itself; push to `window.dataLayer`
+from a click handler only if a GTM trigger needs a custom event.
+
 ## Static assets
 
 `public/` holds `brand/`, `hero/`, `home/`, `about/`, `why/`, `footer/`,

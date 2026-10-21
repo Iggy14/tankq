@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 
 import { FloatingContact } from "@/components/floating-contact";
 import { Footer } from "@/components/footer";
+import { GtmNoscript, GtmScript } from "@/components/google-tag-manager";
 import { Header } from "@/components/header";
 import { OrganizationJsonLd } from "@/components/organization-json-ld";
 import { ScrollToTop } from "@/components/scroll-to-top";
@@ -75,7 +76,11 @@ export default async function LocaleLayout({
       // expected and this is the tool's documented way to silence it.
       suppressHydrationWarning
     >
+      <head>
+        <GtmScript />
+      </head>
       <body className="flex min-h-full flex-col bg-background text-foreground">
+        <GtmNoscript />
         {/* The scroll reveals are server-rendered at opacity: 0 and only
             cleared once Motion hydrates. If the script never runs the page
             would look empty, so drop the hidden start state outright. */}

@@ -10,6 +10,9 @@ import { routing } from "@/i18n/routing";
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.tankq-solution.com";
 
+/** Google Tag Manager container (TANK-Q), installed once in the root layout. */
+export const gtmId = "GTM-N37ZG3P9";
+
 /**
  * Builds `generateMetadata`'s `alternates` for a page, given its locale-less
  * pathname (`""` for the home page, `"/about"`, `/products/${slug}`, ...).
