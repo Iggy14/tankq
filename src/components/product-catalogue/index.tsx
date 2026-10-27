@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import {
   CATEGORY_PARAM,
   parseActiveCategory,
+  type CategoryLink,
 } from "@/lib/product-category-url";
 import type { Product } from "@/lib/products";
 
@@ -17,6 +18,8 @@ export { CatalogueView };
 type ProductCatalogueProps = {
   /** The full catalogue, in listing order - the page passes `getAllProducts()`. */
   products: Product[];
+  /** The page passes `getCategoryLinks()`. */
+  categories: CategoryLink[];
 };
 
 /**
@@ -31,8 +34,20 @@ type ProductCatalogueProps = {
  * the whole grid in the build-time HTML instead of a skeleton. `useSearchParams`
  * is locale-agnostic, hence `next/navigation` rather than `@/i18n/navigation`.
  */
-export function ProductCatalogue({ products }: ProductCatalogueProps) {
-  const active = parseActiveCategory(useSearchParams().get(CATEGORY_PARAM));
+export function ProductCatalogue({
+  products,
+  categories,
+}: ProductCatalogueProps) {
+  const active = parseActiveCategory(
+    useSearchParams().get(CATEGORY_PARAM),
+    categories.map((category) => category.id),
+  );
 
-  return <CatalogueView products={products} active={active} />;
+  return (
+    <CatalogueView
+      products={products}
+      categories={categories}
+      active={active}
+    />
+  );
 }

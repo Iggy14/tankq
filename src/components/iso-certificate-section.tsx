@@ -5,39 +5,51 @@ import Image from "next/image";
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { Link } from "@/i18n/navigation";
 import { categoryHref } from "@/lib/product-category-url";
+import { getProductsByCategory } from "@/lib/products";
+
+type Href = ReturnType<typeof categoryHref>;
 
 /**
  * The four expertise cards, in display order. Each links straight to the
  * catalogue entry it represents rather than a decorative placeholder - see
  * `src/lib/product-categories.ts` and `src/lib/products.ts` for the ids.
  * Water storage spans three separate tank categories, so it points at the
- * unfiltered listing rather than any single one of them.
+ * unfiltered listing rather than any single one of them. The flooring card's
+ * href depends on the catalogue (one product skips the listing), so it is
+ * passed in.
  */
-const CARDS = [
-  { key: "waterStorage", Icon: Cylinder, href: "/products" },
-  {
-    key: "wastewaterTreatment",
-    Icon: Waves,
-    href: "/products/water-wastewater-treatment-system#product-section-wastewater-treatment-system",
-  },
-  {
-    key: "waterTreatment",
-    Icon: Filter,
-    href: "/products/water-wastewater-treatment-system#product-section-water-treatment-system",
-  },
-  {
-    key: "industrialFlooring",
-    Icon: Layers3,
-    href: categoryHref("epoxy-flooring"),
-  },
-] as const;
+function expertiseCards(flooringHref: Href) {
+  return [
+    { key: "waterStorage", Icon: Cylinder, href: "/products" },
+    {
+      key: "wastewaterTreatment",
+      Icon: Waves,
+      href: "/products/water-wastewater-treatment-system#product-section-wastewater-treatment-system",
+    },
+    {
+      key: "waterTreatment",
+      Icon: Filter,
+      href: "/products/water-wastewater-treatment-system#product-section-water-treatment-system",
+    },
+    { key: "industrialFlooring", Icon: Layers3, href: flooringHref },
+  ] as const;
+}
 
 /**
  * Home page banner between the hero and `<WhyTankQ>`: the ISO 9001:2015
  * certificate over a treatment-plant photo, with the four expertise areas as
  * real, linkable cards rather than baked into a picture.
  */
-export function IsoCertificateSection() {
+export async function IsoCertificateSection() {
+  const flooringHref = categoryHref(
+    "epoxy-flooring",
+    await getProductsByCategory("epoxy-flooring"),
+  );
+
+  return <IsoCertificateView flooringHref={flooringHref} />;
+}
+
+function IsoCertificateView({ flooringHref }: { flooringHref: Href }) {
   const t = useTranslations("home.isoCertificate");
 
   return (
@@ -72,7 +84,7 @@ export function IsoCertificateSection() {
         </FadeInUp>
 
         <FadeInUpGroup className="grid w-full grid-cols-2 gap-5 sm:gap-8 lg:grid-cols-4">
-          {CARDS.map(({ key, Icon, href }) => (
+          {expertiseCards(flooringHref).map(({ key, Icon, href }) => (
             <FadeInUp key={key}>
               <Link
                 href={href}

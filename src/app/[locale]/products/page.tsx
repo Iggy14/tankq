@@ -8,6 +8,7 @@ import {
   CatalogueView,
   ProductCatalogue,
 } from "@/components/product-catalogue";
+import { getCategoryLinks } from "@/lib/product-category-url";
 import { getAllProducts } from "@/lib/products";
 import { pageMetadata } from "@/lib/site";
 
@@ -34,7 +35,10 @@ export default async function ProductsPage({
   const t = await getTranslations("products");
   const tNav = await getTranslations("nav");
 
-  const allProducts = getAllProducts();
+  const [allProducts, categories] = await Promise.all([
+    getAllProducts(),
+    getCategoryLinks(),
+  ]);
 
   return (
     <>
@@ -57,8 +61,16 @@ export default async function ProductsPage({
             prerender. The fallback is the same view at "all", so the build-time
             HTML carries every card and pill rather than a skeleton, and a visit
             with no query renders identically before and after hydration. */}
-        <Suspense fallback={<CatalogueView products={allProducts} active="all" />}>
-          <ProductCatalogue products={allProducts} />
+        <Suspense
+          fallback={
+            <CatalogueView
+              products={allProducts}
+              categories={categories}
+              active="all"
+            />
+          }
+        >
+          <ProductCatalogue products={allProducts} categories={categories} />
         </Suspense>
       </section>
     </>

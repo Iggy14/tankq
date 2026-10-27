@@ -1,8 +1,15 @@
+import { cache } from "react";
+
 import type { Localized } from "./localized";
-import type {
-  ProjectApplicationId,
-  ProjectTankTypeId,
+import {
+  getAllProjectApplications,
+  getAllProjectTankTypes,
+  type ProjectApplicationId,
+  type ProjectTag,
+  type ProjectTankTypeId,
 } from "./project-tags";
+import { fetchWpProjects } from "./wp/catalogue";
+import { isWpEnabled } from "./wp/client";
 
 /**
  * Project showcase data - completed jobs, told as short case studies.
@@ -12,6 +19,11 @@ import type {
  * The message files stay reserved for static UI chrome.
  *
  * Every entry is a real delivered job. Do not add speculative ones.
+ *
+ * Projects come from WordPress when `WP_API_URL` is set and from the `projects`
+ * array below otherwise. The accessors are async because of that, and they
+ * return each project with its two labels already resolved (`tankType`,
+ * `application`), so a renderer never looks a tag up itself.
  */
 
 export interface Project {
@@ -23,6 +35,10 @@ export interface Project {
   tankTypeId: ProjectTankTypeId;
   /** What the tank is used for - see `src/lib/project-tags.ts`. */
   applicationId: ProjectApplicationId;
+  /** `tankTypeId` resolved to its label. Set by the accessors, not by the data. */
+  tankType?: ProjectTag;
+  /** `applicationId` resolved to its label. Set by the accessors, not by the data. */
+  application?: ProjectTag;
   /** The customer's sector. Free text, since it varies job to job. */
   industry: Localized;
   /** The province the job was delivered in. */
@@ -120,15 +136,31 @@ export const projects: Project[] = [
   },
 ];
 
+const loadProjects = cache(async (): Promise<Project[]> => {
+  const [source, tankTypes, applications] = await Promise.all([
+    isWpEnabled() ? fetchWpProjects(projects) : projects,
+    getAllProjectTankTypes(),
+    getAllProjectApplications(),
+  ]);
+
+  return source.map((project) => ({
+    ...project,
+    tankType: tankTypes.find((tag) => tag.id === project.tankTypeId),
+    application: applications.find((tag) => tag.id === project.applicationId),
+  }));
+});
+
 /** The full showcase in listing order, newest job first. */
-export function getAllProjects(): Project[] {
-  return [...projects].sort((a, b) => a.order - b.order);
+export async function getAllProjects(): Promise<Project[]> {
+  return [...(await loadProjects())].sort((a, b) => a.order - b.order);
 }
 
-export function getProjectBySlug(slug: string): Project | undefined {
-  return projects.find((project) => project.slug === slug);
+export async function getProjectBySlug(
+  slug: string,
+): Promise<Project | undefined> {
+  return (await loadProjects()).find((project) => project.slug === slug);
 }
 
-export function getFeaturedProjects(): Project[] {
-  return getAllProjects().filter((project) => project.featured);
+export async function getFeaturedProjects(): Promise<Project[]> {
+  return (await getAllProjects()).filter((project) => project.featured);
 }

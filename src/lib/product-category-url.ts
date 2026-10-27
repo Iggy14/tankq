@@ -1,5 +1,9 @@
-import { productCategories, type ProductCategoryId } from "./product-categories";
-import { getProductsByCategory } from "./products";
+import type { Localized } from "./localized";
+import {
+  getAllProductCategories,
+  type ProductCategoryId,
+} from "./product-categories";
+import { getAllProducts } from "./products";
 
 /**
  * The `?category=` contract for the products listing page.
@@ -17,20 +21,19 @@ export const CATEGORY_PARAM = "category";
 /** What the listing page is currently showing. */
 export type ActiveCategory = ProductCategoryId | "all";
 
-function isProductCategoryId(value: string): value is ProductCategoryId {
-  return productCategories.some((category) => category.id === value);
-}
-
 /**
- * Reads a raw query value into a selection.
+ * Reads a raw query value into a selection, given the ids that exist.
  *
  * Anything unrecognised - a typo, a stale link, a removed category - falls back
- * to "all" rather than leaving the visitor on an empty grid.
+ * to "all" rather than leaving the visitor on an empty grid. The valid ids are
+ * passed in because they come from the CMS, so this stays a pure function a
+ * client component can call.
  */
 export function parseActiveCategory(
   value: string | null | undefined,
+  validIds: readonly string[],
 ): ActiveCategory {
-  return value && isProductCategoryId(value) ? value : "all";
+  return value && validIds.includes(value) ? value : "all";
 }
 
 /**
@@ -49,12 +52,41 @@ export function productsHref(category: ActiveCategory) {
  * Where a category link should go. A category with exactly one product skips
  * the listing and points at that product's detail page; anything else (several
  * products, or none, which still shows `products.emptyCategory`) filters the
- * listing as usual. Resolved at build time from static data, so the link stays
- * a plain crawlable href.
+ * listing as usual. Pass the products in that category.
  */
-export function categoryHref(category: ProductCategoryId) {
-  const inCategory = getProductsByCategory(category);
+export function categoryHref(
+  category: ProductCategoryId,
+  inCategory: readonly { slug: string }[],
+) {
   return inCategory.length === 1
     ? `/products/${inCategory[0].slug}`
     : productsHref(category);
+}
+
+/** One category as the pills and menus need it: label data and a ready href. */
+export interface CategoryLink {
+  id: ProductCategoryId;
+  title: Localized;
+  href: ReturnType<typeof categoryHref>;
+}
+
+/**
+ * Every category with its href, in listing order. Resolved on the server and
+ * handed down as plain data, since the filter pills are a client component and
+ * cannot read the catalogue themselves.
+ */
+export async function getCategoryLinks(): Promise<CategoryLink[]> {
+  const [categories, products] = await Promise.all([
+    getAllProductCategories(),
+    getAllProducts(),
+  ]);
+
+  return categories.map((category) => ({
+    id: category.id,
+    title: category.title,
+    href: categoryHref(
+      category.id,
+      products.filter((product) => product.categoryId === category.id),
+    ),
+  }));
 }

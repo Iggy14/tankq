@@ -16,9 +16,11 @@ same task. Do not document one-off components or anything obvious from the code.
 
 A bilingual (Thai / English) marketing and catalogue site for TankQ, an FRP
 tank manufacturer. Seven top-level pages plus a product detail page. No
-database, no API routes, no auth, and no form that posts anywhere yet. All
-content is static TypeScript data and JSON message files, so the whole site
-prerenders at build time.
+database of its own, no auth, and no form that posts anywhere yet. Content is
+either TypeScript data in `src/lib` or, when `WP_API_URL` is set, a headless
+WordPress (see "Content source" below); either way the pages prerender at build
+time. The only API route is `/api/revalidate`, which WordPress calls when an
+editor saves.
 
 ## Request path
 
@@ -56,7 +58,8 @@ src/app/
 - Locales come from `generateStaticParams` in the layout (`th`, `en`), product
   slugs from `generateStaticParams` in `products/[slug]/page.tsx`. Every route
   is prerendered. Keep new content sources build-time unless there is a reason
-  not to.
+  not to. A product added in WordPress after the build renders on its first
+  request (`dynamicParams` is on by default).
 - Pages are async server components typed with the generated
   `PageProps<"/...">` / `LayoutProps<"/...">` helpers. `params` is a Promise and
   must be awaited.
@@ -92,6 +95,9 @@ returns an `AppLocale` without a cast.
 Rule of thumb: if a marketing person would edit it per product, it is content.
 If it is the same on every page of that kind, it is chrome.
 
+Content may be stored in the data file or in WordPress; the `Localized` shape
+is the same either way. See "Content source".
+
 Message files are namespaced per page (`nav`, `common`, `home`, `products`,
 `about`, ..., `footer`) and shallow inside. A repeated UI block keeps its list
 in code and its copy under a key prefix: `hero/stats-strip.tsx` holds
@@ -103,12 +109,79 @@ Navigate with `Link` / `useRouter` / `usePathname` from `@/i18n/navigation`,
 never from `next/navigation` directly: those wrappers add and strip the locale
 prefix.
 
+## Content source (WordPress)
+
+Products, product categories, project showcase entries, project labels and
+services each have a built-in array in `src/lib` and a matching set of
+**async** accessors. Which one answers depends on one env var:
+
+| `WP_API_URL` | Source |
+| --- | --- |
+| unset | the built-in arrays - the site needs no CMS to build or run |
+| set | WordPress REST API (`src/lib/wp/`) |
+
+```
+src/lib/wp/client.ts      WP_TAG, isWpEnabled(), fetchWpPosts(restBase): tagged,
+                          paginated fetch of one post type
+src/lib/wp/fields.ts      readers for the loose `acf` object (readLocalized,
+                          readImages, readRelationId, ...) - never throw
+src/lib/wp/catalogue.ts   fetchWp* mappers: WordPress posts -> Product, Project,
+                          Service, ProductCategory, ProjectTag; slot counts
+wordpress/tankq-cms/      the WordPress plugin: post types, ACF field groups,
+                          the save webhook. Copy into wp-content/plugins
+scripts/migrate-to-wp.ts  one-off import of the arrays into WordPress
+src/app/api/revalidate/route.ts  POST, shared secret; expires WP_TAG
+```
+
+Rules for working in it:
+
+- **Callers use accessors, always `await`ed.** An accessor picks its source with
+  `isWpEnabled()` and memoizes with React `cache`. The arrays are exported only
+  for `scripts/migrate-to-wp.ts` and the fallback.
+- **A post's slug is the content id.** `product.id`, `product.slug` and the key
+  into `product-section-data.ts` are the same string, so keep them equal.
+- **Ids are plain strings.** `ProductCategoryId`, `ProjectTankTypeId` and
+  `ProjectApplicationId` used to be compile-time unions; WordPress supplies them
+  at runtime, so a typo no longer fails the build. Registries keyed by id
+  (`CATEGORY_ICONS` in `category-filter.tsx`) must fall back to a default.
+  `ProductSpecIconId` is still a union: the mapper checks the value against
+  `productSpecIcons` and drops an unknown icon.
+- **Still in code, even with WordPress on:** product detail sections
+  (`product-section-data.ts`), `Product.sectionLinks` and
+  `Product.galleryInSections`, and every merged-page gallery picture - they are
+  tied to each other. `fetchWpProducts` takes the built-in products as
+  `fallback` and copies `sectionLinks` / `galleryInSections` from the one with
+  the same slug; a product with no WordPress pictures also falls back to its
+  built-in `images`. A product created only in WordPress therefore has no
+  sections.
+- **Async has a shape.** A component that needs the catalogue and also uses
+  `useTranslations` is split: `export async function X()` fetches and renders
+  `XView` (sync, keeps the hooks) - see `header.tsx`, `featured-products.tsx`.
+  Client components cannot await, so the server passes plain data down:
+  `getCategoryLinks()` (`product-category-url.ts`) feeds the filter pills, and
+  `getAllProjects()` returns projects with `tankType` / `application` already
+  resolved.
+- **Images from WordPress are absolute URLs.** Use `absoluteUrl(src)`
+  (`src/lib/site.ts`), not `${siteUrl}${src}`. `next.config.ts` allow-lists the
+  `WP_API_URL` host for `next/image`.
+- **Freshness.** Every WordPress fetch carries `WP_TAG` and a 300 s
+  `revalidate`. The plugin POSTs to `/api/revalidate` on save, which expires the
+  tag; the timer only covers a missed webhook. A rebuild reuses the on-disk
+  fetch cache, so the timer also bounds how stale a build can be.
+- **Adding a WordPress-backed field:** add the ACF field in
+  `wordpress/tankq-cms/tankq-cms.php`, read it in `src/lib/wp/catalogue.ts`, and
+  write it in `scripts/migrate-to-wp.ts`. Repeating fields are numbered slots
+  (`image_1`..`image_12`, `spec_1_th`..) because repeaters need the paid ACF Pro;
+  raise a slot count in all three places together.
+- Environment variables are listed in `.env.example`.
+
 ## Product catalogue
 
 `src/lib/products.ts` holds the `Product[]` and the accessors
 (`getProductBySlug`, `getFeaturedProducts`, `getAllProducts`,
 `getRelatedProducts`, `getProductsByCategory`). Pages import the accessors,
-never the array, so the storage can change later without touching page code.
+never the array, so the storage can change without touching page code - and
+has: see "Content source".
 
 A `Product` carries `id`, `slug`, localized `title` and `description`, `images`
 (public paths, first is the cover), `featured`, `order`, and optionally
@@ -133,38 +206,41 @@ sensible icon still fits the row.
 ### Categories
 
 `src/lib/product-categories.ts` holds the top-level grouping every product
-belongs to: an `id`, a localized `title`, and an `order`. The array is declared
-`as const satisfies readonly ProductCategory[]`, so its ids collapse into the
-`ProductCategoryId` union that types `Product.categoryId` - a product naming a
-category that does not exist fails to compile. Read a category name as
-`category.title[locale]`, same as any other content.
+belongs to: an `id`, a localized `title`, and an `order`. `ProductCategoryId` is
+a plain `string` (the list may come from WordPress), so a product naming a
+category that does not exist matches no pill rather than failing to compile.
+Read a category name as `category.title[locale]`, same as any other content.
 
-Adding a category means adding a row there; adding a product means picking one
-of those ids. Group with `getProductsByCategory(id)`, list with
-`getAllProductCategories()`, resolve one with `getProductCategoryById(id)`. The
-accessors return `ProductCategoryEntry`, not the wider `ProductCategory`, so
-`category.id` stays the literal union at the call site.
+Adding a category means adding a row there (or a Product category in
+WordPress); adding a product means picking one of those ids. Group with
+`await getProductsByCategory(id)`, list with `await getAllProductCategories()`,
+resolve one with `await getProductCategoryById(id)`.
 
 The pill icons are a second registry - `CATEGORY_ICONS` in
-`product-catalogue/category-filter.tsx`, a
-`Record<ProductCategoryId, LucideIcon>` - so a new category needs a row in the
-data file *and* an icon there, or it fails to compile. Categories with no
-products still get a pill; selecting one shows `products.emptyCategory`.
+`product-catalogue/category-filter.tsx`, a `Record<string, LucideIcon>` - and a
+category with no row falls back to a default icon, so give a new category an
+icon there. Categories with no products still get a pill; selecting one shows
+`products.emptyCategory`.
 
 ### The `?category=` filter
 
 `src/lib/product-category-url.ts` is the contract: the `CATEGORY_PARAM` key, the
-`ActiveCategory` type (`ProductCategoryId | "all"`), `parseActiveCategory()`
-(anything unrecognised falls back to "all") and `productsHref()`. Three places
-read it - the listing pills, the header dropdown and the mobile menu - so it
-sits in `src/lib` rather than inside any one of them. `productsHref("all")`
-returns a bare string on purpose: next-intl serializes a `query` object
-unconditionally, so an empty one would leave a trailing "?" behind.
+`ActiveCategory` type (`ProductCategoryId | "all"`),
+`parseActiveCategory(value, validIds)` (anything unrecognised falls back to
+"all"; the valid ids are passed in because they may come from the CMS) and
+`productsHref()`. Three places read it - the listing pills, the header dropdown
+and the mobile menu - so it sits in `src/lib` rather than inside any one of
+them. `productsHref("all")` returns a bare string on purpose: next-intl
+serializes a `query` object unconditionally, so an empty one would leave a
+trailing "?" behind.
 
-Category links (pills, header dropdown, mobile menu) use `categoryHref(id)`, not
-`productsHref(id)`: a category holding exactly one product links straight to
-that product's detail page, everything else filters the listing. A direct
-`?category=<id>` URL still renders the filtered listing.
+Category links (pills, header dropdown, mobile menu) use
+`categoryHref(id, productsInCategory)`, not `productsHref(id)`: a category
+holding exactly one product links straight to that product's detail page,
+everything else filters the listing. A direct `?category=<id>` URL still renders
+the filtered listing. The pills are a client component and cannot read the
+catalogue, so the page calls `getCategoryLinks()` (the same file) and passes the
+result down as `categories: CategoryLink[]`.
 
 The selection lives in the URL rather than component state, because the header
 links into a category from any page. That shapes `product-catalogue/`:
@@ -426,20 +502,19 @@ newly added job - a renderer must cope with one that has no cover.
 
 The two labels on a card are ids, not free text. `src/lib/project-tags.ts`
 holds two registries - `projectTankTypes` (the kind of tank or job) and
-`projectApplications` (what the tank is used for) - each declared
-`as const satisfies readonly ProjectTag[]`, so their ids collapse into the
-`ProjectTankTypeId` and `ProjectApplicationId` unions that type
-`Project.tankTypeId` and `Project.applicationId`. A new label needs a row in
-that file before a project can name it, or it fails to compile. List with
-`getAllProjectTankTypes()` / `getAllProjectApplications()`, resolve one for
-display with `getProjectTankTypeById(id)` / `getProjectApplicationById(id)` and
-read it as `tag.title[locale]`.
+`projectApplications` (what the tank is used for). `ProjectTankTypeId` and
+`ProjectApplicationId` are plain strings (WordPress can supply the lists), so a
+project naming a label that does not exist shows no pill for it. List with
+`await getAllProjectTankTypes()` / `getAllProjectApplications()`, resolve one
+with `getProjectTankTypeById(id)` / `getProjectApplicationById(id)`, and read it
+as `tag.title[locale]`. The project accessors already do this: each `Project`
+they return carries `tankType` and `application` resolved.
 
 Two components render a project, so both stay in step with the data:
 
 - `ProjectTagPills` (`src/components/project-tag-pills.tsx`) draws the two
-  labels from a `tankTypeId` / `applicationId` pair. Any block showing a
-  project's labels uses it rather than repeating the pill markup.
+  resolved labels (`project.tankType`, `project.application`). Any block
+  showing a project's labels uses it rather than repeating the pill markup.
 - `ProjectCard` (`src/components/project-card.tsx`) is the tile: cover, title
   and those pills. It is deliberately *not* a link - there is no
   `/projects/<slug>` route - so it carries none of `ProductCard`'s hover
@@ -457,7 +532,7 @@ the homepage as soon as it carries `featured: true`.
 ## Service sections
 
 `src/lib/services.ts` holds the `Service[]` behind `/service`, listed by
-`getAllServices()`. One entry is one after-sales service: a localized `title`,
+`await getAllServices()` (from WordPress when `WP_API_URL` is set). One entry is one after-sales service: a localized `title`,
 a one-line `description`, a short `points` list rendered as ticks, and an
 `image` / `imageAlt` pair. It is content, not chrome, so both locales live
 inline and the page reads `service.title[locale]`; nothing here belongs in

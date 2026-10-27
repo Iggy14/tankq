@@ -7,14 +7,17 @@ type ServiceSectionsProps = {
 };
 
 /**
- * The body of the service page: every entry in `src/lib/services.ts`, rendered
- * as a photo-and-copy row with the sides alternating down the page. Adding a
- * service is one array entry - the side it lands on follows from its position.
+ * The body of the service page: every service from `src/lib/services.ts`,
+ * rendered as a photo-and-copy row with the sides alternating down the page.
+ * Adding a service is one entry - the side it lands on follows from its
+ * position.
  */
-export function ServiceSections({ locale }: ServiceSectionsProps) {
+export async function ServiceSections({ locale }: ServiceSectionsProps) {
+  const services = await getAllServices();
+
   return (
     <div className="pb-8 sm:pb-12">
-      {getAllServices().map((service, index) => (
+      {services.map((service, index) => (
         <ServiceSection
           key={service.id}
           service={service}

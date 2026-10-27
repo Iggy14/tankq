@@ -1,7 +1,11 @@
+import { cache } from "react";
+
 import type { Localized } from "./localized";
 import type { ProductCategoryId } from "./product-categories";
 import type { ProductSectionLink } from "./product-sections";
 import type { ProductSpec } from "./product-specs";
+import { fetchWpProducts } from "./wp/catalogue";
+import { isWpEnabled } from "./wp/client";
 
 // Re-exported so callers can keep reaching for it alongside `Product`.
 export type { Localized };
@@ -17,6 +21,13 @@ export type { Localized };
  *
  * Detail-page sections are not stored here - they live in
  * `src/lib/product-section-data.ts`, keyed by `Product.id`.
+ *
+ * The catalogue comes from WordPress when `WP_API_URL` is set and from the
+ * `products` array below otherwise. Callers go through the accessors, which are
+ * async because of that; the array is exported only for the migration script.
+ * With WordPress as the source, `sectionLinks` and `galleryInSections` still
+ * come from this array, matched by slug, because they point at the section
+ * data in code.
  */
 
 export interface Product {
@@ -292,17 +303,24 @@ export const products: Product[] = [
   },
 ];
 
-export function getProductBySlug(slug: string): Product | undefined {
-  return products.find((product) => product.slug === slug);
+const loadProducts = cache(
+  async (): Promise<Product[]> =>
+    isWpEnabled() ? fetchWpProducts(products) : products,
+);
+
+export async function getProductBySlug(
+  slug: string,
+): Promise<Product | undefined> {
+  return (await loadProducts()).find((product) => product.slug === slug);
 }
 
-export function getFeaturedProducts(): Product[] {
-  return products.filter((product) => product.featured);
+export async function getFeaturedProducts(): Promise<Product[]> {
+  return (await getAllProducts()).filter((product) => product.featured);
 }
 
 /** The full catalogue in listing order. */
-export function getAllProducts(): Product[] {
-  return [...products].sort((a, b) => a.order - b.order);
+export async function getAllProducts(): Promise<Product[]> {
+  return [...(await loadProducts())].sort((a, b) => a.order - b.order);
 }
 
 /**
@@ -311,8 +329,11 @@ export function getAllProducts(): Product[] {
  * strip at the foot of a detail page. Falls back to filling from the rest
  * of the catalogue if `slug` is itself one of the featured products.
  */
-export function getRelatedProducts(slug: string, limit = 3): Product[] {
-  const featured = getFeaturedProducts().filter(
+export async function getRelatedProducts(
+  slug: string,
+  limit = 3,
+): Promise<Product[]> {
+  const featured = (await getFeaturedProducts()).filter(
     (product) => product.slug !== slug,
   );
 
@@ -320,7 +341,7 @@ export function getRelatedProducts(slug: string, limit = 3): Product[] {
     return featured.slice(0, limit);
   }
 
-  const fallback = getAllProducts().filter(
+  const fallback = (await getAllProducts()).filter(
     (product) =>
       product.slug !== slug &&
       !featured.some((featuredProduct) => featuredProduct.id === product.id),
@@ -330,8 +351,10 @@ export function getRelatedProducts(slug: string, limit = 3): Product[] {
 }
 
 /** Every product in the given category, in listing order. */
-export function getProductsByCategory(
+export async function getProductsByCategory(
   categoryId: ProductCategoryId,
-): Product[] {
-  return getAllProducts().filter((product) => product.categoryId === categoryId);
+): Promise<Product[]> {
+  return (await getAllProducts()).filter(
+    (product) => product.categoryId === categoryId,
+  );
 }

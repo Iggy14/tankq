@@ -1,4 +1,8 @@
+import { cache } from "react";
+
 import type { Localized } from "./localized";
+import { fetchWpApplications, fetchWpTankTypes } from "./wp/catalogue";
+import { isWpEnabled } from "./wp/client";
 
 /**
  * Project label data.
@@ -7,9 +11,10 @@ import type { Localized } from "./localized";
  * what the tank is used for. Both are dynamic content - the names live inline
  * in both locales and are read as `tag.title[locale]`, not through next-intl.
  *
- * The two arrays below are the registries. A project in `src/lib/projects.ts`
- * points at one id from each, and the ids are frozen into their own unions, so
- * a project naming a label that does not exist is a compile error.
+ * The two arrays below are the built-in registries, used when `WP_API_URL` is
+ * not set; WordPress supplies the same two lists otherwise. A project in
+ * `src/lib/projects.ts` points at one id from each. The ids are plain strings,
+ * so a project naming a label that does not exist shows no pill for it.
  */
 
 export interface ProjectTag {
@@ -21,7 +26,7 @@ export interface ProjectTag {
 }
 
 /** The kind of tank or job - the first label on a project card. */
-export const projectTankTypes = [
+export const projectTankTypes: ProjectTag[] = [
   {
     id: "frp-horizontal-tank",
     title: {
@@ -38,10 +43,10 @@ export const projectTankTypes = [
     },
     order: 2,
   },
-] as const satisfies readonly ProjectTag[];
+];
 
 /** What the tank is used for - the second label on a project card. */
-export const projectApplications = [
+export const projectApplications: ProjectTag[] = [
   {
     id: "custom",
     title: {
@@ -58,44 +63,44 @@ export const projectApplications = [
     },
     order: 2,
   },
-] as const satisfies readonly ProjectTag[];
+];
 
-/** One row of `projectTankTypes`, with its `id` narrowed to its own literal. */
-export type ProjectTankTypeEntry = (typeof projectTankTypes)[number];
+/** A tank type id: a WordPress post slug, or the `id` of a built-in row. */
+export type ProjectTankTypeId = string;
 
-/** Every tank type id declared above - the type of `Project.tankTypeId`. */
-export type ProjectTankTypeId = ProjectTankTypeEntry["id"];
+/** An application id: a WordPress post slug, or the `id` of a built-in row. */
+export type ProjectApplicationId = string;
 
-/** One row of `projectApplications`, with its `id` narrowed to its own literal. */
-export type ProjectApplicationEntry = (typeof projectApplications)[number];
+const loadTankTypes = cache(
+  async (): Promise<ProjectTag[]> =>
+    isWpEnabled() ? fetchWpTankTypes() : projectTankTypes,
+);
 
-/** Every application id declared above - the type of `Project.applicationId`. */
-export type ProjectApplicationId = ProjectApplicationEntry["id"];
+const loadApplications = cache(
+  async (): Promise<ProjectTag[]> =>
+    isWpEnabled() ? fetchWpApplications() : projectApplications,
+);
 
-/**
- * The tank types in listing order.
- *
- * Returns the entries rather than the wider `ProjectTag`, so a caller keying
- * something off `tag.id` - a filter's icon map, say - gets the
- * `ProjectTankTypeId` union and not a bare `string`.
- */
-export function getAllProjectTankTypes(): readonly ProjectTankTypeEntry[] {
-  return [...projectTankTypes].sort((a, b) => a.order - b.order);
+/** The tank types in listing order. */
+export async function getAllProjectTankTypes(): Promise<ProjectTag[]> {
+  return [...(await loadTankTypes())].sort((a, b) => a.order - b.order);
 }
 
-export function getProjectTankTypeById(
+export async function getProjectTankTypeById(
   id: ProjectTankTypeId,
-): ProjectTankTypeEntry | undefined {
-  return projectTankTypes.find((tankType) => tankType.id === id);
+): Promise<ProjectTag | undefined> {
+  return (await loadTankTypes()).find((tankType) => tankType.id === id);
 }
 
-/** The applications in listing order. See `getAllProjectTankTypes` on why the entry type. */
-export function getAllProjectApplications(): readonly ProjectApplicationEntry[] {
-  return [...projectApplications].sort((a, b) => a.order - b.order);
+/** The applications in listing order. */
+export async function getAllProjectApplications(): Promise<ProjectTag[]> {
+  return [...(await loadApplications())].sort((a, b) => a.order - b.order);
 }
 
-export function getProjectApplicationById(
+export async function getProjectApplicationById(
   id: ProjectApplicationId,
-): ProjectApplicationEntry | undefined {
-  return projectApplications.find((application) => application.id === id);
+): Promise<ProjectTag | undefined> {
+  return (await loadApplications()).find(
+    (application) => application.id === id,
+  );
 }

@@ -1,4 +1,8 @@
+import { cache } from "react";
+
 import type { Localized } from "./localized";
+import { fetchWpCategories } from "./wp/catalogue";
+import { isWpEnabled } from "./wp/client";
 
 /**
  * Product category data.
@@ -8,8 +12,10 @@ import type { Localized } from "./localized";
  * read as `category.title[locale]`, not through next-intl.
  *
  * Every product in `src/lib/products.ts` carries a `categoryId` pointing at one
- * of the ids below. The ids are frozen into `ProductCategoryId`, so a product
- * naming a category that does not exist is a compile error.
+ * of these. The list comes from WordPress when `WP_API_URL` is set and from the
+ * array below otherwise, so the ids are plain strings: a product naming a
+ * category that does not exist is no longer a compile error, it just matches no
+ * category pill.
  */
 
 export interface ProductCategory {
@@ -20,7 +26,7 @@ export interface ProductCategory {
   order: number;
 }
 
-export const productCategories = [
+export const productCategories: ProductCategory[] = [
   {
     id: "frp-water-tank",
     title: {
@@ -77,27 +83,23 @@ export const productCategories = [
     },
     order: 7,
   },
-] as const satisfies readonly ProductCategory[];
+];
 
-/** One row of the array above, with its `id` narrowed to its own literal. */
-export type ProductCategoryEntry = (typeof productCategories)[number];
+/** A category id: a WordPress post slug, or the `id` of a built-in row. */
+export type ProductCategoryId = string;
 
-/** Every id declared above, as a union - the type of `Product.categoryId`. */
-export type ProductCategoryId = ProductCategoryEntry["id"];
+const loadCategories = cache(
+  async (): Promise<ProductCategory[]> =>
+    isWpEnabled() ? fetchWpCategories() : productCategories,
+);
 
-/**
- * The full list in listing order.
- *
- * Returns the entries rather than the wider `ProductCategory`, so a caller
- * keying something off `category.id` - the listing page's icon map, say - gets
- * the `ProductCategoryId` union and not a bare `string`.
- */
-export function getAllProductCategories(): readonly ProductCategoryEntry[] {
-  return [...productCategories].sort((a, b) => a.order - b.order);
+/** The full list in listing order. */
+export async function getAllProductCategories(): Promise<ProductCategory[]> {
+  return [...(await loadCategories())].sort((a, b) => a.order - b.order);
 }
 
-export function getProductCategoryById(
+export async function getProductCategoryById(
   id: ProductCategoryId,
-): ProductCategoryEntry | undefined {
-  return productCategories.find((category) => category.id === id);
+): Promise<ProductCategory | undefined> {
+  return (await loadCategories()).find((category) => category.id === id);
 }

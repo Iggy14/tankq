@@ -17,13 +17,9 @@ import type { ComponentProps } from "react";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
 import {
-  getAllProductCategories,
-  type ProductCategoryId,
-} from "@/lib/product-categories";
-import {
-  categoryHref,
   productsHref,
   type ActiveCategory,
+  type CategoryLink,
 } from "@/lib/product-category-url";
 import { cn } from "@/lib/utils";
 
@@ -32,10 +28,11 @@ import { cn } from "@/lib/utils";
  * `src/lib/product-categories.ts`, which stays pure content - the same split
  * `hero/stats-strip.tsx` makes.
  *
- * Keyed by the frozen `ProductCategoryId` union: adding a category without
- * choosing an icon fails to compile instead of rendering a blank pill.
+ * Keyed by category id. Categories now come from the CMS, so a new one has no
+ * row here until someone adds it; it falls back to `DEFAULT_CATEGORY_ICON`
+ * instead of rendering a blank pill.
  */
-const CATEGORY_ICONS: Record<ProductCategoryId, LucideIcon> = {
+const CATEGORY_ICONS: Record<string, LucideIcon> = {
   "frp-water-tank": Cylinder,
   "pe-water-tank": Database,
   "frp-wastewater-treatment-tank": Recycle,
@@ -45,7 +42,11 @@ const CATEGORY_ICONS: Record<ProductCategoryId, LucideIcon> = {
   "water-wastewater-treatment-system": Droplets,
 };
 
+const DEFAULT_CATEGORY_ICON: LucideIcon = Layers3;
+
 type CategoryFilterProps = {
+  /** Every category with its href, in listing order - see `getCategoryLinks`. */
+  categories: CategoryLink[];
   active: ActiveCategory;
 };
 
@@ -56,10 +57,9 @@ type CategoryFilterProps = {
  * real destination that can be shared, opened in a new tab and reached by the
  * back button - and the row still works before the page hydrates.
  */
-export function CategoryFilter({ active }: CategoryFilterProps) {
+export function CategoryFilter({ categories, active }: CategoryFilterProps) {
   const t = useTranslations("products");
   const locale = toAppLocale(useLocale());
-  const categories = getAllProductCategories();
 
   return (
     <div
@@ -77,10 +77,10 @@ export function CategoryFilter({ active }: CategoryFilterProps) {
       {categories.map((category) => (
         <Pill
           key={category.id}
-          Icon={CATEGORY_ICONS[category.id]}
+          Icon={CATEGORY_ICONS[category.id] ?? DEFAULT_CATEGORY_ICON}
           label={category.title[locale]}
           isActive={active === category.id}
-          href={categoryHref(category.id)}
+          href={category.href}
         />
       ))}
     </div>

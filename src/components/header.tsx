@@ -10,9 +10,12 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 import { toAppLocale } from "@/i18n/locale";
-import { getAllProductCategories } from "@/lib/product-categories";
+import {
+  getAllProductCategories,
+  type ProductCategory,
+} from "@/lib/product-categories";
 import { categoryHref } from "@/lib/product-category-url";
-import { getProductsByCategory } from "@/lib/products";
+import { getAllProducts, type Product } from "@/lib/products";
 
 const navItems = [
   { href: "/", key: "home" },
@@ -22,7 +25,25 @@ const navItems = [
   { href: "/service", key: "service" },
 ] as const;
 
-export function Header() {
+/**
+ * The site header. The catalogue is async (it may come from the CMS), so this
+ * reads it and hands it to `HeaderView`, which keeps the translation hooks.
+ */
+export async function Header() {
+  const [allCategories, allProducts] = await Promise.all([
+    getAllProductCategories(),
+    getAllProducts(),
+  ]);
+
+  return <HeaderView allCategories={allCategories} allProducts={allProducts} />;
+}
+
+type HeaderViewProps = {
+  allCategories: ProductCategory[];
+  allProducts: Product[];
+};
+
+function HeaderView({ allCategories, allProducts }: HeaderViewProps) {
   const t = useTranslations();
   const locale = toAppLocale(useLocale());
 
@@ -33,13 +54,15 @@ export function Header() {
   // merged-page product (the FRP tank, say) instead lists its variants, each a
   // link to that variant's section on the same page. Any other category links
   // straight to its one product via categoryHref and lists nothing.
-  const categories: ProductNavCategory[] = getAllProductCategories().map((category) => {
-    const products = getProductsByCategory(category.id);
+  const categories: ProductNavCategory[] = allCategories.map((category) => {
+    const products = allProducts.filter(
+      (product) => product.categoryId === category.id,
+    );
     const [only] = products;
     return {
       id: category.id,
       label: category.title[locale],
-      href: categoryHref(category.id),
+      href: categoryHref(category.id, products),
       products:
         products.length > 1
           ? products.map((product) => ({

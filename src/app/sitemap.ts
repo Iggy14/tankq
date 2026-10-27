@@ -12,10 +12,11 @@ const staticPaths = ["", "/products", "/about", "/quality", "/service", "/contac
  * One entry per locale per page, each pointing at its translations through
  * `alternates.languages` so search engines treat /th and /en as a pair.
  */
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const products = await getAllProducts();
   const paths = [
     ...staticPaths.map((path) => ({ path, priority: path === "" ? 1 : 0.8 })),
-    ...getAllProducts().map((product) => ({
+    ...products.map((product) => ({
       path: `/products/${product.slug}`,
       priority: 0.7,
     })),

@@ -1,7 +1,12 @@
+import { cache } from "react";
+
 import type { Localized } from "./localized";
+import { fetchWpServices } from "./wp/catalogue";
+import { isWpEnabled } from "./wp/client";
 
 /**
- * The after-sales services listed on `/service`.
+ * The after-sales services listed on `/service`. They come from WordPress when
+ * `WP_API_URL` is set and from the `services` array below otherwise.
  *
  * Service copy is dynamic content, not page chrome: both locales live inline
  * and are read as `service.title[locale]`, the same way the product catalogue
@@ -163,6 +168,7 @@ export const services = [
  * currently has `image: null`, and narrowing that to `null` would make the
  * photo branch in `<ServiceImage>` unreachable until the first file lands.
  */
-export function getAllServices(): readonly Service[] {
-  return services;
-}
+export const getAllServices = cache(
+  async (): Promise<readonly Service[]> =>
+    isWpEnabled() ? fetchWpServices() : services,
+);

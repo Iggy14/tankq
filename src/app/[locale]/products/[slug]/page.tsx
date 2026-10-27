@@ -19,19 +19,20 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/products";
-import { pageMetadata, siteUrl } from "@/lib/site";
+import { absoluteUrl, pageMetadata, siteUrl } from "@/lib/site";
 
-// The catalogue is static data, so every detail page is prerendered. The
-// parent [locale] segment supplies the locale half of each pair.
-export function generateStaticParams() {
-  return getAllProducts().map((product) => ({ slug: product.slug }));
+// Every product known at build time is prerendered. The parent [locale] segment
+// supplies the locale half of each pair. A product added in the CMS later is
+// rendered on its first request (`dynamicParams` is on by default).
+export async function generateStaticParams() {
+  return (await getAllProducts()).map((product) => ({ slug: product.slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps<"/[locale]/products/[slug]">): Promise<Metadata> {
   const { locale, slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     return {};
@@ -54,7 +55,7 @@ export default async function ProductDetailPage({
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  const product = getProductBySlug(slug);
+  const product = await getProductBySlug(slug);
 
   if (!product) {
     notFound();
@@ -66,7 +67,7 @@ export default async function ProductDetailPage({
   const tCommon = await getTranslations("common");
 
   const sections = getProductSections(product.id);
-  const related = getRelatedProducts(product.slug);
+  const related = await getRelatedProducts(product.slug);
 
   return (
     <>
@@ -76,7 +77,7 @@ export default async function ProductDetailPage({
           "@type": "Product",
           name: product.title[activeLocale],
           description: product.description[activeLocale],
-          image: product.images.map((src) => `${siteUrl}${src}`),
+          image: product.images.map(absoluteUrl),
           url: `${siteUrl}/${locale}/products/${product.slug}`,
           brand: { "@type": "Brand", name: "TankQ" },
         }}

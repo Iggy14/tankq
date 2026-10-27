@@ -4,7 +4,7 @@ import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { ProjectCard } from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { getFeaturedProjects } from "@/lib/projects";
+import { getFeaturedProjects, type Project } from "@/lib/projects";
 
 /**
  * The featured slice of the project showcase, sitting under the featured
@@ -14,10 +14,12 @@ import { getFeaturedProjects } from "@/lib/projects";
  * problem/solution/result copy belongs to `/projects`. The card itself lives
  * in <ProjectCard>.
  */
-export function FeaturedProjects() {
-  const t = useTranslations("home.projects");
+export async function FeaturedProjects() {
+  return <FeaturedProjectsView featured={await getFeaturedProjects()} />;
+}
 
-  const featured = getFeaturedProjects();
+function FeaturedProjectsView({ featured }: { featured: Project[] }) {
+  const t = useTranslations("home.projects");
 
   return (
     // Matches the hero, "Why TankQ" and the products row: one full screen

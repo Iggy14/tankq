@@ -19,9 +19,11 @@ import { cn } from "@/lib/utils";
  * rather than one continuous one. The image alternates left/right so they
  * don't read as a repeating template.
  */
-export function ProjectCaseStudies() {
-  const projects = getAllProjects();
+export async function ProjectCaseStudies() {
+  return <CaseStudies projects={await getAllProjects()} />;
+}
 
+function CaseStudies({ projects }: { projects: Project[] }) {
   return (
     <section className="mx-auto flex w-full max-w-[88rem] flex-1 flex-col px-4 pb-16 sm:px-6 sm:pb-20">
       {projects.map((project, index) => (
@@ -90,8 +92,8 @@ function CaseStudy({ project, imagePosition, isFirst }: CaseStudyProps) {
         )}
       >
         <ProjectTagPills
-          tankTypeId={project.tankTypeId}
-          applicationId={project.applicationId}
+          tankType={project.tankType}
+          application={project.application}
         />
 
         <h3 className="text-xl font-bold tracking-tight text-foreground sm:text-2xl">

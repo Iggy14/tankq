@@ -70,8 +70,8 @@ export function ProjectCard({
           {project.title[locale]}
         </CardTitle>
         <ProjectTagPills
-          tankTypeId={project.tankTypeId}
-          applicationId={project.applicationId}
+          tankType={project.tankType}
+          application={project.application}
           className="justify-center pt-1"
         />
       </CardHeader>

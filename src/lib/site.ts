@@ -10,6 +10,15 @@ import { routing } from "@/i18n/routing";
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.tankq-solution.com";
 
+/**
+ * An absolute URL for an image path. A path under `public/` is joined to the
+ * site origin; an image served from the CMS is already absolute and passes
+ * through untouched.
+ */
+export function absoluteUrl(src: string): string {
+  return /^https?:\/\//.test(src) ? src : `${siteUrl}${src}`;
+}
+
 /** Google Tag Manager container (TANK-Q), installed once in the root layout. */
 export const gtmId = "GTM-N37ZG3P9";
 

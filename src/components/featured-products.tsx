@@ -4,7 +4,7 @@ import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
-import { getFeaturedProducts } from "@/lib/products";
+import { getFeaturedProducts, type Product } from "@/lib/products";
 
 /** Anchor target for the hero's "Products" button. */
 export const FEATURED_PRODUCTS_ID = "products";
@@ -16,10 +16,12 @@ export const FEATURED_PRODUCTS_ID = "products";
  * detail page. The card itself lives in <ProductCard>, shared with the
  * products listing.
  */
-export function FeaturedProducts() {
-  const t = useTranslations("home.products");
+export async function FeaturedProducts() {
+  return <FeaturedProductsView featured={await getFeaturedProducts()} />;
+}
 
-  const featured = getFeaturedProducts();
+function FeaturedProductsView({ featured }: { featured: Product[] }) {
+  const t = useTranslations("home.products");
 
   return (
     // Matches the hero and "Why TankQ": one full screen minus the 4rem sticky

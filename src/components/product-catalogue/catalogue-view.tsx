@@ -4,7 +4,10 @@ import { useTranslations } from "next-intl";
 
 import { FadeInUp, FadeInUpGroup } from "@/components/fade-in-up";
 import { ProductCard } from "@/components/product-card";
-import type { ActiveCategory } from "@/lib/product-category-url";
+import type {
+  ActiveCategory,
+  CategoryLink,
+} from "@/lib/product-category-url";
 import type { Product } from "@/lib/products";
 
 import { CategoryFilter } from "./category-filter";
@@ -12,6 +15,8 @@ import { CategoryFilter } from "./category-filter";
 type CatalogueViewProps = {
   /** The full catalogue, in listing order. */
   products: Product[];
+  /** Every category with its href, in listing order. */
+  categories: CategoryLink[];
   active: ActiveCategory;
 };
 
@@ -22,7 +27,11 @@ type CatalogueViewProps = {
  * That is what lets the page prerender it at "all" as the Suspense fallback
  * while the URL-reading version hydrates over the top - see `index.tsx`.
  */
-export function CatalogueView({ products, active }: CatalogueViewProps) {
+export function CatalogueView({
+  products,
+  categories,
+  active,
+}: CatalogueViewProps) {
   const t = useTranslations("products");
 
   const visible =
@@ -33,7 +42,7 @@ export function CatalogueView({ products, active }: CatalogueViewProps) {
   return (
     <>
       <FadeInUp className="mt-10">
-        <CategoryFilter active={active} />
+        <CategoryFilter categories={categories} active={active} />
       </FadeInUp>
 
       {visible.length === 0 ? (
