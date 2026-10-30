@@ -3,68 +3,6 @@
 Deferred work — things intentionally left undone, with enough context to pick
 them up cold. Delete an entry once it ships.
 
-## Headless WordPress: put it on the VPS
-
-**Status:** code written, not deployed. Added 2026-10-27.
-
-The boss wants to edit products, projects and services without a developer. The
-site now reads that content from a headless WordPress when `WP_API_URL` is set
-(see "Content source" in `docs/ARCHITECTURE.md`) and from `src/lib` otherwise.
-Everything was built and tested against a LocalWP site on a laptop. Nothing runs
-on the real server yet, so production still serves the built-in data.
-
-Verified locally: build and lint pass in both modes; with the built-in data all
-30 prerendered pages match the pre-change build; with WordPress on, every page
-matches except `og:image` / `twitter:image` / image URLs, which now point at the
-WordPress host; an edit saved in WordPress shows on the live page after
-`POST /api/revalidate`. **Not exercised:** the plugin's own webhook call
-(`tq_notify_site` in `wordpress/tankq-cms/tankq-cms.php`), because the
-`TANKQ_REVALIDATE_*` constants were not set in the local `wp-config.php`. Test it
-in step 8 below. Note that ACF's REST API rejects a partial update that omits a
-required field, so a test script must send `title_th`, `title_en`,
-`description_th`, `description_en` and `category` together.
-
-**Why it was skipped:** the server side needs the hosting provider or someone
-with DirectAdmin access alongside, and the deploy host details were not at hand.
-
-**What to do** (the live host is a DirectAdmin VPS at 43.249.35.28, panel on
-port 2222; the Next.js site is deployed by uploading files in File Manager and
-running commands in Warp):
-
-1. Find which DirectAdmin user hosts `tankq-solution.com` and where its DNS is
-   managed. Check PHP is 8.1 or newer (PHP Configuration) and that MySQL
-   Management exists. DirectAdmin here has no WordPress installer.
-2. Create the subdomain `cms.tankq-solution.com` (Domain Setup > Subdomain
-   Management), add its DNS A record pointing at 43.249.35.28, and issue a
-   Let's Encrypt certificate for it.
-3. Create a MySQL database and user in MySQL Management. Download WordPress from
-   wordpress.org, upload the zip to the subdomain's `public_html` in File
-   Manager, extract, and run the web installer.
-4. Install and activate the free "Advanced Custom Fields" plugin, then copy
-   `wordpress/tankq-cms/` into `wp-content/plugins/` and activate it. Under
-   Settings > Permalinks choose "Post name". Tick "Discourage search engines".
-5. In `wp-config.php` add:
-   `define('TANKQ_REVALIDATE_URL', 'https://www.tankq-solution.com/api/revalidate');`,
-   `define('TANKQ_REVALIDATE_SECRET', '<long random string>');` and
-   `define('TANKQ_SITE_URL', 'https://www.tankq-solution.com');`.
-6. Create an Application Password for an admin user, put `WP_API_URL`
-   (`https://cms.tankq-solution.com`), `WP_USER` and `WP_APP_PASSWORD` in
-   `.env.local`, and run `npx tsx scripts/migrate-to-wp.ts --dry-run`, then
-   without `--dry-run`. It is safe to re-run.
-7. On the server set `WP_API_URL` and `REVALIDATE_SECRET` (same value as
-   `TANKQ_REVALIDATE_SECRET`) in the environment the site runs in, then deploy
-   as usual (upload, build, restart). If the build runs on the server it needs
-   `WP_API_URL` at build time too.
-8. Test: edit a product title in WordPress, save, and confirm the live page
-   changes within seconds. Stop WordPress briefly and confirm the live site
-   still serves pages.
-9. Create an Editor account for the boss. Turn on DirectAdmin backups for the
-   WordPress MySQL database and its `wp-content/uploads` folder, and note that
-   WordPress core and plugins need regular updates.
-10. Remove the built-in arrays from `src/lib` only if the boss no longer wants a
-    code fallback; until then they double as the migration source and the
-    no-CMS mode.
-
 ## Product detail sections are still edited in code
 
 **Status:** deliberate gap. Added 2026-10-27.
