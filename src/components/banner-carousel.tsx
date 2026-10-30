@@ -7,7 +7,6 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import { ContourBackdrop } from "@/components/contour-backdrop";
 
 /**
  * The pictures, in display order. `key` is the `home.productBanner.<key>` alt.
@@ -137,12 +136,9 @@ export function BannerCarousel() {
 
   return (
     // The outer div only adds plain space below the section. The inner wrapper
-    // supplies the gutters and carries the contour lines that peek out around
-    // the carousel, by the same amount on top and bottom; the carousel itself
-    // is the opaque rounded box inside it.
+    // supplies the gutters and the space above and below the carousel.
     <div className="w-full pb-12 sm:pb-14">
       <div className="relative isolate w-full px-7.5 py-4 sm:py-6">
-        <ContourBackdrop />
         <section
           ref={containerRef}
           aria-roledescription="carousel"

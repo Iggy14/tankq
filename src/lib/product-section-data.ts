@@ -339,7 +339,56 @@ const peAboveGroundSections: ProductSection[] = [
       },
     ],
   },
+  peTankSizeTable("TQ", true),
 ];
+
+/**
+ * Size table for the PE above-ground water tanks. TQ and TG share every size
+ * from 330 L up; only TQ also comes in 100 L and 200 L. The list sits inside
+ * the function because the section arrays above call it at module load.
+ */
+function peTankSizeTable(
+  series: "TQ" | "TG",
+  includeSmall: boolean,
+): ProductSection {
+  const PE_TANK_SIZES: { liter: number; dimensions: string }[] = [
+    { liter: 100, dimensions: "500 x 650" },
+    { liter: 200, dimensions: "650 x 750" },
+    { liter: 330, dimensions: "700 x 1,030" },
+    { liter: 500, dimensions: "700 x 1,490" },
+    { liter: 600, dimensions: "700 x 1,690" },
+    { liter: 750, dimensions: "700 x 1,830" },
+    { liter: 1000, dimensions: "920 x 1,760" },
+    { liter: 1500, dimensions: "1,100 x 1,640" },
+    { liter: 2000, dimensions: "1,200 x 1,920" },
+    { liter: 2500, dimensions: "1,400 x 1,910" },
+    { liter: 3000, dimensions: "1,400 x 2,050" },
+    { liter: 4000, dimensions: "1,650 x 2,100" },
+    { liter: 5000, dimensions: "1,690 x 2,300" },
+    { liter: 6000, dimensions: "1,690 x 2,900" },
+    { liter: 8000, dimensions: "2,140 x 2,630" },
+    { liter: 10000, dimensions: "2,140 x 3,170" },
+  ];
+  const sizes = PE_TANK_SIZES.filter((s) => includeSmall || s.liter >= 330);
+  return {
+    type: "specTable",
+    title: {
+      th: `ตารางขนาดถังเก็บน้ำบนดิน PE รุ่น ${series}`,
+      en: `${series} Series PE Above-Ground Water Tank Size Table`,
+    },
+    columns: [
+      { th: "รุ่น", en: "Model" },
+      { th: "ความจุ (ลิตร)", en: "Capacity (litres)" },
+      { th: "⌀ x สูง (มม.)", en: "Dia. x Height (mm)" },
+    ],
+    rows: sizes.map((s) => [
+      { th: `${series}-${s.liter}`, en: `${series}-${s.liter}` },
+      { th: String(s.liter), en: String(s.liter) },
+      { th: s.dimensions, en: s.dimensions },
+    ]),
+    columnAlign: ["left", "center", "center"],
+  };
+}
 
 const peUndergroundSections: ProductSection[] = [
   {
@@ -374,7 +423,51 @@ const peUndergroundSections: ProductSection[] = [
       },
     ],
   },
+  peUndergroundSizeTable("TU"),
 ];
+
+/**
+ * Model and capacity table for the black PE wastewater tank (TW) and the blue
+ * PE underground water tank (TU). Both lines are sold in the same sizes. The
+ * source price sheet has no dimensions and its price column is blank, so
+ * neither is shown.
+ */
+function peUndergroundSizeTable(series: "TU" | "TW"): ProductSection {
+  const SIZES: { model: number; liter: number }[] = [
+    { model: 600, liter: 600 },
+    { model: 800, liter: 750 },
+    { model: 1000, liter: 1000 },
+    { model: 1200, liter: 1500 },
+    { model: 1600, liter: 1500 },
+    { model: 2000, liter: 2000 },
+    { model: 3000, liter: 3000 },
+    { model: 4000, liter: 4000 },
+    { model: 5000, liter: 5000 },
+    { model: 6000, liter: 6000 },
+  ];
+  return {
+    type: "specTable",
+    title:
+      series === "TU"
+        ? {
+            th: "ตารางรุ่นถังเก็บน้ำใต้ดิน PE รุ่น TU",
+            en: "TU Series PE Underground Water Tank Model Table",
+          }
+        : {
+            th: "ตารางรุ่นถังบำบัดน้ำเสีย PE รุ่น TW",
+            en: "TW Series PE Wastewater Treatment Tank Model Table",
+          },
+    columns: [
+      { th: "รุ่น", en: "Model" },
+      { th: "ความจุ (ลิตร)", en: "Capacity (litres)" },
+    ],
+    rows: SIZES.map((s) => [
+      { th: `${series}-${s.model}`, en: `${series}-${s.model}` },
+      { th: String(s.liter), en: String(s.liter) },
+    ]),
+    columnAlign: ["left", "center"],
+  };
+}
 
 const peGraniteSections: ProductSection[] = [
   {
@@ -441,6 +534,7 @@ const peGraniteSections: ProductSection[] = [
       },
     ],
   },
+  peTankSizeTable("TG", false),
 ];
 
 const peSepticTankSections: ProductSection[] = [
@@ -476,6 +570,7 @@ const peSepticTankSections: ProductSection[] = [
       },
     ],
   },
+  peUndergroundSizeTable("TW"),
   {
     type: "specTable",
     title: {

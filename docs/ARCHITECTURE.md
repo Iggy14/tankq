@@ -622,19 +622,6 @@ Data only one component ever renders stays next to it.
   `max-w-[88rem]` is the wide track used by the hero, the stats strip, the
   footer and both product pages. A wide page must also pass `wide` to
   `<Breadcrumbs>`, or the trail sits indented from the heading below it.
-- `ContourBackdrop` (`src/components/contour-backdrop.tsx`) is the decorative
-  topographic-line layer. Drop it inside a `relative isolate` parent and it fills
-  it at `-z-10`, under the parent's content. The lines are
-  `public/home/contours.svg` used as a CSS mask, so the colour is a theme token
-  (`bg-primary/40`, overridable via `className`), not baked into the file. The
-  drawing is a full field of wide, smooth rings, so it also runs under the
-  parent's content: opaque children (like the carousel) hide most of it and the
-  lines show around their edges. Give the parent some padding around its content
-  so they do. `BannerCarousel` is the one user. It drifts
-  via the `--animate-contour-drift` keyframe in `globals.css` and is static
-  under `prefers-reduced-motion`. The SVG was generated (a seeded field run
-  through d3-contour, then simplified) and is not hand-edited; replace the file
-  rather than tweaking paths.
 - `FadeInUp` / `FadeInUpGroup` (`src/components/fade-in-up.tsx`) are the
   scroll-in reveals. Nest `FadeInUp` inside a `FadeInUpGroup` to cascade: the
   group takes the layout classes (grid, flex, gap) and the children inherit its

@@ -306,3 +306,17 @@ reads "Suitable for wastewater treatment" (`peUndergroundSections` in
 `src/lib/product-section-data.ts`). That was copied unchanged from the old
 standalone page, but it looks wrong for a water storage tank. Confirm the
 intended wording with the content owner and fix both locales.
+
+## TW / TU model tables: dimensions, prices and the 1200 / 1600 litres
+
+**Status:** needs data from the content owner. Added 2026-10-30.
+
+`peUndergroundSizeTable` in `src/lib/product-section-data.ts` renders the TW
+(wastewater) and TU (underground water) model tables as Model and Capacity
+only. The source price sheet has a blank price column and no dimensions, so
+both were left out. The sheet also lists TW-1200 and TU-1200 and TW-1600 and
+TU-1600 all as 1500 L, which may be a typo.
+
+**What to do:** confirm the 1200 and 1600 capacities, then add a dimensions
+column (and a price or "contact for price" column if wanted) to the `columns`
+and `rows` in `peUndergroundSizeTable`, keeping `columnAlign` in step.
